@@ -1,11 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<ul class="nav flex-column">
-	<li class="nav-item mb-2">
-		<h6 class=text-white>
-			<span class="mr-2">메뉴1</span>
-			<a href="#" class="text-white">메뉴 내용</a>
-		</h6>
-	</li>
-</ul>
+<aside class="aside">
+	    <ul>
+	    	<li>
+	    		내 치과 등록하기
+	    	</li>
+	    	<li>
+	    		내 포인트
+	    	</li>
+	    	<li>
+	    		회원정보 수정
+	    	</li>
+	    	<li>
+	    		회원 탈퇴
+	    	</li>
+	    	
+	    	<li class="mt-5">
+	    		<div class="custom-control custom-switch">
+				  <input type="checkbox" class="custom-control-input" id="customSwitch1">
+				  <label class="custom-control-label" for="customSwitch1">알림 설정</label>
+				</div>
+	    	</li>
+	    </ul>
+    </aside>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,47 +6,108 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    <title>미니 프로젝트 메인화면</title>
+    
+    <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/webapp/resources/css/app.css" />
-  </head>
+    <style>
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        border-bottom: 1px solid lightgray;
+        background-color: rgb(250, 250, 250);
+      }
+      .header__logo {
+        cursor: pointer;
+      }
 
+      .nav__list {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav__btn {
+        display: flex;
+        align-items: center;
+        color: rgb(85, 85, 80);
+        margin-right: 1.5rem;
+        cursor: pointer;
+      }
+      .nav__btn > i {
+        font-size: 0.9rem;
+        margin-right: 0.3rem;
+      }
+
+      .round-btn {
+        color: rgb(242, 101, 34);
+        border: 3.5px solid rgb(242, 101, 34);
+        border-radius: 30rem;
+        padding: 0.8rem 1rem;
+        background-color: white;
+      }
+      
+      .aside {
+      	padding-top: 8rem;
+      	padding-left: 5rem;
+      }
+
+      body {
+        height: 100vh;
+      }
+
+      #wrapper {
+        position: relative;
+        min-height: 100%;
+        padding-bottom: 100px;
+      }
+      
+      footer {
+      	/* height: 100px; */
+      	position: absolute;
+      	/* transform: translateY(100%); */
+        bottom: 0;
+        width: 100%;
+        background-color: lightgrey;
+      }
+      
+      
+      .footer__column {
+      	padding: 3rem;
+      }
+      
+    </style>
+  </head>
   <body>
-    <div class="d-flex flex-column vh-100">
-      <nav class="navbar navbar-dark bg-dark font-weight-bold">
-        <a class="navbar-brand" href="#">
-          <img
-            src="${pageContext.request.contextPath}/resources/images/logo-spring.png"
-            width="30"
-            height="30"
-            class="d-inline-block align-top"
-          />
-          <%-- <img
-            src="/webapp/resources/images/logo-spring.png"
-            width="30"
-            height="30"
-            class="d-inline-block align-top"
-          /> --%>
-          Spring
-        </a>
-		<div>
-			<a href="#" class="btn btn-success btn-sm">로그인</a>
-		</div>
+    <!-- header -->
+    <header class="header">
+      <div class="header__logo">logo</div>
+      <nav class="nav">
+        <ul class="nav__list">
+          <a href="#" class="nav__btn">
+            <i class="fa-solid fa-tooth"></i>
+            <li>진료 내역</li>
+          </a>
+          <a href="#" class="nav__btn">
+            <i class="fa-solid fa-clipboard"></i>
+            <li>진료 예약</li>
+          </a>
+          <a href="#" class="nav__btn">
+            <i class="fa-solid fa-calendar-day"></i>
+            <li>일정 보기</li>
+          </a>
+          <a href="#" class="nav__btn">
+            <li class="round-btn">마이페이지</li>
+          </a>
+          <a href="#" class="nav__btn">
+            <li>로그아웃</li>
+          </a>
+        </ul>
       </nav>
-      <div class="container-fluid flex-grow-1">
-        <div class="row h-100">
-			<div class="col-md-4 bg-dark p-3">
-				<div class="h-100 d-flex flex-column">
-					<div class="flex-grow-1" style="height: 0px; overflow-y: auto; overflow-x: hidden;">
-                        <%@ include file="/WEB-INF/views/common/menu.jsp" %>
-					</div>
-				</div>
-			</div>
-          <div class="col-md-8 p-3">
-		  	<div class="h-100 d-flex flex-column">
-			  <div class="flex-grow-1 pr-3" style="height: 0px; overflow-y: auto; overflow-x: auro;">
+    </header>
