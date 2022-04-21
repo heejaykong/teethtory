@@ -196,11 +196,11 @@ file="/WEB-INF/views/common/header.jsp"%>
         </div>
         <div class="desc-card__header__col">
           <i class="fa-solid fa-pen"></i>
-          <a href="#">후기 작성하기</a>
+          <a href="reviewForm">후기 작성하기</a>
         </div>
       </div>
       <div class="desc-card__body card-body px-5 py-4">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+        (의사가 기록한 진료내용) Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
         dis parturient montes, nascetur ridiculus mus. Donec quam felis,
         ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
