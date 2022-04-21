@@ -16,9 +16,21 @@ import lombok.extern.log4j.Log4j2;
 public class HomeController {
 
 	@RequestMapping("/")
-	public String home(Locale locale, Model model) {
+	public String home() {
 		log.info("실행");
 		return "home/home";
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		log.info("실행");
+		return "home/login";
+	}
+	
+	@RequestMapping("/signIn")
+	public String signIn() {
+		log.info("실행");
+		return "home/signIn";
 	}
 
 }

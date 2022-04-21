@@ -88,7 +88,7 @@
 			width="100%">
 	</div>
 	<div class="mb-3" style="font-size: 25px;">검색 결과</div>
-	<a href="showDentistDetail">aaa</a>
+	<a href="${pageContext.request.contextPath}/reservation/registerMyDentist">aaa</a>
 	<div style="width: 100%">
 		<ol class="hospital-name d-flex">
 		

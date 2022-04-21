@@ -15,5 +15,11 @@ public class ReservationController {
 		log.info("실행");
 		return "reservation/reservation";
 	}
+	
+	@RequestMapping("/registerMyDentist")//상단 탭 진료 예약 클릭시, 예약화면으로 이동(영화관 예약 비슷한 그 화면...)
+	public String registerMyDentist() {
+		log.info("실행");
+		return "reservation/registerMyDentist";
+	}
 
 }
