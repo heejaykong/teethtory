@@ -190,19 +190,19 @@
       <div class="header__logo">logo</div>
       <nav class="nav">
         <ul class="nav__list">
-          <a href="#" class="nav__btn">
+          <a href="${pageContext.request.contextPath}/medicalHistoryPage/" class="nav__btn">
             <i class="fa-solid fa-tooth"></i>
             <li>진료 내역</li>
           </a>
-          <a href="#" class="nav__btn">
+          <a href="${pageContext.request.contextPath}/reservation/" class="nav__btn">
             <i class="fa-solid fa-clipboard"></i>
             <li>진료 예약</li>
           </a>
-          <a href="#" class="nav__btn">
+          <a href="${pageContext.request.contextPath}/reservationHistory/reservationHistoryWithCalendar" class="nav__btn">
             <i class="fa-solid fa-calendar-day"></i>
             <li>일정 보기</li>
           </a>
-          <a href="#" class="nav__btn">
+          <a href="${pageContext.request.contextPath}/myPage/" class="nav__btn">
             <li class="round-btn">마이페이지</li>
           </a>
           <a href="#" class="nav__btn">
