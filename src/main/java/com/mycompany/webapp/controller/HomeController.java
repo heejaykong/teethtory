@@ -21,24 +21,4 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/myPage/myPagePoint")
-	public String myPage() {
-		return "/myPage/myPagePoint";
-	}
-	
-	@RequestMapping("/myPage/myDentalClinicList")
-	public String myDentalClinicList() {
-		return "/myPage/myDentalClinicList";
-	}
-	
-	@RequestMapping("/myPage/myInformationEditor")
-	public String myInformationEditor() {
-		return "/myPage/myInformationEditor";
-	}
-	
-	@RequestMapping("/myPage/signOut")
-	public String signOut() {
-		return "/myPage/signOut";
-	}
-	
 }

@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>일반 고객용</title>
+    <title>미니 프로젝트 메인화면</title>
     
     <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
 	<link
@@ -53,22 +53,9 @@
         background-color: white;
       }
       
-      .homeCarouselImg {
-      	width: 100%;
-      	height: 25rem;
-      }
-      
       .aside {
-      	/* display: flex; */
-      	float: left;
-      	width: 30%;
-      	height: 100vh;
       	padding-top: 8rem;
-      	padding-left: 2.7rem;
-      	border-right: 1px solid lightgray;
-        background-color: rgb(250, 250, 250);
-        font-size: 1.2rem;
-        align-items: center;
+      	padding-left: 5rem;
       }
 
       body {
@@ -90,97 +77,11 @@
         background-color: lightgrey;
       }
       
+      
       .footer__column {
       	padding: 3rem;
       }
       
-      /* history list */
-		.history-list{
-		   padding: 0.2rem 1rem;
-		  height: 20rem;
-		   width: 30rem;
-		  /* overflow-y: scroll; */
-		   margin-top: 3rem;
-		   margin-right: 5rem;
-		}
-		.history-list__item{
-		   cursor: pointer;
-		   display: flex;
-		   border-radius: 1rem;
-		   padding: 0.8rem 1.2rem;
-		  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
-		   margin-bottom: 0.2rem;
-		}
-		.item__col {
-		   display: flex;
-		   flex-direction: column;
-		}
-		.round-thumbnail{
-		   border: 2px solid rgb(242, 101, 34);
-		   border-radius: 50%;
-		   width: 3rem;
-		   height: 3rem;
-		   display: flex;
-		   justify-content: center;
-		   align-items: center;
-		   margin-right: 0.8rem;
-		}
-		.dentist-visited{
-		   font-size: 0.8rem;
-		   color: rgb(85, 85, 80);
-		   margin-bottom: 0.2rem;
-		}
-		.treatment-title{
-		   font-size: 1.2rem;
-		   color: rgb(242, 101, 34);
-		   font-weight: 600;
-		   margin-bottom: 0.2rem;
-		}
-		.treatment-date{
-		   font-size: 1.2rem;
-		   color: rgb(85, 85, 80);
-		   font-weight: 600;
-		   margin-left: 0.2rem;
-		}
-		.cost{
-		   font-size: 0.8rem;
-		   color: rgb(242, 101, 34);
-		}
-		
-		.myDentistBtn {
-			background-color: #ffb84d;
-			border-color: #ffb84d;
-		}
-		
-		.orangeBtn {
-			background-color: white;
-			border-color: rgb(242, 101, 34);
-			color: rgb(242, 101, 34);
-		}
-		
-		.orangeBtn:hover {
-			background-color: rgb(242, 101, 34);
-			border-color: rgb(242, 101, 34);
-			color: white;
-		}
-		
-		.orangeBtn:active {
-			background-color: rgb(242, 101, 34);
-			border-color: rgb(242, 101, 34);
-			color: white;
-		}
-
-		.redBtn {
-			color: #cc0000;
-			background-color: white;
-			border-color: #cc0000;
-		}
-		
-		.redBtn:hover {
-			color: white;
-			background-color: #cc0000;
-			border-color: #cc0000;
-		}
     </style>
   </head>
   <body>
