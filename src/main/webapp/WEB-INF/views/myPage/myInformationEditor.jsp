@@ -7,7 +7,7 @@
 		color: rgb(242, 101, 34);
 	}
 </style>
-<div class="container-fluid d-flex" style="height: 10rem;">
+<div class="container-fluid d-flex">
 	<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 
 	<div class="col-sm-10 justify-content-center" style="float: left; width: 70%;">

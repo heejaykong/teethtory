@@ -1,12 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<aside>
+<aside class="aside">
 	    <ul>
-	    	<li onclick="showmyDentalClinicList()">
+	    	<li>
+	    		<a id="myDentistRegistrationTab" href="${pageContext.request.contextPath}/myPage/myDentalClinicList">
 	    		내 치과 등록하기
+	    		</a>
 	    	</li>
-	    	<li onclick="myPagePoint()">내 포인트
+	    	<li>
+	    		<a id="myPointTab" href="${pageContext.request.contextPath}/myPage/myPagePoint">
+	    		내 포인트
 				<i class="fa-solid fa-p" style="color: rgb(242, 101, 34);">15,000</i>
+	    		</a>
 	    	</li>
 	    	<li>
 	    		<a id="userInformationEditorTab" href="${pageContext.request.contextPath}/myPage/myInformationEditor">회원정보 수정</a>
@@ -23,11 +28,3 @@
 	    	</li>
 	    </ul>
     </aside>
-    <script>
-    function showmyDentalClinicList() {
-    	location.href = "${pageContext.request.contextPath}/myPage/myDentalClinicList";
-    }
-    function myPagePoint() {
-    	location.href = "${pageContext.request.contextPath}/myPage/myPagePoint";
-    }
-    </script>
