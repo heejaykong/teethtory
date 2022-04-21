@@ -15,7 +15,7 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/myPagePoint")
-	public String myPage() {
+	public String myPagePoint() {
 		return "/myPage/myPagePoint";
 	}
 	

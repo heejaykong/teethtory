@@ -94,7 +94,7 @@ a:hover {
 								class="find_text">비밀번호 찾기</a></span> <span><a target="_blank"
 								href="https://nid.naver.com/user2/api/route?m=routeIdInquiry&amp;lang=ko_KR"
 								class="find_text">아이디 찾기</a></span> <span><a
-								href="signUpForm.html" onclick="sendText()">회원가입</a></span>
+								href="${pageContext.request.contextPath}/signIn" onclick="sendText()">회원가입</a></span>
 						</div>
 					</div>
 

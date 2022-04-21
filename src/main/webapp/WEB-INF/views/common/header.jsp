@@ -61,7 +61,7 @@
       
       .aside {
       	/* display: flex; */
-      	float: left;
+      	/* float: left; */
       	width: 30%;
       	height: 100vh;
       	padding-top: 8rem;

@@ -15,7 +15,7 @@
         <span style="font-size: xx-large; ">햇살 치과</span>
       </div>
       <div style="text-align: right">
-      	<button class="btn btn-primary btn-sm mr-5 mb-5" >예약하기</button>
+      	<a class="btn btn-primary btn-sm mr-5 mb-5" href="${pageContext.request.contextPath}/reservationUsingCalendar/" >예약하기</a>
       </div>
       <div class="d-flex flex-row ml-5" style="margin-bottom: 50px;">
         <div style="width: 200px; height: auto;">

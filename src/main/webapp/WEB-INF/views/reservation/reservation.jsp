@@ -88,11 +88,10 @@
 			width="100%">
 	</div>
 	<div class="mb-3" style="font-size: 25px;">검색 결과</div>
-	<a href="${pageContext.request.contextPath}/reservation/registerMyDentist">aaa</a>
 	<div style="width: 100%">
 		<ol class="hospital-name d-flex">
 		
-			<div class="hospital-name__item col-md-4" onclick="">
+			<div class="hospital-name__item col-md-4" onclick="requestGet()">
 				<div class="item__col">
 					<div class="round-thumbnail">
 						<i class="fa-solid fa-tooth fa-lg"></i>
@@ -128,6 +127,11 @@
 				</div>
 			</div>
 		</ol>
+		<script>
+            function requestGet() {
+            	location.href = "${pageContext.request.contextPath}/registerMyDentist/";
+            }
+        </script>
 	</div>
 </div>
 
