@@ -9,7 +9,7 @@
 </style>
 
 <!-- <div class="d-flex align-items-center"> -->
-<div class="container-fluid d-flex" style="height: 10rem;">
+<div class="container-fluid d-flex">
 	<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 
 	<!-- <div class="col-sm-10  mx-3rem px-2rem" -->

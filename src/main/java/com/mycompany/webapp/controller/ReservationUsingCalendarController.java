@@ -4,12 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.log4j.Log4j2;
+
 @Controller
-@RequestMapping("/registerMyDentist")
+@RequestMapping("/reservationUsingCalendar")
 @Log4j2
-public class RegisterMyDentistController {
+public class ReservationUsingCalendarController {
+
 	@RequestMapping("/")
-	public String registerMyDentist() {
-		return "reservation/registerMyDentist";
+	public String reservationUsingCalendar() {
+		log.info("실행");
+		return "reservation/reservationUsingCalendar";
 	}
 }
