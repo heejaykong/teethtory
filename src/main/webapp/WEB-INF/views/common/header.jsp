@@ -187,7 +187,7 @@
   <body>
     <!-- header -->
     <header class="header">
-      <div class="header__logo">logo</div>
+      <div class="header__logo"><a href="${pageContext.request.contextPath}/signIn" class="nav__btn">logo</div>
       <nav class="nav">
         <ul class="nav__list">
           <a href="${pageContext.request.contextPath}/medicalHistoryPage/" class="nav__btn">
@@ -205,7 +205,7 @@
           <a href="${pageContext.request.contextPath}/myPage/" class="nav__btn">
             <li class="round-btn">마이페이지</li>
           </a>
-          <a href="#" class="nav__btn">
+          <a href="${pageContext.request.contextPath}/login/" class="nav__btn">
             <li>로그아웃</li>
           </a>
         </ul>
