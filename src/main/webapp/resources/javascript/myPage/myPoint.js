@@ -1,11 +1,27 @@
+function list_active(list_id) {
+	let list = window.document.querySelector('#'+list_id);
+	list.addAttribute("active");
+}
+
+
 const list_items = [
 	{point:"+100", category:"로그인 포인트", date:"2022.04.16"},
 	{point:"-10,000", category:"스케일링 할인", date:"2022.04.16"}
 ];
-
 for(let i=0; i<40; i++) {
 	list_items.push({point:"+100", category:"로그인 포인트", date:"2022.04.16"});
 }
+
+const list_got_items = [
+	
+];
+for(let i=0; i<41; i++) {
+	list_got_items.push({point:"+100", category:"로그인 포인트", date:"2022.04.16"});
+}
+
+const list_used_items = [
+	{point:"-10,000", category:"스케일링 할인", date:"2022.04.16"}
+];
 
 const list_element = document.getElementById('list');
 const pagination_element = document.getElementById('pagination');
@@ -74,5 +90,5 @@ function PaginationButton (page, items) {
 	return button;
 }
 
-DisplayList(list_items, list_element, rows, current_page);
-SetupPagination(list_items, pagination_element, rows);
+//DisplayList(list_items, list_element, rows, current_page);
+//SetupPagination(list_items, pagination_element, rows);
