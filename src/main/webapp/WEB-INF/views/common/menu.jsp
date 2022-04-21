@@ -3,16 +3,17 @@
 <aside class="aside">
 	    <ul>
 	    	<li>
-	    		<span id="myDentistRegistrationTab">내 치과 등록하기</span>
+	    		<a id="myDentistRegistrationTab" href="${pageContext.request.contextPath}/myPage/myDentalClinicList">내 치과 등록하기</a>
 	    	</li>
 	    	<li>
-	    		<span id="myPointTab">내 포인트</span>
+	    		<a id="myPointTab" href="${pageContext.request.contextPath}/myPage/myPagePoint">내 포인트</a>
+				<i class="fa-solid fa-p" style="color: rgb(242, 101, 34);">15,000</i>
 	    	</li>
 	    	<li>
-	    		<span id="userInformationEditorTab">회원정보 수정</span>
+	    		<a id="userInformationEditorTab" href="${pageContext.request.contextPath}/myPage/myInformationEditor">회원정보 수정</a>
 	    	</li>
 	    	<li>
-	    		<span id="signOutTab">회원 탈퇴</span>
+	    		<a id="signOutTab" href="${pageContext.request.contextPath}/myPage/signOut">회원 탈퇴</a>
 	    	</li>
 	    	
 	    	<li class="mt-5">
