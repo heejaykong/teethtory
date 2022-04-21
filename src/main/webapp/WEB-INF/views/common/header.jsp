@@ -13,6 +13,7 @@
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="/springframework-mini-project/resources/css/medical-history-page.css" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -210,4 +211,3 @@
         </ul>
       </nav>
     </header>
->>>>>>> 9b19c9a314c2321a1272ba234516ec1b969c5328
