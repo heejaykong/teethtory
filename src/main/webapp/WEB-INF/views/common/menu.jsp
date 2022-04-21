@@ -3,16 +3,16 @@
 <aside class="aside">
 	    <ul>
 	    	<li>
-	    		내 치과 등록하기
+	    		<span id="myDentistRegistrationTab">내 치과 등록하기</span>
 	    	</li>
 	    	<li>
-	    		내 포인트
+	    		<span id="myPointTab">내 포인트</span>
 	    	</li>
 	    	<li>
-	    		회원정보 수정
+	    		<span id="userInformationEditorTab">회원정보 수정</span>
 	    	</li>
 	    	<li>
-	    		회원 탈퇴
+	    		<span id="signOutTab">회원 탈퇴</span>
 	    	</li>
 	    	
 	    	<li class="mt-5">
