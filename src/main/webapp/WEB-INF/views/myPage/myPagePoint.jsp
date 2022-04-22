@@ -18,13 +18,14 @@
 		    <ul class="navbar-nav">
 				<!-- <li id="list_total" class="nav-item active"> -->
 				<li id="list_total" class="nav-item">
-				  <a class="nav-link" href="#" onClick="DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a>
+				  <!-- <a class="nav-link" href="#" onClick="DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> -->
+				  <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a>
 				</li>
 				<li id="list_got" class="nav-item">
-				  <a class="nav-link" href="#" onClick="DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a>
+				  <a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a>
 				</li>
 				<li id="list_used" class="nav-item">
-				  <a class="nav-link" href="#" onClick="DisplayList(list_used_items, list_element, rows, current_page), SetupPagination(list_used_items, pagination_element, rows)">사용</a>
+				  <a class="nav-link" href="#" onClick="list_active('list_used'), DisplayList(list_used_items, list_element, rows, current_page), SetupPagination(list_used_items, pagination_element, rows)">사용</a>
 				</li>
 		     </ul>
 		</nav>

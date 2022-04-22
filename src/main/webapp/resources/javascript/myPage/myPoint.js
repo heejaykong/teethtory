@@ -1,8 +1,22 @@
 function list_active(list_id) {
-	let list = window.document.querySelector('#'+list_id);
-	list.addAttribute("active");
+	let list = document.getElementById(list_id);
+	list.setAttribute("class", "active");
+	
+	let list_total_element = document.getElementById("list_total");
+	let list_got_element = document.getElementById("list_got");
+	let list_used_element = document.getElementById("list_used");
+	//사용 안 하는 탭들 active 속성 제거.
+	if(list_id === "list_total") {
+		list_got_element.removeAttribute("class", "active");
+		list_used_element.removeAttribute("class", "active");
+	} else if(list_id === "list_got") {
+		list_total_element.removeAttribute("class", "active");
+		list_used_element.removeAttribute("class", "active");
+	} else if(list_id === "list_used") {
+		list_total_element.removeAttribute("class", "active");
+		list_got_element.removeAttribute("class", "active");
+	}
 }
-
 
 const list_items = [
 	{point:"+100", category:"로그인 포인트", date:"2022.04.16"},
@@ -90,5 +104,6 @@ function PaginationButton (page, items) {
 	return button;
 }
 
-//DisplayList(list_items, list_element, rows, current_page);
-//SetupPagination(list_items, pagination_element, rows);
+list_active("list_total");
+DisplayList(list_items, list_element, rows, current_page);
+SetupPagination(list_items, pagination_element, rows);
