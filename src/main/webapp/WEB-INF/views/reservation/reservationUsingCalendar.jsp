@@ -252,7 +252,11 @@ text-align:center;
             }
 
             $('.cell').click(function(){
-           	document.getElementById('reservationtime').value=$('#cc').text();
+         	    var cell_time_check = $(this).attr("id");
+         	});
+			
+            $('.cell').click(function(){
+           		document.getElementById('reservationtime').value = $(this).text();
            	
             $('.cell').removeClass('select');
             $(this).addClass('select');
@@ -265,10 +269,8 @@ text-align:center;
             document.getElementById('reservationtime').value=document.getElementById('test').value
            });
                */
-			
           	$('.reservate').click(function(){
-          	
-          	alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
+          		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
           	});
      </script>
 </body>
