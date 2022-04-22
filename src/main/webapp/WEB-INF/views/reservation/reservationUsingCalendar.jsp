@@ -4,132 +4,71 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Calendar</title>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<style type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Document</title>
+    <style>
+    
 .container{
-flex-direction: row;
-	justify-content:center;
+            display: flex;
+
 }
+        
+
 #timecell{
 
-    width:40%;
-    border: 1px solid lightgrey;
-    float:right;
-    margin-right:80px;
-	
+justify-content: center;
+
+height:180px;
+border-radius:20px;
+	border:1px solid green;
+
+
+
 }
 #point{
-    width:40%;
-    border: 1px solid lightgrey;
-    float:right;
-    margin-right:80px;
-    height:60px;
-   
+
+/* border: 1px solid lightgrey; */
+
+
+
 }
 #dateSelect{
-    width:40%;
-    border: 1px solid lightgrey;
-    float:right;
-    margin-right:80px;
-    margin-top:50px;
-    height:60px;
-    
+
+/* border: 1px solid lightgrey; */
+justify-content: center;
+
 }
 #timeSelect{
-    width:40%;
-    border: 1px solid lightgrey;
-    float:right;
-    margin-right:80px;
-    height:60px;
-    
+
+border-radius:20px;
+	border:1px solid green;
+text-align: center;
 }
 #pointForm{
-    width:40%;
-    border: 1px solid lightgrey;
-    float:right;
-    margin-right:80px;
-    height:60px;
-    
-}
-#calendarForm{
-	margin-top:50px;
-    border:1px solid black;
-    width:40%;
-    float:left;
-    margin-left:80px;
-}
-.btn{
-	justf
-}
 
-/* #can{
-    border:1px solid lightgrey
-}
-#date{
-    border:1px solid lightgrey
-} */
-.custom_calendar_table{
-    text-align: center;
-    height:399px;
-}
-.custom_calendar_table thead.cal_date th {
-    font-size: 1.5rem;
-   
-}
-.custom_calendar_table thead.cal_date th button {
-    font-size: 1.5rem;
-    background: none;
-    border: none;   
-}
-/* 요일 */
-.custom_calendar_table thead.cal_week th {
-    
-    
-   
-}
-/* 각날짜틀 */
-.custom_calendar_table tbody td {
-    cursor: pointer;
-    text-align:center;
-}
-.custom_calendar_table{
-    border : 1px solid lightgrey;
-    width:100%;
-}
-/* 일요일 글씨 */
-.custom_calendar_table tbody td:nth-child(1) {
-    color: red;  
-}
-/* 토요일 글씨 */
-.custom_calendar_table tbody td:nth-child(7) {
-    color: blue;
+/* border: 1px solid lightgrey; */
 
-    
 }
-
-/* 날짜 선택시 */
-.custom_calendar_table tbody td.select_day {
-    background-color: #ffa048;
-    color: #fff;
-   
-  
-   
-}
-.custom_calendar_table tbody td.select_time {
-    background-color: #ffa048;
-    color: #fff;
-    border-radius : 50px;
-}
-
 
 .cell {
     border: 1px solid #BDBDBD;
     background-color: rgb(237, 251, 220);
     cursor: pointer;
+    
+    width:104px;
+    height:30px;
+    text-align: center;
+    margin-left: 10px;
+   	margin-top:5px;
+    text-align: center;
+    border-radius:30px;
 }
 
 .cell:hover {
@@ -140,192 +79,196 @@ flex-direction: row;
     background-color: #ffa048;
     color: #fff;
 }
-</style>
+
+label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    
+}
+#timeForm{
+    text-align: center;
+}
+
+
+/* input,
+label {
+    margin: .4rem 0;
+} */
+#usepoint{
+    zoom:2.0;
+}
+#dateSelect{
+    width:150px;
+    text-align: center;
+    border-radius:20px;
+	border:1px solid green;
+   
+}
+#reservationtime{
+width:100%;
+border: 1px solid green;
+   
+}
+#check{
+    margin-top:240px;
+    width:100%;
+    height:100px;
+    border-radius:20px;
+	border:1px solid green;
+    }
+#start{
+	width:100%;
+	border-radius:20px;
+	border:1px solid green;
+	
+}
+
+#check:enabled{
+    background-color: green;
+}
+#timeclick{
+	font-size:15px;
+	
+}
+
+
+    </style>
 </head>
 <body>
-    <div id="calendarForm" ></div>
-    
-    <div id="timeForm">
-        <div id="dateSelect">날짜 2022. 4. 14. (목)</div>
-        <div id="timeSelect"> 
-        <p id="timeclick">시간 시간을 선택해주세요.</p>
-       
-        </div>
+<div id="all">
+    <div class="container">
+            <div style="flex-grow:2; border:1px solid green; border-radius:20px">
+                <div>
+                   
+                <input type="date" id="start" onchange="handler(event);"/>
+                </div>
+            </div>
+            
+
+
+            <div style="flex-grow:1; border:1px solid green;border-radius:20px">
+                <div>
+                    
+                </div>
+
+                <div>
+                    <div id="timeForm">
+                        <input id="dateSelect" value="날짜"></input>
+                        <div id="timeSelect"> 
+                        <p id="timeclick">예약 시간을 선택해주세요.</p>
+                       
+                        </div>
+                        
+                        <div id="timecell" style="visibility:hidden">
+                            <div class="container row text-center mx-0">
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">9:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">9:30</div>
+                                </div>
+                                
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">10:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">10:30</div>
+                                </div>
+                            </div>
+                            <div class="container row text-center mx-0">
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">11:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">11:30</div>
+                                </div>
+                                
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">12:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">12:30</div>
+                                </div>
+                            </div>
+                            <div class="container row text-center mx-0">
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">1:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">1:30</div>
+                                </div>
+                                
+                               <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">2:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">2:30</div>
+                                </div>
+                            </div>
+                            <div class="container row text-center mx-0">
+                               <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1">3:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1" id="celltime">3:30</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <div class="cell py-1" type="text">4:00</div>
+                                </div>
+                                <div class="item col-md-3 col-5 my-1 px-2">
+                                    <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
+                                    <div class="cell py-1" type="text">4:30</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="pointForm" style="visibility:hidden; margin-top:15px;">
+                            <input type="checkbox" id="usepoint">
+                            <label for="usepoint">포인트로 스케일링 할인 (-10,000point)</label>
+                            <p>잔여 포인트 (5,000point)</p>
         
-        <div id="timecell">
-            <div class="container row text-center mx-0">
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">9:00</div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">9:30</div>
-                </div>
+            </div>
+            <div style="flex-grow:1; border:1px solid green; border-radius:20px">
+                 <input type="text" id="reservationtime" value="예약 시간(시간값 들어가야함)"style="border-radius:20px"/>
                 
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">10:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">10:30</div>
-                </div>
+                 <button id="check" class="reservate" type="button" disabled>예약하기</button>
+                 
             </div>
-            <div class="container row text-center mx-0">
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">11:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">11:30</div>
-                </div>
-                
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">12:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">12:30</div>
-                </div>
-            </div>
-            <div class="container row text-center mx-0">
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">1:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">1:30</div>
-                </div>
-                
-               <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">2:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">2:30</div>
-                </div>
-            </div>
-            <div class="container row text-center mx-0">
-               <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">3:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">3:30</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">4:00</div>
-                </div>
-                <div class="item col-md-3 col-5 my-1 px-2">
-                    <div class="cell py-1">4:30</div>
-                </div>
-            </div>
-        </div>
-        <div id="pointForm">
-            <input type="checkbox" id="usepoint">
-            <label for="usepoint">포인트로 스케일링 할인 (-10,000point)</label>
-            <p>잔여 포인트 (5,000point)</p>
-             <div class="btn btn-success">예약</div>
-        </div>
-        
-       
-        
     </div>
+</div>
 
+    <script>
+             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+            
+            function handler(e){
+               
+                document.getElementById('dateSelect').value=e.target.value;
+                document.getElementById('timecell').style.visibility="visible";
+            }
 
-
-<script type="text/javascript">
-    
-(function () {
-    calendarMaker($("#calendarForm"), new Date());
-})();
-
-var nowDate = new Date();
-function calendarMaker(target, date) {
-    if (date == null || date == undefined) {
-        date = new Date();
-    }
-    nowDate = date;
-    if ($(target).length > 0) {
-        var year = nowDate.getFullYear();
-        var month = nowDate.getMonth() + 1;
-        $(target).empty().append(assembly(year, month));
-    } else {
-        console.error("");
-        return;
-    }
-
-    var thisMonth = new Date(nowDate.getFullYear(), nowDate.getMonth(), 1);
-    var thisLastDay = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, 0);
-
-
-    var tag = "<tr>";
-    var cnt = 0;
-    //빈 공백 만들어주기
-    for (i = 0; i < thisMonth.getDay(); i++) {
-        tag += "<td></td>";
-        cnt++;
-    }
-	/* document.getElementById('timeclick').innerHTML="09:00"; */
-    //날짜 채우기
-    for (i = 1; i <= thisLastDay.getDate(); i++) {
-        if (cnt % 7 == 0) { tag += "<tr>"; }
-
-        tag += "<td>" + i + "</td>";
-        cnt++;
-        if (cnt % 7 == 0) {
-            tag += "</tr>";
-        }
-    }
-    $(target).find("#custom_set_date").append(tag);
-    calMoveEvtFn();
-    function calMoveEvtFn() {
-        //전달 클릭
-        $(".custom_calendar_table").on("click", ".prev", function () {
-            nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() - 1, nowDate.getDate());
-            calendarMaker($(target), nowDate);
-        });
-        //다음날 클릭
-        $(".custom_calendar_table").on("click", ".next", function () {
-            nowDate = new Date(nowDate.getFullYear(), nowDate.getMonth() + 1, nowDate.getDate());
-            calendarMaker($(target), nowDate);
-        });
-        //일자 선택 클릭
-        $(".custom_calendar_table").on("click", "td", function () {
-            $(".custom_calendar_table .select_day").removeClass("select_day");
-            $(this).removeClass("select_day").addClass("select_day");
-        });
-        $('.cell').click(function(){
+            $('.cell').click(function(){
             $('.cell').removeClass('select');
             $(this).addClass('select');
+            document.getElementById('pointForm').style.visibility="visible";
+           	
+            document.getElementById('check').disabled=false;
             });
-        $('.cell').click(function(){
-               time = $('.cell').text();
-               
-                });   
-        
-    }   
-}
-	
-    function assembly(year, month) {
-        var calendar_html_code =
-            "<table class='custom_calendar_table'>" +
-            "<colgroup>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "<col style='width:81px'/>" +
-            "</colgroup>" +
-            "<thead class='cal_date'>" +
-            "<th><button type='button' class='prev'><</button></th>" + 
-            "<th colspan='5'><p><span>" + year + "</span>년 <span>" + month + "</span>월</p></th>" +
-            "<th><button type='button' class='next'>></button></th>" +
-            "</thead>" +
-            "<thead  class='cal_week'>" +
-            "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>" +
-            "</thead>" +
-            "<tbody id='custom_set_date'>" +
-            "</tbody>" +
-            "</table>" 
-            ;
-        return calendar_html_code;
-    }
-</script>
+           /* $('#test').click(function(){
+            
+            document.getElementById('reservationtime').value=document.getElementById('test').value
+           });
+               */
+		
+          	$('.reservate').click(function(){
+          	
+          	alert(document.getElementById('start').value+" 예약 완료");
+          	
+          		
+          	});
+     </script>
 </body>
 </html>
 
