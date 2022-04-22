@@ -7,10 +7,10 @@
 		color: rgb(242, 101, 34);
 	}
 </style>
-<div class="container-fluid d-flex">
+<div class="d-flex">
 	<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 
-	<div class="col-sm-10 justify-content-center" style="float: left; width: 70%;">
+	<div class="col-sm-10 justify-content-center">
 		<div class="ml-5 mr-5 mt-5">
 			<div class="mt-4 mb-4">
 				<span>이메일</span>

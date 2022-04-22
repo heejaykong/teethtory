@@ -7,10 +7,10 @@
 		color: rgb(242, 101, 34);
 	}
 </style>
-<div class="container-fluid d-flex justify-content-center">
+<div class="d-flex">
 	<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 
-	<div class="col-sm-10" style="float: left; width: 70%;">
+	<div class="col-sm-10">
 		<div class="mt-4 mb-4" style="padding-left: 50px; padding-right: 50px;">
 			<i class="fa-solid fa-triangle-exclamation" style="color:#cc0000;"></i>
 			<span>탈퇴시 모든 정보가 지워집니다.</span>
