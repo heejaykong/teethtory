@@ -5,7 +5,7 @@
 <mapper namespace="com.mycompany.webapp.dao.mybatis.MyDentistDao">
 
 	<select id="selectByUserid" parameterType="string" resultType="myDentist">
-		SELECT * FROM mydentists WHERE userid=#{userid}
+		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
 	
 	<insert id="insert" parameterType="myDentist">
