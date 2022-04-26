@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.PointDao">
+
+	<select id="selectAllByUserid" resultType="point">
+		SELECT rnum, userid, pointisplus, pointamount, pointdesc, pointdate
+			FROM (
+			  SELECT ROWNUM as rnum, userid, pointisplus, pointamount, pointdesc, pointdate
+			  FROM (
+			    SELECT userid, pointisplus, pointamount, pointdesc, pointdate 
+			    FROM points
+			    ORDER BY pointdate DESC
+			  )
+			  WHERE rownum &lt;= #{endRowNo} 
+			  	AND userid=#{userid}
+			)
+		WHERE rnum &gt;= #{startRowNo}
+			AND userid=#{userid}
+	</select>
+	
+	<select id="selectPointIsPlusByUserid" resultType="point">
+		SELECT rnum, userid, pointisplus, pointamount, pointdesc, pointdate
+			FROM (
+			  SELECT ROWNUM as rnum, userid, pointisplus, pointamount, pointdesc, pointdate
+			  FROM (
+			    SELECT userid, pointisplus, pointamount, pointdesc, pointdate 
+			    FROM points
+			    ORDER BY pointdate DESC
+			  )
+			  WHERE rownum &lt;= #{endRowNo} 
+			  	AND userid=#{userid}
+			  	AND pointisplus=#{pointisplus}
+			)
+		WHERE rnum &gt;= #{startRowNo}
+			AND userid=#{userid}
+			AND pointisplus=#{pointisplus}
+	</select>
+	
+	<insert id="insert" parameterType="point">
+		INSERT INTO points VALUES(
+			#{userid}, #{pointisplus}, #{pointamount}, #{pointdesc}
+			, #{pointdate}
+		)
+	</insert>
+	
+</mapper>
+
