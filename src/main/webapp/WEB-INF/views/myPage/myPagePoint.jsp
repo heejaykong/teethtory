@@ -7,10 +7,10 @@
 		color: rgb(242, 101, 34);
 	}
 </style>
-<div class="container-fluid d-flex">
+<div class="d-flex">
 	<%@ include file="/WEB-INF/views/common/menu.jsp" %>
 
-	<div class="col-sm-10 justify-content-center" style="float: left; width: 70%;">
+	<div class="col-sm-10 justify-content-center">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="#">포인트 내역</a>
 		</nav>
