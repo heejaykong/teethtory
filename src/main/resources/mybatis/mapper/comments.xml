@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.CommentsDao">
+
+	<select id="selectByPage" resultType="comments">
+		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+			FROM (
+			  SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+			  FROM (
+			    SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+			    FROM comments
+			    ORDER BY commentno DESC
+			  )
+			  WHERE rownum &lt;= #{endRowNo} 
+			  	AND boardno=#{boardno}
+			)
+		WHERE rnum &gt;= #{startRowNo}
+			AND boardno=#{boardno}
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT count(*) FROM comments
+	</select>
+	
+	<insert id="insert" parameterType="comments">
+		<selectKey keyProperty="commentno" resultType="int" order="BEFORE">
+			select SEQ_COMMNO.nextval from dual
+		</selectKey>
+		INSERT INTO comments(
+			commentno, boardno, commentcontent, commentdate, commentwriter
+		)
+		VALUES(
+			#{commentno}, #{boardno}, #{commentcontent}
+			, #{commentdate}, #{commentwriter}
+		)
+	</insert>
+	
+	<update id="update" parameterType="comments">
+		UPDATE comments
+		SET
+			commentcontent=#{commentcontent}
+		WHERE commentno=#{commentno}
+	</update>
+	
+	<delete id="deleteByBno" parameterType="int">
+		DELETE FROM comments
+		WHERE commentno=#{commentno}
+	</delete>
+</mapper>
+
