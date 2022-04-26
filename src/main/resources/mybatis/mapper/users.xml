@@ -6,11 +6,19 @@
 
 
 	<select id="selectByUserid" parameterType="string" resultType="user">
-		SELECT * FROM users WHERE userid=#{userid}
+		SELECT userid, username, userpassword, useremail
+			, userphone, userpoint, userusedpoint, userallownoti
+			, isdoctor, user_role, enabled, userssn
+		FROM users WHERE userid=#{userid}
 	</select>
 	
 	<insert id="insert" parameterType="user">
-		INSERT INTO users VALUES(
+		INSERT INTO users()
+			userid, username, userpassword, useremail
+			, userphone, userpoint, userusedpoint, userallownoti
+			, isdoctor, user_role, enabled, userssn
+		)
+		VALUES(
 			#{userid}, #{username}, #{userpassword}, #{useremail}
 			, #{userphone}, #{userpoint}, #{userusedpoint}, #{userallownoti}
 			, #{isdoctor}, #{user_role}, #{enabled}, #{userssn}
@@ -18,11 +26,18 @@
 	</insert>
 	
 	<update id="update" parameterType="user">
-		UPDATE users SET
+		UPDATE users
+		SET
 			userpassword=#{userpassword}
 			, useremail=#{useremail}
 			, userphone=#{userphone}
 		WHERE userid=#{userid}
 	</update>
+	
+	<delete id="deleteByUserid">
+		DELETE FROM users
+		WHERE userid=#{userid}
+			AND userpassword=#{userpassword}
+	</delete>
 </mapper>
 
