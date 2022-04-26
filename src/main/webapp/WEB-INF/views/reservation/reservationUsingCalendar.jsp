@@ -107,6 +107,7 @@ label {
 #reservationtime{
 width:100%;
 border: 1px solid green;
+text-align:center;
    
 }
 #check{
@@ -120,6 +121,7 @@ border: 1px solid green;
 	width:100%;
 	border-radius:20px;
 	border:1px solid green;
+	text-align:center;
 	
 }
 
@@ -162,62 +164,62 @@ border: 1px solid green;
                         <div id="timecell" style="visibility:hidden">
                             <div class="container row text-center mx-0">
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">9:00</div>
+                                    <div id="cc"class="cell py-1">9:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">9:30</div>
+                                    <div id="cc"class="cell py-1">9:30</div>
                                 </div>
                                 
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">10:00</div>
+                                    <div id="cc"class="cell py-1">10:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">10:30</div>
+                                    <div id="cc"class="cell py-1">10:30</div>
                                 </div>
                             </div>
                             <div class="container row text-center mx-0">
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">11:00</div>
+                                    <div id="cc"class="cell py-1">11:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">11:30</div>
+                                    <div id="cc"class="cell py-1">11:30</div>
                                 </div>
                                 
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">12:00</div>
+                                    <div id="cc"class="cell py-1">12:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">12:30</div>
+                                    <div id="cc"class="cell py-1">12:30</div>
                                 </div>
                             </div>
                             <div class="container row text-center mx-0">
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">1:00</div>
+                                    <div id="cc"class="cell py-1">1:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">1:30</div>
+                                    <div id="cc"class="cell py-1">1:30</div>
                                 </div>
                                 
                                <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">2:00</div>
+                                    <div id="cc"class="cell py-1">2:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">2:30</div>
+                                    <div id="cc"class="cell py-1">2:30</div>
                                 </div>
                             </div>
                             <div class="container row text-center mx-0">
                                <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1">3:00</div>
+                                    <div id="cc"class="cell py-1">3:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1" id="celltime">3:30</div>
+                                    <div id="cc"class="cell py-1" id="celltime">3:30</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div class="cell py-1" type="text">4:00</div>
+                                    <div id="cc"class="cell py-1" type="text">4:00</div>
                                 </div>
                                 <div class="item col-md-3 col-5 my-1 px-2">
                                     <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
-                                    <div class="cell py-1" type="text">4:30</div>
+                                    <div id="cc"class="cell py-1" type="text">4:30</div>
                                 </div>
                             </div>
                         </div>
@@ -250,6 +252,12 @@ border: 1px solid green;
             }
 
             $('.cell').click(function(){
+         	    var cell_time_check = $(this).attr("id");
+         	});
+			
+            $('.cell').click(function(){
+           		document.getElementById('reservationtime').value = $(this).text();
+           	
             $('.cell').removeClass('select');
             $(this).addClass('select');
             document.getElementById('pointForm').style.visibility="visible";
@@ -261,12 +269,8 @@ border: 1px solid green;
             document.getElementById('reservationtime').value=document.getElementById('test').value
            });
                */
-		
           	$('.reservate').click(function(){
-          	
-          	alert(document.getElementById('start').value+" 예약 완료");
-          	
-          		
+          		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
           	});
      </script>
 </body>
