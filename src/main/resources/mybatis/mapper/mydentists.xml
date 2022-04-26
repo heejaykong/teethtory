@@ -8,6 +8,19 @@
 	<select id="selectByUserid" parameterType="string" resultType="mydentists">
 		SELECT * FROM mydentists WHERE userid=#{userid}
 	</select>
+	
+	<insert id="insert" parameterType="mydentists">
+		INSERT INTO mydentists VALUES(
+			userid=#{userid}
+			, denno=#{denno}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="mydentists">
+		DELETE FROM mydentists
+		WHERE userid=#{userid}
+			, denno=#{denno}
+	</delete>
 
 </mapper>
 
