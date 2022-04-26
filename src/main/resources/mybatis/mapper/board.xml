@@ -3,28 +3,52 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.BoardDao">
-	<!-- <select id="selectByPage" parameterType="pager" resultType="board">
-		SELECT rnum, bno, btitle, bdate, mid
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM boards
+	</select>
+	
+	<select id="selectByBoardno" parameterType="int" resultType="board">
+		SELECT boardno, boardwriter, boardtitle,
+		boardcontent, boarddate, bimagecontenttype,
+		bimageoriginalfilename, bimagesavedfilename
+		FROM boards
+		WHERE boardno=#{boardno}
+	</select>
+	
+	<select id="selectByPage" parameterType="pager" resultType="board">
+		SELECT rnum, boardno, boardtitle, boarddate, boardwriter
 		FROM (
-		  SELECT ROWNUM as rnum, bno, btitle, bdate, mid
+		  SELECT ROWNUM as rnum, boardno, boardtitle, boarddate, boardwriter
 		  FROM (
-		    SELECT bno, btitle, bdate, mid 
-		    FROM board
-		    ORDER BY bno DESC
+		    SELECT boardno, boardtitle, boarddate, boardwriter 
+		    FROM boards
+		    ORDER BY boardno DESC
 		  )
-		  WHERE rownum &lt;= #{endRowNo}  
+		  WHERE rownum &lt;= #{endRowNo}
 		)
 		WHERE rnum &gt;= #{startRowNo}
 	</select>
 	
-	<select id="count" resultType="int">
-		SELECT count(*) FROM board
-	</select>
+	<insert id="insert" parameterType="board">
+		INSERT INTO boards (boardno, boardwriter, boardtitle,
+							boardcontent, boarddate, bimagecontenttype,
+							bimageoriginalfilename, bimagesavedfilename)
+		VALUES(#{boardno}, #{boardwriter}, #{boardtitle},
+				#{boardcontent}, SYSDATE, #{bimagecontenttype},
+				#{bimageoriginalfilename}, #{bimagesavedfilename})
+	</insert>
 	
-	<select id="selectByBno" parameterType="int" resultType="board">
-		SELECT bno, btitle, bcontent, bdate, mid, bhitcount, battachoname, battachsname, battachtype FROM board WHERE bno=#{bno}
-	</select>
+	<update id="update" parameterType="board">
+		UPDATE boards
+		SET btitle=#{btitle}, bcontent=#{bcontent}
+		WHERE bno=#{boradno}
+	</update>
 	
+	<delete id="deleteByBoardno" parameterType="int">
+		DELETE FROM boards
+		WHERE bno=#{boradno}
+	</delete>
+	<!-- 
 	<insert id="insert" parameterType="board">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			select SEQ_BNO.nextval from dual

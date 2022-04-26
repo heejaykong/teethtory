@@ -7,8 +7,7 @@ import com.mycompany.webapp.dto.Pager;
 
 public interface CommentDao {
 	public int count(int boardno);
-	public Comment selectByBoardno(int boardno);
-	public List<Comment> selectByPage(Pager pager);
+	public List<Comment> selectByPage(int boardno, Pager pager);
 	public int insert(Comment comment);
 	public int update(Comment comment);
 	public int deleteByCommentno(int commentno);

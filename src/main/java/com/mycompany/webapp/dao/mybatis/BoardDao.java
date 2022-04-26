@@ -9,7 +9,7 @@ public interface BoardDao {
 	public int count();
 	public Board selectByBoardno(int boardno);
 	public List<Board> selectByPage(Pager pager);
-	public void insert(Board board);
+	public int insert(Board board);
 	public int update(Board board);
 	public int deleteByBoardno(int boradno);
 }
