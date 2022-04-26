@@ -6,7 +6,7 @@
 
 
 	<select id="selectByUserid" parameterType="string" resultType="mydentists">
-		SELECT * FROM mydentists WHERE userid=#{userid}
+		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
 	
 	<insert id="insert" parameterType="mydentists">
