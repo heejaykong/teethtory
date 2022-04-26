@@ -2,24 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mycompany.webapp.dao.mybatis.MyDentistsDao">
+<mapper namespace="com.mycompany.webapp.dao.mybatis.MyDentistDao">
 
-
-	<select id="selectByUserid" parameterType="string" resultType="mydentists">
+	<select id="selectByUserid" parameterType="string" resultType="myDentist">
 		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
 	
-	<insert id="insert" parameterType="mydentists">
+	<insert id="insert" parameterType="myDentist">
 		INSERT INTO mydentists VALUES(
-			userid=#{userid}
-			, denno=#{denno}
+			userid=#{userid},
+			denno=#{denno}
 		)
 	</insert>
 	
-	<delete id="delete" parameterType="mydentists">
+	<delete id="delete">
 		DELETE FROM mydentists
-		WHERE userid=#{userid}
-			, denno=#{denno}
+		WHERE
+			userid=#{userid},
+			denno=#{denno}
 	</delete>
 
 </mapper>

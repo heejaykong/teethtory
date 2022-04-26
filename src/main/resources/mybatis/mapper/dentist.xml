@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.DentistDao">
+
+	<select id="selectByDenno" parameterType="int" resultType="dentist">
+		SELECT * FROM dentists WHERE denno=#{denno}
+	</select>
+	<select id="selectByDenname" parameterType="string" resultType="dentist">
+		SELECT * FROM dentists WHERE denname like '%' || #{denname} || '%'
+	</select>
+	<select id="selectByDenaddress" parameterType="string" resultType="dentist">
+		SELECT * FROM dentists WHERE denaddress like '%' || #{denaddress} || '%'
+	</select>
+
+</mapper>
+

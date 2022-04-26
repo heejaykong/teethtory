@@ -4,7 +4,7 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.PointDao">
 
-	<select id="selectAllByUserid" resultType="points">
+	<select id="selectAllByUserid" resultType="point">
 		SELECT rnum, userid, pointisplus, pointamount, pointdesc, pointdate
 			FROM (
 			  SELECT ROWNUM as rnum, userid, pointisplus, pointamount, pointdesc, pointdate
@@ -20,7 +20,7 @@
 			AND userid=#{userid}
 	</select>
 	
-	<select id="selectPointIsPlusByUserid" resultType="points">
+	<select id="selectPointIsPlusByUserid" resultType="point">
 		SELECT rnum, userid, pointisplus, pointamount, pointdesc, pointdate
 			FROM (
 			  SELECT ROWNUM as rnum, userid, pointisplus, pointamount, pointdesc, pointdate
@@ -38,7 +38,7 @@
 			AND pointisplus=#{pointisplus}
 	</select>
 	
-	<insert id="insert" parameterType="points">
+	<insert id="insert" parameterType="point">
 		INSERT INTO points VALUES(
 			#{userid}, #{pointisplus}, #{pointamount}, #{pointdesc}
 			, #{pointdate}
