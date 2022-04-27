@@ -11,7 +11,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="user">
-		INSERT INTO users()
+		INSERT INTO users(
 			userid, username, userpassword, useremail
 			, userphone, userpoint, userusedpoint, userallownoti
 			, isdoctor, user_role, enabled, userssn
@@ -26,9 +26,12 @@
 	<update id="update" parameterType="user">
 		UPDATE users
 		SET
-			userpassword=#{userpassword}
-			, useremail=#{useremail}
-			, userphone=#{userphone}
+			userid=#{userid}
+			, userpassword=#{userpassword}, useremail=#{useremail}
+			, userphone=#{userphone}, userpoint=#{userpoint}
+			, userusedpoint=#{userusedpoint}, userallownoti=#{userallownoti}
+			, isdoctor=#{isdoctor}, user_role=#{user_role}
+			, enabled=#{enabled}, userssn=#{userssn}
 		WHERE userid=#{userid}
 	</update>
 	

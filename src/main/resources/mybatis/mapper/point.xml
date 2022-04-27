@@ -38,10 +38,23 @@
 			AND pointisplus=#{pointisplus}
 	</select>
 	
+	<select id="selectTodaysLoginPoint" parameterType="string" resultType="point">
+		SELECT userid, pointisplus, pointamount, pointdesc, pointdate
+		FROM points
+		WHERE userid=#{userid}
+			AND pointisplus=1
+			AND pointamount=100
+			AND pointdesc='로그인 포인트'
+			AND pointdate=sysdate
+	</select>
+	
 	<insert id="insert" parameterType="point">
-		INSERT INTO points VALUES(
+		INSERT INTO points(
+			userid, pointisplus, pointamount, pointdesc, pointdate
+		)
+		VALUES(
 			#{userid}, #{pointisplus}, #{pointamount}, #{pointdesc}
-			, #{pointdate}
+			, sysdate
 		)
 	</insert>
 	
