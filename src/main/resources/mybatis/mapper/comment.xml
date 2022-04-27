@@ -13,10 +13,10 @@
 			    FROM comments
 			    ORDER BY commentno DESC
 			  )
-			  WHERE rownum &lt;= #{endRowNo} 
+			  WHERE rownum &lt;= #{pager.endRowNo} 
 			  	AND boardno=#{boardno}
 			)
-		WHERE rnum &gt;= #{startRowNo}
+		WHERE rnum &gt;= #{pager.startRowNo}
 			AND boardno=#{boardno}
 	</select>
 	

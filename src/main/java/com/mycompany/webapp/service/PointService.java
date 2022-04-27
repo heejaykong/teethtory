@@ -1,11 +1,15 @@
 package com.mycompany.webapp.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.mybatis.PointDao;
 import com.mycompany.webapp.dao.mybatis.UserDao;
+import com.mycompany.webapp.dto.Board;
+import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Point;
 import com.mycompany.webapp.dto.User;
 
@@ -70,4 +74,21 @@ public class PointService {
 			return false;
 		}
 	}
+	
+	public int getTotalPointCount() {
+		return pointDao.count();
+	}
+	
+	public List<Point> getAllPointsByUserid(String userid, Pager pager) {
+		return pointDao.selectAllByUserid(userid, pager);
+	}
+	
+	public List<Point> getUsedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
+		return pointDao. selectPointIsPlusByUserid(userid, pointisplus, pager);
+	}
+	
+	public List<Point> getEarnedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
+		return pointDao. selectPointIsPlusByUserid(userid, pointisplus, pager);
+	}
+	
 }
