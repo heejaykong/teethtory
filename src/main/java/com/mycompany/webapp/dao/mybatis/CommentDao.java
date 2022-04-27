@@ -9,7 +9,7 @@ import com.mycompany.webapp.dto.Pager;
 
 @Mapper
 public interface CommentDao {
-	public int count(int boardno);
+	public int countPerBoardno(int boardno);
 	public List<Comment> selectByPage(int boardno, Pager pager);
 	public int insert(Comment comment);
 	public int update(Comment comment);
