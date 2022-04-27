@@ -33,7 +33,7 @@ public class PointService {
 	}
 	
 	//로그인 포인트 획득.
-	public boolean rewardLoginPoint(String userid) {
+	public boolean addLoginPoint(String userid) {
 		//당일에 로그인 포인트 획득 이력이 있는지 점검.
 		int insertResult = 0;
 		if(checkGotLoginPoint(userid) == false) {//로그인 포인트 획득X. 로그인 포인트 제공하면 됨.
@@ -85,6 +85,10 @@ public class PointService {
 		} else {
 			return false;
 		}
+	}
+	
+	public void addPoint(Point point) {
+		pointDao.insert(point);
 	}
 	
 	public int getTotalPointCount() {
