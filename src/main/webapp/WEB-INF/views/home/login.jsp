@@ -51,46 +51,36 @@
       }
      
     </style>
-
-    <div class="container">
-      <div class="row">
-        <div>
-          <div class="form-block">
-          
-            <div style="margin-bottom:3rem; margin-top:4rem;">
-					<h1 class="text-uppercase">
-				        <strong style="color: #f47d36; margin-left:8.3rem;">로그인</strong>
-					</h1>
-				</div>
-				
-            <form action="#" method="post">
-           	 
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="username"><strong>아이디</strong></label>
-                 </br>
-                <input type="email" class="form-control" placeholder="Email@email.com" id="username"
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>       
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="password"><strong>비밀번호</strong></label>
-                 </br>
-                <input type="password" class="form-control" placeholder="Password" id="password" 
-				style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
-                
-              </div>
-              
-              
-              
-              <input id="loginbtn" type="submit" value="로그인"  style="margin-top:2rem; margin-left:0.25rem;">
-            </form>
-          </div>
-          <script>
+           <div style="margin-left:2rem; margin-bottom:2rem; margin-top:1rem; text-align:left;">
+				<h1 class="text-uppercase" style="color: black; font-size:1.4rem;">
+					<!-- 로그인 -->
+			        <strong style="color: black;">로그인</strong>
+				</h1>
+			</div>
+			
+           <form action="#" method="post" style="text-align:center;">
+             <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
+               <label for="userid" style="margin-right:20rem;"><strong>아이디</strong></label>
+                </br>
+               <input type="text" class="form-control" placeholder="strongteeth" id="userid"
+               style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>       
+             </div>
+             <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
+               <label for="userpassword" style="margin-right:20rem;"><strong>비밀번호</strong></label>
+                </br>
+               <input type="password" class="form-control" placeholder="Password" id="userpassword" 
+					style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;"/>
+             </div>
+             <div>
+             	<input id="loginbtn" type="submit" value="로그인" style="margin-top:2rem;">
+             </div>
+           </form>
+<!--           <script>
             let getName = localStorage.getItem("name");
             document.getElementById('nameLee').value = getName;
             console.log("getName: " + getName);
-          </script>
-        </div>
-      </div>
-    </div>
+          </script> -->
+    	</section>
+   	</div>
   
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
