@@ -4,6 +4,18 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.CommentsDao">
 
+	<select id="countByBoardno" resultType="int">
+		SELECT count(*)
+		FROM comments
+		WHERE boardno=#{boardno}
+	</select>
+	
+	<select id="countByUserid" resultType="int">
+		SELECT count(*)
+		FROM comments
+		WHERE commentwriter=#{userid}
+	</select>
+	
 	<select id="selectByPage" resultType="comment">
 		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
 			FROM (
@@ -11,17 +23,27 @@
 			  FROM (
 			    SELECT commentno, boardno, commentcontent, commentdate, commentwriter
 			    FROM comments
+			    WHERE boardno=#{boardno}
 			    ORDER BY commentno DESC
 			  )
-			  WHERE rownum &lt;= #{pager.endRowNo} 
-			  	AND boardno=#{boardno}
+			  WHERE rownum &lt;= #{pager.endRowNo}
 			)
 		WHERE rnum &gt;= #{pager.startRowNo}
-			AND boardno=#{boardno}
 	</select>
 	
-	<select id="count" resultType="int">
-		SELECT count(*) FROM comments
+	<select id="selectByUserid" resultType="comment">
+		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+		FROM (
+			SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+			FROM (
+				SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+				FROM comments
+				WHERE commentwriter=#{userid}
+				ORDER BY commentno DESC
+			)
+			WHERE rownum &lt;= #{pager.endRowNo}
+		)
+		WHERE rnum &gt;= #{pager.startRowNo}
 	</select>
 	
 	<insert id="insert" parameterType="comment">

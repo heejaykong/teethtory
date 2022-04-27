@@ -7,10 +7,16 @@
 		SELECT COUNT(*) FROM boards
 	</select>
 	
+	<select id="countByUserid" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM boards
+		WHERE boardwriter=#{userid}
+	</select>
+	
 	<select id="selectByBoardno" parameterType="int" resultType="board">
 		SELECT boardno, boardwriter, boardtitle,
-		boardcontent, boarddate, bimagecontenttype,
-		bimageoriginalfilename, bimagesavedfilename
+			boardcontent, boarddate, bimagecontenttype,
+			bimageoriginalfilename, bimagesavedfilename
 		FROM boards
 		WHERE boardno=#{boardno}
 	</select>
@@ -27,6 +33,21 @@
 		  WHERE rownum &lt;= #{endRowNo}
 		)
 		WHERE rnum &gt;= #{startRowNo}
+	</select>
+	
+	<select id="selectByUserid" resultType="board">
+		SELECT rnum, boardno, boardtitle, boarddate, boardwriter
+		FROM (
+			SELECT ROWNUM as rnum, boardno, boardtitle, boarddate, boardwriter
+			FROM (
+				SELECT boardno, boardtitle, boarddate, boardwriter
+				FROM boards
+				WHERE boardwriter=#{userid}
+				ORDER BY boardno DESC
+			)
+			WHERE rownum &lt;= #{pager.endRowNo}
+		)
+		WHERE rnum &gt;= #{pager.startRowNo}
 	</select>
 	
 	<insert id="insert" parameterType="board">

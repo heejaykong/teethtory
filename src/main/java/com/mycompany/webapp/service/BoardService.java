@@ -30,6 +30,10 @@ public class BoardService {
 		return boardDao.selectByPage(pager);
 	}
 	
+	public List<Board> getBoardsByUserid(String userid, Pager pager) {
+		return boardDao.selectByUserid(userid, pager);
+	}
+	
 	public int writeBoard(Board board) {
 		int insertedRows = boardDao.insert(board);
 		log.info("저장된 게시물 번호(boardno): " + board.getBoardno());
@@ -42,7 +46,7 @@ public class BoardService {
 		return updatedRows;
 	}
 	
-	public int deleteBoard(int boardno) {
+	public int removeBoard(int boardno) {
 		int deletedRows = boardDao.deleteByBoardno(boardno);
 		log.info("삭제된 게시물 번호(boardno): " + boardno);
 		return deletedRows;
