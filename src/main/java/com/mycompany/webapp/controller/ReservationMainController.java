@@ -7,10 +7,10 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
-@RequestMapping("/reservationMain")
+@RequestMapping("/reservation")
 public class ReservationMainController {
 
-	@RequestMapping("/")
+	@RequestMapping("/reservationMain")
 	public String reservationMain() {
 		log.info("실행");
 		return "reservation/reservationMain";
