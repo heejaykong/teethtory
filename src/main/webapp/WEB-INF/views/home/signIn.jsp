@@ -1,7 +1,7 @@
 <%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+
     <style>
     
       /* .container {
@@ -46,36 +46,61 @@
         outline: 0;
         box-shadow: 0 0 0 0.25rem rgb(242 101 34 / 25%);
       }
+      .btn{
+	width:20rem;
+	height:3rem;
+	border-radius:1rem;
+}
     </style>
     <div class="container mt-5">
       <div class="row">
         <div class="col-xs-12 mx-auto">
           <div class="form-block mx-5">
-            <div class="text-center mb-5" style="border-bottom: 2px solid #f47d36; padding: 20px">
-              <h3 class="text-uppercase">Sign Up <strong style="color: #f47d36">Osstem</strong></h3>
-            </div>
+          
+            <div style="margin-bottom:3rem; margin-top:10rem; margin-left:10rem;">
+					<h1 class="text-uppercase">
+				        <strong style="color: #f47d36;">치스토리</strong>
+					</h1>
+				</div>
+				<div style="margin-left:3rem; margin-bottom:2rem;">
+                    회원가입
+                </div>
             <form action="#" method="post">
-              <div class="form-group">
-                <label for="username"><strong>아이디</strong></label>
-                <input type="email" class="form-control" placeholder="Email@email.com" id="username" />
-              </div>
-              <div class="form-group">
-                <label for="password"><strong>비밀번호</strong></label>
-                <input type="password" class="form-control" placeholder="Password" id="password" />
-              </div>
-              <div class="form-group">
-                <label for="password"><strong>비밀번호 확인</strong></label>
-                <input type="" class="form-control" placeholder="Password" id="checkpassword" />
-              </div>
-              <div class="form-group">
+           	 <div class="form-group"style="margin-left:3rem; margin-bottom:2rem;">
                 <label for="password"><strong>이름</strong></label>
-                <input type="text" class="form-control" placeholder="홍길동" id="nameLee" value=""/>
+                 </br>
+                <input type="text" class="form-control" placeholder="홍길동" id="nameLee" value=""
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
+                
               </div>
-              <div class="form-group mb-4">
+              <div class="form-group"style="margin-left:3rem; margin-bottom:2rem;">
+                <label for="username"><strong>아이디</strong></label>
+                 </br>
+                <input type="email" class="form-control" placeholder="Email@email.com" id="username"
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />                
+              </div>
+              <div class="form-group"style="margin-left:3rem; margin-bottom:2rem;">
+                <label for="password"><strong>비밀번호</strong></label>
+                 </br>
+                <input type="password" class="form-control" placeholder="Password" id="password" 
+				style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
+                
+              </div>
+              <div class="form-group"style="margin-left:3rem; margin-bottom:2rem;">
+                <label for="password"><strong>비밀번호 확인</strong></label>
+                 </br>
+                <input type="" class="form-control" placeholder="Password" id="checkpassword" 
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
+                 
+              </div>
+              
+              <div class="form-group mb-4"style="margin-left:3rem; margin-bottom:2rem;">
                 <label for="password"><strong>휴대폰 번호</strong></label>
-                <input type="tel" class="form-control" placeholder="010-1234-5678" id="phonenumber" />
+                </br>
+                <input type="tel" class="form-control" placeholder="010-1234-5678" id="phonenumber" 
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
               </div>
-              <input type="submit" value="회원가입" class="btn btn-block py-2 btn-outline-danger" />
+              <input type="submit" value="회원가입" class="btn btn-block btn-osstem"style="margin-left:3rem; margin-top:2rem;">
             </form>
           </div>
           <script>
@@ -86,4 +111,3 @@
         </div>
       </div>
     </div>
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>

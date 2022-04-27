@@ -6,45 +6,33 @@
 	#signOutTab {
 		color: rgb(242, 101, 34);
 	}
-</style>
-<div class="d-flex">
-	<div class="container-fluid d-flex justify-content-center">
-		<%@ include file="/WEB-INF/views/common/menu.jsp" %>
+	.btn{
 	
-		<div class="col-sm-10" style="float: left; width: 70%; top: 50%; left: 65%; transform: translate(-50%, -50%);">
-			<div class="ml-5 mr-5 mt-5 d-flex flex-column">
-				<div class="mt-4" style="float: left; padding-left: 50px; padding-right: 50px;">
-					<i class="fa-solid fa-triangle-exclamation" style="color:#cc0000;"></i>
-					<span style="font-size: 1rem;">탈퇴시 모든 정보가 지워집니다.</span>
-				</div>
-			</div>
-			
-			<div class="ml-5 mr-5 d-flex flex-column">
-				<div class="mt-4 mb-4" style="float: left; padding-left: 50px; padding-right: 50px;">
-					<span>아이디</span>
-					<form class="form-inline m-3 my-lg-0">
-						<input class="form-control mr-sm-2" type="search" placeholder="team5_chaego"
-							aria-label="Search" style="width: 30rem;" />
-					</form>
-				</div>
-				<div class="mt-4 mb-4" style="float: left; padding-left: 50px; padding-right: 50px;">
-					<span>비밀번호</span>
-					<form class="form-inline m-3 my-lg-0">
-						<input class="form-control mr-sm-2" type="search"
-							aria-label="Search" style="width: 30rem;" />
-					</form>
-				</div>
-			</div>
-			
-			<div class="ml-5 mr-5 d-flex flex-column">
-				<div style="float: left; padding-left: 50px; padding-right: 50px;">
-					<div class="m-3 my-lg-0">
-						<button class="redBtn btn mr-sm-2" type="submit" style="width: 30rem">탈퇴하기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
+	border-radius:1rem;
+	 background-color:  #ffa048;
+    text-decoration: none;
+    color:white;
+	}
+</style>
+<div>
+	<img src="/springframework-mini-project/resources/images/signOut.jpg" style="width:100%;">
 </div>
+<div style="text-align:center;">
+	<h3>치스토리 탈퇴하기</h3>
+</div>
+	<div style="text-align:center; text-decoration:none; color:grey;">
+	<h5>아이디와 비밀번호를 입력하시면</h5>
+	<h5>탈퇴가 완료됩니다.</h5>
+	</div>
+<div style="margin-left:0.5rem;">아이디</div>
+<input type="email" class="form-control" placeholder="이메일을 입력하세요." id="username"
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;" />
+<div style="margin-left:0.5rem;">비밀번호</div>
+<input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="userpassword"
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;" />
+<input type="submit" value="로그인"
+						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:22rem; height:3rem;">
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

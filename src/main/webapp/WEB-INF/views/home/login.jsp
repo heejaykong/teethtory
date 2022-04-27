@@ -1,7 +1,7 @@
 <%@ page session="false" language="java"
 	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 <style>
 .btn-osstem {
 	color: white;
@@ -27,9 +27,7 @@
 	border-color: #fc6d1a;
 }
 
-.form-group {
-	width: 400px;
-}
+
 
 #buttons {
 	font-size: 13px;
@@ -38,7 +36,7 @@
 
 .find_text {
 	border-right: 1px solid #888;
-	padding-right: 40px;
+	
 }
 
 a {
@@ -56,6 +54,11 @@ a:hover {
 	outline: 0;
 	box-shadow: 0 0 0 0.25rem rgb(242 101 34/ 25%);
 }
+.btn{
+	width:20rem;
+	height:3rem;
+	border-radius:1rem;
+}
 </style>
 
 <script>
@@ -69,26 +72,32 @@ a:hover {
 	<div class="row">
 		<div class="col-xs-12 mx-auto">
 			<div class="form-block mx-5">
-				<div class="text-center mb-5"
-					style="border-bottom: 2px solid #f47d36; padding: 20px;">
-					<h2 class="text-uppercase">
-						Login to <strong style="color: #f47d36;">Osstem</strong>
-					</h2>
+				<div style="margin-bottom:3rem; margin-top:10rem; margin-left:10rem;">
+					<h1 class="text-uppercase">
+				        <strong style="color: #f47d36;">치스토리</strong>
+					</h1>
 				</div>
+                <div style="margin-left:3rem; margin-bottom:2rem;">
+                    로그인
+                </div>
 				<form action="#" method="post">
-					<div class="form-group">
-						<label for="username"><strong>아이디</strong></label> <input
-							type="text" class="form-control" placeholder="Email@email.com"
-							id="username" />
+					<div class="form-group"style="margin-left:3rem;">
+						<label for="username"><strong>아이디</strong></label>
+                    </br>
+                     <input
+							type="text" class="form-control" placeholder="이메일을 입력하세요."
+							id="username" style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
 					</div>
-					<div class="form-group mb-3">
-						<label for="password"><Strong>비밀번호</Strong></label> <input
-							type="password" class="form-control" placeholder="Password"
-							id="password" />
+					<div class="form-group mb-3"style="margin-left:3rem; margin-top:1rem;">
+						<label for="password"><Strong>비밀번호</Strong></label> 
+                    </br>
+                    <input
+							type="password" class="form-control" placeholder="비밀번호를 입력하세요."
+							id="password" style="border:0.5px solid lightgrey; width:20rem; height:2rem;" />
 					</div>
 
 					<div class="mb-4">
-						<div id="buttons" class="row justify-content-between mx-3">
+						<div id="buttons" class="row justify-content-between mx-3"style="margin-left:3rem; margin-top:1rem;">
 							<span><a target="_blank"
 								href="https://nid.naver.com/user2/api/route?m=routePwInquiry&amp;lang=ko_KR"
 								class="find_text">비밀번호 찾기</a></span> <span><a target="_blank"
@@ -99,7 +108,7 @@ a:hover {
 					</div>
 
 					<input type="submit" value="로그인"
-						class="btn btn-block py-2 btn-osstem">
+						class="btn btn-block btn-osstem"style="margin-left:3rem; margin-top:2rem;">
 					<!-- <span class="text-center my-3 d-block">or</span>
               <a href="#" class="btn btn-block py-2 btn-primary"><i class="fab fa-google mr-2"></i> Google로 로그인 하기</a> -->
 				</form>
@@ -107,4 +116,4 @@ a:hover {
 		</div>
 	</div>
 </div>
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+

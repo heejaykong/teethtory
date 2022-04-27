@@ -3,6 +3,8 @@
 
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,48 +14,27 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
     <title>Document</title>
     <style>
-    
-.container{
-            display: flex;
-
+#cellbutton{
+    display: flex;
 }
-        
 
+#top{
+    font: 1.2rem 'Fira Sans', sans-serif;   
+}  
+
+
+#bottom{
+      flex-direction : column;
+      margin-top:5rem;
+}        
 #timecell{
 
 justify-content: center;
 
-height:180px;
-border-radius:20px;
-	border:1px solid green;
-
-
-
-}
-#point{
-
-/* border: 1px solid lightgrey; */
-
-
-
-}
-#dateSelect{
-
-/* border: 1px solid lightgrey; */
-justify-content: center;
-
-}
-#timeSelect{
-
-border-radius:20px;
-	border:1px solid green;
-text-align: center;
-}
-#pointForm{
-
-/* border: 1px solid lightgrey; */
+height:10rem;
 
 }
 
@@ -62,13 +43,13 @@ text-align: center;
     background-color: rgb(237, 251, 220);
     cursor: pointer;
     
-    width:104px;
-    height:30px;
+    width:4rem;
+    height:2rem;
     text-align: center;
-    margin-left: 10px;
-   	margin-top:5px;
+    margin-left: 0.5rem;
+    border-radius: 1rem;
     text-align: center;
-    border-radius:30px;
+    margin-top:1rem;
 }
 
 .cell:hover {
@@ -81,162 +62,167 @@ text-align: center;
 }
 
 label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
+   
+    font: 1rem 'Fira Sans', sans-serif;   
+}
+
+#pointForm{
     
+   display:flex;
+   flex-direction: row;
 }
-#timeForm{
-    text-align: center;
-}
-
-
-/* input,
-label {
-    margin: .4rem 0;
-} */
 #usepoint{
     zoom:2.0;
 }
 #dateSelect{
-    width:150px;
-    text-align: center;
-    border-radius:20px;
-	border:1px solid green;
-   
-}
-#reservationtime{
-width:100%;
-border: 1px solid green;
-text-align:center;
-   
-}
-#check{
-    margin-top:240px;
-    width:100%;
-    height:100px;
-    border-radius:20px;
-	border:1px solid green;
-    }
-#start{
-	width:100%;
-	border-radius:20px;
-	border:1px solid green;
-	text-align:center;
-	
+    width:8rem;
 }
 
+
+#check{
+   
+    width: 22.5rem;
+    height:3rem;
+    border-radius: 1rem;
+	
+    }
+
 #check:enabled{
-    background-color: green;
+   background-color:  #ffa048;
 }
 #timeclick{
 	font-size:15px;
 	
 }
-
+#timeForm{
+    margin-top:5rem;
+}
+.fa-calendar-day{
+   color:  #ffa048;
+}
+.fa-clock{
+    color:  #ffa048;
+}
+#top{
+    align-items: start;
+}
 
     </style>
 </head>
 <body>
 <div id="all">
-    <div class="container">
-            <div style="flex-grow:2; border:1px solid green; border-radius:20px">
-                <div>
-                   
+	<div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
+	<div id="top-a" style="display:inline">
+        <i class="fa-solid fa-calendar-day"></i>
+		<input id="dateSelect" value="날짜" style="margin-top:10px; border:0px solid black" ></input>
+        
+        <i class="fa-solid fa-clock"></i>
+		<input type="text" id="reservationtime" value="-- : --" style="margin-top:1rem; border:0px solid black; "/>
+	</div>
+	
+    <div class="container" id="bottom">
+            <div style="flex-grow:1; margin-top:2rem;">
+                <div style="margin-top:10px;">
+                    <div style="margin-bottom:1rem;">날짜 선택</div>
                 <input type="date" id="start" onchange="handler(event);"/>
+                
                 </div>
             </div>
             
-
-
-            <div style="flex-grow:1; border:1px solid green;border-radius:20px">
+            <div style="flex-grow:1;">
                 <div>
                     
                 </div>
 
                 <div>
                     <div id="timeForm">
-                        <input id="dateSelect" value="날짜"></input>
+                        
                         <div id="timeSelect"> 
-                        <p id="timeclick">예약 시간을 선택해주세요.</p>
+                        <p id="timeclick">시간 선택</p>
                        
                         </div>
                         
-                        <div id="timecell" style="visibility:hidden">
-                            <div class="container row text-center mx-0">
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                             <div id="timecell">
+                            <div id="cellbutton" class="container row text-center mx-0">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">9:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">9:30</div>
                                 </div>
                                 
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">10:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">10:30</div>
                                 </div>
                             </div>
-                            <div class="container row text-center mx-0">
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                            <div id="cellbutton" class="container row text-center mx-0">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">11:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">11:30</div>
                                 </div>
                                 
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">12:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">12:30</div>
                                 </div>
                             </div>
-                            <div class="container row text-center mx-0">
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                            <div id="cellbutton" class="container row text-center mx-0">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">1:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">1:30</div>
                                 </div>
                                 
-                               <div class="item col-md-3 col-5 my-1 px-2">
+                               <div class="item">
                                     <div id="cc"class="cell py-1">2:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <div id="cc"class="cell py-1">2:30</div>
                                 </div>
                             </div>
-                            <div class="container row text-center mx-0">
-                               <div class="item col-md-3 col-5 my-1 px-2">
+                            <div id="cellbutton" class="container row text-center mx-0">
+                               <div class="item">
                                     <div id="cc"class="cell py-1">3:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div id="cc"class="cell py-1" id="celltime">3:30</div>
+                                <div class="item">
+                                    <div id="cc"class="cell py-1">3:30</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
-                                    <div id="cc"class="cell py-1" type="text">4:00</div>
+                                <div class="item">
+                                    <div id="cc"class="cell py-1">4:00</div>
                                 </div>
-                                <div class="item col-md-3 col-5 my-1 px-2">
+                                <div class="item">
                                     <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
-                                    <div id="cc"class="cell py-1" type="text">4:30</div>
+                                    <div id="cc"class="cell py-1">4:30</div>
                                 </div>
                             </div>
                         </div>
-                        <div id="pointForm" style="visibility:hidden; margin-top:15px;">
-                            <input type="checkbox" id="usepoint">
-                            <label for="usepoint">포인트로 스케일링 할인 (-10,000point)</label>
-                            <p>잔여 포인트 (5,000point)</p>
-        
-                        </div>
+                    
                     </div>
 
                 </div>
             </div>
-            <div style="flex-grow:1; border:1px solid green; border-radius:20px">
-                 <input type="text" id="reservationtime" value="예약 시간(시간값 들어가야함)"style="border-radius:20px"/>
-                
-                 <button id="check" class="reservate" type="button" disabled>예약하기</button>
+            <div style="flex-grow:1; margin-top:4.5rem;"> 
+                <div>스케일링 진료인가요?</div>
+                <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
+                    <div>
+                    <input type="checkbox" id="usepoint"/>
+                    </div>
+                   <div>
+                    <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
+                    <p>(-10,000point)</p>
+                    <p>잔여 포인트 (5,000point)</p>
+                    </div>
+                   
+                </div>
+                 <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/AfterReservationUsingCalendar.jsp'">다음 단계</button>
                  
             </div>
     </div>
@@ -262,7 +248,7 @@ text-align:center;
             $(this).addClass('select');
             document.getElementById('pointForm').style.visibility="visible";
            	
-            document.getElementById('check').disabled=false;
+            document.getElementById('check').style.visibility="visible";
             });
            /* $('#test').click(function(){
             
@@ -275,5 +261,9 @@ text-align:center;
      </script>
 </body>
 </html>
+
+
+
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

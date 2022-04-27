@@ -12,8 +12,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 .calendarForm{
-height:10%;
- margin-top:30px;
+
+ margin-top:3rem;
 }
 .cal-schedule{
 background-color:orange;
@@ -34,7 +34,7 @@ table.calendar{
 table.calendar td{
     vertical-align: top;
     border: 1px solid lightgrey;
-    width: 100px;
+   	width:3rem;
 }
 </style>
 </head>
@@ -75,7 +75,7 @@ table.calendar td{
         setTableHTML+='<table class="calendar">';
         setTableHTML+='<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>';
         for(var i=0;i<6;i++){
-            setTableHTML+='<tr height="90">';
+            setTableHTML+='<tr height="80">';
             for(var j=0;j<7;j++){
                 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
                 setTableHTML+='    <div class="cal-day"></div>';
@@ -157,7 +157,7 @@ table.calendar td{
     
     function setData(){
         jsonData = 
-        {
+       /*  {
             "2022":{
                
                 "04":{
@@ -168,7 +168,7 @@ table.calendar td{
                 }
                 
             }
-        }
+        } */
     }
     
     //스케줄 그리기
