@@ -10,5 +10,5 @@ public interface UserDao {
 	public User selectByUserid(String userid);
 	public int insert(User user);
 	public int update(User user);
-	public int deleteByUserid(@Param("userid") String userid, @Param("userpassword") String userpassword);
+	public int deleteByUserid(String userid);
 }
