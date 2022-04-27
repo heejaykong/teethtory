@@ -112,9 +112,10 @@ header .bi-heart-fill{
 
   /* 햄버거 메뉴 디자인 */
 .ham-con{
+	
   width: 100%;
   height: 1000px;
-  background-color: rgba(224, 224, 224, 0.8);
+  background-color: white;
   position: fixed;
   
   right:-100%;
@@ -236,7 +237,7 @@ flex-direction:row;
 
                 <!-- 햄버거 버튼 -->
              <div id="headertop" class="container">
-                <div style="margin-right:3.5rem;"><h1>치스토리</h1></div>
+                <div style="margin-right:3rem;"><h1>치스토리</h1></div>
                 <div>
                 <li class="ham-btn">
                     <a class="menu-trigger" href="#">
@@ -257,7 +258,7 @@ flex-direction:row;
     <!-- 햄버거 메뉴 시작 -->
         <div class="ham-con">
 
-            <div class="navbar-nav">
+            <div class="navbar-nav" style="margin-top:1rem;">
                 <!-- <h1 style="margin-left:1.5rem;">치스토리</h1> -->
                 <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
                 <h4 style="margin-left:1.5rem;">환영합니다!</h4>

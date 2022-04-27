@@ -7,7 +7,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @RequestMapping("/reservationHistory")
-@Log4j2
+
 public class ReservationHistoryController {
 	
 	@RequestMapping("/reservationHistoryWithCalendar")
