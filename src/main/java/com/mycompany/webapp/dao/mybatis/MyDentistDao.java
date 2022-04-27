@@ -2,10 +2,12 @@ package com.mycompany.webapp.dao.mybatis;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.MyDentist;
 
+@Mapper
 public interface MyDentistDao {
 	public List<MyDentist> selectByUserid(String userid);
 	//사용자가 치과 검색 후, 내 치과로 등록.
