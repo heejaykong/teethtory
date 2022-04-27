@@ -35,10 +35,9 @@
 		WHERE userid=#{userid}
 	</update>
 	
-	<delete id="deleteByUserid">
+	<delete id="deleteByUserid" parameterType="string">
 		DELETE FROM users
 		WHERE userid=#{userid}
-			AND userpassword=#{userpassword}
 	</delete>
 </mapper>
 
