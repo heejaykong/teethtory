@@ -33,5 +33,9 @@ public class MyPageController {
 	public String signOut() {
 		return "/myPage/signOut";
 	}
+	@RequestMapping("/myPageMain")
+	public String myPageMain() {
+		return "/myPage/myPageMain";
+	}
 
 }
