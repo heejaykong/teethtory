@@ -9,7 +9,7 @@
 </style>
 
 <div class="d-flex" style="height: 100rem;">
-	<%@ include file="/WEB-INF/views/common/menu.jsp"%>
+	
 
 	<div class="flex-grow-1" style="padding: 50px; ">
 		<div id="myDentistList">
