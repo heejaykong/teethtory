@@ -18,7 +18,7 @@ public class BoardService {
 	@Resource
 	private BoardDao boardDao;
 	
-	public int getTotalBoardNum() {
+	public int getTotalBoardCount() {
 		return boardDao.count();
 	}
 	
