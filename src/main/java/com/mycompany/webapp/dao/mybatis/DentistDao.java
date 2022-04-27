@@ -8,7 +8,7 @@ import com.mycompany.webapp.dto.Dentist;
 
 @Mapper
 public interface DentistDao {
-	public Dentist selectByDenno(int denno);
+	public List<Dentist> selectByuserid(String userid);
 	public List<Dentist> selectByDenname(String denname);
 	public List<Dentist> selectByDenaddress(String denaddress);
 }
