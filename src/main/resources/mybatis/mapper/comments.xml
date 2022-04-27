@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mycompany.webapp.dao.mybatis.CommentDao">
+<mapper namespace="com.mycompany.webapp.dao.mybatis.CommentsDao">
 
 	<select id="selectByPage" resultType="comment">
 		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
@@ -44,7 +44,7 @@
 		WHERE commentno=#{commentno}
 	</update>
 	
-	<delete id="deleteByBno" parameterType="int">
+	<delete id="deleteByCommentno" parameterType="int">
 		DELETE FROM comments
 		WHERE commentno=#{commentno}
 	</delete>
