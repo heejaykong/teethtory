@@ -56,5 +56,15 @@ public class MyPageController {
 	public String signOut() {
 		log.info("실행");
 		return "/myPage/signOut";
+	} 
+	@RequestMapping("/myPageMenu")
+	public String myPageMenu() {
+		log.info("실행");
+		return "/myPage/myPageMenu";
+	}
+	@RequestMapping("/myReservationList")
+	public String myReservationList() {
+		log.info("실행");
+		return "/myPage/myReservationList";
 	}
 }

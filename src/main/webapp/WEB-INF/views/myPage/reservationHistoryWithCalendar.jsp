@@ -37,8 +37,7 @@ table.calendar td{
    	width:3rem;
 }
 </style>
-<!-- </head>
-<body> -->
+
 			<div class="calendarForm">
 		    <div class="cal_top">
 		        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
@@ -51,6 +50,7 @@ table.calendar td{
 		    </div>
 	 	</section>
 	</div> 
+
 <script type="text/javascript">
     
     var today = null;
@@ -76,7 +76,7 @@ table.calendar td{
         setTableHTML+='<table class="calendar">';
         setTableHTML+='<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>';
         for(var i=0;i<6;i++){
-            setTableHTML+='<tr height="80">';
+            setTableHTML+='<tr height="90">';
             for(var j=0;j<7;j++){
                 setTableHTML+='<td style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap">';
                 setTableHTML+='    <div class="cal-day"></div>';
@@ -155,7 +155,7 @@ table.calendar td{
         drawSche();
     }
     
-    function setData(){
+   function setData(){
         jsonData = 
        {
             "2022":{
@@ -168,8 +168,7 @@ table.calendar td{
                 }
                 
             }
-        }
-    }
+        } 
     
     //스케줄 그리기
     function drawSche(){
@@ -190,7 +189,5 @@ table.calendar td{
     }
  
 </script>
-<!-- </body>
-</html> -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

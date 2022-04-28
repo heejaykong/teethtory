@@ -7,12 +7,12 @@
 		color: rgb(242, 101, 34);
 	}
 	.btn{
-	
-	
-	border-radius:1rem;
-	 background-color:  #ffa048;
-    text-decoration: none;
-    color:white;
+	 color: white;
+        background-color: #f47d36;
+        border-color: #f47d36;
+        width:90%;
+		height:3rem;
+		border-radius:1rem;
 	}
 </style>
 			<div style="margin-left:0.5rem; margin-top:2rem;">이메일 변경</div>
