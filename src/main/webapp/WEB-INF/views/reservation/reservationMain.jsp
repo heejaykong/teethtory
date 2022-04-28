@@ -37,6 +37,5 @@ a:link { color: red; text-decoration: none;}
        <img src="/springframework-mini-project/resources/images/ㅠㅠ.png" style="width:100%;">
    </div>
    	</section>
-   	</div>		
-
+   	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
