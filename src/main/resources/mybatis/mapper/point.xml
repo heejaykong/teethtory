@@ -10,7 +10,7 @@
 	</select>
 	
 	<!-- 로그인한 유저의 획득/사용을 구분한 포인트 내역의 수를 가져옴. -->
-	<select id="countSpecification" parameterType="point" resultType="int">
+	<select id="countSpecification" resultType="int">
 		SELECT COUNT(*) FROM points
 		WHERE userid=#{userid}
 		AND pointisplus=#{pointisplus}

@@ -110,19 +110,19 @@ public class PointService {
 		return pointDao.countAll(userid);
 	}
 	
-	public int getSpecificPointCount(Point point) {
-		return pointDao.countSpecification(point);
+	public int getSpecificPointCount(String userid, boolean pointisplus) {
+		return pointDao.countSpecification(userid, pointisplus);
 	}
 	
 	public List<Point> getAllPointsByUserid(String userid, Pager pager) {
 		return pointDao.selectAllByUserid(userid, pager);
 	}
 	
-	public List<Point> getUsedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
+	public List<Point> getEarnedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
 		return pointDao.selectPointIsPlusByUserid(userid, pointisplus, pager);
 	}
-	
-	public List<Point> getEarnedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
+
+	public List<Point> getUsedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
 		return pointDao.selectPointIsPlusByUserid(userid, pointisplus, pager);
 	}
 	

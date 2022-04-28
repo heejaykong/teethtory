@@ -31,21 +31,24 @@
 						    <ul class="navbar-nav">
 								<div class="container" style="display:flex; flex-direction:row;">
 									<div style="margin-right:1rem;">
-										<li id="list_total" class="nav-item">
-								  		<a class="nav-link" href="#" onClick="list_active('list_total')">전체<span class="sr-only">(current)</span></a>
-								  		<%-- <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> --%>
+										<li class="nav-item">
+								  			<a id="list_total" class="nav-link" href="?specification=total" onClick="list_active('list_total')">전체<span class="sr-only">(current)</span></a>
+								  			<%-- <a id="list_total" class="nav-link active" href="?specification=total" onClick="list_active('list_total')">전체<span class="sr-only">(current)</span></a> --%>
+								  			<%-- <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> --%>
 										</li>
 									</div>
-								</div>
-								<div style="margin-right:1rem;">
-									<li id="list_got" class="nav-item">
-									<a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a>
-									</li>
-								</div>
-								<div style="margin-right:1rem;">
-								<li id="list_used" class="nav-item">
-								  <a class="nav-link" href="#" onClick="list_active('list_used'), DisplayList(list_used_items, list_element, rows, current_page), SetupPagination(list_used_items, pagination_element, rows)">사용</a>
-								</li>
+									<div style="margin-right:1rem;">
+										<li class="nav-item">
+											<a id="list_got" class="nav-link" href="?specification=got" onClick="list_active('list_got')">획득</a>
+											<%-- <a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a> --%>
+										</li>
+									</div>
+									<div style="margin-right:1rem;">
+										<li class="nav-item">
+											<a id="list_used" class="nav-link" href="?specification=used" onClick="list_active('list_used')">사용</a>
+											<%-- <a class="nav-link" href="#" onClick="list_active('list_used'), DisplayList(list_used_items, list_element, rows, current_page), SetupPagination(list_used_items, pagination_element, rows)">사용</a> --%>
+										</li>
+									</div>
 								</div>
 						     </ul>
 						</nav>
@@ -150,6 +153,7 @@ function ajax_test() {
 function list_active(list_id) {
 	let list = document.getElementById(list_id);
 	list.setAttribute("class", "active");
+	console.log('...');
 	
 	let list_total_element = document.getElementById("list_total");
 	let list_got_element = document.getElementById("list_got");
@@ -158,12 +162,15 @@ function list_active(list_id) {
 	if(list_id === "list_total") {
 		list_got_element.removeAttribute("class", "active");
 		list_used_element.removeAttribute("class", "active");
+		console.log('list_total 외에 active 속성 제거');
 	} else if(list_id === "list_got") {
 		list_total_element.removeAttribute("class", "active");
 		list_used_element.removeAttribute("class", "active");
+		console.log('list_got 외에 active 속성 제거');
 	} else if(list_id === "list_used") {
 		list_total_element.removeAttribute("class", "active");
 		list_got_element.removeAttribute("class", "active");
+		console.log('list_used 외에 active 속성 제거');
 	}
 }
 
@@ -253,7 +260,7 @@ function PaginationButton (page, items) {
 	return button;
 }
 
-list_active("list_total");
+//list_active("list_total");
 // DisplayList(list_items, list_element, rows, current_page);
 // SetupPagination(list_items, pagination_element, rows);
 </script>

@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -39,20 +40,39 @@ public class MyPageController {
 
 	//마이페이지 - 내 포인트
 	@GetMapping("/myPointList")
-	public String myPointList(@RequestParam(defaultValue="1") int pageNo, Model model) {
-		//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
-		int totalRows = pointService.getTotalPointCount("spring");
-		log.info(totalRows);
-		Pager pager = new Pager(10, 5, totalRows, pageNo);
-		model.addAttribute("pager", pager);
-		List<Point> list = pointService.getAllPointsByUserid("spring", pager);
+	public String myPointList(@RequestParam(defaultValue="1") int pageNo
+			, @RequestParam(defaultValue="total") String specification
+			, Model model) {
+		List<Point> list = new ArrayList<>();
+		//출력하려는 목록이 '전체/획득/사용' 중 어느 범주인지 확인하고 service의 각기 다른 메소드를 호출.
+		if(specification.equals("total")) {
+			//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
+			int totalRows = pointService.getTotalPointCount("spring");
+			log.info(totalRows);
+			Pager pager = new Pager(10, 5, totalRows, pageNo);
+			model.addAttribute("pager", pager);
+			list = pointService.getAllPointsByUserid("spring", pager);
+		} else if(specification.equals("got")) {
+			int totalRows = pointService.getSpecificPointCount("spring", true);
+			log.info(totalRows);
+			Pager pager = new Pager(10, 5, totalRows, pageNo);
+			model.addAttribute("pager", pager);
+			list = pointService.getEarnedPointsByUserid("spring", true, pager);
+		} else {
+			int totalRows = pointService.getSpecificPointCount("spring", false);
+			log.info(totalRows);
+			Pager pager = new Pager(10, 5, totalRows, pageNo);
+			model.addAttribute("pager", pager);
+			list = pointService.getUsedPointsByUserid("spring", false, pager);
+			
+		}
 		model.addAttribute("points", list);
 		
 		return "/myPage/myPointList";
 	}
 	
-	@PostMapping("/myPointList")
-	public String myPointList(String userId, @RequestParam(defaultValue="1") int pageNo) {
+//	@PostMapping("/myPointList")
+//	public String myPointList(String userId, @RequestParam(defaultValue="1") int pageNo) {
 //		log.info("userId: " + userId + ", " + "pageNo: " + pageNo);
 //		
 //		//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
@@ -64,8 +84,8 @@ public class MyPageController {
 //		for(int i=0; i<10; i++) {
 //			log.info(list.get(i));
 //		}
-		return "/myPage/myPointList";
-	}
+//		return "/myPage/myPointList";
+//	}
 	
 	//마이페이지 - 캘린더.
 	@RequestMapping("/reservationHistoryWithCalendar")
