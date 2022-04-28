@@ -237,7 +237,7 @@ flex-direction:row;
 			
 			                <!-- 햄버거 버튼 -->
 			             <div id="headertop" class="container">
-			                <div style="margin-right:3rem;"><h1>치스토리</h1></div>
+			                <div style="margin-right:3rem;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
 			                <div>
 			                <li class="ham-btn">
 			                    <a class="menu-trigger" href="#">
