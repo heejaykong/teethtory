@@ -9,7 +9,6 @@
         padding: 50px;
         border-radius: 20px;
       } */
-
       #loginbtn {
         color: white;
         background-color: #f47d36;
@@ -18,30 +17,24 @@
 		height:3rem;
 		border-radius:1rem;
       }
-
       .btn:hover {
         color: white;
         background-color: #fc6d1a;
         border-color: #fc6d1a;
       }
-
       .form-group {
         width: 400px;
       }
-
       #buttons {
         font-size: 13px;
         color: #888;
       }
-
       a {
         color: black;
       }
-
       a:hover {
         color: #f47d36;
       }
-
       .form-control:focus {
         color: #495057;
         background-color: #fff;

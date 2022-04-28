@@ -57,7 +57,7 @@ public class MyPageController {
 		log.info("실행");
 		return "/myPage/signOut";
 	} 
-	
+
 	@RequestMapping("/myReservationList")
 	public String myReservationList() {
 		log.info("실행");
