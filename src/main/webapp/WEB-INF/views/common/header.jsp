@@ -36,9 +36,6 @@ header .bi-heart-fill{
   transition-duration: 0.5s;
 }
 
-
-
-
 .ham-con .bi-caret-up-fill, .ham-con .bi-caret-down-fill{
 	color:#444;
 }

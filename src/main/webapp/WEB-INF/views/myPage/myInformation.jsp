@@ -13,8 +13,8 @@
         background-color: #f47d36;
         border-color: #f47d36;
         width:100%;
-		height:3rem;
-		border-radius:1rem;
+	height:3rem;
+	border-radius:1rem;
       }
       
 .toggle-switch input{
