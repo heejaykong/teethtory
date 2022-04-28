@@ -197,7 +197,7 @@ flex-direction:row;
   <body>
  
   	<div class="wrapper" style="position:relative; min-height:100%; height:auto; padding-bottom:15.5rem;">
-    	
+    		<section>
 		 	<header>
 			    <!-- 네브바 시작 -->
 			    <nav class="header navbar">
