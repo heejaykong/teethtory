@@ -37,8 +37,11 @@ public class BoardController {
 		return "board/boardList";
 	}
 	
-	@RequestMapping("/boardDetail")
-	public String boardDetail() {
+	@GetMapping("/boardDetail")
+	public String boardDetail(int bno, Model model) {
+		Board board = boardService.getBoard(bno);
+		model.addAttribute("board", board);
+
 		return "board/boardDetail";
 	}
 	

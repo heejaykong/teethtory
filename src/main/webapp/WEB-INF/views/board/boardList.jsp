@@ -14,7 +14,7 @@
 
 	<div class="donut">
 		<c:forEach var="board" items="${boards}">
-		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail'">
+		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail?bno=${board.boardno}'">
 			<div class="mb-2">
 				<span class="mr-2">금니</span>
 				<span class="mr-2">${board.boardwriter}</span>
