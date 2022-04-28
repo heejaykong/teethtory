@@ -270,8 +270,8 @@ flex-direction:row;
 			            <div id="ham-menu-wrap">
 			                <div class="ham-menu mt-5">
 			                    <ul class="ham-top-menu">
-			                        <li><a href="${pageContext.request.contextPath}/medicalHistoryPage/main"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
-			        
+			                        <li><a href="${pageContext.request.contextPath}/treatmentlist/main"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
+
 			                        </li>
 			                    </ul>
 			                    <ul class="ham-top-menu">
