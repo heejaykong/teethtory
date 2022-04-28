@@ -4,10 +4,14 @@
 
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span>커뮤니티</span>
-		<span>
-			<i class="fas fa-search"></i>
-			<i class="fa-solid fa-pen-to-square ml-2"></i>
-		</span>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		  </button>
+		  <div class="dropdown-menu dropdown-menu-right">
+		    <button class="dropdown-item" type="button" onclick="location.href='boardForm'">수정</button>
+		    <button class="dropdown-item" type="button" onclick="location.href='main'">삭제</button>
+		  </div>
+		</div>
 	</div>
 	<hr style="margin: 0px;">
 	<div class="donut">

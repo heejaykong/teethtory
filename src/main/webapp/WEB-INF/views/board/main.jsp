@@ -6,7 +6,7 @@
 		<span>커뮤니티</span>
 		<span>
 			<i class="fas fa-search"></i>
-			<i class="fa-solid fa-pen-to-square ml-2"></i>
+			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardForm'"></i>
 		</span>
 	</div>
 	<hr style="margin: 0px;">
@@ -14,7 +14,7 @@
 
 	<div class="donut">
 	
-		<div class="board d-flex flex-column" style="padding: 1rem;">
+		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail'">
 			<div class="mb-2"><span class="mr-2">금니</span><span class="mr-2">strongteeth</span><span>2022.04.25 15:25</span></div>
 			<div>교정했는데 원래 이렇게 아픈 거 맞아? 죽을 거 같음. 응응 원래 죽어야 되는데 잠깐 살아있는 거</div>
 			<div style="text-align: right;" class="mt-2">
