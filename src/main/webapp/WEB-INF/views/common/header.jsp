@@ -238,6 +238,7 @@ flex-direction:row;
 			
 			                <!-- 햄버거 버튼 -->
 			             <div id="headertop" class="container" style="margin-left:1rem;">
+			             
 			                <div style="margin-right:3rem;  margin:0 auto;"><h1>치스토리</h1></div>
 			                <div style="right:0%;">
 			                <li class="ham-btn">
@@ -302,7 +303,8 @@ flex-direction:row;
   });
 
   var h = 0;
-
+ 
+  
   $(burger).on("click", function () {
     if (h == 0) {
 		  $('.ham-con').animate({
@@ -330,6 +332,7 @@ flex-direction:row;
         h=0;
       }
     });
-  })
+  });
+ 
   </script>
 <!-- </body> -->
