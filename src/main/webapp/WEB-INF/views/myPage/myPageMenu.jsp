@@ -5,7 +5,7 @@
 <script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
 <style>
 #profile{
-	width: 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
    
