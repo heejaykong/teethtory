@@ -90,10 +90,10 @@
           <span class="dropbtn_click" style="float:right;"
             onclick="dropdown()">></span>
         </button>
-        <div>
+        <div onclick="location.href='${pageContext.request.contextPath}/medicalHistoryPage/main'">
             <div class="container">
             <input type="text" value="임플란트" style="border:0px solid black; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold; font-size:2rem; width:8rem;">
-            <img src="./image/ㅠㅠ.png"style="margin-left:2rem;">
+            <img src="${pageContext.request.contextPath}/resources/images/ㅠㅠ.png"style="margin-left:2rem;">
             </div>
         </br>
         <input type="text" value="2022. 04. 29." style="border:0px solid black;width:6rem;">

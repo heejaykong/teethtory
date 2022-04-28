@@ -29,4 +29,9 @@ public class DentistService {
 	public List<Dentist> getDentistByDenaddress(String denaddress) {
 		return dentistDao.selectByDenaddress(denaddress);
 	}
+	
+	//치과 목록 만들어두기.(구현X. 더미 데이터 생성용.)
+	public void addDentist(Dentist dentist) {
+		dentistDao.insert(dentist);
+	}
 }

@@ -9,9 +9,9 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class TreatmentListController {
 	
-	@RequestMapping("/aboutTreatmentList")
+	@RequestMapping("/main")
 	public String aboutTreatmentList() {
-		return "treatmentlist/aboutTreatmentList";
+		return "treatmentlist/main";
 	}
 	@RequestMapping("/noTreatmentList")
 	public String noTreatmentList() {
