@@ -13,7 +13,7 @@
          color: white;
         background-color: #f47d36;
         border-color: #f47d36;
-        width:90%;
+       
 		height:3rem;
 		border-radius:1rem;
       }
@@ -98,7 +98,7 @@
 		                <input type="tel" class="form-control" placeholder="010-1234-5678" id="phonenumber" 
 		                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
 		              </div>
-		              <input id="joinbtn" type="submit" value="회원가입"  style="margin-top:2rem; margin-left:0.25rem;">
+		              <input id="joinbtn" type="submit" value="회원가입"  style="margin-top:2rem; width:90%; ">
 		            </form>
 		          </div>
 		          <script>

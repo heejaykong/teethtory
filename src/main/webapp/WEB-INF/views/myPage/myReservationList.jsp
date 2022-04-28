@@ -74,8 +74,7 @@ display:flex;
 flex-direct:row;
 }
 </style>
-</head>
-<body>
+
 <div id="all">
     <%-- 로그인한 사용자의 예약 기록 보여주기. --%>
     <div style="margin-left:1rem; margin-bottom:2rem; margin-top:3rem;">
@@ -124,9 +123,7 @@ flex-direct:row;
 						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
 		</div>
     </div>
-    
-
-
-</body>
-</html>
+    	</div>		
+	</section>
+   	</div>		
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

@@ -75,7 +75,7 @@ label {
 
 #check{
    
-    width: 22.5rem;
+    width:95%;
     height:3rem;
     border-radius: 1rem;
 	
