@@ -49,7 +49,7 @@ public class MyPageController {
 	public String signOut() {
 		log.info("실행");
 		return "/myPage/signOut";
-	}
+	} 
 	@RequestMapping("/myPageMenu")
 	public String myPageMenu() {
 		log.info("실행");
