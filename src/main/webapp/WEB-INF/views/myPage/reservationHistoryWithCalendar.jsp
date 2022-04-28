@@ -154,7 +154,7 @@ table.calendar td{
     }
     
     
-   /*  function setData(){
+   function setData(){
         jsonData = 
        {
             "2022":{
@@ -168,7 +168,7 @@ table.calendar td{
                 
             }
         } 
-    } */
+    }
     
     //스케줄 그리기
     function drawSche(){
