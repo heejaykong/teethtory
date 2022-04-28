@@ -1,13 +1,7 @@
 <%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,132 +95,132 @@ label {
    color:  #ffa048;
 }
 .fa-clock{
-    color:  #ffa048;
+    color:#ffa048;
 }
 #top{
     align-items: start;
 }
 
     </style>
-</head>
-<body>
-<div id="all">
-	<div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
-	<div id="top-a" style="display:inline">
-        <i class="fa-solid fa-calendar-day"></i>
-		<input id="dateSelect" value="날짜" style="margin-top:10px; border:0px solid black" ></input>
-        
-        <i class="fa-solid fa-clock"></i>
-		<input type="text" id="reservationtime" value="-- : --" style="margin-top:1rem; border:0px solid black; "/>
-	</div>
-	
-    <div class="container" id="bottom">
-            <div style="flex-grow:1; margin-top:2rem;">
-                <div style="margin-top:10px;">
-                    <div style="margin-bottom:1rem;">날짜 선택</div>
-                <input type="date" id="start" onchange="handler(event);"/>
-                
-                </div>
-            </div>
-            
-            <div style="flex-grow:1;">
-                <div>
-                    
-                </div>
+      <div id="all">
+        <div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
+        <div id="top-a" style="display:inline; margin-left:1rem;">
+              <i class="fa-solid fa-calendar-day"></i>
+          <input id="dateSelect" value="날짜" style="margin-top:10px; border:0px solid black" ></input>
 
-                <div>
-                    <div id="timeForm">
-                        
-                        <div id="timeSelect"> 
-                        <p id="timeclick">시간 선택</p>
-                       
-                        </div>
-                        
-                             <div id="timecell">
-                            <div id="cellbutton" class="container row text-center mx-0">
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">9:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">9:30</div>
-                                </div>
-                                
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">10:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">10:30</div>
-                                </div>
-                            </div>
-                            <div id="cellbutton" class="container row text-center mx-0">
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">11:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">11:30</div>
-                                </div>
-                                
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">12:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">12:30</div>
-                                </div>
-                            </div>
-                            <div id="cellbutton" class="container row text-center mx-0">
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">1:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">1:30</div>
-                                </div>
-                                
-                               <div class="item">
-                                    <div id="cc"class="cell py-1">2:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">2:30</div>
-                                </div>
-                            </div>
-                            <div id="cellbutton" class="container row text-center mx-0">
-                               <div class="item">
-                                    <div id="cc"class="cell py-1">3:00</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">3:30</div>
-                                </div>
-                                <div class="item">
-                                    <div id="cc"class="cell py-1">4:00</div>
-                                </div>
-                                <div class="item">
-                                    <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
-                                    <div id="cc"class="cell py-1">4:30</div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
+              <i class="fa-solid fa-clock"></i>
+          <input type="text" id="reservationtime" value="-- : --" style="margin-top:1rem; border:0px solid black; "/>
+        </div>
 
-                </div>
-            </div>
-            <div style="flex-grow:1; margin-top:4.5rem;"> 
-                <div>스케일링 진료인가요?</div>
-                <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
-                    <div>
-                    <input type="checkbox" id="usepoint"/>
-                    </div>
-                   <div>
-                    <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
-                    <p>(-10,000point)</p>
-                    <p>잔여 포인트 (5,000point)</p>
-                    </div>
-                   
-                </div>
-                 <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/AfterReservationUsingCalendar.jsp'">다음 단계</button>
-                 
-            </div>
-    </div>
-</div>
+          <div class="container" id="bottom">
+                  <div style="flex-grow:1; margin-top:2rem;">
+                      <div style="margin-top:10px;">
+                          <div style="margin-bottom:1rem;">날짜 선택</div>
+                      <input type="date" id="start" onchange="handler(event);"/>
+
+                      </div>
+                  </div>
+
+                  <div style="flex-grow:1;">
+                      <div>
+
+                      </div>
+
+                      <div>
+                          <div id="timeForm">
+
+                              <div id="timeSelect"> 
+                              <p id="timeclick">시간 선택</p>
+
+                              </div>
+
+                                   <div id="timecell">
+                                  <div id="cellbutton" class="container row text-center mx-0">
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">9:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">9:30</div>
+                                      </div>
+
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">10:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">10:30</div>
+                                      </div>
+                                  </div>
+                                  <div id="cellbutton" class="container row text-center mx-0">
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">11:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">11:30</div>
+                                      </div>
+
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">12:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">12:30</div>
+                                      </div>
+                                  </div>
+                                  <div id="cellbutton" class="container row text-center mx-0">
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">1:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">1:30</div>
+                                      </div>
+
+                                     <div class="item">
+                                          <div id="cc"class="cell py-1">2:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">2:30</div>
+                                      </div>
+                                  </div>
+                                  <div id="cellbutton" class="container row text-center mx-0">
+                                     <div class="item">
+                                          <div id="cc"class="cell py-1">3:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">3:30</div>
+                                      </div>
+                                      <div class="item">
+                                          <div id="cc"class="cell py-1">4:00</div>
+                                      </div>
+                                      <div class="item">
+                                          <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
+                                          <div id="cc"class="cell py-1">4:30</div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+                  </div>
+                  <div style="flex-grow:1; margin-top:4.5rem;"> 
+                      <div>스케일링 진료인가요?</div>
+                      <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
+                          <div>
+                          <input type="checkbox" id="usepoint"/>
+                          </div>
+                         <div>
+                          <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
+                          <p>(-10,000point)</p>
+                          <p>잔여 포인트 (5,000point)</p>
+                          </div>
+
+                      </div>
+                       <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/reservation/AfterReservationUsingCalendar'">다음 단계</button>
+
+                  </div>
+          </div>
+      </div>
+	 	</section>
+	</div> 
 
     <script>
              document.getElementById('start').value = new Date().toISOString().substring(0, 10);
@@ -259,11 +253,5 @@ label {
           		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
           	});
      </script>
-</body>
-</html>
-
-
-
-
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

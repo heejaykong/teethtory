@@ -18,7 +18,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
      
-
 .header{
 	
 	border-bottom:1px solid rgb(222, 226, 230);
@@ -112,11 +111,12 @@ header .bi-heart-fill{
 
   /* 햄버거 메뉴 디자인 */
 .ham-con{
+	
   width: 100%;
-  height: 1000px;
-  background-color: rgba(224, 224, 224, 0.8);
+  height: 100%;
+  background-color: white;
   position: fixed;
-  
+  margin-top:20%;
   right:-100%;
   color:#505050;
   z-index: 99;
@@ -198,142 +198,137 @@ flex-direction:row;
     </style>
   </head>
   <body>
-  <header>
-    <!-- 네브바 시작 -->
-    <nav class="header navbar navbar-expand-lg navbar-light d-flex">
+  	<div class="wrapper" style="position:relative; min-height:100%; height:auto; padding-bottom:15.5rem;">
+    	<section>
+		 	<header class="row">
+			    <!-- 네브바 시작 -->
+			    <nav class="header navbar navbar-expand-lg navbar-light d-flex">
+			        <!-- 오른쪽 메뉴 -->
+			        <div class="right-nav ml-auto p-2">
+			            <ul class="navbar-nav">
+			                <li class="nav-item mr-3">
+			                <c:choose>
+						        <c:when test="${empty sessionScope.principal}">
+									<a class="nav-link" href="/loginForm">
+				                        <i class="bi bi-heart-fill"></i>
+				                    </a>	                    
+			                    </c:when>
+			                    <c:otherwise>
+				                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=wishlist&page=0">
+				                        <i class="bi bi-heart-fill"></i>
+				                    </a>
+			                     </c:otherwise>
+				            </c:choose>
+			                </li>
+			                <li class="nav-item">
+			                    <c:choose>
+							        <c:when test="${empty sessionScope.principal}">
+					                    <a class="nav-link" href="/loginForm">
+					                        <i class="bi bi-person-fill"></i>
+					                    </a>
+				                    </c:when>
+				                    <c:otherwise>
+					                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=userinfo&page=0">
+					                        <i class="bi bi-person-fill"></i>
+					                    </a>
+				                    </c:otherwise>
+				            	</c:choose>
+			                </li>
+			
+			                <!-- 햄버거 버튼 -->
+			             <div id="headertop" class="container">
+			                <div style="margin-right:3rem;"><h1>치스토리</h1></div>
+			                <div>
+			                <li class="ham-btn">
+			                    <a class="menu-trigger" href="#">
+			                        <span></span>
+			                        <span></span>
+			                        <span></span>
+			                    </a>
+			                </li>
+			                </div>
+			             </div>
+			            </ul>
+			        </div>
+			
+			    </nav>
+			    <!-- 네브바 끝 -->
+			
+			    <!-- 햄버거 메뉴 시작 -->
+			        <div class="ham-con">
+			            <div class="navbar-nav" style="margin-top:1rem;">
+			                <!-- <h1 style="margin-left:1.5rem;">치스토리</h1> -->
+			                <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
+			                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
+			                
+			                <input type="submit" value="로그인" id="athamLogin"
+									class="btn btn-block btn-osstem">
+						    <input type="submit" value="회원가입" id="athamJoin"
+									class="btn">
+			            </div>
+			
+			            <div id="ham-menu-wrap">
+			                <div class="ham-menu mt-5">
+			                    <ul class="ham-top-menu">
+			                        <li><a href="#"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
+			        
+			                        </li>
+			                    </ul>
+			                    <ul class="ham-top-menu">
+			                        <li><a href="#"><i class="fa-solid fa-clock"></i> 진료 예약하기<i class="bi bi-caret-down-fill"></i></a>
+			                            
+			                        </li>
+			                    </ul>
+			                    <ul class="ham-top-menu">
+			                        <li><a href="#"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
+			                          
+			                        </li>
+			                    </ul>
+			                </div>
+			            </div>
+			        </div>
+			</header>
+  <script>
+  var burger = $('.menu-trigger');
 
-        <!-- 오른쪽 메뉴 -->
-        <div class="right-nav ml-auto p-2">
-            <ul class="navbar-nav">
-                <li class="nav-item mr-3">
-                <c:choose>
-			        <c:when test="${empty sessionScope.principal}">
-						<a class="nav-link" href="/loginForm">
-	                        <i class="bi bi-heart-fill"></i>
-	                    </a>	                    
-                    </c:when>
-                    <c:otherwise>
-	                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=wishlist&page=0">
-	                        <i class="bi bi-heart-fill"></i>
-	                    </a>
-                     </c:otherwise>
-	            </c:choose>
-                </li>
-                <li class="nav-item">
-                    <c:choose>
-				        <c:when test="${empty sessionScope.principal}">
-		                    <a class="nav-link" href="/loginForm">
-		                        <i class="bi bi-person-fill"></i>
-		                    </a>
-	                    </c:when>
-	                    <c:otherwise>
-		                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=userinfo&page=0">
-		                        <i class="bi bi-person-fill"></i>
-		                    </a>
-	                    </c:otherwise>
-	            	</c:choose>
-                </li>
+  burger.each(function (index) {
+    var $this = $(this);
 
-                <!-- 햄버거 버튼 -->
-             <div id="headertop" class="container">
-                <div style="margin-right:3.5rem;"><h1>치스토리</h1></div>
-                <div>
-                <li class="ham-btn">
-                    <a class="menu-trigger" href="#">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </a>
-                </li>
-                </div>
-             </div>
-            </ul>
-        </div>
+    $this.on('click', function (e) {
+      e.preventDefault();
+      $(this).toggleClass('active-' + (index + 1));
+    })
+  });
 
-    </nav>
-    <!-- 네브바 끝 -->
+  var h = 0;
 
-
-    <!-- 햄버거 메뉴 시작 -->
-        <div class="ham-con">
-
-            <div class="navbar-nav">
-                <!-- <h1 style="margin-left:1.5rem;">치스토리</h1> -->
-                <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
-                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
-                
-                <input type="submit" value="로그인" id="athamLogin"
-						class="btn btn-block btn-osstem">
-			    <input type="submit" value="회원가입" id="athamJoin"
-						class="btn">
-            </div>
-
-            <div id="ham-menu-wrap">
-
-                <div class="ham-menu mt-5">
-                    <ul class="ham-top-menu">
-                        <li><a href="#"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
-        
-                        </li>
-                    </ul>
-                    <ul class="ham-top-menu">
-                        <li><a href="#"><i class="fa-solid fa-clock"></i> 진료 예약하기<i class="bi bi-caret-down-fill"></i></a>
-                            
-                        </li>
-                    </ul>
-                    <ul class="ham-top-menu">
-                        <li><a href="#"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
-                          
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-       
-
-</header>
-   <script>
-   var burger = $('.menu-trigger');
-
-   burger.each(function (index) {
-     var $this = $(this);
-
-     $this.on('click', function (e) {
-       e.preventDefault();
-       $(this).toggleClass('active-' + (index + 1));
-     })
-   });
-
-   var h = 0;
-
-   $(burger).on("click", function () {
-     if (h == 0) {
- 		  $('.ham-con').animate({
- 			  right: '0',
- 			  opacity: 1
- 		  }, 500);
- 		  $(this).addClass('active-1');
- 		  h++;
- 	  } else if (h == 1) {
- 		  $('.ham-con').animate({
- 			  right: '-20%',
- 			  opacity: 0
- 		  }, 500);
- 		  $(this).removeClass('active-1');
- 		  h--;
- 	  }
- 	  $(window).scroll(function() {
- 		  sct = $(window).scrollTop();
-       if(sct>30){
-         $('.ham-con').css({
-           opacity: 0,
-           right :'-20%'
-         }, 500);
-         $(burger).removeClass('active-1');
-         h=0;
-       }
-     });
-   })
-   </script>
-</body>
+  $(burger).on("click", function () {
+    if (h == 0) {
+		  $('.ham-con').animate({
+			  right: '0',
+			  opacity: 1
+		  }, 500);
+		  $(this).addClass('active-1');
+		  h++;
+	  } else if (h == 1) {
+		  $('.ham-con').animate({
+			  right: '-20%',
+			  opacity: 0
+		  }, 500);
+		  $(this).removeClass('active-1');
+		  h--;
+	  }
+	  $(window).scroll(function() {
+		  sct = $(window).scrollTop();
+      if(sct>30){
+        $('.ham-con').css({
+          opacity: 0,
+          right :'-20%'
+        }, 500);
+        $(burger).removeClass('active-1');
+        h=0;
+      }
+    });
+  })
+  </script>
+<!-- </body> -->

@@ -18,12 +18,20 @@ public class CommentService {
 	@Resource
 	private CommentDao commentDao;
 	
-	public int getTotalCommentCount(int boardno) {
-		return commentDao.countPerBoardno(boardno);
+	public int getTotalCommentCountByBoardno(int boardno) {
+		return commentDao.countByBoardno(boardno);
+	}
+	
+	public int getTotalCommentCountByUserid(String userid) {
+		return commentDao.countByUserid(userid);
 	}
 	
 	public List<Comment> getComments(int boardno, Pager pager){
 		return commentDao.selectByPage(boardno, pager);
+	}
+	
+	public List<Comment> getCommentsByUserid(String userid, Pager pager){
+		return commentDao.selectByUserid(userid, pager);
 	}
 	
 	public int writeComment(Comment comment) {
@@ -38,7 +46,7 @@ public class CommentService {
 		return updatedRows;
 	}
 	
-	public int deleteComment(int commentno) {
+	public int removeComment(int commentno) {
 		int deletedRows = commentDao.deleteByCommentno(commentno);
 		log.info("삭제된 댓글 번호(comment): " + commentno);
 		return deletedRows;

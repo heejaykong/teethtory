@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/medicalHistoryPage")
 @Log4j2
 public class MedicalHistoryController {
-	@RequestMapping("/")
+	@RequestMapping("/medicalHistoryPage")
 	public String medicalHistoryPage() {
 		return "medicalHistoryPage/medicalHistoryPage";
 	}
