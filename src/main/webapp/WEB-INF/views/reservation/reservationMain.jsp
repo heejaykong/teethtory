@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
-    <title>Document</title>
     <style>
 .keyword{
     width:15rem;
@@ -23,18 +16,11 @@
 #top{
     display:inline-block;
 }
+
 a:link { color: red; text-decoration: none;}
  a:visited { color: black; text-decoration: none;}
  a:hover { color: orange; }
-
-
-
     </style>
-</head>
-
-<body>
-
-   
             <div style="margin-top:20px; margin-left:1rem;font-weight:bold;"><h3>진료 예약하기</h3></div>
               <div id="top" class="container">
                 <form class='search'>
@@ -51,14 +37,4 @@ a:link { color: red; text-decoration: none;}
        <img src="/springframework-mini-project/resources/images/ㅠㅠ.png" style="width:100%;">
    </div>
 
-
-
-
-
-
-   
-
-
-</body>
-</html>
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

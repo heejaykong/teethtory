@@ -21,11 +21,6 @@ color: white;
    <div>
       	<a class="btn" href="${pageContext.request.contextPath}/reservationUsingCalendar/">예약하기</a>
       </div> 
-    
-      
-      
-      
-			
       	<div style="margin-left:1rem;">
 			<i class="fa-solid fa-phone"></i><div>010-8424-5518</div>
 			<i class="fa-solid fa-location-dot"></i><div>진료시간</div>
@@ -102,11 +97,10 @@ color: white;
         </a>
 
       </div>
-    
-    
    <%--  <div style="width: 10rem; margin-left: 10rem;">
     	<img src="${pageContext.request.contextPath}/resources/images/iloveosstem.png" width="600px">
     </div> --%>
- 
+	 	</section>
+	</div> 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

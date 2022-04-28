@@ -79,54 +79,57 @@
   left: 5px;
 }
 </style>
-<div style="margin-left:1rem; margin-top:1rem;"><h4>설정</h4></div>
-<hr>
-<div style="margin-left:1rem;"><strong><h4>회원정보</h4></strong></div>
-<hr>
 
-<div class="container">
-<div style="margin-right:2.5rem; margin-bottom:1rem;">이름</div>
-<div>김영희</div>
-</div>
+        <div style="margin-left:1rem; margin-top:1rem;"><h4>설정</h4></div>
+        <hr>
+        <div style="margin-left:1rem;"><strong><h4>회원정보</h4></strong></div>
+        <hr>
 
-<div class="container">
-<div style="margin-right:1.7rem; margin-bottom:1rem;">아이디</div>
-<div>strongteeth99</div>
-</div>
+        <div class="container">
+        <div style="margin-right:2.5rem; margin-bottom:1rem;">이름</div>
+        <div>김영희</div>
+        </div>
 
-<div class="container">
-<div style="margin-right:1.7rem; margin-bottom:1rem;">이메일</div>
-<div>strongteeth99@gmail.com</div>
-</div>
+        <div class="container">
+        <div style="margin-right:1.7rem; margin-bottom:1rem;">아이디</div>
+        <div>strongteeth99</div>
+        </div>
 
-<div class="container">
-<div style="margin-right:1rem; margin-bottom:1rem;">비밀번호</div>
-<div>*******</div>
-</div>
+        <div class="container">
+        <div style="margin-right:1.7rem; margin-bottom:1rem;">이메일</div>
+        <div>strongteeth99@gmail.com</div>
+        </div>
 
-<div class="container">
-<div style="margin-right:1rem; margin-bottom:1rem;">휴대번호</div>
-<div>010-1234-5678</div>
-</div>
+        <div class="container">
+        <div style="margin-right:1rem; margin-bottom:1rem;">비밀번호</div>
+        <div>*******</div>
+        </div>
 
-<button id="changebtn" type="change"  style="margin-top:2rem; margin-left:0.25rem; text-align:center;">회원정보 수정</button>
+        <div class="container">
+        <div style="margin-right:1rem; margin-bottom:1rem;">휴대번호</div>
+        <div>010-1234-5678</div>
+        </div>
 
-<hr>
-<div style="margin-left:1rem; margin-bottom:1rem">알림</div>
-<div id="container">
-	<div class="toggle-switch" style="margin-left:1rem">
-		<input type="checkbox" id="chkTog4">
-		<label for="chkTog4">
-			<span class="toggle-track"></span>
-		</label>
-		 
-	</div>
-	<div style="margin-left:0.5rem;"><h5> 진료일 하루 전에 알림 수신하기</h5></div>
-</div>
-<div style="margin-top:2rem; margin-left:1rem;">
-<a href='#' target='_blank'>
-  치스토리 탈퇴하기
-</a>
-</div>
+        <button id="changebtn" type="change"  style="margin-top:2rem; margin-left:0.25rem; text-align:center;">회원정보 수정</button>
+
+        <hr>
+        <div style="margin-left:1rem; margin-bottom:1rem">알림</div>
+        <div id="container">
+          <div class="toggle-switch" style="margin-left:1rem">
+            <input type="checkbox" id="chkTog4">
+            <label for="chkTog4">
+              <span class="toggle-track"></span>
+            </label>
+
+          </div>
+          <div style="margin-left:0.5rem;"><h5> 진료일 하루 전에 알림 수신하기</h5></div>
+        </div>
+        <div style="margin-top:2rem; margin-left:1rem;">
+        <a href='#' target='_blank'>
+          치스토리 탈퇴하기
+        </a>
+        </div>
+    	</section>
+   	</div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
