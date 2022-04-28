@@ -100,11 +100,11 @@ public class PointService {
 	}
 	
 	public List<Point> getUsedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
-		return pointDao. selectPointIsPlusByUserid(userid, pointisplus, pager);
+		return pointDao.selectPointIsPlusByUserid(userid, pointisplus, pager);
 	}
 	
 	public List<Point> getEarnedPointsByUserid(String userid, boolean pointisplus, Pager pager) {
-		return pointDao. selectPointIsPlusByUserid(userid, pointisplus, pager);
+		return pointDao.selectPointIsPlusByUserid(userid, pointisplus, pager);
 	}
 	
 }
