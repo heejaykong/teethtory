@@ -10,10 +10,10 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/reservation")
 public class ReservationController {
 	
-	@RequestMapping("/reservation")
+	@RequestMapping("/main")
 	public String reservation() {
 		log.info("실행");
-		return "reservation/reservation";
+		return "reservation/main";
 	}
 	//header의 탭 진료 예약 클릭시, 예약화면으로 이동
 	@RequestMapping("/reservationMain")

@@ -1,12 +1,7 @@
 package com.mycompany.webapp.controller;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.mycompany.webapp.dto.Dentist;
-import com.mycompany.webapp.service.DentistService;
 
 import lombok.extern.log4j.Log4j2;
 @Controller
@@ -14,28 +9,16 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class MyPageController {
 	//마이페이지 메인화면.
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String myPageMenu() {
 		log.info("실행");
-		return "/myPage/myPageMenu";
+		return "/myPage/main";
 	}
-	
-	@Resource
-	private DentistService dentistService;
-	
+
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록 페이지.
 	@RequestMapping("/myDentist")
 	public String myDentist() {
 		log.info("실행");
-//		//더미 데이터 입력 시험!!! 삭제해야함!!!
-//		for(int i=1; i<=5000; i++) {
-//			Dentist dentist = new Dentist();
-//			dentist.setDendomain("kosa1.iptime.org:50104");
-//			dentist.setDenname(i+"치과");
-//			dentist.setDenaddress("서울시 서초구" + i + "길");
-//			dentistService.addDentist(dentist);
-//			log.info(i + "번째 데이터 삽입");
-//		}
 		return "/myPage/myDentist";
 	}
 

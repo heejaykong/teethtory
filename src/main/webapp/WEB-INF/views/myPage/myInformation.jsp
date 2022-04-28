@@ -110,7 +110,8 @@
         <div>010-1234-5678</div>
         </div>
 
-        <button id="changebtn" type="change"  style="margin-top:2rem; margin-left:0.25rem; text-align:center;">회원정보 수정</button>
+        <button id="changebtn" style="margin-top:2rem; margin-left:0.25rem; text-align:center;"
+        onclick="location.href='myInformationEditor'">회원정보 수정</button>
 
         <hr>
         <div style="margin-left:1rem; margin-bottom:1rem">알림</div>
@@ -125,7 +126,7 @@
           <div style="margin-left:0.5rem;"><h5> 진료일 하루 전에 알림 수신하기</h5></div>
         </div>
         <div style="margin-top:2rem; margin-left:1rem;">
-        <a href='#' target='_blank'>
+        <a href='signOut'>
           치스토리 탈퇴하기
         </a>
         </div>
