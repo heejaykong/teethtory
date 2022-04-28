@@ -312,7 +312,7 @@ flex-direction:row;
 		  h++;
 	  } else if (h == 1) {
 		  $('.ham-con').animate({
-			  right: '-20%',
+			  right: '-100%',
 			  opacity: 0
 		  }, 500);
 		  $(this).removeClass('active-1');

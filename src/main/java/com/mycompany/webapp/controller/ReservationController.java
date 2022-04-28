@@ -40,6 +40,11 @@ public class ReservationController {
 		log.info("실행");
 		return "reservation/AfterReservationUsingCalendar";
 	}
+	@RequestMapping("/reservationUsingMap")
+	public String reservationUsingMap() {
+		log.info("실행");
+		return "reservation/reservationUsingMap";
+	}
 	
 	
 }
