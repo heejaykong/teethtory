@@ -13,7 +13,7 @@ color: white;
 }
 </style>
    <div>
-  <img src="/springframework-mini-project/resources/images/photo17.jpg" width="100%">
+  <img src="${pageContext.request.contextPath}/resources/images/photo17.jpg" width="100%">
    </div>
   <div style="text-align: center; margin-top: 50px;">
         <span style="font-size: xx-large; ">햇살 치과</span>
