@@ -70,7 +70,7 @@
 	
 	<delete id="deleteByBoardno" parameterType="int">
 		DELETE FROM boards
-		WHERE boradno=#{boradno}
+		WHERE boardno=#{boardno}
 	</delete>
 	<!-- 
 	<insert id="insert" parameterType="board">
