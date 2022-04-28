@@ -101,7 +101,7 @@ label {
    color:  #ffa048;
 }
 .fa-clock{
-    color:  #ffa048;
+    color:#ffa048;
 }
 #top{
     align-items: start;
@@ -180,7 +180,7 @@ label {
                                 <div class="item">
                                     <div id="cc"class="cell py-1">1:30</div>
                                 </div>
-                                
+                  
                                <div class="item">
                                     <div id="cc"class="cell py-1">2:00</div>
                                 </div>
