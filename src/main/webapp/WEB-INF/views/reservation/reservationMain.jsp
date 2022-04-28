@@ -47,12 +47,6 @@ a:link { color: red; text-decoration: none;}
                 </div>
  
             <div style="margin-top:1rem; margin-left:1rem;">찾으시는 치과가 없나요? <a href="#">치과 등록을 요청하세요.</a></div>
- 
-        
-   
-
-
-
    <div>
        <img src="/springframework-mini-project/resources/images/ㅠㅠ.png" style="width:100%;">
    </div>
