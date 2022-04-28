@@ -64,13 +64,13 @@
 	
 	<update id="update" parameterType="board">
 		UPDATE boards
-		SET btitle=#{btitle}, bcontent=#{bcontent}
-		WHERE bno=#{boradno}
+		SET boardtitle=#{boardtitle}, boardcontent=#{boardcontent}
+		WHERE boardno=#{boardno}
 	</update>
 	
 	<delete id="deleteByBoardno" parameterType="int">
 		DELETE FROM boards
-		WHERE bno=#{boradno}
+		WHERE boradno=#{boradno}
 	</delete>
 	<!-- 
 	<insert id="insert" parameterType="board">
