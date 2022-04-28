@@ -113,10 +113,10 @@ header .bi-heart-fill{
 .ham-con{
 	
   width: 100%;
-  height: 1000px;
+  height: 100%;
   background-color: white;
   position: fixed;
-  
+  margin-top:20%;
   right:-100%;
   color:#505050;
   z-index: 99;
@@ -199,7 +199,6 @@ flex-direction:row;
   </head>
   <body>
   	<div class="wrapper" style="position:relative; min-height:100%; height:auto; padding-bottom:15.5rem;">
-  	<!-- <div class="wrapper" style="min-height:100vh; position:relative; width:100%; height:auto; padding-bottom:200px;"> -->
     	<section>
 		 	<header class="row">
 			    <!-- 네브바 시작 -->
