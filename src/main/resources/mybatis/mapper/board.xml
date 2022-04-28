@@ -54,7 +54,7 @@
 		<selectKey keyProperty="boardno" resultType="int" order="BEFORE">
 			select BOARDNO_SEQ.nextval from dual
 		</selectKey>
-		INSERT INTO boards (boardno, boardwriter, boardtitle,
+ 		INSERT INTO boards (boardno, boardwriter, boardtitle,
 							boardcontent, boarddate, bimagecontenttype,
 							bimageoriginalfilename, bimagesavedfilename)
 		VALUES(#{boardno}, #{boardwriter}, #{boardtitle},
@@ -72,28 +72,6 @@
 		DELETE FROM boards
 		WHERE boardno=#{boardno}
 	</delete>
-	<!-- 
-	<insert id="insert" parameterType="board">
-		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
-			select SEQ_BNO.nextval from dual
-		</selectKey>
-		<if test="battachoname == null">
-			INSERT INTO board (bno, btitle, bcontent, bdate, mid, bhitcount, battachoname, battachsname, battachtype)
-			VALUES(#{bno}, #{btitle}, #{bcontent}, SYSDATE, #{mid}, 0, null, null, null)
-		</if>
-		<if test="battachoname != null">
-			INSERT INTO board (bno, btitle, bcontent, bdate, mid, bhitcount, battachoname, battachsname, battachtype)
-			VALUES(#{bno}, #{btitle}, #{bcontent}, SYSDATE, #{mid}, 0, #{battachoname}, #{battachsname}, #{battachtype})
-		</if>
-	</insert>
-	
-	<delete id="deleteByBno" parameterType="int">
-		DELETE FROM board WHERE bno=#{bno}
-	</delete>
-	
-	<update id="update" parameterType="board">
-		UPDATE board SET btitle=#{btitle}, bcontent=#{bcontent} WHERE bno=#{bno}
-	</update> -->
 </mapper>
 
 

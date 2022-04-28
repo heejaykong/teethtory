@@ -14,6 +14,18 @@
 	<select id="selectByDenaddress" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denaddress like '%' || #{denaddress} || '%'
 	</select>
-
+	
+	<!-- 더미 데이터 생성용. 구현X. -->
+	<insert id="insert" parameterType="dentist">
+		<selectKey keyProperty="denno" resultType="int" order="BEFORE">
+			select DENNO_SEQ.nextval from dual
+		</selectKey>
+		INSERT INTO dentists(
+			denno, dendomain, denname, denaddress
+		)
+		VALUES(
+			#{denno}, #{dendomain}, #{denname}, #{denaddress}
+		)
+	</insert>
 </mapper>
 

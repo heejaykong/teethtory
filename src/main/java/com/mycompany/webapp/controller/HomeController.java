@@ -8,10 +8,8 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @Log4j2
 public class HomeController {
-
 	@RequestMapping("/")
 	public String home() {
-		log.info("실행");
 		return "home/home";
 	}
 	
@@ -20,7 +18,6 @@ public class HomeController {
 	
 	@RequestMapping("/login")
 	public String login() {
-		log.info("실행");
 		return "home/login";
 	}
 	

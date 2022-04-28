@@ -47,6 +47,7 @@ public class PointService {
 		}
 		
 		//users테이블의 userpoint에 100포인트 추가한 값으로 update.
+		//users테이블의 userpoint에 100포인트 추가한 값으로 update.
 		User user = new User();
 		user = userDao.selectByUserid(userid);
 		int userPoint = user.getUserpoint();
@@ -78,6 +79,9 @@ public class PointService {
 		user = userDao.selectByUserid(userid);
 		int userPoint = user.getUserpoint();
 		user.setUserpoint(userPoint-10000);
+		
+		int userUsedPoint = user.getUserusedpoint();
+		user.setUserusedpoint(userUsedPoint + 10000);
 		int updateResult = userDao.update(user);
 		
 		if(insertResult == 1 && updateResult == 1) {
@@ -87,8 +91,19 @@ public class PointService {
 		}
 	}
 	
-	public void addPoint(Point point) {
-		pointDao.insert(point);
+	public boolean addPoint(Point point) {
+		int insertResult = pointDao.insert(point);
+		User user = new User();
+		user = userDao.selectByUserid(point.getUserid());
+		int userPoint = user.getUserpoint();
+		user.setUserpoint(userPoint+point.getPointamount());
+		int updateResult = userDao.update(user);
+		
+		if(insertResult == 1 && updateResult == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public int getTotalPointCount() {
