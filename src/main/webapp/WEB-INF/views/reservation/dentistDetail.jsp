@@ -6,10 +6,21 @@
 color: white;
         background-color: #f47d36;
         border-color: #f47d36;
-        width:90%;
+       width:95%;
 	height:3rem;
 	border-radius:1rem;
-	margin-left:1rem;
+	margin-left:0.5rem;
+	margin-bottom:1rem;
+	
+}
+.fa-phone{
+color:  #ffa048;
+}
+.fa-location-dot{
+color:  #ffa048;
+}
+.fa-clock{
+color:  #ffa048;
 }
 </style>
    <div>
@@ -22,9 +33,16 @@ color: white;
       	<a class="btn" href="${pageContext.request.contextPath}/reservationUsingCalendar/">예약하기</a>
       </div> 
       	<div style="margin-left:1rem;">
-			<i class="fa-solid fa-phone"></i><div>010-8424-5518</div>
-			<i class="fa-solid fa-location-dot"></i><div>진료시간</div>
-			<i class="fa-regular fa-clock"></i><div>평일 09:00~18:00 점심시간 13시 ~ 14시</div>
+      		<div style="display:flex; flex-direction:row;">
+			<div><i class="fa-solid fa-phone"></i></div><div>010-8424-5518</div>
+			</div>
+			<div style="display:flex; flex-direction:row;">
+			<div><i class="fa-solid fa-location-dot"></i></div><div>진료시간</div>
+			</div>
+			<div style="display:flex; flex-direction:row;">
+			<div><i class="fa-regular fa-clock"></i></div><div>평일 09:00~18:00 점심시간 13시 ~ 14시</div>
+			</div>
+			
 			<div>토요일 09:00~13:00 점심시간 없음</div>
 			<div>일요일 휴무</div>
 		</div>

@@ -20,7 +20,7 @@
 					</nav>
 					<div style="margin-top:2rem;"><h3>내 포인트</h3></div>
 					<div class="container" style="display:flex; flex-direction:row; text-decoration:none; color:#ffa048;">
-					<div style="margin-right:1rem; margin-left:-1rem;">
+					<div>
 					<i class="fa-solid fa-coins"></i>
 					</div>
 					<div><h2>4,600</h2></div>

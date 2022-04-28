@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
- 
-  
+<%@ include file="/WEB-INF/views/common/header.jsp" %>  
 <style>
 
 </style>
-</head>
-<body>
+
    
-<div id="map" style="width:100%;height:350px;"></div>
+<div id="map" style="width:100%;height:400px; margin-bottom:1rem;"></div>
+</section>
+</div>
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b29a2d04639a115f1a9cea4ad69f3b9"></script>
 <script>
@@ -50,15 +47,11 @@ infowindow.open(map, marker);
 
 //마커 클릭시 해당 치과 이동
 kakao.maps.event.addListener(marker, 'click', function() {
-	window.location.href = '/springframework-mini-project/reservation/AfterReservationUsingCalendar/';
+	window.location.href = '/springframework-mini-project/reservation/dentistDetail/';
 });
 
-
-
-
 </script>
-</body>
-</html>
+
 
 <!-- cbf9332a5bce7cf86038a39b88018dd1 -->
 <!-- https://map.kakao.com/link/search/치과 -->

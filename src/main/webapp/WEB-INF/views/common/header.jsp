@@ -116,7 +116,7 @@ header .bi-heart-fill{
   height: 100%;
   background-color: white;
   position: fixed;
-  margin-top:20%;
+  /* margin-top:20%; */
   right:-100%;
   color:#505050;
   z-index: 99;

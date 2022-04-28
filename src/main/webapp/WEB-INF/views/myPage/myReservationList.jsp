@@ -124,9 +124,7 @@ flex-direct:row;
 						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
 		</div>
     </div>
-    
-
-
-</body>
-</html>
+    	</div>		
+	</section>
+   	</div>		
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
