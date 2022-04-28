@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
-	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='main'"></i>글 쓰기</span> 
+	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardList'"></i>글 쓰기</span> 
 	<span><input type="submit" value="완료" form="boardWrite" class="btn btn-sm btn-danger"></input> </span>
 </div>
 <hr style="margin: 0px;">

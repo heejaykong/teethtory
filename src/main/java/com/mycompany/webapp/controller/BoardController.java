@@ -49,6 +49,6 @@ public class BoardController {
 	
 	@PostMapping("/boardWrite")
 	public String boardWrite() {
-		return "redirect:/board/main";
+		return "redirect:/board/boardList";
 	}
 }
