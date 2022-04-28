@@ -4,11 +4,11 @@
 
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Calendar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+<!-- <title>Calendar</title> -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style type="text/css">
 .calendarForm{
@@ -37,19 +37,20 @@ table.calendar td{
    	width:3rem;
 }
 </style>
-</head>
-<body>
-	<div class="calendarForm">
-    <div class="cal_top">
-        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
-        <span id="cal_top_year"></span>
-        <span id="cal_top_month"></span>
-        <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
-    </div>
-    <div id="cal_tab" class="cal">
-    </div>
-    </div>
- 
+<!-- </head>
+<body> -->
+			<div class="calendarForm">
+		    <div class="cal_top">
+		        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
+		        <span id="cal_top_year"></span>
+		        <span id="cal_top_month"></span>
+		        <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
+		    </div>
+		    <div id="cal_tab" class="cal">
+		    </div>
+		    </div>
+	 	</section>
+	</div> 
 <script type="text/javascript">
     
     var today = null;
@@ -154,10 +155,9 @@ table.calendar td{
         drawSche();
     }
     
-    
     function setData(){
         jsonData = 
-       /*  {
+       {
             "2022":{
                
                 "04":{
@@ -168,7 +168,7 @@ table.calendar td{
                 }
                 
             }
-        } */
+        }
     }
     
     //스케줄 그리기
@@ -190,7 +190,7 @@ table.calendar td{
     }
  
 </script>
-</body>
-</html>
+<!-- </body>
+</html> -->
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
