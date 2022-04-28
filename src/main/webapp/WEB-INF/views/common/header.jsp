@@ -237,7 +237,7 @@ flex-direction:row;
 			
 			                <!-- 햄버거 버튼 -->
 			             <div id="headertop" class="container">
-			                <div style="margin-right:3rem;"><h1>치스토리</h1></div>
+			                <div style="margin-right:3rem;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
 			                <div>
 			                <li class="ham-btn">
 			                    <a class="menu-trigger" href="#">
@@ -270,17 +270,18 @@ flex-direction:row;
 			            <div id="ham-menu-wrap">
 			                <div class="ham-menu mt-5">
 			                    <ul class="ham-top-menu">
-			                        <li><a href="#"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
-			        
+			                        <li><a href="${pageContext.request.contextPath}/treatmentlist/main"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
+
 			                        </li>
 			                    </ul>
 			                    <ul class="ham-top-menu">
-			                        <li><a href="#"><i class="fa-solid fa-clock"></i> 진료 예약하기<i class="bi bi-caret-down-fill"></i></a>
+			                        <li><a href="${pageContext.request.contextPath}/reservation/main"><i class="fa-solid fa-clock"></i> 진료 예약하기<i class="bi bi-caret-down-fill"></i></a>
 			                            
 			                        </li>
 			                    </ul>
 			                    <ul class="ham-top-menu">
-			                        <li><a href="#"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
+			                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
+			                        <li><a href="${pageContext.request.contextPath}/board/main"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
 			                          
 			                        </li>
 			                    </ul>
@@ -312,7 +313,7 @@ flex-direction:row;
 		  h++;
 	  } else if (h == 1) {
 		  $('.ham-con').animate({
-			  right: '-20%',
+			  right: '-100%',
 			  opacity: 0
 		  }, 500);
 		  $(this).removeClass('active-1');

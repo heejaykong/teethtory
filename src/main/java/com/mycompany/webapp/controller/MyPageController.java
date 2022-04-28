@@ -9,13 +9,12 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class MyPageController {
 	//마이페이지 메인화면.
-	@RequestMapping("/")
+	@RequestMapping("/main")
 	public String myPageMenu() {
 		log.info("실행");
-		return "/myPage/myPageMenu";
+		return "/myPage/main";
 	}
-	
-	
+
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록 페이지.
 	@RequestMapping("/myDentist")
 	public String myDentist() {
