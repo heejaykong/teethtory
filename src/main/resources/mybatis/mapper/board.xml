@@ -51,6 +51,9 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="boardno" resultType="int" order="BEFORE">
+			select BOARDNO_SEQ.nextval from dual
+		</selectKey>
 		INSERT INTO boards (boardno, boardwriter, boardtitle,
 							boardcontent, boarddate, bimagecontenttype,
 							bimageoriginalfilename, bimagesavedfilename)
@@ -61,13 +64,13 @@
 	
 	<update id="update" parameterType="board">
 		UPDATE boards
-		SET btitle=#{btitle}, bcontent=#{bcontent}
-		WHERE bno=#{boradno}
+		SET boardtitle=#{boardtitle}, boardcontent=#{boardcontent}
+		WHERE boardno=#{boardno}
 	</update>
 	
 	<delete id="deleteByBoardno" parameterType="int">
 		DELETE FROM boards
-		WHERE bno=#{boradno}
+		WHERE boardno=#{boardno}
 	</delete>
 	<!-- 
 	<insert id="insert" parameterType="board">
