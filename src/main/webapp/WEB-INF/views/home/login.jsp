@@ -63,13 +63,13 @@
                <label for="userid" style="margin-right:20rem;"><strong>아이디</strong></label>
                 </br>
                <input type="text" class="form-control" placeholder="strongteeth" id="userid"
-               style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>       
+                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>       
              </div>
              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
                <label for="userpassword" style="margin-right:20rem;"><strong>비밀번호</strong></label>
                 </br>
                <input type="password" class="form-control" placeholder="Password" id="userpassword" 
-					style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;"/>
+					        style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;"/>
              </div>
              <div>
              	<input id="loginbtn" type="submit" value="로그인" style="margin-top:2rem;">
