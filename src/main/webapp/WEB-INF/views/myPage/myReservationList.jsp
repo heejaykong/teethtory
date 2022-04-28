@@ -74,8 +74,7 @@ display:flex;
 flex-direct:row;
 }
 </style>
-</head>
-<body>
+
 <div id="all">
     <%-- 로그인한 사용자의 예약 기록 보여주기. --%>
     <div style="margin-left:1rem; margin-bottom:2rem; margin-top:3rem;">
