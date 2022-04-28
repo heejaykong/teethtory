@@ -7,9 +7,7 @@
 		color: rgb(242, 101, 34);
 	}
 	.btn{
-	
-	
-	 color: white;
+	color: white;
         background-color: #f47d36;
         border-color: #f47d36;
         width:90%;
