@@ -15,16 +15,11 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="/webapp/resources/css/app.css" />
 <style>
-/* .container {
-  border: 1px solid gray;
-  padding: 50px;
-  border-radius: 20px;
-} */
 #loginbtn {
 	color: white;
 	background-color: #f47d36;
 	border-color: #f47d36;
-	width: 23rem;
+	width: 95%;
 	height: 3rem;
 	border-radius: 1rem;
 }
@@ -102,5 +97,6 @@ a:hover {
 				style="margin-top: 2rem;">
 		</div>
 	</form>
-</body>
-</html>
+
+  
+<%@ include file="/WEB-INF/views/common/footer.jsp" %>

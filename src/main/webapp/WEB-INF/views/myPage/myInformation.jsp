@@ -12,9 +12,9 @@
         color: white;
         background-color: #f47d36;
         border-color: #f47d36;
-        width:90%;
-		height:3rem;
-		border-radius:1rem;
+        width:100%;
+	height:3rem;
+	border-radius:1rem;
       }
       
 .toggle-switch input{
@@ -110,8 +110,10 @@
         <div>010-1234-5678</div>
         </div>
 
+
         <button id="changebtn" style="margin-top:2rem; margin-left:0.25rem; text-align:center;"
         onclick="location.href='myInformationEditor'">회원정보 수정</button>
+
 
         <hr>
         <div style="margin-left:1rem; margin-bottom:1rem">알림</div>
@@ -131,6 +133,6 @@
         </a>
         </div>
     	</section>
-   	</div>
+   </div>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

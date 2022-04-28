@@ -22,12 +22,15 @@
 	</select>
 	
 	<select id="selectByPage" parameterType="pager" resultType="board">
-		SELECT rnum, boardno, boardtitle, boarddate, boardwriter
+		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
 		FROM (
-		  SELECT ROWNUM as rnum, boardno, boardtitle, boarddate, boardwriter
+		  SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+						   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
 		  FROM (
-		    SELECT boardno, boardtitle, boarddate, boardwriter 
-		    FROM boards
+		    SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+				   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+			FROM boards
 		    ORDER BY boardno DESC
 		  )
 		  WHERE rownum &lt;= #{endRowNo}
@@ -36,11 +39,14 @@
 	</select>
 	
 	<select id="selectByUserid" resultType="board">
-		SELECT rnum, boardno, boardtitle, boarddate, boardwriter
+		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
 		FROM (
-			SELECT ROWNUM as rnum, boardno, boardtitle, boarddate, boardwriter
+			SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
 			FROM (
-				SELECT boardno, boardtitle, boarddate, boardwriter
+				SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
 				FROM boards
 				WHERE boardwriter=#{userid}
 				ORDER BY boardno DESC

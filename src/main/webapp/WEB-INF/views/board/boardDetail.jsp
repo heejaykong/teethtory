@@ -4,17 +4,24 @@
 
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span>커뮤니티</span>
-		<span>
-			<i class="fas fa-search"></i>
-			<i class="fa-solid fa-pen-to-square ml-2"></i>
-		</span>
+		<div class="btn-group">
+		  <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+		  </button>
+		  <div class="dropdown-menu dropdown-menu-right">
+		    <button class="dropdown-item" type="button" onclick="location.href='boardForm'">수정</button>
+		    <button class="dropdown-item" type="button" onclick="location.href='main'">삭제</button>
+		  </div>
+		</div>
 	</div>
 	<hr style="margin: 0px;">
 	<div class="donut">
 	
 		<div class="board d-flex flex-column" style="margin: 1rem 1rem 0.5rem 1rem;">
-			<div class="mb-2"><span class="mr-2">금니</span><span class="mr-2">strongteeth</span><span>2022.04.25 15:25</span></div>
-			<div>교정했는데 원래 이렇게 아픈 거 맞아? 죽을 거 같음. 응응 원래 죽어야 되는데 잠깐 살아있는 거</div>
+			<div class="mb-2">
+			<span class="mr-2">금니</span>
+			<span class="mr-2">${board.boardwriter}</span>
+			<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd"/></span></div>
+			<div>${board.boardcontent}</div>
 			
 			<div>
 				<img src="${pageContext.request.contextPath}/resources/images/puppy3.jpeg" width="50%" height="100rem;">
