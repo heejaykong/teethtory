@@ -106,8 +106,12 @@ public class PointService {
 		}
 	}
 	
-	public int getTotalPointCount() {
-		return pointDao.count();
+	public int getTotalPointCount(String userid) {
+		return pointDao.countAll(userid);
+	}
+	
+	public int getSpecificPointCount(Point point) {
+		return pointDao.countSpecification(point);
 	}
 	
 	public List<Point> getAllPointsByUserid(String userid, Pager pager) {

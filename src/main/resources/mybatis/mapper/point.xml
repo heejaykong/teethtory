@@ -13,7 +13,7 @@
 	<select id="countSpecification" parameterType="point" resultType="int">
 		SELECT COUNT(*) FROM points
 		WHERE userid=#{userid}
-		AND pointisplus=#{}
+		AND pointisplus=#{pointisplus}
 	</select>
 	
 	<select id="selectAllByUserid" resultType="point">

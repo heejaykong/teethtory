@@ -1,10 +1,14 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Point;
 import com.mycompany.webapp.service.PointService;
 
 import lombok.extern.log4j.Log4j2;
@@ -32,9 +36,15 @@ public class MyPageController {
 	//마이페이지 - 내 포인트
 	@RequestMapping("/myPointList")
 	public String myPointList() {
-		
-		
-		log.info("실행");
+		//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
+		int totalRows = pointService.getTotalPointCount("spring");
+		log.info(totalRows);
+		Pager pager = new Pager(10, 5, totalRows, 1);
+		List<Point> list = pointService.getAllPointsByUserid("spring", pager);
+		log.info("list 불러오기 완료");
+		for(int i=0; i<10; i++) {
+			log.info(list.get(i));
+		}
 		return "/myPage/myPointList";
 	}
 	
