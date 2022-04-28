@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -281,7 +282,7 @@ flex-direction:row;
 			                    </ul>
 			                    <ul class="ham-top-menu">
 			                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
-			                        <li><a href="${pageContext.request.contextPath}/board/main"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
+			                        <li><a href="${pageContext.request.contextPath}/board/boardList"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
 			                          
 			                        </li>
 			                    </ul>
