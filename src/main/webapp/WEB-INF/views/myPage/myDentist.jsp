@@ -71,10 +71,7 @@
 				<div class="denName" style="color: rgb(242, 101, 34); font-size: 1.8rem;">A치과</div>
 				<span class="dentist-visited">서울시 송파구 송이로...</span>
 			</div>
-			<div style="flex-grow: 1; text-align: right;">
-				<img src="/springframework-mini-project/resources/images/dropdownbutton.svg" 
-				width="15rem;" style="cursor: pointer;" onclick="handleHidden(event);">
-			</div>
+			<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 		</div>
 		<div class="history-list-hidden__item" id="hidden_1"
 			style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
@@ -92,10 +89,7 @@
 				<div class="denName" style="color: rgb(242, 101, 34); font-size: 1.8rem;">B치과</div>
 				<span class="dentist-visited">성남시 수정구 송이로...</span>
 			</div>
-			<div style="flex-grow: 1; text-align: right;">
-				<img src="/springframework-mini-project/resources/images/dropdownbutton.svg" 
-				width="15rem;" style="cursor: pointer;" onclick="handleHidden(event);">
-			</div>
+			<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 		</div>
 		<div class="history-list-hidden__item"
 			style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
@@ -120,10 +114,7 @@
 				<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">C치과</div>
 				<span class="dentist-visited">서울시 송파구 파송로...</span>
 			</div>
-			<div style="flex-grow: 1; text-align: right;">
-				<img src="/springframework-mini-project/resources/images/dropdownbutton.svg"
-				width="15rem;" style="cursor: pointer;" onclick="$('#hidden_3').toggle();">
-			</div>
+			<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 		</div>
 		<div class="history-list-hidden__item" id="hidden_3"
 			style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
@@ -141,10 +132,7 @@
 				<div style="color: rgb(242, 101, 34); font-size: 1.8rem;">D치과</div>
 				<span class="dentist-visited">성남시 수정구 수정로...</span>
 			</div>
-			<div style="flex-grow: 1; text-align: right;">
-				<img src="/springframework-mini-project/resources/images/dropdownbutton.svg" 
-				width="15rem;" style="cursor: pointer;" onclick="$('#hidden_4').toggle();">
-			</div>
+			<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 		</div>
 		<div class="history-list-hidden__item" id="hidden_4"
 			style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
