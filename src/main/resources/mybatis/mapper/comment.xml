@@ -48,7 +48,7 @@
 	
 	<insert id="insert" parameterType="comment">
 		<selectKey keyProperty="commentno" resultType="int" order="BEFORE">
-			select SEQ_COMMNO.nextval from dual
+			select COMMNO_SEQ.nextval from dual
 		</selectKey>
 		INSERT INTO comments(
 			commentno, boardno, commentcontent, commentdate, commentwriter
