@@ -11,4 +11,5 @@ public interface DentistDao {
 	public List<Dentist> selectByuserid(String userid);
 	public List<Dentist> selectByDenname(String denname);
 	public List<Dentist> selectByDenaddress(String denaddress);
+	public void insert(Dentist dentist);
 }
