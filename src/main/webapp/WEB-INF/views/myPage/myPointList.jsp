@@ -9,8 +9,7 @@
 		color: rgb(242, 101, 34);
 	}
 	.fa-coins{
-	color:  #ffa048;
-
+		color:  #ffa048;
 	}
 </style>
 			<div class="d-flex">
@@ -18,28 +17,30 @@
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">포인트 내역</a>
 					</nav>
-					<div style="margin-top:2rem;"><h3>내 포인트</h3></div>
+					<div style="margin-top:2rem;"><h3>내 포인트</h3>
+					</div>
 					<div class="container" style="display:flex; flex-direction:row; text-decoration:none; color:#ffa048;">
+					</div>
 					<div style="margin-right:1rem; margin-left:-1rem;">
-					<i class="fa-solid fa-coins"></i>
+						<i class="fa-solid fa-coins"></i>
 					</div>
 					<div><h2>4,600</h2></div>
-					</div>
+
 					<div>
 						<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						    <ul class="navbar-nav">
-								<!-- <li id="list_total" class="nav-item active"> -->
 								<div class="container" style="display:flex; flex-direction:row;">
-								<div style="margin-right:1rem;">
-								<li id="list_total" class="nav-item">
-								  <!-- <a class="nav-link" href="#" onClick="DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> -->
-								  <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a>
-								</li>
+									<div style="margin-right:1rem;">
+										<li id="list_total" class="nav-item">
+								  		<a class="nav-link" href="#" onClick="list_active('list_total')">전체<span class="sr-only">(current)</span></a>
+								  		<%-- <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> --%>
+										</li>
+									</div>
 								</div>
 								<div style="margin-right:1rem;">
-								<li id="list_got" class="nav-item">
-								  <a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a>
-								</li>
+									<li id="list_got" class="nav-item">
+									<a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a>
+									</li>
 								</div>
 								<div style="margin-right:1rem;">
 								<li id="list_used" class="nav-item">
@@ -58,6 +59,21 @@
 					    </tr>
 					  </thead>
 					  <tbody id="list">
+					  	<c:forEach var="point" items="${points}">
+							<tr>
+								<td>
+									<c:if test="${point.pointisplus==true}">
+										+
+									</c:if>
+									<c:if test="${point.pointisplus==false}">
+										-
+									</c:if>
+									${point.pointamount}
+								</td>
+								<td>${point.pointdesc}</td>
+								<td><fmt:formatDate value="${point.pointdate}" pattern="yyyy-MM-dd"/></td>
+							</tr>
+						</c:forEach>
 					   <!--  <tr>
 					      <td>+100</td>
 					      <td class="left" colspan="2">로그인 포인트</td>
@@ -68,10 +84,34 @@
 					      <td class="left" colspan="2">스케일링 할인</td>
 					      <td>2022.04.16</td>
 					    </tr> -->
+						<tr>
+							<td colspan="4" class="text-center">
+								<div>
+									<a class="btn btn-outline-primary btn-sm" href="myPointList?pageNo=1">처음</a>
+									<c:if test="${pager.groupNo>1}">
+										<a class="btn btn-outline-info btn-sm" href="myPointList?pageNo=${pager.startPageNo-1}">이전</a>
+									</c:if>
+									
+									<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+										<c:if test="${pager.pageNo != i}">
+											<a class="btn btn-outline-success btn-sm" href="myPointList?pageNo=${i}">${i}</a>
+										</c:if>
+										<c:if test="${pager.pageNo == i}">
+											<a class="btn btn-danger btn-sm" href="myPointList?pageNo=${i}">${i}</a>
+										</c:if>
+									</c:forEach>
+									
+									<c:if test="${pager.groupNo<pager.totalGroupNo}">
+										<a class="btn btn-outline-info btn-sm" href="myPointList?pageNo=${pager.endPageNo+1}">다음</a>
+									</c:if>
+									<a class="btn btn-outline-primary btn-sm" href="myPointList?pageNo=${pager.totalPageNo}">맨끝</a>
+								</div>
+							</td>
+						</tr>
 					  </tbody>
 					</table>
 					
-					<nav aria-label="Page navigation example">
+					<%-- <nav aria-label="Page navigation example">
 					  <ul class="pagination justify-content-center">
 					    <li class="page-item disabled">
 					      <a class="page-link">이전으로</a>
@@ -84,13 +124,29 @@
 					      <a class="page-link" href="#">다음으로</a>
 					    </li>
 					  </ul>
-					</nav>
+					</nav> --%>
 				</div>
 			</div>
 	 	</section>
 	</div>
 
 <script>
+function ajax_test() {
+	const userId = 'spring';
+	const pageNo = 1;
+	
+	$.ajax({
+		url:"myPointList",
+		method:"post",
+		data: {
+			userId:userId
+			,pageNo:pageNo
+		}
+	})
+	.done(() => {});
+}
+// ajax_test();
+
 function list_active(list_id) {
 	let list = document.getElementById(list_id);
 	list.setAttribute("class", "active");
@@ -198,8 +254,8 @@ function PaginationButton (page, items) {
 }
 
 list_active("list_total");
-DisplayList(list_items, list_element, rows, current_page);
-SetupPagination(list_items, pagination_element, rows);
+// DisplayList(list_items, list_element, rows, current_page);
+// SetupPagination(list_items, pagination_element, rows);
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

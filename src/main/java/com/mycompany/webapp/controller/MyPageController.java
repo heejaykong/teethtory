@@ -5,7 +5,11 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Point;
@@ -34,17 +38,32 @@ public class MyPageController {
 	}
 
 	//마이페이지 - 내 포인트
-	@RequestMapping("/myPointList")
-	public String myPointList() {
+	@GetMapping("/myPointList")
+	public String myPointList(@RequestParam(defaultValue="1") int pageNo, Model model) {
 		//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
 		int totalRows = pointService.getTotalPointCount("spring");
 		log.info(totalRows);
-		Pager pager = new Pager(10, 5, totalRows, 1);
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		model.addAttribute("pager", pager);
 		List<Point> list = pointService.getAllPointsByUserid("spring", pager);
-		log.info("list 불러오기 완료");
-		for(int i=0; i<10; i++) {
-			log.info(list.get(i));
-		}
+		model.addAttribute("points", list);
+		
+		return "/myPage/myPointList";
+	}
+	
+	@PostMapping("/myPointList")
+	public String myPointList(String userId, @RequestParam(defaultValue="1") int pageNo) {
+//		log.info("userId: " + userId + ", " + "pageNo: " + pageNo);
+//		
+//		//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
+//		int totalRows = pointService.getTotalPointCount(userId);
+//		log.info(totalRows);
+//		Pager pager = new Pager(10, 5, totalRows, 1);
+//		List<Point> list = pointService.getAllPointsByUserid(userId, pager);
+//		log.info("list 불러오기 완료");
+//		for(int i=0; i<10; i++) {
+//			log.info(list.get(i));
+//		}
 		return "/myPage/myPointList";
 	}
 	
