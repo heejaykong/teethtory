@@ -30,7 +30,6 @@
 
 
 #buttons {
-	font-size: 13px;
 	color: #888;
 }
 
@@ -68,10 +67,10 @@ a:hover {
 	}
 </script>
 </head>
-<div class="container mt-5">
+<div>
 	<div class="row">
-		<div class="col-xs-12 mx-auto">
-			<div class="form-block mx-5">
+		<div>
+			<div>
 				<div style="margin-bottom:3rem; margin-top:10rem; margin-left:10rem;">
 					<h1 class="text-uppercase">
 				        <strong style="color: #f47d36;">치스토리</strong>
