@@ -101,7 +101,7 @@
 
 <div class="container">
 <div style="margin-right:1rem; margin-bottom:1rem;">비밀번호</div>
-<div>*********</div>
+<div>*******</div>
 </div>
 
 <div class="container">
