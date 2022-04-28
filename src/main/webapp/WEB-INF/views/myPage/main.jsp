@@ -37,24 +37,24 @@ a:link { color: red; text-decoration: none;}
       <div>
       <i class="fa-solid fa-house-chimney-medical"></i>
       </div>
-      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="#"><h4>내 치과</h4></a></div>
+      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myDentist"><h4>내 치과</h4></a></div>
       </div>
       <div class="container">
       <div><i class="fa-solid fa-person-circle-check"></i></div>
-      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="#"><h4>예약 현황</h4></a></div>
+      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myReservationList"><h4>예약 현황</h4></a></div>
       </div>
 
       <div class="container">
       <div><i class="fa-solid fa-coins"></i></div>
-      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="#"><h4>내 포인트</h4></a></div>
+      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myPointList"><h4>내 포인트</h4></a></div>
       </div>
       <div class="container">
       <div><i class="fa-solid fa-calendar-day"></i></div>
-      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="#"><h4>캘린더</h4></a></div>
+      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="reservationHistoryWithCalendar"><h4>캘린더</h4></a></div>
       </div>
       <div class="container">
       <div><i class="fa-solid fa-gear"></i></div>
-      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="#"><h4>설정</h4></a></div>
+      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myInformation"><h4>설정</h4></a></div>
       </div>
 	 	</section>
 	</div>
