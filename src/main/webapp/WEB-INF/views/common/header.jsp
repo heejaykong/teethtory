@@ -36,9 +36,6 @@ header .bi-heart-fill{
   transition-duration: 0.5s;
 }
 
-
-
-
 .ham-con .bi-caret-up-fill, .ham-con .bi-caret-down-fill{
 	color:#444;
 }
@@ -116,7 +113,7 @@ header .bi-heart-fill{
   height: 100%;
   background-color: white;
   position: fixed;
-  margin-top:20%;
+  /* margin-top:20%; */
   right:-100%;
   color:#505050;
   z-index: 99;
@@ -198,13 +195,14 @@ flex-direction:row;
     </style>
   </head>
   <body>
+ 
   	<div class="wrapper" style="position:relative; min-height:100%; height:auto; padding-bottom:15.5rem;">
-    	<section>
-		 	<header class="row">
+    		<section>
+		 	<header>
 			    <!-- 네브바 시작 -->
-			    <nav class="header navbar navbar-expand-lg navbar-light d-flex">
+			    <nav class="header navbar">
 			        <!-- 오른쪽 메뉴 -->
-			        <div class="right-nav ml-auto p-2">
+			        <div class="right-nav" style=" width:80rem; margin-left:1rem;">
 			            <ul class="navbar-nav">
 			                <li class="nav-item mr-3">
 			                <c:choose>
@@ -236,9 +234,11 @@ flex-direction:row;
 			                </li>
 			
 			                <!-- 햄버거 버튼 -->
+
 			             <div id="headertop" class="container">
 			                <div style="margin-right:3rem;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
 			                <div>
+
 			                <li class="ham-btn">
 			                    <a class="menu-trigger" href="#">
 			                        <span></span>
@@ -302,7 +302,8 @@ flex-direction:row;
   });
 
   var h = 0;
-
+ 
+  
   $(burger).on("click", function () {
     if (h == 0) {
 		  $('.ham-con').animate({
@@ -330,6 +331,7 @@ flex-direction:row;
         h=0;
       }
     });
-  })
+  });
+ 
   </script>
 <!-- </body> -->
