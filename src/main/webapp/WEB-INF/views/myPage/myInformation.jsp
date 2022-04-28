@@ -12,7 +12,7 @@
         color: white;
         background-color: #f47d36;
         border-color: #f47d36;
-        width:23rem;
+        width:90%;
 		height:3rem;
 		border-radius:1rem;
       }
@@ -128,12 +128,5 @@
   치스토리 탈퇴하기
 </a>
 </div>
-
-
-
-
-
-
-
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

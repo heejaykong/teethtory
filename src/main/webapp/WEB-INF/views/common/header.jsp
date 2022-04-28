@@ -17,7 +17,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-     
 
 .header{
 	
@@ -196,15 +195,22 @@ margin-top:-3rem;
 display:flex;
 flex-direction:row;
 }
+#headername{
+
+text-align:center;
+
+}
+
     </style>
   </head>
   <body>
   <header>
     <!-- 네브바 시작 -->
+    <div id="headername"><h1>치스토리</h1></div>
     <nav class="header navbar navbar-expand-lg navbar-light d-flex">
 
         <!-- 오른쪽 메뉴 -->
-        <div class="right-nav ml-auto p-2">
+        <div class="right-nav ml-auto p-2" style="margin-top:-8.5rem;">
             <ul class="navbar-nav">
                 <li class="nav-item mr-3">
                 <c:choose>
@@ -236,9 +242,7 @@ flex-direction:row;
                 </li>
 
                 <!-- 햄버거 버튼 -->
-             <div id="headertop" class="container">
-                <div style="margin-right:3rem;"><h1>치스토리</h1></div>
-                <div>
+             
                 <li class="ham-btn">
                     <a class="menu-trigger" href="#">
                         <span></span>
@@ -246,8 +250,7 @@ flex-direction:row;
                         <span></span>
                     </a>
                 </li>
-                </div>
-             </div>
+               
             </ul>
         </div>
 

@@ -112,7 +112,7 @@ label {
 <body>
 <div id="all">
 	<div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
-	<div id="top-a" style="display:inline">
+	<div id="top-a" style="display:inline; margin-left:1rem;">
         <i class="fa-solid fa-calendar-day"></i>
 		<input id="dateSelect" value="날짜" style="margin-top:10px; border:0px solid black" ></input>
         
@@ -222,7 +222,7 @@ label {
                     </div>
                    
                 </div>
-                 <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/AfterReservationUsingCalendar.jsp'">다음 단계</button>
+                 <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/reservation/AfterReservationUsingCalendar'">다음 단계</button>
                  
             </div>
     </div>

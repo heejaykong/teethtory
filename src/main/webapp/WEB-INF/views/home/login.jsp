@@ -14,7 +14,7 @@
         color: white;
         background-color: #f47d36;
         border-color: #f47d36;
-        width:23rem;
+        width:90%;
 		height:3rem;
 		border-radius:1rem;
       }
@@ -59,7 +59,7 @@
           
             <div style="margin-bottom:3rem; margin-top:4rem;">
 					<h1 class="text-uppercase">
-				        <strong style="color: #f47d36; margin-left:8.3rem;">로그인</strong>
+				        <strong style="color: #f47d36; margin-left:8.4rem;">로그인</strong>
 					</h1>
 				</div>
 				
@@ -78,9 +78,7 @@
 				style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
                 
               </div>
-              
-              
-              
+             
               <input id="loginbtn" type="submit" value="로그인"  style="margin-top:2rem; margin-left:0.25rem;">
             </form>
           </div>

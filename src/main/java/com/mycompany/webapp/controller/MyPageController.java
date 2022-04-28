@@ -17,10 +17,10 @@ public class MyPageController {
 	}
 
 	//마이페이지 - 내 포인트
-	@RequestMapping("/myPagePointList")
-	public String myPagePointList() {
+	@RequestMapping("/myPointList")
+	public String myPointList() {
 		log.info("실행");
-		return "/myPage/myPagePointList";
+		return "/myPage/myPointList";
 	}
 	
 	//마이페이지 - 캘린더.
@@ -49,5 +49,15 @@ public class MyPageController {
 	public String signOut() {
 		log.info("실행");
 		return "/myPage/signOut";
+	}
+	@RequestMapping("/myPageMenu")
+	public String myPageMenu() {
+		log.info("실행");
+		return "/myPage/myPageMenu";
+	}
+	@RequestMapping("/myReservationList")
+	public String myReservationList() {
+		log.info("실행");
+		return "/myPage/myReservationList";
 	}
 }

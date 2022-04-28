@@ -9,10 +9,12 @@
 	.btn{
 	
 	
-	border-radius:1rem;
-	 background-color:  #ffa048;
-    text-decoration: none;
-    color:white;
+	 color: white;
+        background-color: #f47d36;
+        border-color: #f47d36;
+        width:90%;
+		height:3rem;
+		border-radius:1rem;
 	}
 </style>
 <div>
@@ -31,8 +33,8 @@
 <div style="margin-left:0.5rem;">비밀번호</div>
 <input type="password" class="form-control" placeholder="비밀번호를 입력하세요." id="userpassword"
                 style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;" />
-<input type="submit" value="로그인"
-						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:22rem; height:3rem;">
+<input type="submit" value="회원탈퇴"
+						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:90%; height:3rem;">
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
