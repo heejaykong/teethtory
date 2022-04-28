@@ -51,6 +51,9 @@
 	</select>
 	
 	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="boardno" resultType="int" order="BEFORE">
+			select BOARDNO_SEQ.nextval from dual
+		</selectKey>
 		INSERT INTO boards (boardno, boardwriter, boardtitle,
 							boardcontent, boarddate, bimagecontenttype,
 							bimageoriginalfilename, bimagesavedfilename)
