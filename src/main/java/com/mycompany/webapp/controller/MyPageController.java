@@ -1,13 +1,20 @@
 package com.mycompany.webapp.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.mycompany.webapp.service.PointService;
 
 import lombok.extern.log4j.Log4j2;
 @Controller
 @RequestMapping("/myPage")
 @Log4j2
 public class MyPageController {
+	@Resource
+	private PointService pointService;
+	
 	//마이페이지 메인화면.
 	@RequestMapping("/main")
 	public String myPageMenu() {
@@ -25,6 +32,8 @@ public class MyPageController {
 	//마이페이지 - 내 포인트
 	@RequestMapping("/myPointList")
 	public String myPointList() {
+		
+		
 		log.info("실행");
 		return "/myPage/myPointList";
 	}
