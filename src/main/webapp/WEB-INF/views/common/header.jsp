@@ -270,7 +270,7 @@ flex-direction:row;
 			            <div id="ham-menu-wrap">
 			                <div class="ham-menu mt-5">
 			                    <ul class="ham-top-menu">
-			                        <li><a href="#"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
+			                        <li><a href="medicalHistoryPage/"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
 			        
 			                        </li>
 			                    </ul>
@@ -312,7 +312,7 @@ flex-direction:row;
 		  h++;
 	  } else if (h == 1) {
 		  $('.ham-con').animate({
-			  right: '-20%',
+			  right: '-100%',
 			  opacity: 0
 		  }, 500);
 		  $(this).removeClass('active-1');
