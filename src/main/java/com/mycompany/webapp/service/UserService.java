@@ -83,4 +83,10 @@ public class UserService {
 		this.createUser(user);
 		return SignupResult.SUCCESSFUL;
 	}
+	
+	//사용자의 포인트 잔액 가져오기.
+	public int getPointBalance(String userid) {
+		User user = userDao.selectByUserid(userid);
+		return user.getUserpoint();
+	}
 }
