@@ -267,10 +267,14 @@ flex-direction:row;
 			                <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
 			                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
 			                
-			                <input type="submit" value="로그인" id="athamLogin"
-									class="btn btn-block btn-osstem">
-						    <input type="submit" value="회원가입" id="athamJoin"
-									class="btn">
+			                <form action="login" method="get">
+				                <input type="submit" value="로그인" id="athamLogin"
+										class="btn btn-block btn-osstem">
+			                </form>
+			                <form action="signup" method="get">
+							    <input type="submit" value="회원가입" id="athamJoin"
+										class="btn">
+			                </form>
 			            </div>
 			
 			            <div id="ham-menu-wrap">
