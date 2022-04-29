@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -244,8 +244,12 @@ margin-left:0.5rem;
 			                <!-- 햄버거 버튼 -->
 
 			             <div id="headertop" class="container">
-			                <div style="margin:auto;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
-			                <div>
+			                <div style="margin:auto;">
+			                <a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;">
+			                	<h1>치스토리</h1>
+		                	</a>
+		                	</div>
+		                 <div>
 
 			                <li class="ham-btn">
 			                    <a class="menu-trigger" href="#">
@@ -265,18 +269,25 @@ margin-left:0.5rem;
 			    <!-- 햄버거 메뉴 시작 -->
 			        <div class="ham-con">
 			            <div class="navbar-nav" style="margin-top:1rem;">
-			                <!-- <h1 style="margin-left:1.5rem;">치스토리</h1> -->
 			                <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
 			                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
 			                
-			                <form action="login" method="get">
-				                <input type="submit" value="로그인" id="athamLogin"
-										class="btn btn-block btn-osstem">
-			                </form>
-			                <form action="signup" method="get">
-							    <input type="submit" value="회원가입" id="athamJoin"
-										class="btn">
-			                </form>
+			                <c:if test="${sessionUserid == null}">
+				                <form action="login" method="get">
+					                <input type="submit" value="로그인" id="athamLogin"
+											class="btn btn-block btn-osstem">
+				                </form>
+				                <form action="signup" method="get">
+								    <input type="submit" value="회원가입" id="athamJoin"
+											class="btn">
+				                </form>
+			                </c:if>
+			                <c:if test="${sessionUserid != null}">
+				                <form action="logout" method="get">
+								    <input type="submit" value="로그아웃" id="athamJoin"
+											class="btn">
+				                </form>
+			                </c:if>
 			            </div>
 			
 			            <div id="ham-menu-wrap">

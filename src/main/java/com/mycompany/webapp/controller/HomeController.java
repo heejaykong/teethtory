@@ -61,23 +61,10 @@ public class HomeController {
 	
 	@GetMapping("/userinfo")
 	public String userinfo(HttpSession session) {
-		
-		String memberId = (String) session.getAttribute("sessionUserid");
-
-		log.info("memberId: " + memberId);
-		/*
-		 * log.info("sessionMid: " + sessionUserid); log.info("mid: " + userid);
-		 */
+		String userid = (String) session.getAttribute("sessionUserid");
+		log.info("sessionUserid: " + userid);
 		return "redirect:/";
 	}
-	
-	// TBD(4월28일):
-	// -테스팅해보고 사인업로직까지 짜기(완)
-	// -user 비밀번호 칼럼은 varchar2(200)로 바꾸고(완)
-	// -user role 칼럼은 디폴트값 설정해주기(완)
-	// -user이메일은 낫널풀거나 칼럼 없애기(완)
-	// 그러고 나서도 잘 되는지 확인하고
-	// 나머지 뷰단 연결하기(회원가입링크, 로그인링크, 로그아웃링크 등)
 	
 	@GetMapping("/signup")
 	public String signupForm() {
