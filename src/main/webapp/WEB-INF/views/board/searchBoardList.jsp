@@ -6,11 +6,12 @@
 		<span onclick="location.href='boardList'">커뮤니티</span>
 		
 		<div style="position:relative;">
-		<input id="search" type="text" value="" style="width:8rem;"/><i class="fas fa-search" style="position:absolute;" 
+		<input id="search" type="text" value="${boardtitle}" style="width:8rem;"/><i class="fas fa-search" style="position:absolute;" 
 		onclick="searchBoard()"></i>
 		</div>
 			
 			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
+		
 	</div>
 	<hr style="margin: 0px;">
 	<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
@@ -21,8 +22,7 @@
 			<div class="mb-2">
 				<span class="mr-2">금니</span>
 				<span class="mr-2">${board.boardwriter}</span>
-				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span>	
-			</div>
+				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div><h4>${board.boardtitle}</h4></div>
 			<div>${board.boardcontent}</div>
 			<div style="text-align: right;" class="mt-2">
@@ -37,16 +37,16 @@
 	
 	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
 	  <ul class="pagination justify-content-center">
-	  <li><a class="page-link" href="boardList?pageNo=1"><<</a></li>
+	  <li><a class="page-link" href="searchBoardList?boardtitle=${boardtitle}&pageNo=1"><<</a></li>
 	    <li class="page-item">
 			<c:if test="${pager.groupNo>1}">
-				<a class="page-link" href="boardList?pageNo=${pager.startPageNo-1}"><</a>
+				<a class="page-link" href="searchBoardList?boardtitle=${boardtitle}&pageNo=${pager.startPageNo-1}"><</a>
 			</c:if>
 	    </li>
 	  
 	    <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 			<c:if test="${pager.pageNo != i}">
-				<li class="page-item"><a class="page-link" href="boardList?pageNo=${i}">${i}</a>
+				<li class="page-item"><a class="page-link" href="searchBoardList?boardtitle=${boardtitle}&pageNo=${i}">${i}</a>
 			</c:if>
 			<c:if test="${pager.pageNo == i}">
 				<li class="page-item active" aria-current="page"><a class="page-link">${i}</a>
@@ -55,13 +55,17 @@
 		
 	    <li class="page-item">
 		    <c:if test="${pager.groupNo<pager.totalGroupNo}">
-				<a class="page-link" href="boardList?pageNo=${pager.endPageNo+1}">></a>
+				<a class="page-link" href="searchBoardList?boardtitle=${boardtitle}&pageNo=${pager.endPageNo+1}">></a>
 			</c:if>
 	    </li>
-	    <li><a class="page-link" href="boardList?pageNo=${pager.totalPageNo}">>></a></li>
+	    <li><a class="page-link" href="searchBoardList?boardtitle=${boardtitle}&pageNo=${pager.totalPageNo}">>></a></li>
 	    
 	  </ul>
 	</nav>
+
+
+
+
 
 	 	</section>
 	</div> 

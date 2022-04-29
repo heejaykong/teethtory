@@ -46,6 +46,19 @@ public class BoardController {
 		return "board/boardList";
 	}
 	
+	@GetMapping("/searchBoardList")
+	public String searchBoardList(@RequestParam(defaultValue = "1") int pageNo, String boardtitle, Model model) {
+		int totalBoardNum = boardService.getTotalBoardCountBytitleContent(boardtitle);
+
+		Pager pager = new Pager(5, 5, totalBoardNum, pageNo);
+		model.addAttribute("pager", pager);
+
+		List<Board> boards = boardService.getBoardsByTitleContent(boardtitle, pager);
+		model.addAttribute("boards", boards);
+		model.addAttribute("boardtitle", boardtitle);
+		return "board/searchBoardList";
+	}
+	
 	@GetMapping("/boardDetail") //여기에서 댓글도 같이 출력
 	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		Board board = boardService.getBoard(boardno);

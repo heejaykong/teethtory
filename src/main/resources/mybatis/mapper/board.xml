@@ -13,6 +13,12 @@
 		WHERE boardwriter=#{userid}
 	</select>
 	
+	<select id="countBytitlecontent" parameterType="string" resultType="int">
+		SELECT COUNT(*)
+		FROM boards
+		WHERE boardtitle like '%' || #{boardtitle} ||'%' or boardcontent like '%' || #{boardtitle} ||'%'
+	</select>
+	
 	<select id="selectByBoardno" parameterType="int" resultType="board">
 		SELECT boardno, boardwriter, boardtitle,
 			boardcontent, boarddate, bimagecontenttype,
@@ -55,6 +61,26 @@
 		)
 		WHERE rnum &gt;= #{pager.startRowNo}
 	</select>
+	
+	<select id="selectByTitleContent" resultType="board">
+		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+		FROM (
+			SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+			FROM (
+				SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
+					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+				FROM boards
+				WHERE boardtitle like '%' || #{boarddata} ||'%' or boardcontent like '%' || #{boarddata} ||'%'
+				ORDER BY boardno DESC
+			)
+			WHERE rownum &lt;= #{pager.endRowNo}
+		)
+		WHERE rnum &gt;= #{pager.startRowNo}
+	</select>
+	
+	
 	
 	<insert id="insert" parameterType="board">
 		<selectKey keyProperty="boardno" resultType="int" order="BEFORE">
