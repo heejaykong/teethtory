@@ -135,5 +135,12 @@ public class BoardController {
 
 		return "redirect:/board/boardDetail?boardno=" +boardno;
 	}
+	@PostMapping("/commentUpdate")
+	public String commentUpdate(Comment comment, HttpSession session) {
+		int boardno= (int)session.getAttribute("boardno");
+		comment.setBoardno(boardno);
+		commentService.updateComment(comment);
+		return "redirect:/board/boardDetail?boardno=" + boardno;
+	}
 	
 }
