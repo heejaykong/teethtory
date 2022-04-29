@@ -1,7 +1,6 @@
 package com.mycompany.webapp.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +59,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardDetail") //여기에서 댓글도 같이 출력
-	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		Board board = boardService.getBoard(boardno);
 		model.addAttribute("board", board);
 
@@ -70,6 +69,7 @@ public class BoardController {
 		
 		List<Comment> comments = commentService.getComments(boardno, pager);
 		model.addAttribute("comments", comments);
+		session.setAttribute("boardno", boardno);
 		return "board/boardDetail";
 	}
 	
@@ -114,4 +114,33 @@ public class BoardController {
 		boardService.removeBoard(boardno);
 		return "redirect:/board/boardList";
 	}
+	
+	
+	@GetMapping("/commentDelete")
+	public String commentDelete(int commentno,HttpSession session) {
+		commentService.removeComment(commentno);
+		int boardno= (int)session.getAttribute("boardno");
+		
+		return "redirect:/board/boardDetail?boardno=" +boardno;
+	}
+	
+	@PostMapping("/commentWrite")
+	public String commentWrite(Comment comment, HttpSession session){
+		String userid = (String) session.getAttribute("sessionUserid");
+		comment.setCommentwriter(userid);
+		
+		int boardno= (int)session.getAttribute("boardno");
+		comment.setBoardno(boardno);
+		commentService.writeComment(comment);
+
+		return "redirect:/board/boardDetail?boardno=" +boardno;
+	}
+	@PostMapping("/commentUpdate")
+	public String commentUpdate(Comment comment, HttpSession session) {
+		int boardno= (int)session.getAttribute("boardno");
+		comment.setBoardno(boardno);
+		commentService.updateComment(comment);
+		return "redirect:/board/boardDetail?boardno=" + boardno;
+	}
+	
 }
