@@ -3,10 +3,10 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
-		<span>커뮤니티</span>
+		<span onclick="location.href='boardList'">커뮤니티</span>
 		<span>
 			<i class="fas fa-search"></i>
-			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardForm'"></i>
+			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
 		</span>
 	</div>
 	<hr style="margin: 0px;">
@@ -14,11 +14,11 @@
 
 	<div class="donut">
 		<c:forEach var="board" items="${boards}">
-		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail?bno=${board.boardno}'">
+		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail?boardno=${board.boardno}'">
 			<div class="mb-2">
 				<span class="mr-2">금니</span>
 				<span class="mr-2">${board.boardwriter}</span>
-				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd"/></span></div>
+				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div>${board.boardcontent}</div>
 			<div style="text-align: right;" class="mt-2">
 				<span><i class="fa-solid fa-image"></i></span><span>1</span>
