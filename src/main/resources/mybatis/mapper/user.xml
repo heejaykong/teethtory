@@ -17,7 +17,7 @@
 			, isdoctor, user_role, enabled, userssn
 		)
 		VALUES(
-			#{userid}, #{username}, #{userpassword}, #{useremail}
+			#{userid}, #{username}, #{userpassword}, #{useremail, jdbcType=VARCHAR} <!-- Oracle DB상에 nullable로 설정되어있는 'useremail' 필드값이 null로 넘어갈때 발생하는 오류 방지하기 위해 jdbcType=VARCHAR 설정. -->
 			, #{userphone}, #{userpoint}, #{userusedpoint}, #{userallownoti}
 			, #{isdoctor}, #{user_role}, #{enabled}, #{userssn}
 		)

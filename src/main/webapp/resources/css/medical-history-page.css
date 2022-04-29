@@ -3,14 +3,10 @@
 	display: flex;
 	flex-direction: column;
 }
-.mouth-and-history-list-section{
-	display: flex;
-	justify-content: center;
-}
-.mouth-and-history-list__col{
+
+.mouth-wrapper {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 }
 

@@ -14,13 +14,15 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 public class UserService {
-	
-	public enum JoinResult {
-		SUCCESS, FAIL, DUPLICATED
-	}
-	
 	public enum LoginResult {
-		SUCCESS, FAIL_MID, FAIL_MPASSWORD
+		SUCCESSFUL,
+		FAILED
+	}
+	public enum SignupResult {
+		SUCCESSFUL,
+		FAILED__DUPLICATED_ID
+//		FAILED__MISMATCH_ID_FORMAT,
+//		FAILED__MISMATCH_PASSWORD_FORMAT 이 두개 유효성검사는 클라이언트에서 하기
 	}
 	
 	@Resource
@@ -48,34 +50,37 @@ public class UserService {
 		return deletedRows;
 	}
 
-	public JoinResult join(User user) {
-		
-		User dbUser = userDao.selectByUserid(user.getUserid());
-		if(dbUser == null) {
-			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-//			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			user.setUserpassword(passwordEncoder.encode(user.getUserpassword()));
-			int result = userDao.insert(user);
-			return JoinResult.SUCCESS;		
-		} else {
-			return JoinResult.DUPLICATED;
-		}
-		
-	}
-
 	public LoginResult login(User user) {
-		User dbUser = userDao.selectByUserid(user.getUserid());
-		if(dbUser == null) {
-			return LoginResult.FAIL_MID;
-		} else {
-			PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-			if(passwordEncoder.matches(user.getUserpassword(), dbUser.getUserpassword())) {
-				return LoginResult.SUCCESS;
-			} else {
-				return LoginResult.FAIL_MPASSWORD;
-			}
+		User searchedUserById = this.getUser(user.getUserid());
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		// 아이디가 잘못됨
+		if(searchedUserById == null) {
+			return LoginResult.FAILED;
 		}
-		
+		// 비번이 잘못됨
+		if(!passwordEncoder.matches(user.getUserpassword(), searchedUserById.getUserpassword())) {
+			return LoginResult.FAILED;
+		}
+		return LoginResult.SUCCESSFUL;
 	}
 
+	public SignupResult signup(User user) {
+		User searchedUserById = this.getUser(user.getUserid());
+		// 이미 아이디가 존재함
+		if(searchedUserById != null) {
+			return SignupResult.FAILED__DUPLICATED_ID;
+		}
+		
+		// 비밀번호 인코딩한 뒤 세팅
+		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String endcodedPassword = passwordEncoder.encode(user.getUserpassword());
+		user.setUserpassword(endcodedPassword);
+		// user_role 세팅
+		user.setUser_role("ROLE_USER");
+		// 기본 userpoint값 세팅
+		user.setUserpoint(3000);
+		
+		this.createUser(user);
+		return SignupResult.SUCCESSFUL;
+	}
 }
