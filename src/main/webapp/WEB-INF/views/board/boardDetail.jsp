@@ -20,7 +20,7 @@
 			<div class="mb-2">
 			<span class="mr-2">금니</span>
 			<span class="mr-2">${board.boardwriter}</span>
-			<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd"/></span></div>
+			<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div>${board.boardcontent}</div>
 			
 			<div>
@@ -41,11 +41,14 @@
 		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
 		
 		<!-- 댓글 부분 -->
+
+	<div class="donut">
+		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
 			<div class="d-flex justify-content-between mb-2">
 				<div>
 					<span class="mr-2"><i class="fa-solid fa-medal"></i></span>
-					<span class="mr-2">hello</span>
+					<span class="mr-2">${comment.commentwriter}</span>
 				</div>
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  <button type="button" class="btn"><i class="fa-regular fa-thumbs-up"></i></button>
@@ -60,53 +63,41 @@
 				  </div>
 				</div>
 			</div>
-			<div>뉴비야 환영한다1111</div>
+			<div>${comment.commentcontent}</div>
 			<div style="text-align: left;">
-				<span>2022.04.25 15:25</span>
+				<span><fmt:formatDate value="${comment.commentdate}" pattern="yyyy-MM-dd HH:mm"/></span>
 				<span class="ml-1"><i class="fa-regular fa-thumbs-up"></i></span><span>15</span>
 			</div>
 		</div>
 		<hr style="margin: 0px;">
-		
-		<div class="board d-flex flex-column" style="padding: 1rem;">
-			<div class="d-flex justify-content-between mb-2">
-				<div>
-					<span class="mr-2">동니</span>
-					<span class="mr-2">ilovedogs</span>
-				</div>
-				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-				  <button type="button" class="btn"><i class="fa-regular fa-thumbs-up"></i></button>
-				
-				  <div class="btn-group dropleft" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-				    </button>
-				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">댓글 수정</a>
-				      <a class="dropdown-item" href="#">댓글 삭제</a>
-				    </div>
-				  </div>
-				</div>
-			</div>
-			<div>뉴비야 환영한다222222</div>
-			<div style="text-align: left;">
-				<span>2022.04.25 15:25</span>
-				<span class="ml-1"><i class="fa-regular fa-thumbs-up"></i></span><span>4</span>
-			</div>
-		</div>
-		<hr style="margin: 0px;">
-		
+		</c:forEach>
 	</div>
+	
 	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
 	  <ul class="pagination justify-content-center">
-	    <li class="page-item disabled">
-	      <a class="page-link">Previous</a>
-	    </li>
-	    <li class="page-item"><a class="page-link" href="#">1</a></li>
-	    <li class="page-item"><a class="page-link" href="#">2</a></li>
-	    <li class="page-item"><a class="page-link" href="#">3</a></li>
+	  <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=1"><<</a></li>
 	    <li class="page-item">
-	      <a class="page-link" href="#">Next</a>
+			<c:if test="${pager.groupNo>1}">
+				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.startPageNo-1}"><</a>
+			</c:if>
 	    </li>
+	  
+	    <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+			<c:if test="${pager.pageNo != i}">
+				<li class="page-item"><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${i}">${i}</a>
+			</c:if>
+			<c:if test="${pager.pageNo == i}">
+				<li class="page-item active" aria-current="page"><a class="page-link">${i}</a>
+			</c:if>
+		</c:forEach>
+		
+	    <li class="page-item">
+		    <c:if test="${pager.groupNo<pager.totalGroupNo}">
+				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.endPageNo+1}">></a>
+			</c:if>
+	    </li>
+	    <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.totalPageNo}">>></a></li>
+	    
 	  </ul>
 	</nav>
 

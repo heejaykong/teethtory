@@ -18,7 +18,7 @@
 			<div class="mb-2">
 				<span class="mr-2">금니</span>
 				<span class="mr-2">${board.boardwriter}</span>
-				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd"/></span></div>
+				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div>${board.boardcontent}</div>
 			<div style="text-align: right;" class="mt-2">
 				<span><i class="fa-solid fa-image"></i></span><span>1</span>

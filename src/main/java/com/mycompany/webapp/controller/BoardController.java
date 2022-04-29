@@ -43,7 +43,7 @@ public class BoardController {
 	}
 	
 	@GetMapping("/boardDetail") //여기에서 댓글도 같이 출력
-	public String boardDetail(@RequestParam(defaultValue = "1") int pageNo, int boardno, Model model) {
+	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model) {
 		Board board = boardService.getBoard(boardno);
 		model.addAttribute("board", board);
 

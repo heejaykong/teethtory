@@ -12,7 +12,7 @@ import com.mycompany.webapp.dto.Pager;
 public interface CommentDao {
 	public int countByBoardno(int boardno);
 	public int countByUserid(String userid);
-	public List<Comment> selectByPage(int boardno, Pager pager);
+	public List<Comment> selectByPage(@Param("boardno") int boardno, @Param("pager") Pager pager);
 	public List<Comment> selectByUserid(@Param("userid") String userid, @Param("pager") Pager pager);
 	public int insert(Comment comment);
 	public int update(Comment comment);
