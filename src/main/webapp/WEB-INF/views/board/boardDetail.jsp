@@ -1,7 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
+<style>
+.modal{ 
+  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
+}
 
+.modal_content{
+  width:400px; height:200px;
+  background:#fff; border-radius:10px;
+  position:relative; top:30%; left:50%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
+}
+</style>
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span onclick="location.href='boardList'">커뮤니티</span>
 		<div class="btn-group">
@@ -44,17 +58,17 @@
 
 	<div class="donut">
 		<form method="post"
-			action="boardWrite" id="boardWrite">
+			action="commentWrite" id="commentWrite">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
-					<td><textarea class="form-control" placeholder="글 내용"
-							name="bbsContent" maxlength="2048" style="height: 50px;"></textarea></td>
+					<td><textarea id="updateform" class="form-control" placeholder="글 내용"
+							name="commentcontent" maxlength="2048" style="height: 50px;"></textarea></td>
 				</tr>
 			</table>
 		</form>
-		<button class="btn btn-primary btn-sm">댓글 작성</button>
-		</div>
+		<button  class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
+		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
 			<div class="d-flex justify-content-between mb-2">
@@ -69,13 +83,13 @@
 				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item" href="#">댓글 수정</a>
-				      <a class="dropdown-item" href="#">댓글 삭제</a>
+				      <a class="dropdown-item">댓글 수정</a>
+				      <a class="dropdown-item" href="commentDelete?commentno=${comment.commentno}">댓글 삭제</a>
 				    </div>
 				  </div>
 				</div>
 			</div>
-			<div>${comment.commentcontent}</div>
+			<div id="content">${comment.commentcontent}</div>
 			<div style="text-align: left;">
 				<span><fmt:formatDate value="${comment.commentdate}" pattern="yyyy-MM-dd HH:mm"/></span>
 				<span class="ml-1"><i class="fa-regular fa-thumbs-up"></i></span><span>15</span>
@@ -112,11 +126,8 @@
 	    
 	  </ul>
 	</nav>
-
-
-
-
-
+		
 	 	</section>
 	</div> 
+
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
