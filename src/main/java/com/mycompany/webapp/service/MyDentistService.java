@@ -28,13 +28,20 @@ public class MyDentistService {
 		return dentistDao.selectByuserid(userid);
 	}
 	
+	//내 치과 목록 중에 특정 치과가 이미 등록되어 있는지 점검.
+	public int getMyDentistByDenno(String userid, int denno) {
+		return mydentistDao.countByuseridNDenno(userid, denno);
+	}
+	
 	//내 치과 등록하기
-	public void registerMyDentist(MyDentist mydentist) {
-		mydentistDao.insert(mydentist);
+	public void registerMyDentist(String userid, int denno) {
+		log.info("실행");
+		mydentistDao.insert(userid, denno);
 	}
 	
 	//내 치과 삭제하기
 	public void removeMyDentist(String userid, int denno) {
 		mydentistDao.delete(userid, denno);
+		log.info("실행");
 	}
 }
