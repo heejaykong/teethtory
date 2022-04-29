@@ -5,10 +5,13 @@
 <mapper namespace="com.mycompany.webapp.dao.mybatis.DentistDao">
 
 	<select id="selectByuserid" parameterType="string" resultType="dentist">
-		SELECT denno, dendomain, denname, denaddress FROM dentists 
-		WHERE denno = (select denno from mydentists where userid = #{userid})
-		
+		SELECT d.denno, d.dendomain, d.denname, d.denaddress
+		FROM dentists d
+		    JOIN mydentists m
+		    ON d.denno = m.denno
+		WHERE userid=#{userid}
 	</select>
+	
 	<select id="selectByDenname" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denname like '%' || #{denname} || '%'
 	</select>

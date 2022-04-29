@@ -308,6 +308,12 @@ margin-left:0.5rem;
 			                          
 			                        </li>
 			                    </ul>
+			                    <ul class="ham-top-menu">
+			                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
+			                        <li><a href="${pageContext.request.contextPath}/myPage/main"><i class="fa-solid fa-person-shelter"></i> 마이페이지<i class="bi bi-caret-down-fill"></i></a>
+			                          
+			                        </li>
+			                    </ul>
 			                </div>
 			            </div>
 			        </div>
