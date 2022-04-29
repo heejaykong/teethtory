@@ -6,7 +6,7 @@
 </style>
 
    
-<div id="map" style="width:100%;height:400px; margin-bottom:1rem;"></div>
+<div id="map" style="width:100%;height:400px; margin-bottom:1rem;" onclick="moveRoadView()"></div>
 </section>
 </div>
 
@@ -14,23 +14,22 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b29a2d04639a115f1a9cea4ad69f3b9"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
-
+a=37.567941;
+b=126.828883;
 mapOption = { 
-    center: new kakao.maps.LatLng(37.567940,126.828883), // 지도의 중심좌표
+    center: new kakao.maps.LatLng(a,b), // 지도의 중심좌표
     level: 3 // 지도의 확대 레벨
 };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+
 //마커를 표시할 위치와 title 객체 배열입니다 
 var positions = [
-{
-    title: '카카오', 
-    latlng: new kakao.maps.LatLng(33.450701, 126.570667)
-},
+
 {
     title: '오스템 임플란트', 
-    latlng: new kakao.maps.LatLng(37.567941,126.828883)
+    latlng: new kakao.maps.LatLng(a,b)
 }
 ];
 
@@ -54,7 +53,7 @@ var marker = new kakao.maps.Marker({
 });
 }
 
-var iwContent = '<h5 align="center">오스템 임플란트</h5>';
+var iwContent = '<h5>오스템 임플란트</h5>';
 
 //인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({
@@ -76,6 +75,7 @@ kakao.maps.event.addListener(marker, 'mouseout', function() {
 kakao.maps.event.addListener(marker, 'click', function() {
 	window.location.href = '/springframework-mini-project/reservation/dentistDetail/';
 });
+
 </script>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
