@@ -2,7 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-*{
+* {
 	box-sizing: border-box;
 }
 html,
@@ -130,13 +130,13 @@ table {
   border-spacing: 0;
 }
 a {
-  color: black;
+  color: inherit;
   text-decoration: none;
   outline: none;
 }
 a:hover,
 a:active {
-  color: black;
+  color: inherit;
   text-decoration: none;
 }
 body{
