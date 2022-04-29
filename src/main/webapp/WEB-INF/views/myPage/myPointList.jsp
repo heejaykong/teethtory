@@ -111,7 +111,7 @@
 							</td>
 						</tr>
 					  </tbody>
-					</table>
+				</table>
 					
 					<%-- <nav aria-label="Page navigation example">
 					  <ul class="pagination justify-content-center">
