@@ -16,6 +16,12 @@
 		WHERE commentwriter=#{userid}
 	</select>
 	
+	<select id="selectBycommentno" parameterType="int" resultType="comment">
+		SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+		FROM comments
+		WHERE commentno=#{commentno}
+	</select>
+	
 	<select id="selectByPage" resultType="comment">
 		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
 			FROM (

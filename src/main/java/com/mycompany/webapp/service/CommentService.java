@@ -26,11 +26,13 @@ public class CommentService {
 		return commentDao.countByUserid(userid);
 	}
 	
+	public Comment getComments(int commentno) {
+		return commentDao.selectBycommentno(commentno);
+	}
+	
 	public List<Comment> getComments(int boardno, Pager pager){
 		return commentDao.selectByPage(boardno, pager);
 	}
-	
-	
 	
 	public List<Comment> getCommentsByUserid(String userid, Pager pager){
 		return commentDao.selectByUserid(userid, pager);
