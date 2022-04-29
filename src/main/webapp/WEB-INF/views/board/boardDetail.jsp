@@ -44,16 +44,16 @@
 
 	<div class="donut">
 		<form method="post"
-			action="boardWrite" id="boardWrite">
+			action="commentWrite" id="commentWrite">
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
 					<td><textarea class="form-control" placeholder="글 내용"
-							name="bbsContent" maxlength="2048" style="height: 50px;"></textarea></td>
+							name="commentcontent" maxlength="2048" style="height: 50px;"></textarea></td>
 				</tr>
 			</table>
 		</form>
-		<button class="btn btn-primary btn-sm">댓글 작성</button>
+		<button class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
 		</div>
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
@@ -70,7 +70,7 @@
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 				      <a class="dropdown-item" href="#">댓글 수정</a>
-				      <a class="dropdown-item" href="#">댓글 삭제</a>
+				      <a class="dropdown-item" href="commentDelete?commentno=${comment.commentno}">댓글 삭제</a>
 				    </div>
 				  </div>
 				</div>
