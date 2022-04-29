@@ -30,6 +30,8 @@ public class CommentService {
 		return commentDao.selectByPage(boardno, pager);
 	}
 	
+	
+	
 	public List<Comment> getCommentsByUserid(String userid, Pager pager){
 		return commentDao.selectByUserid(userid, pager);
 	}
