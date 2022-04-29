@@ -58,6 +58,7 @@
 </script>
 
 <h4 style="padding-top: 2rem; padding-left: 1.5rem; padding-bottom: 0.5rem;">내 치과 목록</h4>
+
 <div style="display: flex; flex-direction: column; align-items: center;">
 	<!-- 1번째 시작  -->
 	<div style="width: 90%; position: relative;">
@@ -86,12 +87,12 @@
 					class="round-thumbnail">
 			</div>
 			<div>
-				<div class="denName" style="color: rgb(242, 101, 34); font-size: 1.8rem;">B치과</div>
-				<span class="dentist-visited">성남시 수정구 송이로...</span>
+				<div class="denName" style="color: rgb(242, 101, 34); font-size: 1.8rem;">A치과</div>
+				<span class="dentist-visited">서울시 송파구 송이로...</span>
 			</div>
 			<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 		</div>
-		<div class="history-list-hidden__item"
+		<div class="history-list-hidden__item" id="hidden_1"
 			style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
 			data-toggle="modal" data-target="#exampleModal" data-body="내 치과 목록에서 삭제하시겠습니까?" onclick="toggleOff(event);">내 치과 목록에서 삭제</div>
 	</div>

@@ -273,17 +273,17 @@ margin-left:0.5rem;
 			                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
 			                
 			                <c:if test="${sessionUserid == null}">
-				                <form action="login" method="get">
+				                <form action="${pageContext.request.contextPath}/login" method="get">
 					                <input type="submit" value="로그인" id="athamLogin"
 											class="btn btn-block btn-osstem">
 				                </form>
-				                <form action="signup" method="get">
+				                <form action="${pageContext.request.contextPath}/signup" method="get">
 								    <input type="submit" value="회원가입" id="athamJoin"
 											class="btn">
 				                </form>
 			                </c:if>
 			                <c:if test="${sessionUserid != null}">
-				                <form action="logout" method="get">
+				                <form action="${pageContext.request.contextPath}/logout" method="get">
 								    <input type="submit" value="로그아웃" id="athamJoin"
 											class="btn">
 				                </form>

@@ -7,6 +7,7 @@
 	<select id="selectByuserid" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress FROM dentists 
 		WHERE denno = (select denno from mydentists where userid = #{userid})
+		
 	</select>
 	<select id="selectByDenname" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denname like '%' || #{denname} || '%'
