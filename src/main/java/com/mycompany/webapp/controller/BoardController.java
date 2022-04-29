@@ -85,6 +85,13 @@ public class BoardController {
 		return "board/boardUpdateForm";
 	}
 	
+	@RequestMapping("/commentUpdateForm")
+	public String commentUpdateForm(int commentno, Model model) {
+		Comment comment = commentService.getComments(commentno);
+		model.addAttribute("comment", comment);
+		return "board/commentUpdateForm";
+	}
+	
 	@PostMapping("/boardWrite")
 	public String boardWrite(Board board, HttpSession session) throws Exception {
 		String userid = (String) session.getAttribute("sessionUserid");
@@ -117,30 +124,27 @@ public class BoardController {
 	
 	
 	@GetMapping("/commentDelete")
-	public String commentDelete(int commentno,HttpSession session) {
+	public String commentDelete(int commentno, HttpSession session) {
 		commentService.removeComment(commentno);
 		int boardno= (int)session.getAttribute("boardno");
 		
-		return "redirect:/board/boardDetail?boardno=" +boardno;
+		return "redirect:/board/boardDetail?boardno=" + boardno;
 	}
 	
 	@PostMapping("/commentWrite")
 	public String commentWrite(Comment comment, HttpSession session){
 		String userid = (String) session.getAttribute("sessionUserid");
 		comment.setCommentwriter(userid);
-		
-		int boardno= (int)session.getAttribute("boardno");
-		comment.setBoardno(boardno);
+
 		commentService.writeComment(comment);
 
-		return "redirect:/board/boardDetail?boardno=" +boardno;
+		return "redirect:/board/boardDetail?boardno=" + comment.getBoardno();
 	}
+	
 	@PostMapping("/commentUpdate")
-	public String commentUpdate(Comment comment, HttpSession session) {
-		int boardno= (int)session.getAttribute("boardno");
-		comment.setBoardno(boardno);
+	public String commentUpdate(Comment comment) {
 		commentService.updateComment(comment);
-		return "redirect:/board/boardDetail?boardno=" + boardno;
+		return "redirect:/board/boardDetail?boardno=" + comment.getBoardno();
 	}
 	
 }

@@ -91,6 +91,7 @@
 				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에서 삭제하시겠습니까?">내 치과 목록에 삭제</div>
 		</div>
 	</c:forEach>
+
 <hr>
 <h6 style="padding-top: 2rem; padding-left: 1.5rem;">치과 검색하기</h6>
 <div style="padding-left: 2rem; padding-bottom: 0.5rem; width: 92%;">
