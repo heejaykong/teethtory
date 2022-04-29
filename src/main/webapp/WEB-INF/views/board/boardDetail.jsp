@@ -43,6 +43,18 @@
 		<!-- 댓글 부분 -->
 
 	<div class="donut">
+		<form method="post"
+			action="boardWrite" id="boardWrite">
+			<table class="table table-striped"
+				style="text-align: center; border: 1px solid #dddddd">
+				<tr>
+					<td><textarea class="form-control" placeholder="글 내용"
+							name="bbsContent" maxlength="2048" style="height: 50px;"></textarea></td>
+				</tr>
+			</table>
+		</form>
+		<button class="btn btn-primary btn-sm">댓글 작성</button>
+		</div>
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
 			<div class="d-flex justify-content-between mb-2">

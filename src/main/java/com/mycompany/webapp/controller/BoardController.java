@@ -1,8 +1,12 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +73,20 @@ public class BoardController {
 	}
 	
 	@PostMapping("/boardWrite")
-	public String boardWrite() {
+	public String boardWrite(Board board, HttpSession session) throws Exception {
+		String userid = (String) session.getAttribute("sessionUserid");
+		board.setBoardwriter(userid);
+		
+		if (!board.getBattach().isEmpty()) { // Multipartfile은 넘어오지 않아도 null값이 아니라 객체 하나가 들어가서 null로 체크하지 않는다.
+			board.setBimageoriginalfilename(board.getBattach().getOriginalFilename());
+			board.setBimagecontenttype(board.getBattach().getContentType());
+			board.setBimageoriginalfilename(new Date().getTime() + "-" + board.getBimageoriginalfilename());
+			File file = new File("C:/Temp/uploadfiles/" + board.getBimagesavedfilename());
+			board.getBattach().transferTo(file);
+		}
+
+		boardService.writeBoard(board);
+
 		return "redirect:/board/boardList";
 	}
 	
