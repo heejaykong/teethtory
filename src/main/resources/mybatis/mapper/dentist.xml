@@ -10,6 +10,7 @@
 		    JOIN mydentists m
 		    ON d.denno = m.denno
 		WHERE userid=#{userid}
+		ORDER BY d.denname
 	</select>
 	<select id="selectByDenname" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denname like '%' || #{denname} || '%'

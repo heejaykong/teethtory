@@ -41,10 +41,11 @@ public class MyPageController {
 		return "myPage/main";
 	}
 
-	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록 페이지.
+	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
 	public String myDentist(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
+			, @RequestParam(defaultValue="-1") String denno
 			, Model model) {
 		log.info("실행");
 		//로그인한 유저의 '내 치과' 목록을 조회.
@@ -58,6 +59,18 @@ public class MyPageController {
 			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname);
 			model.addAttribute("searchedDentistList", searchedDentistList);
 		}
+		
+		//내 치과 등록하기
+		//이미 등록된 치과는 추가X.(팝업까진 띄울필요X. MyDentists테이블에 PK없기 때문에 중복 행 입력 방지조치임.)
+		//1. 이미 등록된 치과인지 점검.
+		//1-1. 이미 등록된 치과면 아무조치X.
+		//1-2. 등록 안 된 치과면 등록.
+		//1-2-1. 치과목록도 새로 띄워줘야 함.(새로 등록한 치과 포함.) 아니다 자동이구나..!
+//		if() {
+//			
+//		}
+		
+		//내 치과 삭제하기
 		
 		return "myPage/myDentist";
 	}

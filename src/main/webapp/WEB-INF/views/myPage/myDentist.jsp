@@ -73,6 +73,7 @@
 				<div>
 					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentist.denname}</div>
 					<span class="dentist-visited">${myDentist.denaddress}</span>
+					<div id="denNoForDelete" style="display:none;">${myDentist.denno}</div>
 				</div>
 				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 			</div>
@@ -112,6 +113,7 @@
 				<div>
 					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
 					<span class="dentist-visited">${searchedDentist.denaddress}</span>
+					<div id="denNoForRegi" style="display:none;">${myDentist.denno}</div>
 				</div>
 				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
 			</div>
