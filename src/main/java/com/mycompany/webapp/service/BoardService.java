@@ -22,6 +22,10 @@ public class BoardService {
 		return boardDao.count();
 	}
 	
+	public int getTotalBoardCountBytitleContent(String boardtitle) {
+		return boardDao.countBytitlecontent(boardtitle);
+	}
+	
 	public Board getBoard(int boardno) {
 		return boardDao.selectByBoardno(boardno);
 	}
@@ -33,6 +37,11 @@ public class BoardService {
 	public List<Board> getBoardsByUserid(String userid, Pager pager) {
 		return boardDao.selectByUserid(userid, pager);
 	}
+	
+	public List<Board> getBoardsByTitleContent(String boardtitle,Pager pager) {
+		return boardDao.selectByTitleContent(boardtitle,pager);
+	}
+	
 	
 	public int writeBoard(Board board) {
 		int insertedRows = boardDao.insert(board);
