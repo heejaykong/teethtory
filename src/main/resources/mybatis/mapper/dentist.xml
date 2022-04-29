@@ -10,13 +10,20 @@
 		    JOIN mydentists m
 		    ON d.denno = m.denno
 		WHERE userid=#{userid}
+		ORDER BY d.denname
 	</select>
 	
 	<select id="selectByDenname" parameterType="string" resultType="dentist">
-		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denname like '%' || #{denname} || '%'
+		SELECT denno, dendomain, denname, denaddress
+		FROM dentists
+		WHERE denname like '%' || #{denname} || '%'
+		ORDER BY denname
 	</select>
 	<select id="selectByDenaddress" parameterType="string" resultType="dentist">
-		SELECT denno, dendomain, denname, denaddress FROM dentists WHERE denaddress like '%' || #{denaddress} || '%'
+		SELECT denno, dendomain, denname, denaddress
+		FROM dentists
+		WHERE denaddress like '%' || #{denaddress} || '%'
+		ORDER BY denaddress
 	</select>
 	
 	<!-- 더미 데이터 생성용. 구현X. -->

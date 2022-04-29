@@ -6,6 +6,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,11 +15,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>치스토리</title>
     
-    <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
 	<link
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
     <link rel="stylesheet" href="/springframework-mini-project/resources/css/medical-history-page.css" />
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -363,4 +364,3 @@ margin-left:0.5rem;
   });
  
   </script>
-<!-- </body> -->

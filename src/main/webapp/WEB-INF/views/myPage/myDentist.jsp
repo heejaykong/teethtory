@@ -38,9 +38,11 @@
 	  	var modal = $(this)
 	  	modal.find('.modal-title').text(recipient)
 	  	modal.find('.modal-body').text(body)
+
+
 	})
 	
-	function handleHidden(e) {
+	function handleHidden(e, task, denno) {
 		const targetEl = e.target;
 		const theElement = targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item");
 		$(targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
@@ -48,6 +50,13 @@
 		const denName = targetEl.parentNode.parentNode.querySelector(".denName");
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
+
+		const hiddenDenNo = denno;
+		if(task === 'add') {
+			location.href = "myDentist?denno=" + denno + "&task=" + task;
+		} else if(task === 'delete') {
+			location.href = "myDentist?denno=" + denno + "&task=" + task;
+		}
 	}
 	
 	function toggleOff(e) {
@@ -73,8 +82,9 @@
 				<div>
 					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentist.denname}</div>
 					<span class="dentist-visited">${myDentist.denaddress}</span>
+					<div id="denNoForDelete" style="display:none;">${myDentist.denno}</div>
 				</div>
-				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
+				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event, 'delete', ${myDentist.denno});"></i>
 			</div>
 			<div class="history-list-hidden__item" id="hidden_3"
 				style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
@@ -113,8 +123,9 @@
 				<div>
 					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
 					<span class="dentist-visited">${searchedDentist.denaddress}</span>
+					<div id="denNoForRegi" style="display:none;">${searchedDentist.denno}</div>
 				</div>
-				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event);"></i>
+				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event, 'add', ${searchedDentist.denno});"></i>
 			</div>
 			<div class="history-list-hidden__item" id="hidden_3"
 				style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"

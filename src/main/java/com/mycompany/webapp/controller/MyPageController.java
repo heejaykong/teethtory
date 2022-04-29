@@ -41,18 +41,37 @@ public class MyPageController {
 		return "myPage/main";
 	}
 
-	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록 페이지.
+	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
 	public String myDentist(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
+			, @RequestParam(defaultValue="-1") int denno
+			, String task
 			, Model model) {
 		log.info("실행");
-		//로그인한 유저의 '내 치과' 목록을 조회.
 		String userId = (String) session.getAttribute("sessionUserid");
+		
+		//내 치과 등록하기
+		//이미 등록된 치과는 추가X.(팝업까진 띄울필요X. MyDentists테이블에 PK없기 때문에 중복 행 입력 방지조치임.)
+		//1. 이미 등록된 치과인지 점검.
+		//1-1. 이미 등록된 치과면 아무조치X.
+		//1-2. 등록 안 된 치과면 등록.
+		if(denno != -1) {
+			if(task.equals("add")) {
+				if(myDentistService.getMyDentistByDenno(userId, denno) < 1) {//0인 경우에만 추가!
+					myDentistService.registerMyDentist(userId, denno);
+				}
+			} else if(task.equals("delete")) {
+				//내 치과 삭제하기
+				myDentistService.removeMyDentist(userId, denno);
+			}
+		}
+		
+		//로그인한 유저의 '내 치과' 목록을 조회.
 		List<Dentist> list = myDentistService.getMyDentist(userId);
 		model.addAttribute("myDentists", list);
 		
-		//치과 검색해서 '내 치과'로 추가.
+		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
 			log.info("denname: " + denname);
 			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname);

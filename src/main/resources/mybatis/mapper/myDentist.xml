@@ -8,18 +8,27 @@
 		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
 	
-	<insert id="insert" parameterType="myDentist">
-		INSERT INTO mydentists VALUES(
-			userid=#{userid},
-			denno=#{denno}
+	<select id="countByuseridNDenno" resultType="int">
+		SELECT count(*)
+		FROM mydentists
+		WHERE userid=#{userid}
+			AND denno=#{denno}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO mydentists(
+			userid, denno
+		)
+		VALUES(
+			#{userid},
+			#{denno}
 		)
 	</insert>
 	
 	<delete id="delete">
 		DELETE FROM mydentists
-		WHERE
-			userid=#{userid},
-			denno=#{denno}
+		WHERE userid=#{userid}
+			AND denno=#{denno}
 	</delete>
 
 </mapper>
