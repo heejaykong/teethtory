@@ -22,6 +22,7 @@ public class DentistService {
 	
 	//이름으로 검색한 치과 목록을 가져오는 메소드
 	public List<Dentist> getDentistByDenname(String denname) {
+		log.info("실행");
 		return dentistDao.selectByDenname(denname);
 	}
 	
