@@ -17,5 +17,5 @@ public interface BoardDao {
 	public List<Board> selectByUserid(@Param("userid") String userid, @Param("pager") Pager pager);
 	public int insert(Board board);
 	public int update(Board board);
-	public int deleteByBoardno(int boradno);
+	public int deleteByBoardno(int boardno);
 }

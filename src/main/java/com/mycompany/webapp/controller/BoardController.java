@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Board;
+import com.mycompany.webapp.dto.Comment;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.service.BoardService;
+import com.mycompany.webapp.service.CommentService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +25,9 @@ import lombok.extern.log4j.Log4j2;
 public class BoardController {
 	@Resource
 	private BoardService boardService;
+	
+	@Resource
+	private CommentService commentService;
 
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
@@ -37,21 +42,46 @@ public class BoardController {
 		return "board/boardList";
 	}
 	
-	@GetMapping("/boardDetail")
-	public String boardDetail(int bno, Model model) {
-		Board board = boardService.getBoard(bno);
+	@GetMapping("/boardDetail") //여기에서 댓글도 같이 출력
+	public String boardDetail(@RequestParam(defaultValue = "1") int pageNo, int boardno, Model model) {
+		Board board = boardService.getBoard(boardno);
 		model.addAttribute("board", board);
 
+		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
+		Pager pager = new Pager(5, 5, totalCommentNum, pageNo);
+		model.addAttribute("pager", pager);
+		
+		List<Comment> comments = commentService.getComments(boardno, pager);
+		model.addAttribute("comments", comments);
 		return "board/boardDetail";
 	}
 	
-	@RequestMapping("/boardForm")
-	public String boardForm() {
-		return "board/boardForm";
+	@RequestMapping("/boardWriteForm")
+	public String boardWriteForm() {
+		return "board/boardWriteForm";
+	}
+	
+	@RequestMapping("/boardUpdateForm")
+	public String boardUpdateForm(int boardno, Model model) {
+		Board board = boardService.getBoard(boardno);
+		model.addAttribute("board", board);
+		return "board/boardUpdateForm";
 	}
 	
 	@PostMapping("/boardWrite")
 	public String boardWrite() {
+		return "redirect:/board/boardList";
+	}
+	
+	@PostMapping("/boardUpdate")
+	public String boardUpdate(Board board) {
+		boardService.updateBoard(board);
+		return "redirect:/board/boardDetail?boardno=" + board.getBoardno();
+	}
+	
+	@GetMapping("/boardDelete")
+	public String boardDelete(int boardno) {
+		boardService.removeBoard(boardno);
 		return "redirect:/board/boardList";
 	}
 }

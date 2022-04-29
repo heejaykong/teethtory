@@ -3,13 +3,13 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
-		<span>커뮤니티</span>
+		<span onclick="location.href='boardList'">커뮤니티</span>
 		<div class="btn-group">
 		  <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		  </button>
 		  <div class="dropdown-menu dropdown-menu-right">
-		    <button class="dropdown-item" type="button" onclick="location.href='boardForm'">수정</button>
-		    <button class="dropdown-item" type="button" onclick="location.href='main'">삭제</button>
+		    <button class="dropdown-item" type="button" onclick="location.href='boardUpdateForm?boardno=${board.boardno}'">수정</button>
+		    <button class="dropdown-item" type="button" onclick="location.href='boardDelete?boardno=${board.boardno}'">삭제</button>
 		  </div>
 		</div>
 	</div>
@@ -40,6 +40,7 @@
 		
 		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
 		
+		<!-- 댓글 부분 -->
 		<div class="board d-flex flex-column" style="padding: 1rem;">
 			<div class="d-flex justify-content-between mb-2">
 				<div>
