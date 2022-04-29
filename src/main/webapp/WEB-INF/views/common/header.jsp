@@ -273,17 +273,17 @@ margin-left:0.5rem;
 			                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
 			                
 			                <c:if test="${sessionUserid == null}">
-				                <form action="login" method="get">
+				                <form action="${pageContext.request.contextPath}/login" method="get">
 					                <input type="submit" value="로그인" id="athamLogin"
 											class="btn btn-block btn-osstem">
 				                </form>
-				                <form action="signup" method="get">
+				                <form action="${pageContext.request.contextPath}/signup" method="get">
 								    <input type="submit" value="회원가입" id="athamJoin"
 											class="btn">
 				                </form>
 			                </c:if>
 			                <c:if test="${sessionUserid != null}">
-				                <form action="logout" method="get">
+				                <form action="${pageContext.request.contextPath}/logout" method="get">
 								    <input type="submit" value="로그아웃" id="athamJoin"
 											class="btn">
 				                </form>
@@ -305,6 +305,12 @@ margin-left:0.5rem;
 			                    <ul class="ham-top-menu">
 			                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
 			                        <li><a href="${pageContext.request.contextPath}/board/boardList"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
+			                          
+			                        </li>
+			                    </ul>
+			                    <ul class="ham-top-menu">
+			                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
+			                        <li><a href="${pageContext.request.contextPath}/myPage/main"><i class="fa-solid fa-person-shelter"></i> 마이페이지<i class="bi bi-caret-down-fill"></i></a>
 			                          
 			                        </li>
 			                    </ul>
