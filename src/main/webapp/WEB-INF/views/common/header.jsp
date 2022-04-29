@@ -194,9 +194,11 @@ header .bi-heart-fill{
 	
 }
 #headertop{
-margin-top:-3rem;
+margin-top:-2rem;
 display:flex;
 flex-direction:row;
+margin-left:0.5rem;
+
 }
     </style>
   </head>
@@ -242,7 +244,7 @@ flex-direction:row;
 			                <!-- 햄버거 버튼 -->
 
 			             <div id="headertop" class="container">
-			                <div style="margin-right:3rem;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
+			                <div style="margin:auto;"><a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;"><h1>치스토리</h1></a></div>
 			                <div>
 
 			                <li class="ham-btn">

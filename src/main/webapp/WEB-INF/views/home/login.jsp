@@ -55,8 +55,7 @@ a:hover {
 	box-shadow: 0 0 0 0.25rem rgb(242 101 34/ 25%);
 }
 </style>
-</head>
-<body>
+
 	<div style="margin-left: 2rem; margin-bottom: 2rem; margin-top: 1rem; text-align: left;">
 		<h1 class="text-uppercase" style="color: black; font-size: 1.4rem;">
 			<%-- 로그인 --%>
@@ -97,6 +96,7 @@ a:hover {
 				style="margin-top: 2rem;">
 		</div>
 	</form>
-
+  </section>
+</div>
   
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

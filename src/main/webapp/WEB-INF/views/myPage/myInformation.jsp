@@ -113,8 +113,8 @@
 
         <button id="changebtn" style="margin-top:2rem; margin-left:0.25rem; text-align:center;"
         onclick="location.href='myInformationEditor'">회원정보 수정</button>
-
-
+		
+				
         <hr>
         <div style="margin-left:1rem; margin-bottom:1rem">알림</div>
         <div id="container">
