@@ -1,8 +1,11 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
+
 <style>
 .container{
 	display:flex;
@@ -79,6 +82,9 @@
   left: 5px;
 }
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
         <div style="margin-left:1rem; margin-top:1rem;"><h4>설정</h4></div>
         <hr>
@@ -132,7 +138,8 @@
           치스토리 탈퇴하기
         </a>
         </div>
-    	</section>
-   </div>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

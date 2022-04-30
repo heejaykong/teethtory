@@ -1,8 +1,11 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
+
 <style>
 #profile{
     width: 100%;
@@ -23,10 +26,13 @@ display:flex;
 flex-direction:row;
 }
 a:link { color: red; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: orange; }
-
+a:visited { color: black; text-decoration: none;}
+a:hover { color: orange; }
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
       <div id="profileBox">
         <img src="/springframework-mini-project/resources/images/signOut.jpg" id="profile"style="width:100%;">
       </div>
@@ -56,7 +62,8 @@ a:link { color: red; text-decoration: none;}
       <div><i class="fa-solid fa-gear"></i></div>
       <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myInformation"><h4>설정</h4></a></div>
       </div>
-	 	</section>
-	</div>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

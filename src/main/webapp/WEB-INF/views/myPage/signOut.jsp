@@ -1,9 +1,11 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<style>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
+<style>
 	#signOutTab {
 		color: rgb(242, 101, 34);
 	}
@@ -16,6 +18,11 @@
 		border-radius:1rem;
 	}
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
+
       <div>
         <img src="/springframework-mini-project/resources/images/signOut.jpg" style="width:100%;">
       </div>
@@ -37,4 +44,7 @@
 	 	</section>
 	</div> 
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

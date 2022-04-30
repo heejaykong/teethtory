@@ -1,9 +1,11 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
 
-<script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
 <style>
 	#myPointTab {
 		color: rgb(242, 101, 34);
@@ -12,6 +14,10 @@
 		color:  #ffa048;
 	}
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 			<div class="d-flex">
 				<div class="col-sm-10">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -134,9 +140,9 @@
 					</div>
 				</div>
 			</div>
-	 	</section>
-	</div>
 
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 <script>
 function list_active(list_id) {
 	let list = document.getElementById(list_id);
@@ -182,4 +188,5 @@ function get_list(pageNo) {
 }
 </script>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+</body>
+</html>

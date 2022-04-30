@@ -1,16 +1,13 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
-
-
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-<!-- <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
-<!-- <title>Calendar</title> -->
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
+
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<style type="text/css">
+<style>
 .calendarForm{
 
  margin-top:3rem;
@@ -51,27 +48,26 @@ table.calendar td{
   line-height:23px; cursor:pointer;
 }
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-			<div class="calendarForm">
-		    <div class="cal_top">
-		        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
-		        <span id="cal_top_year"></span>
-		        <span id="cal_top_month"></span>
-		        <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
-		    </div>
-		    <div id="cal_tab" class="cal">
-		    </div>
-		    </div>
-		    
-		    <div class="modal">
-			  <div class="modal_content"><h5 id="content">text</h5>
-			  </div>
-			</div>
-	 	</section>
-	</div> 
-
-<script type="text/javascript">
+	<div class="calendarForm">
+    <div class="cal_top">
+        <a href="#" id="movePrevMonth"><span id="prevMonth" class="cal_tit">&lt;</span></a>
+        <span id="cal_top_year"></span>
+        <span id="cal_top_month"></span>
+        <a href="#" id="moveNextMonth"><span id="nextMonth" class="cal_tit">&gt;</span></a>
+    </div>
+    <div id="cal_tab" class="cal">
+    </div>
+    </div>
     
+    <div class="modal">
+	  <div class="modal_content"><h5 id="content">text</h5>
+	  </div>
+	</div>
+<script>    
 var today = null;
 var year = null;
 var month = null;
@@ -563,4 +559,7 @@ function getNewInfo(){
   		
 </script>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>
