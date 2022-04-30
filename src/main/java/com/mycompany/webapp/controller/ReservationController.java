@@ -1,7 +1,17 @@
 package com.mycompany.webapp.controller;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.mycompany.webapp.dto.Dentist;
+import com.mycompany.webapp.service.DentistService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -9,10 +19,25 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/reservation")
 public class ReservationController {
+	@Resource
+	private DentistService dentistService;
 	
 	@RequestMapping("/main")
-	public String reservation() {
+	public String reservation(HttpSession session
+			, @RequestParam(defaultValue="null") String denname
+			, Model model) {
 		log.info("실행");
+		String userId = (String) session.getAttribute("sessionUserid");
+		
+		
+		
+		//치과 검색.(이름으로 검색.)
+		if(!denname.equals("null")) {
+			log.info("denname: " + denname);
+			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname);
+			model.addAttribute("searchedDentistList", searchedDentistList);
+		}
+		
 		return "reservation/main";
 	}
 	//header의 탭 진료 예약 클릭시, 예약화면으로 이동
