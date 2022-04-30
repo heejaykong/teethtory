@@ -1,107 +1,92 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-진료 예약하기</title>
+	
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://kit.fontawesome.com/d9e341abda.js" crossorigin="anonymous"></script>
-    <title>Document</title>
-    <style>
-#cellbutton{
-    display: flex;
-}
 
-#top{
-    font: 1.2rem 'Fira Sans', sans-serif;   
-}  
+	<style>
+	#cellbutton{
+	    display: flex;
+	}
+	#top{
+	    font: 1.2rem 'Fira Sans', sans-serif;   
+	}  
+	#bottom{
+	      flex-direction : column;
+	      margin-top:5rem;
+	}        
+	#timecell{
+	justify-content: center;
+	height:10rem;
+	}
+	.cell {
+	    border: 1px solid #BDBDBD;
+	    background-color: rgb(237, 251, 220);
+	    cursor: pointer;
+	    
+	    width:4rem;
+	    height:2rem;
+	    text-align: center;
+	    margin-left: 0.5rem;
+	    border-radius: 1rem;
+	    text-align: center;
+	    margin-top:1rem;
+	}
+	.cell:hover {
+	    border: 1px solid #ffa048;
+	}
+	.cell.select {
+	    background-color: #ffa048;
+	    color: #fff;
+	}
+	label {
+	    font: 1rem 'Fira Sans', sans-serif;   
+	}
+	#pointForm{
+	   display:flex;
+	   flex-direction: row;
+	}
+	#usepoint{
+	    zoom:2.0;
+	}
+	#dateSelect{
+	    width:8rem;
+	}
+	#check{
+	    width:95%;
+	    height:3rem;
+	    border-radius: 1rem;
+	}
+	#check:enabled{
+	   background-color:  #ffa048;
+	}
+	#timeclick{
+		font-size:15px;
+	}
+	#timeForm{
+	    margin-top:5rem;
+	}
+	.fa-calendar-day{
+	   color:  #ffa048;
+	}
+	.fa-clock{
+	    color:#ffa048;
+	}
+	#top{
+	    align-items: start;
+	}
+	</style>	
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 
-#bottom{
-      flex-direction : column;
-      margin-top:5rem;
-}        
-#timecell{
-
-justify-content: center;
-
-height:10rem;
-
-}
-
-.cell {
-    border: 1px solid #BDBDBD;
-    background-color: rgb(237, 251, 220);
-    cursor: pointer;
-    
-    width:4rem;
-    height:2rem;
-    text-align: center;
-    margin-left: 0.5rem;
-    border-radius: 1rem;
-    text-align: center;
-    margin-top:1rem;
-}
-
-.cell:hover {
-    border: 1px solid #ffa048;
-}
-
-.cell.select {
-    background-color: #ffa048;
-    color: #fff;
-}
-
-label {
-   
-    font: 1rem 'Fira Sans', sans-serif;   
-}
-
-#pointForm{
-    
-   display:flex;
-   flex-direction: row;
-}
-#usepoint{
-    zoom:2.0;
-}
-#dateSelect{
-    width:8rem;
-}
-
-
-#check{
-   
-    width:95%;
-    height:3rem;
-    border-radius: 1rem;
-	
-    }
-
-#check:enabled{
-   background-color:  #ffa048;
-}
-#timeclick{
-	font-size:15px;
-	
-}
-#timeForm{
-    margin-top:5rem;
-}
-.fa-calendar-day{
-   color:  #ffa048;
-}
-.fa-clock{
-    color:#ffa048;
-}
-#top{
-    align-items: start;
-}
-
-    </style>
       <div id="all">
         <div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
         <div id="top-a" style="display:inline; margin-left:1rem;">
@@ -254,4 +239,8 @@ label {
           	});
      </script>
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>
