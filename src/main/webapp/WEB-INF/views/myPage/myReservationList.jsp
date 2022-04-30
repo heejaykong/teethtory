@@ -1,16 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-<title>Insert title here</title>
-<style>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<style>
 .stamp {
-border-radius: 80%;
+	border-radius: 80%;
 	color: #555;
 	font-size: 0.5rem;
 	font-weight:2rem;
@@ -24,7 +22,6 @@ border-radius: 80%;
   -webkit-mask-size:2rem;
   mix-blend-mode: multiply;
 }
-
 .is-nope {
   border-radius: 80%;
 	color: red;
@@ -40,7 +37,6 @@ border-radius: 80%;
   -webkit-mask-size:2rem;
   mix-blend-mode: multiply;
 }
-
 .is-approved {
 border-radius: 80%;
 	color: green;
@@ -57,14 +53,11 @@ border-radius: 80%;
   mix-blend-mode: multiply;
 } 
 .btn{
-	
-	
-	 color: black;
-        background-color: #ffdab9;
-        border-color:#ffdab9;
-        width:90%;
-		height:3rem;
-		
+	color: black;
+	background-color: #ffdab9;
+	border-color:#ffdab9;
+	width:90%;
+	height:3rem;
 }
 #all{
 overflow: hidden;
@@ -74,6 +67,9 @@ display:flex;
 flex-direct:row;
 }
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <div id="all">
     <%-- 로그인한 사용자의 예약 기록 보여주기. --%>
@@ -124,6 +120,8 @@ flex-direct:row;
 		</div>
     </div>
     	</div>		
-	</section>
-   	</div>		
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

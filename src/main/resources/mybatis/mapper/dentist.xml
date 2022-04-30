@@ -12,6 +12,7 @@
 		WHERE userid=#{userid}
 		ORDER BY d.denname
 	</select>
+	
 	<select id="selectByDenname" parameterType="string" resultType="dentist">
 		SELECT denno, dendomain, denname, denaddress
 		FROM dentists

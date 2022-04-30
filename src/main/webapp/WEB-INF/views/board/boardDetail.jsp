@@ -1,11 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-커뮤니티</title>
 <style>
 .modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
 }
-
 .modal_content{
   width:400px; height:200px;
   background:#fff; border-radius:10px;
@@ -16,6 +19,10 @@
   line-height:23px; cursor:pointer;
 }
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span onclick="location.href='boardList'">커뮤니티</span>
 		<div class="btn-group">
@@ -83,7 +90,7 @@
 				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-				      <a class="dropdown-item">댓글 수정</a>
+				      <a class="dropdown-item" href="commentUpdateForm?commentno=${comment.commentno}">댓글 수정</a>
 				      <a class="dropdown-item" href="commentDelete?commentno=${comment.commentno}">댓글 삭제</a>
 				    </div>
 				  </div>
@@ -126,8 +133,8 @@
 	    
 	  </ul>
 	</nav>
-		
-	 	</section>
-	</div> 
 
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>

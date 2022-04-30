@@ -1,7 +1,10 @@
-<%@ page session="false" language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<title>치스토리-마이페이지</title>
 <style>
 	#userInformationEditorTab {
 		color: rgb(242, 101, 34);
@@ -15,6 +18,10 @@
 		border-radius:1rem;
 	}
 </style>
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
 			<div style="margin-left:0.5rem; margin-top:2rem;">이메일 변경</div>
 			<div style="margin-left:0.5rem; margin-top:1rem;">새로운 이메일</div>
 			<input type="email" class="form-control" placeholder="새로운 이메일을 입력하세요." id="username"
@@ -34,7 +41,9 @@
 			                style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;" />
 			<input type="submit" value="비밀번호 변경하기"
 									class="btn btn-block btn-osstem"style="margin-top:2rem; height:3rem;">
-    	</section>
-   	</div>					
 
-<%@ include file="/WEB-INF/views/common/footer.jsp" %>
+
+
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+</body>
+</html>
