@@ -61,19 +61,18 @@
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
 
-		const hiddenDenNo = denno;
-		if(task === 'add') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
-		} else if(task === 'delete') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
-		}
+		// const hiddenDenNo = denno;
+		// if(task === 'add') {
+		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
+		// } else if(task === 'delete') {
+		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
+		// }
 	}
 	
 	function toggleOff(e) {
 		const targetEl = e.target;
 		$(targetEl).toggle();
 	}
-
 </script>
 
 <h4 style="padding-top: 2rem; padding-left: 1.5rem; padding-bottom: 0.5rem;">내 치과 목록</h4>

@@ -211,9 +211,17 @@
              document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
-               
-                document.getElementById('dateSelect').value=e.target.value;
+                var date = document.getElementById('dateSelect').value=e.target.value;
                 document.getElementById('timecell').style.visibility="visible";
+                console.log(date);
+                var formatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
+                console.log(formatDate);
+                $.ajax({
+                	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + formatDate
+                })
+             	.done((data) => {
+             		console.log(data.date);
+             	})
             }
 
             $('.cell').click(function(){

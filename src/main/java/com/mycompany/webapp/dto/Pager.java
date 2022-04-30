@@ -1,7 +1,8 @@
 package com.mycompany.webapp.dto;
 
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
+@NoArgsConstructor
 @Data
 public class Pager {
 	private int totalRows;		//전체 행수
@@ -42,6 +43,7 @@ public class Pager {
 		endRowNo = pageNo * rowsPerPage;
 		endRowIndex = endRowNo - 1; 
 	}
+
 }
 
 
