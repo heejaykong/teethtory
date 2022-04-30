@@ -1,22 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<style>
-    .fa-github{
-    	width:10%;
-    	
-    }
-    .fa-facebook{
-    	width:10%;
-    
-    }
-    .fa-instagram-square{
-    	width:10%;
-    
-    }
-    .fa-youtube{
-    	width:10%;
-    
-    }
-</style>
 <footer class="form-block" style="width:100%; height:15.5rem; bottom:0px;
 	position:relative; background-color:lightgrey; color:white; padding-top:0.2rem;">
 	<div style="text-align:center; margin-top:1rem;">
@@ -30,12 +12,12 @@
     </div>
     <div id="footer-text" style="margin-left:2rem;">
 	    <h6 style="line-height:1.3rem;">(주)치스토리 사업자 정보
-	    </br>상호 : 주식회사 티스토리
-	    </br>대표 : 신용권
-	    </br>주소 : 서울시 강남구 선릉로 428, 16층 102호
-	    </br>사업자등록번호 : 112-11-445567
-	    </br>이메일 : contact@teethtory.com
-	    </br>대표전화 : 1234-5678</h6>
+	    <br/>상호 : 주식회사 티스토리
+	    <br/>대표 : 신용권
+	    <br/>주소 : 서울시 강남구 선릉로 428, 16층 102호
+	    <br/>사업자등록번호 : 112-11-445567
+	    <br/>이메일 : contact@teethtory.com
+	    <br/>대표전화 : 1234-5678</h6>
     </div>
 	
     <script

@@ -15,3 +15,4 @@
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/app.css" />
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/header.css" />
+<link rel="stylesheet" href="/springframework-mini-project/resources/css/footer.css" />
