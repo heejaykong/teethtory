@@ -1,0 +1,166 @@
+.header {
+	border-bottom: 1px solid rgb(222, 226, 230);
+}
+
+/* 헤더 아이콘 스타일 */
+header .bi-heart-fill {
+	font-size: 25px;
+	line-height: 25px;
+	transition-duration: 0.5s;
+}
+
+.bi-person-fill {
+	font-size: 30px;
+	line-height: 30px;
+	transition-duration: 0.5s;
+}
+
+.ham-con .bi-caret-up-fill, .ham-con .bi-caret-down-fill {
+	color: #444;
+}
+
+/* 햄버거 버튼  스타일*/
+.menu-trigger {
+	
+}
+
+.menu-trigger:hover span:nth-of-type(1) {
+	background-color: #444;
+}
+
+.menu-trigger:hover span:nth-of-type(2) {
+	background-color: #444;
+}
+
+.menu-trigger:hover span:nth-of-type(3) {
+	background-color: #444;
+}
+
+.menu-trigger, .menu-trigger span {
+	display: inline-block;
+	transition: all .4s;
+	box-sizing: border-box;
+}
+
+.menu-trigger {
+	position: relative;
+	width: 30px;
+	height: 25px;
+}
+
+.menu-trigger span {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background-color: rgb(124, 124, 125);
+	border-radius: 4px;
+}
+
+.menu-trigger span:nth-of-type(1) {
+	top: 0;
+}
+
+.menu-trigger span:nth-of-type(2) {
+	top: 11px;
+}
+
+.menu-trigger span:nth-of-type(3) {
+	bottom: 0;
+}
+
+/* 햄버거 버튼 이벤트 */
+.menu-trigger.active-1 span:nth-of-type(1) {
+	-webkit-transform: translateY(10px) rotate(-45deg);
+	transform: translateY(10px) rotate(-45deg);
+}
+
+.menu-trigger.active-1 span:nth-of-type(2) {
+	opacity: 0;
+}
+
+.menu-trigger.active-1 span:nth-of-type(3) {
+	-webkit-transform: translateY(-10px) rotate(45deg);
+	transform: translateY(-10px) rotate(45deg);
+}
+/* 햄버거 메뉴 디자인 */
+.ham-con {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	position: fixed;
+	right: -100%;
+	color: #505050;
+	z-index: 99;
+	opacity: 0;
+}
+
+.ham-menu ul {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.ham-menu ul.ham-top-menu li {
+	position: relative;
+	width: 100%;
+	list-style-type: none;
+	font-size: 18px;
+}
+
+.ham-menu ul.ham-top-menu li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	text-indent: 20px;
+	color: #000;
+	background-color: #fff;
+	text-decoration: none;
+}
+
+.ham-menu ul.ham-top-menu li a:hover {
+	background: #eee;
+}
+
+.ham-menu ul.ham-top-menu li .ham-sub-menu a {
+	position: relative;
+	display: block;
+	width: 100%;
+	z-index: 99;
+	background: #F7F7F7;
+}
+
+.ham-menu ul.ham-top-menu li .ham-sub-menu a:hover {
+	background: #444;
+	color: #fff;
+}
+
+#athamLogin {
+	margin-left: 1.5rem;
+	width: 20rem;
+	height: 3rem;
+	color: white;
+	background-color: #f47d36;
+	border-color: #f47d36;
+	margin-top: 1rem;
+	border-radius: 1rem;
+}
+
+#athamJoin {
+	margin-left: 1.5rem;
+	width: 20rem;
+	height: 3rem;
+	color: #f47d36;
+	background-color: white;
+	border-color: #f47d36;
+	margin-top: 1rem;
+	border-radius: 1rem;
+}
+
+#headertop {
+	margin-top: -2rem;
+	display: flex;
+	flex-direction: row;
+	margin-left: 0.5rem;
+}
