@@ -15,5 +15,3 @@
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/app.css" />
 <link rel="stylesheet" href="/springframework-mini-project/resources/css/header.css" />
-<!-- 아래는 추후 수정 필요 -------------------------------------------- -->
-<link rel="stylesheet" href="/springframework-mini-project/resources/css/treatment.css" />
