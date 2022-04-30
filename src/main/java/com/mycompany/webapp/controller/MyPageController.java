@@ -93,29 +93,28 @@ public class MyPageController {
 		int pointBalance = userService.getPointBalance(userId);
 		model.addAttribute("pointBalance", pointBalance);
 		
+		Pager pager = new Pager();
 		List<Point> list = new ArrayList<>();
 		//출력하려는 목록이 '전체/획득/사용' 중 어느 범주인지 확인하고 service의 각기 다른 메소드를 호출.
 		if(specification.equals("TOTAL")) {
 			//Pager객체를 생성할 수 있도록, 로그인한 유저의 포인트 내역의 총 행 수를 얻어옴.
 			int totalRows = pointService.getTotalPointCount(userId);
 			log.info(totalRows);
-			Pager pager = new Pager(10, 5, totalRows, pageNo);
-			model.addAttribute("pager", pager);
+			pager = new Pager(10, 5, totalRows, pageNo);
 			list = pointService.getAllPointsByUserid(userId, pager);
 		} else if(specification.equals("GOT")) {
 			int totalRows = pointService.getSpecificPointCount(userId, true);
 			log.info(totalRows);
-			Pager pager = new Pager(10, 5, totalRows, pageNo);
-			model.addAttribute("pager", pager);
+			pager = new Pager(10, 5, totalRows, pageNo);
 			list = pointService.getEarnedPointsByUserid(userId, true, pager);
 		} else {
 			int totalRows = pointService.getSpecificPointCount(userId, false);
 			log.info(totalRows);
-			Pager pager = new Pager(10, 5, totalRows, pageNo);
-			model.addAttribute("pager", pager);
+			pager = new Pager(10, 5, totalRows, pageNo);
 			list = pointService.getUsedPointsByUserid(userId, false, pager);
 		}
 		
+		model.addAttribute("pager", pager);
 		model.addAttribute("points", list);		
 		return "myPage/myPointList";
 	}
