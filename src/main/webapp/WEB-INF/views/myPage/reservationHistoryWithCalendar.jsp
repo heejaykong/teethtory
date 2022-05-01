@@ -34,6 +34,7 @@ html, body {
 }
 
 .modal_content{
+  border:2px solid orange;
   width:400px; height:200px;
   background:#fff; border-radius:10px;
   position:relative; top:30%; left:50%;
@@ -48,9 +49,12 @@ html, body {
 	<!-- calendar 태그 -->
 	<div id='calendar-container'>
 	<div id='calendar'></div>
-</div>
- <div class="modal">
-	  <div class="modal_content"><h5 id="content">text</h5>
+	</div>
+	
+ 	<div class="modal">
+	  <div class="modal_content"><h5 id="date">text</h5>
+	  <hr>
+	  <h5 id="content">text</h5>
 	  </div>
 	</div>
 <script>
@@ -100,15 +104,14 @@ html, body {
 			calendar.unselect()
 			},
 			eventClick: function(info) {
-			   
+			   	//모달띄우기
 			    $(".modal").fadeIn();
+			    $("#date").text(info.event.start.toLocaleString());
 				$("#content").text(info.event.title);
-				
-
-			    // change the border color just for fun
 			    info.el.style.borderColor = 'red';
+			    //모달 띄워져있는거 클릭시 없어짐
 			    $(".modal_content").click(function(){
-		   		    $(".modal").fadeOut();
+		   	    $(".modal").fadeOut();
 		  		}); 
 			  },
 			  
@@ -118,19 +121,22 @@ html, body {
 					title: '임플란트',
 					start: '2022-05-01',
 					},
+					
 					{
-						title: '치과 방문 치과 방문 치과 방문 치과 방문',
-						start: '2022-05-02',
-						}
+					title: '치과 방문 치과 방문 치과 방문 치과 방문',
+					start: '2022-05-02',
+					},
+					{
+					title: '테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스',
+					start: '2022-05-05',
+					}
 			]
 			});
 			// 캘린더 랜더링
 			calendar.render();
 			});
 			})();
-			
 </script>
-
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
