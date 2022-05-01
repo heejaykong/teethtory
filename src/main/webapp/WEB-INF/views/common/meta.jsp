@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <%-- global stylesheets --%>
-<link rel="stylesheet" href="/springframework-mini-project/resources/css/reset.css" />
-<link rel="stylesheet" href="/springframework-mini-project/resources/css/app.css" />
-<link rel="stylesheet" href="/springframework-mini-project/resources/css/header.css" />
-<link rel="stylesheet" href="/springframework-mini-project/resources/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css" />
