@@ -64,6 +64,10 @@ body {
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
+.located-at-bottom-of-header {
+	margin-top: var(--header-height);
+}
+
 :root {
 	/* signiture colors */
 	--osstem-orange: rgb(242, 101, 34);
@@ -87,17 +91,20 @@ body {
 	--border-gray: rgb(238, 238, 238);
 	--divider-gray: rgb(242, 242, 242);
 
-	/* border colors */
-	--card-border: 2px solid var(--border-gray);
-
-	/* fixed padding sizes */
+	/* fixed spaces */
+	--header-height: 4rem;
 	--default-inner-space: 1rem;
+	--deep-inner-space: 2rem;
+	--icon-margin-right: 0.4rem;
+
+	/* border styles */
+	--card-border: 2px solid var(--border-gray);
 }
 
 
 /* Global styles - buttons */
 .btn-large-solid {
-	border: 1.5px solid var(--osstem-orange);
+	border: 2px solid var(--osstem-orange);
 	background-color: var(--osstem-orange);
 	border-radius: 3px;
 	padding: 1rem;
@@ -124,17 +131,37 @@ body {
 	color: var(--osstem-orange);
 	background-color: var(--pale-peach-dark);
 }
+.btn-large-hollow-white {
+	border: var(--card-border);
+	background-color: white;
+	border-radius: 3px;
+	padding: 1rem;
+	text-align: center;
+	font-weight: 600;
+	color: var(--almost-black-gray);
+	margin-bottom: 0.8rem;
+}
+.btn-large-hollow-white:hover {
+	background-color: whitesmoke;
+}
+
+/* Global styles - dividers */
+.thick-divider {
+	width: 100%;
+	height: 0.4rem;
+	background-color: var(--divider-gray);
+}
 
 /* Global styles - fonts */
 .logo-text-black-sm {
 	font-family: var(--logo-text-font-family);
-	font-weight: bold;
-	font-size: 1.5rem;
+	font-weight: normal;
+	font-size: 1.4rem;
 	color: black;
 }
 .logo-text-orange-lg {
 	font-family: var(--logo-text-font-family);
-	font-weight: bold;
+	font-weight: normal;
 	font-size: 2.5rem;
 	color: var(--osstem-orange);
 }

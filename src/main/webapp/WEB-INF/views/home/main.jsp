@@ -8,7 +8,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-	<div id="carouselExampleIndicators" class="carousel slide"
+	<div id="carouselExampleIndicators" class="carousel slide located-at-bottom-of-header"
 		data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#carouselExampleIndicators" data-slide-to="0"
