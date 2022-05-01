@@ -1,7 +1,67 @@
 @charset "UTF-8";
 
-body{
+@font-face {
+  font-family: '210 청춘시대';
+  font-style: normal;
+  font-weight: normal; /* 400 */
+  src: url("../fonts/210 청춘시대OTF R.otf") format('truetype')
+}
+
+@font-face {
+  font-family: '210 청춘시대';
+  font-style: normal;
+  font-weight: bold; /* 700 */
+  src: url("../fonts/210 청춘시대OTF B.otf") format('truetype')
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 100;
+  src: url("../fonts/NotoSansKR-Light.woff2") format('woff2'),
+  url("../fonts/NotoSansKR-Light.woff") format('woff'),
+  url("../fonts/NotoSansKR-Light.otf") format('truetype')
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: normal; /* 400 */
+  src: url("../fonts/NotoSansKR-Regular.woff2") format('woff2'),
+  url("../fonts/NotoSansKR-Regular.woff") format('woff'),
+  url("../fonts/NotoSansKR-Regular.otf") format('truetype')
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/NotoSansKR-Medium.woff2") format('woff2'),
+  url("../fonts/NotoSansKR-Medium.woff") format('woff'),
+  url("../fonts/NotoSansKR-Medium.otf") format('truetype')
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: bold; /* 700 */
+  src: url("../fonts/NotoSansKR-Bold.woff2") format('woff2'),
+  url("../fonts/NotoSansKR-Bold.woff") format('woff'),
+  url("../fonts/NotoSansKR-Bold.otf") format('truetype')
+}
+
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 900;
+  src: url("../fonts/NotoSansKR-Black.woff2") format('woff2'),
+  url("../fonts/NotoSansKR-Black.woff") format('woff'),
+  url("../fonts/NotoSansKR-Black.otf") format('truetype')
+}
+
+body {
 	letter-spacing: -0.05rem;
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
 :root {
@@ -18,6 +78,9 @@ body{
 	--gray: rgb(108, 117, 125);
 	--light-gray: rgb(166, 166, 166);
 	--ligther-gray: rgb(191, 191, 191);
+	
+	/* font-families */
+	--logo-text-font-family: '210 청춘시대', 'Noto Sans KR', sans-serif;
 
 	/* background colors */
 	--background-gray: rgb(250, 250, 250);
@@ -63,6 +126,18 @@ body{
 }
 
 /* Global styles - fonts */
+.logo-text-black-sm {
+	font-family: var(--logo-text-font-family);
+	font-weight: bold;
+	font-size: 1.5rem;
+	color: black;
+}
+.logo-text-orange-lg {
+	font-family: var(--logo-text-font-family);
+	font-weight: bold;
+	font-size: 2.5rem;
+	color: var(--osstem-orange);
+}
 .error {
 	color: red;
 	font-size: 0.7rem;
