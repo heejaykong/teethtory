@@ -29,6 +29,19 @@ html, body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
+.modal{ 
+  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
+}
+
+.modal_content{
+  width:400px; height:200px;
+  background:#fff; border-radius:10px;
+  position:relative; top:30%; left:50%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
+}
 </style>
 </head>
 	<body style="padding:30px;">
@@ -36,6 +49,10 @@ html, body {
 	<div id='calendar-container'>
 	<div id='calendar'></div>
 </div>
+ <div class="modal">
+	  <div class="modal_content"><h5 id="content">text</h5>
+	  </div>
+	</div>
 <script>
 (function(){
 	$(function(){
@@ -71,7 +88,7 @@ html, body {
 			console.log(obj);
 			},
 			select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-			var title = prompt('Event Title:');
+			var title = prompt('Event Title:')
 			if (title) {
 			calendar.addEvent({
 			title: title,
@@ -83,12 +100,18 @@ html, body {
 			calendar.unselect()
 			},
 			eventClick: function(info) {
-			    alert('Event: ' + info.event.title);
-			    
+			   
+			    $(".modal").fadeIn();
+				$("#content").text(info.event.title);
+				
 
 			    // change the border color just for fun
 			    info.el.style.borderColor = 'red';
+			    $(".modal_content").click(function(){
+		   		    $(".modal").fadeOut();
+		  		}); 
 			  },
+			  
 			// 이벤트
 			events: [
 				{
