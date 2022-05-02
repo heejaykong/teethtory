@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-로그인</title>
+	<title>치스토리-내 치과</title>
 
 <style>
 #myDentistRegistrationTab {
@@ -14,8 +14,6 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-
 
 <!-- 추가 눌렀을때 확인하는 Modal창 -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,7 +109,8 @@
 <script>
 	let submitIcon = document.getElementById('submit');
 	submitIcon.onclick = function() {
-		let searchingKeyword = document.getElementById('searching-keyword').value;
+		var searchingKeyword = document.getElementById('searching-keyword').value;
+		const dennameKey = searchingKeyword;
 		location.href = "myDentist?denname=" + searchingKeyword;
 		console.log(searchingKeyword);
 	}
@@ -141,8 +140,27 @@
 				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에 추가하시겠습니까?">내 치과 목록에 추가</div>
 		</div>
 	</c:forEach>
+	<div>
+		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=1">처음</a>
+		<c:if test="${pager.groupNo>1}">
+			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.startPageNo-1}">이전</a>
+		</c:if>
+		
+		<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+			<c:if test="${pager.pageNo != i}">
+				<a class="btn btn-outline-success btn-sm" href="myDentist?denname=${denname}&pageNo=${i}">${i}</a>
+			</c:if>
+			<c:if test="${pager.pageNo == i}">
+				<a class="btn btn-danger btn-sm" href="myDentist?denname=${denname}&pageNo=${i}">${i}</a>
+			</c:if>
+		</c:forEach>
+		
+		<c:if test="${pager.groupNo<pager.totalGroupNo}">
+			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.endPageNo+1}">다음</a>
+		</c:if>
+		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.totalPageNo}">맨끝</a>
+	</div>
 </div>
-
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

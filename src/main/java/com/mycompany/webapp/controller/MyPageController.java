@@ -47,6 +47,7 @@ public class MyPageController {
 			, @RequestParam(defaultValue="null") String denname
 			, @RequestParam(defaultValue="-1") int denno
 			, String task
+			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 		log.info("실행");
 		String userId = (String) session.getAttribute("sessionUserid");
@@ -74,9 +75,13 @@ public class MyPageController {
 		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
 			log.info("denname: " + denname);
-			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname);
+			int totalRows = dentistService.getDentistNumByDenname(denname);
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			model.addAttribute("pager", pager);
+			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname, pager);
 			model.addAttribute("searchedDentistList", searchedDentistList);
 		}
+		model.addAttribute("denname", denname);
 		
 		return "myPage/myDentist";
 	}
