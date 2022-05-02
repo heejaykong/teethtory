@@ -7,13 +7,58 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치료 내역 모아보기 - 치스토리</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />	
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	
+
+	<div class="located-at-bottom-of-header">
+		<div style="margin-top: 2rem;">치료 내역 모아보기</div>
+
+		<div class="dropdown-label" style="margin-top: 2rem;">치료 종류 선택</div>
+		<div class="dropdown">
+			<button class="dropbtn" style="margin-top: 1rem; width: 22rem;">
+				<span id="alltext" style="text-align: center;">전체</span> <span
+					class="dropbtn_click" style="float: right;" onclick="dropdown()">></span>
+			</button>
+		</div>
+
+		<div id="test"></div>
+	</div>
+	<script type="text/javascript">
+	getData();
+
+	function windowdd() {
+		const promise = new Promise((resolve, reject) => {
+			let list = ["cat"];
+			for(let i=0; i<${dentist}.dentist.length; i++) {
+				$.ajax({
+					method:"POST",
+					url: "http://localhost:8082/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
+					// url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
+					data: {
+						// pageNo: pageNo
+					}
+				}).done((data) => {
+					for(let j=0; j<data.treatment.length; j++) {
+						console.log('data.treatment[j]' + data.treatment[j]);
+						list.push(data.treatment[j]);
+					}
+				});
+			}
+			if(list != null) {
+				resolve(list);
+			} else {
+				reject({message: "실패"});
+			}
+		})
+		return promise;
+	}
+
+<%-- 여기부터 희재의 흔적
+<<<<<<< HEAD
 	<main class="main located-at-bottom-of-header">
-		<%-- 드롭다운 선택지 영역 --%>
+		드롭다운 선택지 영역
 		<section class="treattype-dropdown-section">
 			<h1 class="page-title">치료 내역 모아보기</h1>
 
@@ -31,21 +76,21 @@
 
 		<div class="thick-divider"></div>
 
-		<%-- 드롭다운 선택한 결과 영역 --%>
+		드롭다운 선택한 결과 영역
 		<section class="selected-treattype-results-section">
-            <%-- <c:if test="${treatments.length == 0}"> --%>
+            <c:if test="${treatments.length == 0}">
                 <div class="emptly-block">
                     <img width="100%" src="${pageContext.request.contextPath}/resources/images/toothCharacter/neutral-smile.png" alt="neutral-smile-tooth-character">
                     <p class="text">치료 내역이 없어요.</p>
                 </div>
-            <%-- </c:if> --%>
-            <%-- <c:if test="${treatments.length > 0}"> --%>
-                <%-- TBD: 다음 템플릿대로 백에서 넘어온 결과 리스트 foreach로 출력 --%>
-            <%-- </c:if> --%>
+            </c:if>
+            <c:if test="${treatments.length > 0}">
+                TBD: 다음 템플릿대로 백에서 넘어온 결과 리스트 foreach로 출력
+            </c:if>
         </section>
 
-        <%-- <c:if test="${treatments.length > 0}"> --%>
-            <%-- 페이지네이션 --%>
+        <c:if test="${treatments.length > 0}">
+            페이지네이션
             <nav class="pagination-block" aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
@@ -75,8 +120,7 @@
                     </li>
                 </ul>
             </nav>
-        <%-- </c:if> --%>
-
+        </c:if>
 
 		<script>
             const TREATTYPE_CAVITY = "CAVITY";
@@ -161,6 +205,91 @@
             });
 		</script>
 	</main>
+=======
+--%>
+	async function getData() {
+		try {
+			console.log("aaa");
+			let data = await windowdd();
+			console.log(data);
+			
+			let aReviewHtml = '';
+	
+			/* $("#test").append(aReviewHtml);
+			var treatdate = $(".treatdate").text();
+			console.log(treatdate);
+			for(let i=0; i<data.treatment.length; i++) {
+				console.log(i);
+				aReviewHtml += '<div class="d-flex" onclick="getDetails()">';
+				aReviewHtml += '	<div class="d-flex flex-column align-items-center justify-content-center">';
+				aReviewHtml += '		<div>';
+				aReviewHtml += '			<span style="font-size: 2rem; margin-right: 0.5rem;">'+ data.treatment[i].treattype + '</span><span>'+ data.denname +'</span>';
+				aReviewHtml += '		</div>';
+				aReviewHtml += '		<div class="treatdate">'+ data.treatment[i].treatdate +'</div>';
+				aReviewHtml += '	</div>';
+				aReviewHtml += '	<img src="${pageContext.request.contextPath}/resources/images/ㅠㅠ.png">';
+				aReviewHtml += '</div>';
+			} */
+		} catch (error) {
+			console.log(error, "error");
+		} finally {
+			
+		}
+	}
+	
+	/* 		/
+	/* var treatdate = document.querySelector(".treatdate").html(); */
+	
+	
+	
+	</script>
+	<script>
+	    window.onload=()=>{
+	        document.querySelector('.dropbtn_click').onclick = ()=>{
+	          dropdown();
+	        }
+	        document.getElementsByClassName('treatment').onclick = ()=>{
+	          showMenu(value);
+	        };
+	        dropdown = () => {
+	          var v = document.querySelector('.dropdown-content');
+	          var dropbtn = document.querySelector('.dropbtn')
+	          v.classList.toggle('show');
+	          dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+	        }
+	  
+	        showMenu=(value)=>{
+	          var dropbtn_icon = document.querySelector('.dropbtn_icon');
+	          var dropbtn_content = document.querySelector('.dropbtn_content');
+	          var dropbtn_click = document.querySelector('.dropbtn_click');
+	          var dropbtn = document.querySelector('.dropbtn');
+	  
+	          dropbtn_icon.innerText = '';
+	          dropbtn_content.innerText = value;
+	          dropbtn_content.style.color = '#252525';
+	          dropbtn.style.borderColor = '#3992a8';
+	        }
+	      }
+	      window.onclick= (e)=>{
+	        if(!e.target.matches('.dropbtn_click')){
+	          var dropdowns = document.getElementsByClassName("dropdown-content");
+	  
+	          var dropbtn_icon = document.querySelector('.dropbtn_icon');
+	          var dropbtn_content = document.querySelector('.dropbtn_content');
+	          var dropbtn_click = document.querySelector('.dropbtn_click');
+	          var dropbtn = document.querySelector('.dropbtn');
+	  
+	          var i;
+	          for (i = 0; i < dropdowns.length; i++) {
+	            var openDropdown = dropdowns[i];
+	            if (openDropdown.classList.contains('show')) {
+	              openDropdown.classList.remove('show');
+	            }
+	          }
+	        }
+	      }
+	</script>
+
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

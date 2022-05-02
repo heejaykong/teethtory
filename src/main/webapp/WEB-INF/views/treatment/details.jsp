@@ -11,7 +11,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 
-	<main class="main">
+	<main class="main located-at-bottom-of-header">
 	    <h1 class="page-title" id="treatment-type">충치 치료</h1>
 	    <section class="mouth-section">
 	        <div class="mouth">

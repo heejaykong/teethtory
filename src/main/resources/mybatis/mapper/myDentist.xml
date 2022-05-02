@@ -8,7 +8,7 @@
 		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
 	
-	<select id="countByuseridNDenno" resultType="int">
+	<select id="countByUseridNDenno" resultType="int">
 		SELECT count(*)
 		FROM mydentists
 		WHERE userid=#{userid}

@@ -135,7 +135,7 @@ public class BoardController {
 	public String commentWrite(Comment comment, HttpSession session){
 		String userid = (String) session.getAttribute("sessionUserid");
 		comment.setCommentwriter(userid);
-
+		
 		commentService.writeComment(comment);
 
 		return "redirect:/board/boardDetail?boardno=" + comment.getBoardno();
