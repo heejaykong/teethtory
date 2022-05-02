@@ -1,12 +1,40 @@
-.fa-github{
-	width:10%;
+.footer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--osstem-gray);
+	padding: 4rem var(--deep-inner-space);
 }
-.fa-facebook{
-	width:10%;
+.footer__logo {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2.5rem;
 }
-.fa-instagram-square{
-	width:10%;
+.footer__social-media-btns {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 3rem;
+	margin-bottom: 2.5rem;
 }
-.fa-youtube{
-	width:10%;
+.social-media-btn,
+.social-media-btn:hover {
+	color: white;
+}
+.social-media-btn + .social-media-btn {
+	margin-left: 2rem;
+}
+.footer__info {
+	width: 100%;
+}
+.info__title {
+	color: white;
+	font-size: 1.3rem;
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+.info__description p {
+	color: white;
+	font-size: 0.8rem;
+	line-height: 1.8;
 }

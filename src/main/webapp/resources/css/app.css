@@ -179,6 +179,12 @@ body {
 	font-size: 2rem;
 	color: var(--osstem-orange);
 }
+.logo-text-white-md {
+	font-family: var(--logo-text-font-family);
+	font-weight: normal;
+	font-size: 1.8rem;
+	color: white;
+}
 .page-title {
 	font-size: 1.4rem;
 	font-weight: 600;
