@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+<div class="located-at-bottom-of-header">
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
 	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardDetail?boardno=${comment.boardno}'"></i>댓글 수정</span> 
@@ -20,6 +20,7 @@
 	<div class="comment" style="margin: 1rem 1rem 0.5rem 1rem;">
 		<form method="post"
 			action="commentUpdate" id="commentUpdate">
+			<input type="hidden" name="boardno" value="${comment.boardno}"/>
 			<input type="hidden" name="commentno" value="${comment.commentno}"/>
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
@@ -38,7 +39,7 @@
 		src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg"
 		width="100%" height="100rem;">
 </div>
-
+</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

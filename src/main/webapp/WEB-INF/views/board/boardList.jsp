@@ -7,8 +7,10 @@
 	<title>치스토리-커뮤니티</title>
 </head>
 <body>
-	<%-- <%@ include file="/WEB-INF/views/common/header.jsp"%> --%>
-
+<<<<<<< HEAD
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	
+<div class="located-at-bottom-of-header">
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem; border:1px solid black;">
 		<span onclick="location.href='boardList'">커뮤니티</span>
 		
@@ -69,6 +71,7 @@
 	    
 	  </ul>
 	</nav>
+	</div>
 	<script>
 		function searchBoard(){
 			var s = document.getElementById('search').value;

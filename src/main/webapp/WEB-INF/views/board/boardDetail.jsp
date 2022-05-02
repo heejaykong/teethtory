@@ -22,7 +22,8 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+	
+<div class="located-at-bottom-of-header">
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span onclick="location.href='boardList'">커뮤니티</span>
 		<div class="btn-group">
@@ -56,7 +57,7 @@
 		</div>
 		<button class="btn btn-sm mb-3" style="border: 1px solid grey; margin-left: 1rem;">
 		<i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
-		
+	</div>
 		
 		
 		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
@@ -69,6 +70,7 @@
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
+				<td><input type="hidden" name="boardno" value="${board.boardno}"/></td>
 					<td><textarea id="updateform" class="form-control" placeholder="글 내용"
 							name="commentcontent" maxlength="2048" style="height: 50px;"></textarea></td>
 				</tr>
@@ -133,7 +135,7 @@
 	    
 	  </ul>
 	</nav>
-
+</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

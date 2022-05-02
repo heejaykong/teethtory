@@ -7,8 +7,9 @@
 	<title>치스토리-커뮤니티</title>
 </head>
 <body>
-	<%-- <%@ include file="/WEB-INF/views/common/header.jsp"%> --%>
-
+<<<<<<< HEAD
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<div class="located-at-bottom-of-header">
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
 	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardList'"></i>글 쓰기</span> 
@@ -44,7 +45,7 @@
 		src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg"
 		width="100%" height="100rem;">
 </div>
-
+</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
