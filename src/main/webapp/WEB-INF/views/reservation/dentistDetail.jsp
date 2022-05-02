@@ -29,6 +29,9 @@
 	color: #ffa048;
 }
 </style>
+<script>
+	localStorage.setItem('dendomain', "${dendomain}");
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -116,9 +119,35 @@
 	</div>
 	<div>
 		<%-- dendomain 파라메터로 전달해야 함. --%>
-		<a class="btn"
-			href="${pageContext.request.contextPath}/reservation/dentistDetail?denno=${denno}">예약하기</a>
+		<a class="btn" onclick="checkRegistered()">예약하기</a>
 	</div>
+	<script>
+		function checkRegistered() {
+			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
+			$.ajax({
+				method:"POST",
+				url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+				data: {
+					denno: localStorage.getItem("denno")
+				}
+			})
+			.done((data) => {
+				console.log('data : ' + data);
+				console.log('typeof data : ' + typeof data);
+
+				if(data.alreadyRegistered === 1) {//1: 내 치과로 등록되어 있음.
+					console.log(localStorage.getItem("dendomain"));
+					location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+				} else {//0: 내 치과로 등록 필요.
+					if(data.alreadyRegisterd === 1) {
+						location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+					} else {
+						alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+					}
+				}
+			});
+		}
+	</script>
 	<div style="margin-left: 1rem;">
 		<div style="display: flex; flex-direction: row;">
 			<div>
@@ -177,16 +206,6 @@
 			document.getElementById('denname').innerHTML = data.denname;
 			document.getElementById('dencontact').innerHTML = data.dencontact;
 			document.getElementById('denaddress').innerHTML = data.denaddress;
-
-			// var DENNAME = data.denname; 
-			// var DENCONTACT = data.dencontact;
-			// var DENADDRESS = data.denaddress;
-			// var IMAGECONTENTTYPE = data.imagecontenttype;
-			// var IMAGEFILENAME = data.imagefilename;
-			// var DENOWNER = data.denowner;
-			// var DENREGISTNO = data.denregistno;
-			// var DENLONGITUDE = data.denlongitude;
-			// var DENLATITUDE = data.denlatitude;
 		});
 
 		//치과의 영업시간을 가져옴.
@@ -258,11 +277,6 @@
 					document.getElementById('sun').innerHTML = "일요일 " + businessHourForHtml;
 				}
 			}
-			
-
-			// document.getElementById('denname').innerHTML = data.denname;
-			// document.getElementById('dencontact').innerHTML = data.dencontact;
-			// document.getElementById('denaddress').innerHTML = data.denaddress;
 
 		});
 
@@ -364,7 +378,3 @@
 	</script>
 </body>
 </html>
-
-
-
-
