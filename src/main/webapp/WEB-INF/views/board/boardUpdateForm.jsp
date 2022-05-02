@@ -8,7 +8,8 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
+	
+<div class="located-at-bottom-of-header">
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
 	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardDetail?boardno=${board.boardno}'"></i>글 수정</span> 
@@ -47,7 +48,7 @@
 		src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg"
 		width="100%" height="100rem;">
 </div>
-
+</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
