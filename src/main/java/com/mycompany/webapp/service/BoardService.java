@@ -38,7 +38,7 @@ public class BoardService {
 		return boardDao.selectByUserid(userid, pager);
 	}
 	
-	public List<Board> getBoardsByTitleContent(String boardtitle,Pager pager) {
+	public List<Board> getBoardsByTitleContent(String boardtitle, Pager pager) {
 		return boardDao.selectByTitleContent(boardtitle,pager);
 	}
 	
