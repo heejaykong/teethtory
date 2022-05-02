@@ -7,10 +7,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Dentist;
+import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.service.DentistService;
 
 import lombok.extern.log4j.Log4j2;
@@ -22,35 +25,53 @@ public class ReservationController {
 	@Resource
 	private DentistService dentistService;
 	
+	//header의 진료 예약 탭 클릭시, 예약화면으로 이동
 	@RequestMapping("/main")
 	public String reservation(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
+			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 		log.info("실행");
 		String userId = (String) session.getAttribute("sessionUserid");
 		
 		
-		
 		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
 			log.info("denname: " + denname);
-			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname);
+			int totalRows = dentistService.getDentistNumByDenname(denname);
+			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			model.addAttribute("pager", pager);
+			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname, pager);
 			model.addAttribute("searchedDentistList", searchedDentistList);
 		}
 		
 		return "reservation/main";
 	}
-	//header의 탭 진료 예약 클릭시, 예약화면으로 이동
-	@RequestMapping("/reservationMain")
-	public String reservationMain() {
-		log.info("실행");
-		return "reservation/reservationMain";
+	
+	//reservationMain화면에서 특정 치과 1개 클릭한 경우, 치과의 간단한 정보를 지도와 함께 보여줌..
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@GetMapping("/reservationUsingMap")
+	public String reservationUsingMap(@RequestParam("denno") int denno
+			, Model model) {
+		log.info("denno: " + denno);
+		Dentist dentist = dentistService.getDentistByDenno(denno);
+		model.addAttribute("denno", dentist.getDenno());
+		model.addAttribute("dendomain", dentist.getDendomain());
+		
+		return "reservation/reservationUsingMap";
 	}
 	
-	//reservationMain화면에서 특정 치과 1개 클릭한 경우의 치과 상세 페이지.
-	@RequestMapping("/dentistDetail")
-	public String dentistDetail() {
+	//reservationUsingMap화면에서 치과정보 박스 클릭시에, 치과 상세 정보 화면으로 이동.
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@GetMapping("/dentistDetail")
+	public String dentistDetail(@RequestParam("denno") int denno
+			, Model model) {
 		log.info("실행");
+		//denno를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
+		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
+		Dentist dentist = dentistService.getDentistByDenno(denno);
+		model.addAttribute("dendomain", dentist.getDendomain());
+		
 		return "reservation/dentistDetail";
 	}
 	
@@ -60,14 +81,9 @@ public class ReservationController {
 		log.info("실행");
 		return "reservation/reservationUsingCalendar";
 	}
-	@RequestMapping("/AfterReservationUsingCalendar")
+	@RequestMapping("/afterReservationUsingCalendar")
 	public String AfterReservationUsingCalendar() {
 		log.info("실행");
-		return "reservation/AfterReservationUsingCalendar";
-	}
-	@RequestMapping("/reservationUsingMap")
-	public String reservationUsingMap() {
-		log.info("실행");
-		return "reservation/reservationUsingMap";
+		return "reservation/afterReservationUsingCalendar";
 	}
 }

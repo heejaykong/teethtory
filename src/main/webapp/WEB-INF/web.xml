@@ -65,6 +65,7 @@
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+		<!-- <url-pattern>http://localhost:8082/springframework-mini-project-dentist/*</url-pattern> -->
 	</filter-mapping>
 	
 </web-app>
