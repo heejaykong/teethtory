@@ -39,7 +39,7 @@ a:hover { color: orange; }
       <div style="text-align:center;"><h2>홍길동</h4></div>
       <div style="text-align:center;"><h3>abcde@gmail.com</h3></div>
       <hr>
-      <div class="container">
+      <div class="container located-at-bottom-of-heade">
       <div>
       <i class="fa-solid fa-house-chimney-medical"></i>
       </div>

@@ -15,6 +15,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation.css" />
+	<div class="located-at-bottom-of-header">
 	<div style="flex-direction: row; width: 10rem;">
 		<div><a onclick=window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
 		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500;"></p></span></div>
@@ -117,6 +118,7 @@
 		});
 	</script>
 
+	</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </html>
 

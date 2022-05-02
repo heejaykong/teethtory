@@ -25,6 +25,7 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+    <div class="located-at-bottom-of-header">
 
                         <div style="margin-top:20px; margin-left:1rem;font-weight:bold;">
                             <h3>진료 예약하기</h3>
@@ -73,17 +74,17 @@
                             </c:forEach>
                         </div>
                             <div>
-                            <a class="btn btn-outline-primary btn-sm" href="myPointList?pageNo=1">처음</a>
+                            <a class="btn btn-outline-primary btn-sm" href="main?pageNo=1">처음</a>
                             <c:if test="${pager.groupNo>1}">
-                                <a class="btn btn-outline-info btn-sm" href="myPointList?pageNo=${pager.startPageNo-1}">이전</a>
+                                <a class="btn btn-outline-info btn-sm" href="main?pageNo=${pager.startPageNo-1}">이전</a>
                             </c:if>
                             
                             <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
                                 <c:if test="${pager.pageNo != i}">
-                                    <a class="btn btn-outline-success btn-sm" href="myPointList?pageNo=${i}">${i}</a>
+                                    <a class="btn btn-outline-success btn-sm" href="main?pageNo=${i}">${i}</a>
                                 </c:if>
                                 <c:if test="${pager.pageNo == i}">
-                                    <a class="btn btn-danger btn-sm" href="myPointList?pageNo=${i}">${i}</a>
+                                    <a class="btn btn-danger btn-sm" href="main?pageNo=${i}">${i}</a>
                                 </c:if>
                             </c:forEach>
                             
@@ -112,7 +113,7 @@
 
         </section>
    </div>
-
+</div>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

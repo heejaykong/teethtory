@@ -7,7 +7,7 @@
 	<title>치스토리-커뮤니티</title>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<%-- <%@ include file="/WEB-INF/views/common/header.jsp"%> --%>
 
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
