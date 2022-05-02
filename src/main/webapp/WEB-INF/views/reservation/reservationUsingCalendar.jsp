@@ -218,20 +218,20 @@
                 var date = document.getElementById('dateSelect').value=e.target.value;
                	const date2 = new Date(date);
                	dayIndex=date2.getDay();
-               	const week =['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'];
+               	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
                	console.log(week[dayIndex]);
                	
                 document.getElementById('timecell').style.visibility="visible";
                	
                 var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
-                console.log(aformatDate);
+                /* console.log(aformatDate); */
                 
                 $.ajax({
                 	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })
              	.done((data) => {
              		 time=data.date.split("");
-             		 console.log(time);
+             		/*  console.log(time); */
              		 
              		 $.ajax({
                      	url:"http://localhost:8080/springframework-mini-project-dentist/businesshour/getHour?businessday=" + week[dayIndex]
@@ -239,12 +239,24 @@
                      .done((data) => {
              			businesstime=data;
              			
-             			console.log(businesstime);
-						
+             			/* console.log(businesstime); */
+						let btime=[];
+						for(let k in businesstime){
+							if(businesstime.hasOwnProperty(k)){
+								btime.push(businesstime[k]);
+							}
+						}
+						ctime=btime.toString();
+						dtime=ctime.split("");
+             			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
              			for(var i=0; i<48;i++){
              				var atime =[];
+             				var butime=[];
                  			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-             				if(time[i]==1){
+                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+                 		
+             				if(time[i]==1 && dtime[i]==1){
+             					console.log(butime);
              					var creatediv = document.createElement("div");
              					$("#timecell").append(creatediv);
              					/* 
@@ -255,6 +267,16 @@
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
              					
+             				}else if(dtime[i]==1 && time[i]==0){
+             					var creatediv = document.createElement("div");
+             					$("#timecell").append(creatediv);
+             					/* 
+             					creatediv.setAttribute("class",""); */
+             					
+             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					creatediv.setAttribute("onclick","btnVisible()")
+             					creatediv.setAttribute("style",createdivStyle);
+             					creatediv.innerHTML=atime[i];
              				}
              			}	
                      })})
