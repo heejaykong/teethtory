@@ -151,7 +151,7 @@ body {
 	padding: 0.8rem;
 }
 
-/* Global styles - dividers */
+/* Global styles - background colors */
 .background-pale-peach {
 	background-color: var(--pale-peach);
 }
@@ -162,7 +162,7 @@ body {
 /* Global styles - dividers */
 .thick-divider {
 	width: 100%;
-	height: 0.4rem;
+	height: 0.5rem;
 	background-color: var(--divider-gray);
 }
 

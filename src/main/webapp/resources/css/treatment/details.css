@@ -1,0 +1,101 @@
+/* 치료 내역 모아보기 details page CSS*/
+.main {
+	display: flex;
+	flex-direction: column;
+	padding: 0 var(--default-inner-space);
+	background-color: var(--background-gray);
+}
+
+/* mouth */
+.mouth-section {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 2rem;
+}
+.mouth { /* 잇몸, 치아 등 */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.mouth__upper-jaw {
+	position: relative;
+	margin-bottom: 3rem;
+}
+.upper-jaw__upper-gum {
+}
+.upper-jaw__upper-gum > img{
+	width: 100%;
+	filter: drop-shadow(.1rem .1rem .3rem rgba(0, 0, 0, 0.5));
+}
+.upper-jaw__upper-teeth {
+}
+.upper-jaw__upper-teeth > img{ /* tooth */
+	cursor: pointer;
+	position: absolute;
+	filter: drop-shadow(.0rem .1rem .3rem rgba(0, 0, 0, 0.5))
+					hue-rotate(119deg);
+	
+	/* for testing */
+	/* background-color: rgba(0, 0, 0, 0.5); */
+  /* opacity: 0.0; */
+}
+.marked-teeth {
+	filter: drop-shadow(0 0 0.5rem var(--osstem-orange)) !important;
+	width: 110%;
+}
+.upper-jaw__upper-teeth > img:hover{
+	margin-top: -0.1rem;
+}
+.mouth__lower-jaw{
+}
+.lower-jaw__lower-gum{
+}
+.lower-jaw__lower-gum > img{
+	width: 100%;
+	filter: drop-shadow(.1rem .1rem .3rem rgba(0, 0, 0, 0.5));
+}
+.lower-jaw__lower-teeth{
+}
+
+/* treatment description section */
+.treatment-desc-section {
+	border: var(--card-border);
+	border-radius: .5rem;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 0.6rem;
+	margin-bottom: 3rem;
+}
+.desc-item {
+	margin-bottom: 2.5rem;
+}
+.desc-item__title {
+	font-size: 1.2rem;
+	color: var(--gray);
+	font-weight: 600;
+	margin-bottom: 1rem;
+}
+.desc-item__content {
+	font-size: 1.2rem;
+	color: var(--almost-black-gray);
+	font-weight: 600;
+	margin-bottom: 0.3rem;
+}
+.before-imgs-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+.after-imgs-wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1rem;
+}
+.content__img {
+	border: var(--card-border);
+	width: 100%;
+	margin-bottom: 0.3rem;
+}
