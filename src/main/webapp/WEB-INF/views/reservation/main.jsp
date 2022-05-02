@@ -44,6 +44,7 @@
                             let submitIcon = document.getElementById('submit');
                             submitIcon.onclick = function() {
                                 var searchingKeyword = document.getElementById('searching-keyword').value;
+                                window.localStorage.setItem('searchingKeyword_LS', searchingKeyword);
                                 console.log(searchingKeyword);
                                 location.href = "main?denname=" + searchingKeyword;
                             }
@@ -74,17 +75,17 @@
                             </c:forEach>
                         </div>
                             <div>
-                            <a class="btn btn-outline-primary btn-sm" href="main?pageNo=1">처음</a>
+                            <a class="btn btn-outline-primary btn-sm" onClick="get_list(1)">처음</a>
                             <c:if test="${pager.groupNo>1}">
-                                <a class="btn btn-outline-info btn-sm" href="main?pageNo=${pager.startPageNo-1}">이전</a>
+                                <a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.startPageNo-1})">이전</a>
                             </c:if>
                             
                             <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
                                 <c:if test="${pager.pageNo != i}">
-                                    <a class="btn btn-outline-success btn-sm" href="main?pageNo=${i}">${i}</a>
+                                    <a class="btn btn-outline-success btn-sm" onClick="get_list(${i})">${i}</a>
                                 </c:if>
                                 <c:if test="${pager.pageNo == i}">
-                                    <a class="btn btn-danger btn-sm" href="main?pageNo=${i}">${i}</a>
+                                    <a class="btn btn-danger btn-sm" onClick="get_list(${i})">${i}</a>
                                 </c:if>
                             </c:forEach>
                             
@@ -95,7 +96,7 @@
                         </div>
                         <script>
                             function get_list(pageNo) {
-	                            location.href = "main?denname=" + searchingKeyword  +"&pageNo=" + pageNo;
+	                            location.href = "main?denname=" + window.localStorage.getItem('searchingKeyword_LS')  +"&pageNo=" + pageNo;
                             }   
 
                             function goReservationUsingMap(denno) {
