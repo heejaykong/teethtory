@@ -62,7 +62,6 @@ public class ReservationController {
 		model.addAttribute("denno", dentist.getDenno());
 		model.addAttribute("dendomain", dentist.getDendomain());
 		
-		
 		return "reservation/reservationUsingMap";
 	}
 	
