@@ -139,7 +139,7 @@
 					console.log(localStorage.getItem("dendomain"));
 					location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
 				} else {//0: 내 치과로 등록 필요.
-					if(data.alreadyRegisterd === 1) {
+					if(data.registrationResult === 1) {
 						location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
 					} else {
 						alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
