@@ -8,164 +8,99 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> --%>
 
 <!DOCTYPE html>
-<div class="wrapper" style="position:relative; min-height:100%; height:auto; padding-bottom:15.5rem;">
-   		<section>
-	 	<header>
-		    <!-- 네브바 시작 -->
-		    <nav class="header navbar">
-		        <!-- 오른쪽 메뉴 -->
-		        <div class="right-nav" style=" width:80rem; margin-left:1rem;">
-		            <ul class="navbar-nav">
-		                <li class="nav-item mr-3">
-		                <c:choose>
-					        <c:when test="${empty sessionScope.principal}">
-								<a class="nav-link" href="/loginForm">
-			                        <i class="bi bi-heart-fill"></i>
-			                    </a>	                    
-		                    </c:when>
-		                    <c:otherwise>
-			                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=wishlist&page=0">
-			                        <i class="bi bi-heart-fill"></i>
-			                    </a>
-		                     </c:otherwise>
-			            </c:choose>
-		                </li>
-		                <li class="nav-item">
-		                    <c:choose>
-						        <c:when test="${empty sessionScope.principal}">
-				                    <a class="nav-link" href="/loginForm">
-				                        <i class="bi bi-person-fill"></i>
-				                    </a>
-			                    </c:when>
-			                    <c:otherwise>
-				                    <a class="nav-link" href="/api/user/${sessionScope.principal.id}/mypage?key=userinfo&page=0">
-				                        <i class="bi bi-person-fill"></i>
-				                    </a>
-			                    </c:otherwise>
-			            	</c:choose>
-		                </li>
+
+<header class="header">
+	<a href="${pageContext.request.contextPath}/">
+		<h1 id="header__logo" class="logo-text-black-sm">치스토리</h1>
+	</a>
+	<div id="header__hamburger-btn">
+		<span class="hamburger-btn__bar"></span>
+		<span class="hamburger-btn__bar"></span>
+		<span class="hamburger-btn__bar"></span>
+	</div>
+</header>
+<aside class="sidebar-menu hidden">
+	<!-- exit button -->
+	<div class="sidebar-menu__exit-btn-block">
+		<i id="sidebar-menu__exit-btn" class="fa-solid fa-xmark fa-2x"></i>
+	</div>
+	<!-- 프로필블록 -->
+	<div class="sidebar-menu__profile-block">
 		
-		                <!-- 햄버거 버튼 -->
+		<c:if test="${sessionUserid == null}">
+			<h1 id="sidebar-menu__logo" class="logo-text-orange-lg">
+				치스토리
+			</h1>
+			<p class="sidebar-menu__welcome-text">
+				치스토리에 오신 것을<br/>
+				환영합니다!
+			</p>
+			<a href="${pageContext.request.contextPath}/login" class="login-btn btn-large-solid">로그인</a>
+			<a href="${pageContext.request.contextPath}/signup" class="signup-btn btn-large-hollow">회원가입</a>
+		</c:if>
+		<c:if test="${sessionUserid != null}">
+			<div class="profile">
+				<div class="profile__img"></div>
+				<div class="profile__nametag">
+					<p class="name">
+						<span id="username">김영희</span> 님
+					</p>
+					<a href="#">
+						<p class="mypoint">
+							<span class="mypoint__icon">
+								<i class="fa-solid fa-circle-dollar-to-slot"></i>
+							</span>
+							<span class="mypoint__amount">
+								4,600 <%-- .toLocaleString() --%>
+							</span>
+							<span class="mypoint__arrow-right">
+								<i class="fa-solid fa-chevron-right"></i>
+							</span>
+						</p>
+					</a>
+				</div>
+			</div>
+			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white">
+				<i class="mypage-btn__icon fa-solid fa-user"></i>
+				마이페이지
+			</a>
+		</c:if>
+	</div>
 
-		             <div id="headertop" class="container">
-		                <div style="margin:auto;">
-		                <a href="${pageContext.request.contextPath}/" style="text-decoration: none; color: black;">
-		                	<h1>치스토리</h1>
-	                	</a>
-	                	</div>
-	                 <div>
-
-		                <li class="ham-btn">
-		                    <a class="menu-trigger" href="#">
-		                        <span></span>
-		                        <span></span>
-		                        <span></span>
-		                    </a>
-		                </li>
-		                </div>
-		             </div>
-		            </ul>
-		        </div>
+	<!-- 옅은 회색 분리막대 -->
+	<div class="thick-divider"></div>
+	
+	<!-- 메뉴블록 -->
+	<nav class="sidebar-menu__nav-block">
+		<ul class="menu-list">
+			<a class="menu-btn" href="${pageContext.request.contextPath}/treatment/main">
+				<span class="menu-btn__icon"><i class="fa-solid fa-tooth"></i></span>
+				<li class="menu-btn__name">치료 내역 모아보기</li>
+			</a>
+			<a class="menu-btn" href="${pageContext.request.contextPath}/reservation/main">
+				<span class="menu-btn__icon"><i class="fa-solid fa-clock"></i></span>
+				<li class="menu-btn__name">진료 예약하기</li>
+			</a>
+			<a class="menu-btn" href="${pageContext.request.contextPath}/board/boardList">
+				<span class="menu-btn__icon"><i class="fa-solid fa-comments"></i></span>
+				<li class="menu-btn__name">커뮤니티</li>
+			</a>
+		</ul>
+	</nav>
+</aside>
+<script>
+	$(function(){
+		$("#header__hamburger-btn").on("click", function(){
+			$(".sidebar-menu").removeClass("hidden");
+			$(".sidebar-menu").addClass("revealed");
+			$("body").addClass("overflow-hidden");
+		});
 		
-		    </nav>
-		    <!-- 네브바 끝 -->
-		
-		    <!-- 햄버거 메뉴 시작 -->
-		        <div class="ham-con">
-		            <div class="navbar-nav" style="margin-top:1rem;">
-		                <h4 style="margin-left:1.5rem;">치스토리에 오신 것을</h4>
-		                <h4 style="margin-left:1.5rem;">환영합니다!</h4>
-		                
-		                <c:if test="${sessionUserid == null}">
-			                <form action="${pageContext.request.contextPath}/login" method="get">
-				                <input type="submit" value="로그인" id="athamLogin"
-										class="btn btn-block btn-osstem">
-			                </form>
-			                <form action="${pageContext.request.contextPath}/signup" method="get">
-							    <input type="submit" value="회원가입" id="athamJoin"
-										class="btn">
-			                </form>
-		                </c:if>
-		                <c:if test="${sessionUserid != null}">
-			                <form action="${pageContext.request.contextPath}/logout" method="get">
-							    <input type="submit" value="로그아웃" id="athamJoin"
-										class="btn">
-			                </form>
-		                </c:if>
-		            </div>
-		
-		            <div id="ham-menu-wrap">
-		                <div class="ham-menu mt-5">
-		                    <ul class="ham-top-menu">
-		                        <li><a href="${pageContext.request.contextPath}/treatment/main"><i class="fa-solid fa-tooth"></i> 치료 내역 모아보기<i class="bi bi-caret-down-fill"></i></a>
+		$("#sidebar-menu__exit-btn").on("click", function(){
+			$("body").removeClass("overflow-hidden");
+			$(".sidebar-menu").removeClass("revealed");
+			$(".sidebar-menu").addClass("hidden");
+		});
 
-		                        </li>
-		                    </ul>
-		                    <ul class="ham-top-menu">
-		                        <li><a href="${pageContext.request.contextPath}/reservation/main"><i class="fa-solid fa-clock"></i> 진료 예약하기<i class="bi bi-caret-down-fill"></i></a>
-		                            
-		                        </li>
-		                    </ul>
-		                    <ul class="ham-top-menu">
-		                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
-		                        <li><a href="${pageContext.request.contextPath}/board/boardList"><i class="fa-solid fa-comments"></i> 커뮤니티<i class="bi bi-caret-down-fill"></i></a>
-		                          
-		                        </li>
-		                    </ul>
-		                    <ul class="ham-top-menu">
-		                    	<!-- 게시판 메인 페이지가 생기면 경로를 추가해주세요 -->
-		                        <li><a href="${pageContext.request.contextPath}/myPage/main"><i class="fa-solid fa-person-shelter"></i> 마이페이지<i class="bi bi-caret-down-fill"></i></a>
-		                          
-		                        </li>
-		                    </ul>
-		                </div>
-		            </div>
-		        </div>
-		</header>
-		</section>
-</div>
-  <script>
-  var burger = $('.menu-trigger');
-
-  burger.each(function (index) {
-    var $this = $(this);
-
-    $this.on('click', function (e) {
-      e.preventDefault();
-      $(this).toggleClass('active-' + (index + 1));
-    })
-  });
-
-  var h = 0;
- 
-  
-  $(burger).on("click", function () {
-    if (h == 0) {
-		  $('.ham-con').animate({
-			  right: '0',
-			  opacity: 1
-		  }, 500);
-		  $(this).addClass('active-1');
-		  h++;
-	  } else if (h == 1) {
-		  $('.ham-con').animate({
-			  right: '-100%',
-			  opacity: 0
-		  }, 500);
-		  $(this).removeClass('active-1');
-		  h--;
-	  }
-	  $(window).scroll(function() {
-		  sct = $(window).scrollTop();
-      if(sct>30){
-        $('.ham-con').css({
-          opacity: 0,
-          right :'-20%'
-        }, 500);
-        $(burger).removeClass('active-1');
-        h=0;
-      }
-    });
-  });
- 
-  </script>
+	})
+</script>
