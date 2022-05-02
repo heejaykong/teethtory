@@ -4,12 +4,13 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	
 	<title>치스토리-진료 예약하기</title>
 	
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+	
 	<style>
 	#cellbutton{
 	    display: flex;
@@ -208,23 +209,37 @@
 	</div> 
 
     <script>
-    		 
+    		
+    		
              document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
             	$("#timecell").html("");
                 var date = document.getElementById('dateSelect').value=e.target.value;
-               
+               	const date2 = new Date(date);
+               	dayIndex=date2.getDay();
+               	const week =['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'];
+               	console.log(week[dayIndex]);
+               	
                 document.getElementById('timecell').style.visibility="visible";
+               	
+                var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
+                console.log(aformatDate);
                 
-                var formatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
-                console.log(formatDate);
                 $.ajax({
-                	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + formatDate
+                	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })
              	.done((data) => {
-             		
-             			time=data.date.split("");
+             		 time=data.date.split("");
+             		 console.log(time);
+             		 
+             		 $.ajax({
+                     	url:"http://localhost:8080/springframework-mini-project-dentist/businesshour/getHour?businessday=" + week[dayIndex]
+                     })
+                     .done((data) => {
+             			businesstime=data;
+             			
+             			console.log(businesstime);
 						
              			for(var i=0; i<48;i++){
              				var atime =[];
@@ -242,7 +257,7 @@
              					
              				}
              			}	
-             	})
+                     })})
             }
            /*  $('.cell').click(function(){
          	    var cell_time_check = $(this).attr("id");
