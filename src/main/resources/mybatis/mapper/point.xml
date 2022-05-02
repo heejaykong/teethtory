@@ -23,13 +23,12 @@
 			  FROM (
 			    SELECT userid, pointisplus, pointamount, pointdesc, pointdate 
 			    FROM points
+			    WHERE userid=#{userid}
 			    ORDER BY pointdate DESC
 			  )
 			  WHERE rownum &lt;= #{pager.endRowNo} 
-			  	AND userid=#{userid}
 			)
 		WHERE rnum &gt;= #{pager.startRowNo}
-			AND userid=#{userid}
 	</select>
 	
 	<select id="selectPointIsPlusByUserid" resultType="point">
