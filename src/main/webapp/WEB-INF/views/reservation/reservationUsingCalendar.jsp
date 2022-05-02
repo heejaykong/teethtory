@@ -274,7 +274,7 @@
              					creatediv.setAttribute("class",""); */
              					
              					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
-             					creatediv.setAttribute("onclick","btnVisible()")
+             					
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
              				}
