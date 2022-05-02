@@ -98,12 +98,14 @@
 			for(let i=0; i<${dentist}.dentist.length; i++) {
 				$.ajax({
 					method:"POST",
-					url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
+					url: "http://localhost:8082/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
+					// url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
 					data: {
 						// pageNo: pageNo
 					}
 				}).done((data) => {
 					for(let j=0; j<data.treatment.length; j++) {
+						console.log('data.treatment[j]' + data.treatment[j]);
 						list.push(data.treatment[j]);
 					}
 				});
