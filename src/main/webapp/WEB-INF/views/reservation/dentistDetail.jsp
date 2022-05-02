@@ -29,6 +29,9 @@
 	color: #ffa048;
 }
 </style>
+<script>
+	localStorage.setItem('dendomain', "${dendomain}");
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -116,9 +119,35 @@
 	</div>
 	<div>
 		<%-- dendomain 파라메터로 전달해야 함. --%>
-		<a class="btn"
-			href="${pageContext.request.contextPath}/reservationUsingCalendar/">예약하기</a>
+		<a class="btn" onclick="checkRegistered()">예약하기</a>
 	</div>
+	<script>
+		function checkRegistered() {
+			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
+			$.ajax({
+				method:"POST",
+				url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+				data: {
+					denno: localStorage.getItem("denno")
+				}
+			})
+			.done((data) => {
+				console.log('data : ' + data);
+				console.log('typeof data : ' + typeof data);
+
+				if(data.alreadyRegistered === 1) {//1: 내 치과로 등록되어 있음.
+					console.log(localStorage.getItem("dendomain"));
+					location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+				} else {//0: 내 치과로 등록 필요.
+					if(data.registrationResult === 1) {
+						location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+					} else {
+						alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+					}
+				}
+			});
+		}
+	</script>
 	<div style="margin-left: 1rem;">
 		<div style="display: flex; flex-direction: row;">
 			<div>
@@ -142,11 +171,16 @@
 			<div>
 				<i class="fa-regular fa-clock"></i>
 			</div>
-			<div>평일 09:00~18:00 점심시간 13시 ~ 14시</div>
+			<div id="businessHourContainer">
+				<div id="mon"></div>
+				<div id="tue"></div>
+				<div id="wed"></div>
+				<div id="thur"></div>
+				<div id="fri">=</div>
+				<div id="sat"></div>
+				<div id="sun"></div>
+			</div>
 		</div>
-
-		<div>토요일 09:00~13:00 점심시간 없음</div>
-		<div>일요일 휴무</div>
 	</div>
 
 	<div id="reviewContainer" class="list-group">
@@ -172,16 +206,78 @@
 			document.getElementById('denname').innerHTML = data.denname;
 			document.getElementById('dencontact').innerHTML = data.dencontact;
 			document.getElementById('denaddress').innerHTML = data.denaddress;
+		});
 
-			// var DENNAME = data.denname; 
-			// var DENCONTACT = data.dencontact;
-			// var DENADDRESS = data.denaddress;
-			// var IMAGECONTENTTYPE = data.imagecontenttype;
-			// var IMAGEFILENAME = data.imagefilename;
-			// var DENOWNER = data.denowner;
-			// var DENREGISTNO = data.denregistno;
-			// var DENLONGITUDE = data.denlongitude;
-			// var DENLATITUDE = data.denlatitude;
+		//치과의 영업시간을 가져옴.
+		$.ajax({
+			// console.log('ajax 시작~~');
+			method:"POST",
+			url: "http://localhost:8082/springframework-mini-project-dentist/businessHour/getBusinessHour",
+			// url: ${dendomain} + "/springframework-mini-project-dentist/businessHour/getBusinessHour",
+			data: {
+			},
+		})
+		.done((data) => {
+			console.log('data : ' + data);
+			console.log('typeof data : ' + typeof data);
+			console.log('data[0] : ' + data[0]);
+			console.log('typeof data[0] : ' + typeof data[0]);
+			console.log('data[0][0] : ' + data[0][0]);
+			console.log('typeof data[0][0] : ' + typeof data[0][0]);
+			console.log('Object.keys(data).length : ' + Object.keys(data).length);
+
+			for(let i=0; i<Object.keys(data).length; i++) {
+				let businessDay = data[i][0];
+				let businessHour = data[i][1];
+				let startTime = -1;
+				let endTime = -1;
+				let startLunchTime = -1;
+				let endLunchTime = -1;
+				
+				let bitArray = businessHour.split('');
+				console.log('typeof bitArray : ' + typeof bitArray);
+				//시작시간.
+				if(businessHour.indexOf("1") === -1) {
+
+				} else if(businessHour.indexOf("1") % 2 === 0) {
+					startTime = businessHour.indexOf("1") / 2 + ":00";
+					console.log('startTime : ' + startTime);
+				} else {
+					startTime = parseInt(businessHour.indexOf("1") / 2) + ":30";
+					console.log('startTime : ' + startTime);
+				}
+				//종료시간.
+				if(businessHour.lastIndexOf("1") === -1) {
+					
+				} else if(businessHour.lastIndexOf("1") % 2 === 0){
+					endTime = businessHour.lastIndexOf("1") / 2 + ":00";
+				} else {
+					endTime = parseInt(businessHour.lastIndexOf("1") / 2) + ":30";
+				}
+
+				if(startTime === -1) {
+					businessHourForHtml = "휴진";
+				} else {
+					businessHourForHtml = startTime + " ~ " + endTime;
+				}
+
+				if(businessDay === "MONDAY") {
+					document.getElementById('mon').innerHTML = "월요일 " + businessHourForHtml;
+				} else if(businessDay === "TUESDAY") {
+					document.getElementById('tue').innerHTML = "화요일 " + businessHourForHtml;
+				} else if(businessDay === "WEDNESDAY") {
+					document.getElementById('wed').innerHTML = "수요일 " + businessHourForHtml;
+				} else if(businessDay === "THURSDAY") {
+					document.getElementById('thur').innerHTML ="목요일 " + businessHourForHtml;
+				} else if(businessDay === "FRIDAY") {
+					document.getElementById('fri').innerHTML = "금요일 " + businessHourForHtml;
+				} else if(businessDay === "SATURDAY") {
+					document.getElementById('sat').innerHTML = "토요일 " + businessHourForHtml;
+				} else if(businessDay === "SUNDAY") {
+					document.getElementById('sun').innerHTML = "일요일 " + businessHourForHtml;
+				}
+			}
+
 		});
 
 		function getReviewsWithPagination(pageNoParam) {
@@ -282,7 +378,3 @@
 	</script>
 </body>
 </html>
-
-
-
-

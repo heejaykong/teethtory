@@ -12,7 +12,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<main class="main">
-	  <section class="history-desc-section row">
+	  <section class="history-desc-section row"> 
 	    <article class="desc-card card col-mid-8 justify-content-center">
 	      <div class="desc-card__header card-header px-5 py-4 d-flex">
 	        <div class="desc-card__header__col flex-grow-1">

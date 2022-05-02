@@ -101,7 +101,7 @@
                   <div style="flex-grow:1; margin-top:2rem;">
                       <div style="margin-top:10px;">
                           <div style="margin-bottom:1rem;">날짜 선택</div>
-                      <input type="date" id="start" onchange="handler(event);"/>
+                      <input type="date" id="start" onchange="handler(event)"/>
 
                       </div>
                   </div>
