@@ -217,6 +217,7 @@
                 var formatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
                 console.log(formatDate);
                 $.ajax({
+                	
                 	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + formatDate
                 })
              	.done((data) => {
@@ -226,6 +227,7 @@
 
             $('.cell').click(function(){
          	    var cell_time_check = $(this).attr("id");
+         	  
          	});
 			
             $('.cell').click(function(){
@@ -246,9 +248,6 @@
           		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
           	});
      </script>
-
-
-
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

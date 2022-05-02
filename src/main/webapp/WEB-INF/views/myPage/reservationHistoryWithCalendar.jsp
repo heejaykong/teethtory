@@ -58,6 +58,7 @@ html, body {
 	  </div>
 	</div>
 <script>
+
 (function(){
 	$(function(){
 // calendar element 취득
@@ -105,17 +106,17 @@ html, body {
 			},
 			eventClick: function(info) {
 			   	//모달띄우기
-			    $(".modal").fadeIn();
-			    $("#date").text(info.event.start.toLocaleString());
-				$("#content").text(info.event.title);
-			    info.el.style.borderColor = 'red';
-			    //모달 띄워져있는거 클릭시 없어짐
-			    $(".modal_content").click(function(){
-		   	    $(".modal").fadeOut();
-		  		}); 
+			$(".modal").fadeIn();
+			$("#date").text(info.event.start.toLocaleString());
+		    $("#content").text(info.event.title);
+			info.el.style.borderColor = 'red';
+			//모달 띄워져있는거 클릭시 없어짐
+			$(".modal_content").click(function(){
+		   	$(".modal").fadeOut();
+		     }); 
 			  },
 			  
-			// 이벤트
+			// 이벤트 start=예약날짜(selectday) tilte= 병원이름?(denname)
 			events: [
 				{
 					title: '임플란트',
@@ -136,6 +137,7 @@ html, body {
 			calendar.render();
 			});
 			})();
+
 </script>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
