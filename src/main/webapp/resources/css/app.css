@@ -86,7 +86,7 @@ body {
 	/* font-families */
 	--logo-text-font-family: '210 청춘시대', 'Noto Sans KR', sans-serif;
 
-	/* background colors */
+	/* background or border colors */
 	--background-gray: rgb(250, 250, 250);
 	--border-gray: rgb(238, 238, 238);
 	--divider-gray: rgb(242, 242, 242);
@@ -149,6 +149,14 @@ body {
 	font-size: 1.2rem;
 	font-weight: 700;
 	padding: 0.8rem;
+}
+
+/* Global styles - dividers */
+.background-pale-peach {
+	background-color: var(--pale-peach);
+}
+.background-gray {
+	background-color: var(--background-gray);
 }
 
 /* Global styles - dividers */
