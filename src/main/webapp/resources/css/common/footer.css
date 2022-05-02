@@ -4,6 +4,7 @@
 	align-items: center;
 	background-color: var(--osstem-gray);
 	padding: 4rem var(--deep-inner-space);
+	margin-top: 3rem;
 }
 .footer__logo {
 	display: flex;
