@@ -101,6 +101,7 @@
 
                             function goReservationUsingMap(denno) {
                                 console.log(denno);
+                                localStorage.setItem("denno", denno);
                                 location.href = "reservationUsingMap?denno=" + denno;
                             }
                         </script>
