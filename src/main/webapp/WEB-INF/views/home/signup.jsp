@@ -5,118 +5,50 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default-form.css">
 	<title>치스토리-회원가입</title>
-    <style>    
-      /* .container {
-        border: 1px solid gray;
-        padding: 50px;
-        border-radius: 20px;
-      } */
-      #signupBtn {
-         color: white;
-        background-color: #f47d36;
-        border-color: #f47d36;
-        width:90%;
-		height:3rem;
-		border-radius:1rem;
-      }
-      .btn:hover {
-        color: white;
-        background-color: #fc6d1a;
-        border-color: #fc6d1a;
-      }
-      .form-group {
-        width: 400px;
-      }
-      #buttons {
-        font-size: 13px;
-        color: #888;
-      }
-      a {
-        color: black;
-      }
-      a:hover {
-        color: #f47d36;
-      }
-      .form-control:focus {
-        color: #495057;
-        background-color: #fff;
-        border-color: #f47d36;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem rgb(242 101 34 / 25%);
-      }
-    </style>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	
-    <div class="container">
-      <div class="row">
-        <div>
-          <div class="form-block">
-          
-            <div style="margin-bottom:3rem; margin-top:4rem;">
-				<h1 class="text-uppercase">
-			        <strong style="color: #f47d36; margin-left:7.5rem;">회원가입</strong>
-				</h1>
+	<main class="main located-at-bottom-of-header">
+		<div class="logo">
+			<a href="${pageContext.request.contextPath}/">
+				<h1 class="logo-text-orange-lg">치스토리</h1>
+			</a>
+		</div>
+		<h2 class="page-title">회원가입</h2>
+
+		<%-- 회원가입 에러 배지 --%>
+		<c:if test="${error != null}">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				<strong>저런! 회원가입에 실패하셨어요.</strong>
+				<span>${error}</span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
+		</c:if>
+		
+		<form action="signup" method="post" class="default-form">
+			<label for="username">이름</label>
+			<input id="username" name="username" type="text" placeholder="이름을 입력해 주세요."/>
+			
+			<label for="userssn">주민등록번호</label>
+			<input id="userssn" name="userssn" type="text" placeholder="주민등록번호를 입력해 주세요."/>
+			
+			<label for="userid">아이디</label>
+			<input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요."/>
 
-   	     	<%-- 경고메시지 --%>
-            <c:if test="${error != null}">
-	            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-				  <strong>저런! 회원가입에 실패하셨어요.</strong>
-				  <p>${error}</p>
-				  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				    <span aria-hidden="true">&times;</span>
-				  </button>
-				</div>
-            </c:if>
-            
-           <form action="signup" method="post">
-           	 <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="username"><strong>이름</strong></label>
-                 <br/>
-                <input name="username" type="text" class="form-control" placeholder="이름을 입력해 주세요." id="username" value=""
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;">
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="userssn"><strong>주민등록번호</strong></label>
-                 <br/>
-                <input name="userssn" type="text" class="form-control" placeholder="주민등록번호를 입력해 주세요." id="userssn" value=""
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem; margin-left:0.5rem;">
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="userid"><strong>아이디</strong></label>
-                 <br/>
-                <input name="userid" type="text" class="form-control" placeholder="아이디를 입력해 주세요." id="userid"
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>       
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="userpassword"><strong>비밀번호</strong></label>
-                 <br/>
-                <input name="userpassword" type="password" class="form-control" placeholder="비밀번호를 입력해 주세요." id="userpassword" 
-				style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;margin-left:1rem;">
-                <label for="password-check"><strong>비밀번호 확인</strong></label>
-                 <br/>
-                <input type="password" class="form-control" placeholder="비밀번호를 다시 한 번 입력해 주세요." id="password-check" 
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
-              </div>
-              <div class="form-group"style="margin-bottom:2rem;margin-left:1rem;">
-                <label for="userphone"><strong>휴대폰 번호</strong></label>
-                <br/>
-                <input name="userphone" type="text" class="form-control" placeholder="휴대폰 번호를 입력해 주세요." id="userphone" 
-                style="border:0.5px solid lightgrey; width:20rem; height:2rem;margin-left:0.5rem;"/>
-              </div>
-              <input id="signupBtn" type="submit" value="회원가입" style="margin-top:2rem; margin-left:0.25rem;">
-          </form>
-          </div>
-        </div>
-      </div>
-    </div>
+			<label for="userpassword">비밀번호</label>
+			<input id="userpassword" name="userpassword" type="password" placeholder="비밀번호를 입력해 주세요."/>
 
-	
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+			<label for="check-userpassword">비밀번호 확인</label>
+			<input id="check-userpassword" type="password" placeholder="비밀번호를 한 번 더 입력해 주세요."/>
+
+			<label for="userphone">휴대폰 번호</label>
+			<input id="userphone" name="userphone" type="text" placeholder="휴대폰 번호를 입력해 주세요."/>
+
+			<button type="submit" class="form-submit-btn btn-large-solid">회원가입</button>
+		</form>
+	</main>
 </body>
 </html>

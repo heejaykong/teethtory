@@ -144,6 +144,12 @@ body {
 .btn-large-hollow-white:hover {
 	background-color: whitesmoke;
 }
+.login-btn,
+.signup-btn {
+	font-size: 1.2rem;
+	font-weight: 700;
+	padding: 0.8rem;
+}
 
 /* Global styles - dividers */
 .thick-divider {
@@ -162,10 +168,20 @@ body {
 .logo-text-orange-lg {
 	font-family: var(--logo-text-font-family);
 	font-weight: normal;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color: var(--osstem-orange);
+}
+.page-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--almost-black-gray);
+	margin: 3.5rem 0 2rem 0;
 }
 .error {
 	color: red;
 	font-size: 0.7rem;
+}
+.alert > strong {
+	font-weight: 700;
+	line-height: 1.6rem;
 }

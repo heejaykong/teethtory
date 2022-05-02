@@ -6,13 +6,6 @@
 	background-color: var(--background-gray);
 }
 
-.page-title {
-	font-size: 1.7rem;
-	font-weight: 600;
-	color: var(--dark-gray);
-	margin: 3.5rem 0 2rem 0;
-}
-
 /* mouth */
 .mouth-section {
 	display: flex;
