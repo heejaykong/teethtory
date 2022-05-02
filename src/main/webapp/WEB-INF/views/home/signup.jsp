@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/default-form.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css">
 	<title>치스토리-회원가입</title>
 </head>
 <body>
