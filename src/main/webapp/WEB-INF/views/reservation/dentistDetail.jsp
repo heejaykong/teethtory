@@ -153,24 +153,7 @@
 		<%-- 여기에 ajax로 받아온 후기 정보 대입. --%>
 	</div>
 	<div id="reviewPaginationContainer">
-		<a class="btn btn-outline-primary btn-sm" onClick="getReviewList(1)">처음</a>
-		<c:if test="${pager.groupNo>1}">
-			<a class="btn btn-outline-info btn-sm" onClick="getReviewList(${pager.startPageNo-1})">이전</a>
-		</c:if>
-		
-		<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-			<c:if test="${pager.pageNo != i}">
-				<a class="btn btn-outline-success btn-sm" onClick="getReviewList(${i})">${i}</a>
-			</c:if>
-			<c:if test="${pager.pageNo == i}">
-				<a class="btn btn-outline-success btn-sm" onClick="getReviewList(${i})">${i}</a>
-			</c:if>
-		</c:forEach>
-		
-		<c:if test="${pager.groupNo<pager.totalGroupNo}">
-			<a class="btn btn-outline-info btn-sm" onClick="getReviewList(${pager.endPageNo+1})">다음</a>
-		</c:if>
-		<a class="btn btn-outline-primary btn-sm"  onClick="getReviewList(${pager.totalPageNo})">맨끝</a>
+		<%-- 여기에 페이지네이션 처리. --%>
 	</div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
@@ -201,25 +184,27 @@
 			// var DENLATITUDE = data.denlatitude;
 		});
 
-		// function getReviewList(pageNo) {
-		// 	if(pageNo === null) {
-		// 		pageNo = 1;
-		// 	} else {
-				
-		// 	}
+		function getReviewsWithPagination(pageNoParam) {
+			var pageNo = 1;
+			if(pageNoParam !== -1) {
+				var pageNo = pageNoParam;
+			}
 
 			// 치과의 후기정보를 가져오는 ajax 통신.(reviews)
 			$.ajax({
 				// console.log('ajax 시작~~');
 				method:"POST",
-				async: false,
+				// async: false,
 				url: "http://localhost:8082/springframework-mini-project-dentist/review/getReviews",
 				// url: ${dendomain} + "/springframework-mini-project-dentist/review/getReviews",
 				data: {
-					// pageNo: pageNo
+					pageNo: pageNo
 				}
 			})
 			.done((data) => {
+				//pager 객체 변수로 선언.
+				var pager = data.pager;
+
 				document.getElementById('averageStars').innerHTML = data.averageStars;
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
 
@@ -228,7 +213,6 @@
 				console.log('data.totalReviewNum : ' + data.totalReviewNum);
 				console.log('data.reviewList : ' + data.reviewList);
 				console.log('typeof data.reviewList : ' + typeof data.reviewList);
-				console.log('data.reviewList[0]["userid"] : ' + data.reviewList[0]['userid']);
 				//리뷰 내용 추가.
 				let aReviewHtml = '';
 				for(let i=0; i<data.reviewList.length; i++) {
@@ -236,20 +220,23 @@
 					aReviewHtml += '<a href="#" class="list-group-item list-group-item-action">';
 					aReviewHtml += '	<div class="d-flex">';
 					aReviewHtml += '		<small class="mr-1">';
-					if(data.reviewList[i]["starscore"] % 0.5 === 0) {//n.5점
+					if(data.reviewList[i]["starscore"] % 1 !== 0) {//n.5점
+						console.log('data.reviewList[i]["starscore"] : ' + data.reviewList[i]["starscore"]);
+						console.log('parseInt(data.reviewList[i]["starscore"]) : ' + parseInt(data.reviewList[i]["starscore"]));
+						console.log('parseInt(data.reviewList[i]["starscore"]) : ' + parseInt(data.reviewList[i]["starscore"]));
 						for(let j=0; j<parseInt(data.reviewList[i]["starscore"]); j++) {
 							aReviewHtml += '			<i class="fa-solid fa-star"></i>';
 						}
 						aReviewHtml += '			<i class="fa-solid fa-star-half-stroke"></i>';
 						for(let j=0; j<5-parseInt(data.reviewList[i]["starscore"])-1; j++) {
-							aReviewHtml += '			<i class="fa-solid fa-star-half-stroke"></i>';
+							aReviewHtml += '			<i class="fa-regular fa-star"></i>';
 						}
 					} else {//n.0점
 						for(let j=0; j<parseInt(data.reviewList[i]["starscore"]); j++) {
 							aReviewHtml += '			<i class="fa-solid fa-star"></i>';
 						}
 						for(let j=0; j<5 - parseInt(data.reviewList[i]["starscore"]); j++) {
-							aReviewHtml += '			<i class="fa-solid fa-star-half-stroke"></i>';
+							aReviewHtml += '			<i class="fa-regular fa-star"></i>';
 						}
 					}
 					aReviewHtml += '		</small>';
@@ -265,47 +252,33 @@
 					aReviewHtml += '</a>';
 				}
 				$("#reviewContainer").html(aReviewHtml);
-				// //리뷰 페이지네이션 추가.
-				// let aReviewPaginationHtml = '';
-				// if(&{pager.groupNo}>1) {
-				// 	aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewList(1)">처음</a>';
-				// 	aReviewPaginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="getReviewList(${pager.startPageNo-1})">이전</a>';
-				// 	aReviewPaginationHtml += '		<small class="mr-1">';
-				// 	for(let i=${pager.startPageNo}; i<${pager.endPageNo}; i++) {
-				// 		console.log('i : ' + i);
-				// 		aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewList_list(${i})">${i}</a>';
+				//리뷰 페이지네이션 추가.
+				let aReviewPaginationHtml = '';
+				aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewsWithPagination(1)">처음</a>';
 
+				if(pager[0].groupNo>1) {
+					aReviewPaginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">이전</a>';
+				}
 
-						
-				// 		<c:if test="${pager.groupNo>1}">
-				// 			<a class="btn btn-outline-info btn-sm" onClick="getReviewList(${pager.startPageNo-1})">이전</a>
-				// 		</c:if>
-						
-				// 		<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-				// 			<c:if test="${pager.pageNo != i}">
-				// 				<a class="btn btn-outline-success btn-sm" onClick="getReviewList_list(${i})">${i}</a>
-				// 			</c:if>
-				// 			<c:if test="${pager.pageNo == i}">
-				// 				<a class="btn btn-outline-success btn-sm" onClick="get_lgetReviewListist(${i})">${i}</a>
-				// 			</c:if>
-				// 		</c:forEach>
-						
-				// 		<c:if test="${pager.groupNo<pager.totalGroupNo}">
-				// 			<a class="btn btn-outline-info btn-sm" onClick="getReviewList(${pager.endPageNo+1})">다음</a>
-				// 		</c:if>
-				// 		<a class="btn btn-outline-primary btn-sm"  onClick="getReviewList(${pager.totalPageNo})">맨끝</a>
+				for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
+					if(pager.pageNo != i) {
+						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+					} else {
+						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+					}
+				}
+				if(pager[0].groupNo<pager[0].totalGroupNo) {
+					let nextPageNo = pager[0].endPageNo+1;
+					aReviewPaginationHtml += '		<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')">다음</a>';
+				}
+				aReviewPaginationHtml += '		<a class="btn btn-outline-primary btn-sm"  onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')">맨끝</a>';
 
-
-	
-				// 	}
-					
-				// } else {
-
-				// }
-
-				// $("#reviewPaginationContainer").html(aReviewPaginationHtml);
+				$("#reviewPaginationContainer").html(aReviewPaginationHtml);
 			});
-		// }
+
+		}
+		getReviewsWithPagination(-1);
+
 	</script>
 </body>
 </html>

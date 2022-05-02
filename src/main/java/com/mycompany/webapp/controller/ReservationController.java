@@ -33,8 +33,6 @@ public class ReservationController {
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 		log.info("실행");
-		String userId = (String) session.getAttribute("sessionUserid");
-		
 		
 		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
