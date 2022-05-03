@@ -108,7 +108,7 @@ $.ajax({
 			console.log("asda");
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
 			$.ajax({
-			    url: 'http://localhost:8080/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
+			    url: 'http://localhost:8082/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
 			    type: 'POST',
 			    data: { 
 			    	"tformatDate":tformatDate,

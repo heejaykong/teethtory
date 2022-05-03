@@ -26,8 +26,8 @@
 		<span><p id="denaddress" style="font-size: 1.2rem; font-weight: 300;"></p></span><br/>
 		<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
 	</div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
-	<%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b29a2d04639a115f1a9cea4ad69f3b9"></script> --%>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script> 
+	<!-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b29a2d04639a115f1a9cea4ad69f3b9"></script>  -->
 	<script>
 		$.ajax({
 			// console.log('ajax 시작~~');

@@ -56,7 +56,7 @@
 							</span>
 							<span class="mypoint__amount">
 
-								4,600.toLocaleString()
+								4,600<!-- .toLocaleString() -->
 
 								${point} <%-- .toLocaleString() --%>
 

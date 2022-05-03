@@ -28,6 +28,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @RequestMapping("/reservation")
 public class ReservationController {
 	

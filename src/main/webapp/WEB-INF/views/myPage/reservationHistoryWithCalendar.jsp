@@ -106,7 +106,7 @@ html, body {
 			},
 			eventClick: function(info) {
 			   	//모달띄우기
-			$(".modal").fadeIn();
+			$(".modal").\fadeIn();
 			$("#date").text(info.event.start.toLocaleString());
 		    $("#content").text(info.event.title);
 			info.el.style.borderColor = 'red';
