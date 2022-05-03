@@ -34,7 +34,6 @@ public class ReservationController {
 	
 	@Resource
 	private UserService userService;
-	
 	@Resource
 	private DentistService dentistService;
 	@Resource
@@ -107,8 +106,10 @@ public class ReservationController {
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String dentistDetail(HttpSession session
-			, @RequestParam("denno") int denno) {
+			, @RequestParam("denno") int denno, Model model) {
 		log.info("denno : " + denno);
+		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
+		model.addAttribute("dendomain", dendomain);
 		//내 치과 목록에서, denno으로 점검.
 		String userId = (String) session.getAttribute("sessionUserid");
 		int alreadyRegistered = myDentistService.getMyDentistByDenno(userId, denno);

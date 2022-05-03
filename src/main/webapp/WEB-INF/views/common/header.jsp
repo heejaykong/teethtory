@@ -56,9 +56,8 @@
 							</span>
 							<span class="mypoint__amount">
 
-								4,600<!-- .toLocaleString() -->
 
-								${point} <%-- .toLocaleString() --%>
+								${point}
 
 							</span>
 							<span class="mypoint__arrow-right">

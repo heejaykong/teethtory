@@ -85,11 +85,10 @@ else if(date.length==15){
 console.log(atimeIndex);
 
 $.ajax({
-	   url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
-	   })
-	   .done((data) => {
 
-
+	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+	})
+	.done((data) => {
 
 		a=JSON.stringify(data);
 		console.log("문자열 형태 : "+a);
