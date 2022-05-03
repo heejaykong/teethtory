@@ -86,7 +86,7 @@ body {
 	/* font-families */
 	--logo-text-font-family: '210 청춘시대', 'Noto Sans KR', sans-serif;
 
-	/* background colors */
+	/* background or border colors */
 	--background-gray: rgb(250, 250, 250);
 	--border-gray: rgb(238, 238, 238);
 	--divider-gray: rgb(242, 242, 242);
@@ -144,11 +144,25 @@ body {
 .btn-large-hollow-white:hover {
 	background-color: whitesmoke;
 }
+.login-btn,
+.signup-btn {
+	font-size: 1.2rem;
+	font-weight: 700;
+	padding: 0.8rem;
+}
+
+/* Global styles - background colors */
+.background-pale-peach {
+	background-color: var(--pale-peach);
+}
+.background-gray {
+	background-color: var(--background-gray);
+}
 
 /* Global styles - dividers */
 .thick-divider {
 	width: 100%;
-	height: 0.4rem;
+	height: 0.5rem;
 	background-color: var(--divider-gray);
 }
 
@@ -162,10 +176,26 @@ body {
 .logo-text-orange-lg {
 	font-family: var(--logo-text-font-family);
 	font-weight: normal;
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color: var(--osstem-orange);
+}
+.logo-text-white-md {
+	font-family: var(--logo-text-font-family);
+	font-weight: normal;
+	font-size: 1.8rem;
+	color: white;
+}
+.page-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--almost-black-gray);
+	margin: 3.5rem 0 2rem 0;
 }
 .error {
 	color: red;
 	font-size: 0.7rem;
+}
+.alert > strong {
+	font-weight: 700;
+	line-height: 1.6rem;
 }

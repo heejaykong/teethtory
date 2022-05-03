@@ -1,16 +1,9 @@
-/* medical history page CSS*/
+/* 치료 내역 모아보기 details page CSS*/
 .main {
 	display: flex;
 	flex-direction: column;
 	padding: 0 var(--default-inner-space);
 	background-color: var(--background-gray);
-}
-
-.page-title {
-	font-size: 1.7rem;
-	font-weight: 600;
-	color: var(--dark-gray);
-	margin: 3.5rem 0 2rem 0;
 }
 
 /* mouth */
@@ -65,7 +58,6 @@
 }
 .lower-jaw__lower-teeth{
 }
-
 
 /* treatment description section */
 .treatment-desc-section {
