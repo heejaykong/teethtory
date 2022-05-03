@@ -1,0 +1,80 @@
+/* 치료 내역 모아보기 main page CSS */
+.main {
+	display: flex;
+	flex-direction: column;
+}
+/* 드롭다운 선택지 영역 */
+.treattype-dropdown-section {
+	display: flex;
+	flex-direction: column;
+	padding: 0 var(--default-inner-space);
+	margin-bottom: 2rem;
+}
+.treattype-dropdown-section label {
+	color: var(--gray);
+	font-size: 1.4rem;
+	font-weight: 500;
+	margin-bottom: 0.8rem;
+}
+.select-block {
+	position: relative;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+.select-block::after{
+	position: absolute;
+	font-family: FontAwesome;
+	content:"\f107"; /* select박스 화살표를 fontawesome 아이콘으로 커스텀 */
+	color: var(--dark-gray);
+	font-size: 1rem;
+	margin-right: var(--deep-inner-space);
+}
+.treattype-dropdown-section select {
+	width: 100%;
+	border: var(--card-border);
+	border-radius: 7px;
+	text-align-last: center; /* option들 말고 select박스 글자만 가운데정렬 */
+	color: var(--dark-gray);
+	font-size: 1.5rem;
+	font-weight: 500;
+	padding: 0.8rem var(--default-inner-space);
+	appearance: none; /* select박스 기본 화살표 없애기 */
+}
+.treattype-dropdown-section option {
+	width: 100%;
+	color: var(--dark-gray);
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+/* 드롭다운 선택한 결과 영역(빈 목록) */
+.emptly-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 4rem 0;
+}
+.emptly-block img {
+	width: 5rem;
+	margin-bottom: 1rem;
+}
+.emptly-block .text {
+	color: var(--ligther-gray);
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+
+/* 드롭다운 선택한 결과 영역 */
+.selected-treattype-results-section {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 페이지네이션 */
+.pagination-block {
+	display: flex;
+	justify-content: center;
+	padding: var(--default-inner-space);
+}

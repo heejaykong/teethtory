@@ -1,0 +1,30 @@
+/* 기본 폼 스타일 */
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--deep-inner-space);
+}
+.logo {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+.default-form {
+  display: flex;
+  flex-direction: column;
+}
+.default-form label {
+  color: var(--dark-gray);
+  font-weight: 500;
+  margin-bottom: .5rem;
+}
+.default-form input {
+  border: var(--card-border);
+  border-radius: 3px;
+  padding: 0.3rem 0 0.3rem 0.8rem;
+  margin-bottom: 2rem;
+}
+.form-submit-btn {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}

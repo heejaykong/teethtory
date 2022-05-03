@@ -1,0 +1,44 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	padding: var(--default-inner-space);
+}
+
+/* 치과 정보요약 영역 */
+.dentist-info-section {
+	margin-bottom: 2rem;
+}
+
+/* 후기 작성 영역 */
+.review-form {
+	display: flex;
+	flex-direction: column;
+}
+.starscore-input {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.7rem;
+}
+.starscore-input label {
+	color: var(--dark-gray);
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-right: 0.5rem;
+}
+.starscore-input select {
+	border: var(--card-border);
+	border-radius: 7px;
+	text-align-last: center; /* option들 말고 select박스 글자만 가운데정렬 */
+	color: var(--dark-gray);
+	font-size: 1.2rem;
+	font-weight: 500;
+	padding: 0.2rem 0.5rem;
+}
+.review-content-textarea {
+	border: var(--card-border);
+	border-radius: 5px;
+	font-size: 1.2rem;
+	line-height: 1.5;
+	padding: 0.7rem 0.7rem;
+	margin-bottom: 1rem;
+}

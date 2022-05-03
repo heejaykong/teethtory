@@ -176,7 +176,7 @@
 				<div id="tue"></div>
 				<div id="wed"></div>
 				<div id="thur"></div>
-				<div id="fri">=</div>
+				<div id="fri"></div>
 				<div id="sat"></div>
 				<div id="sun"></div>
 			</div>
@@ -195,7 +195,6 @@
 	<script>
 		// 치과의 기본정보를 가져오는 ajax 통신.(deninfo)
 		$.ajax({
-			// console.log('ajax 시작~~');
 			method:"POST",
 			url: "http://localhost:8082/springframework-mini-project-dentist/deninfo/getdeninfo",
 			// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
@@ -210,10 +209,9 @@
 
 		//치과의 영업시간을 가져옴.
 		$.ajax({
-			// console.log('ajax 시작~~');
 			method:"POST",
-			url: "http://localhost:8082/springframework-mini-project-dentist/businessHour/getBusinessHour",
-			// url: ${dendomain} + "/springframework-mini-project-dentist/businessHour/getBusinessHour",
+			url: "http://localhost:8082/springframework-mini-project-dentist/businesshour/getBusinessHour",
+			// url: ${dendomain} + "/springframework-mini-project-dentist/businesshour/getBusinessHour",
 			data: {
 			},
 		})

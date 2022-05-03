@@ -84,12 +84,7 @@
 	line-height: 1.8rem;
 	margin-bottom: 2rem;
 }
-.login-btn,
-.signup-btn {
-	font-size: 1.3rem;
-	font-weight: 700;
-	padding: 0.9rem;
-}
+
 /* 사이드바 메뉴: 프로필블록(로그인 후) */
 .profile {
 	display: flex;
