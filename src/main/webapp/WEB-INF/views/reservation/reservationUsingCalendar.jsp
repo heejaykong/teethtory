@@ -209,57 +209,27 @@
 	</div> 
 
     <script>
-
     		
-
+    		
              document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
             	$("#timecell").html("");
                 var date = document.getElementById('dateSelect').value=e.target.value;
-
                	const date2 = new Date(date);
                	dayIndex=date2.getDay();
                	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
                	console.log(week[dayIndex]);
                	
-
-
-                
-                var formatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
-                console.log(formatDate);
-
+                document.getElementById('timecell').style.visibility="visible";
                	
                 var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
                 /* console.log(aformatDate); */
                 
-
                 $.ajax({
                 	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })
              	.done((data) => {
-
-             		
-             			time=data.date.split("");
-						
-             			for(var i=0; i<48;i++){
-             				var atime =[];
-                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-             				if(time[i]==1){
-             					var creatediv = document.createElement("div");
-             					$("#timecell").append(creatediv);
-             					/* 
-             					creatediv.setAttribute("class",""); */
-             					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
-             					creatediv.setAttribute("onclick","btnVisible()")
-             					creatediv.setAttribute("style",createdivStyle);
-             					creatediv.innerHTML=atime[i];
-             					
-             				}
-             			}	
-             	})
-
              		 time=data.date.split("");
              		/*  console.log(time); */
              		 
@@ -310,7 +280,16 @@
              				}
              			}	
                      })})
-
+            }
+           /*  $('.cell').click(function(){
+         	    var cell_time_check = $(this).attr("id");
+         	});
+            $('.cell').click(function(){
+           		document.getElementById('reservationtime').value = $(this).text();
+           	
+            $('.cell').removeClass('select');
+            $(this).addClass('select');
+            */
            	
             
           
