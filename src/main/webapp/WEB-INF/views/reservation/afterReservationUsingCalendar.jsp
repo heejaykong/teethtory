@@ -6,6 +6,7 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-진료 예약하기</title>
 	<style>
+	
 	#submit{
 	     color: white;
 	        background-color: #f47d36;
@@ -66,8 +67,9 @@
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
 
+formatdate=date.substr(5,2)+"월"+date.substr(8,2)+"일 "+date.substr(10,2)+"시"+date.substr(13,2)+"분";
 
-document.getElementById("reservationSelectTime").innerHTML=date;
+document.getElementById("reservationSelectTime").innerHTML=formatdate;
 var aformatDate =date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
 console.log(aformatDate);
 
@@ -82,13 +84,13 @@ else if(date.length==15){
 //atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
 console.log(atimeIndex);
 
-
-
-
 $.ajax({
-	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
-	})
-	.done((data) => {
+	   url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+	   })
+	   .done((data) => {
+
+
+
 		a=JSON.stringify(data);
 		console.log("문자열 형태 : "+a);
 		b=a.charAt(atimeIndex);
@@ -116,7 +118,7 @@ $.ajax({
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
 			        "availabletime": changeAvailableTime},
-			    success: function (data) {
+			    success: function (data) {  
 			            alert("데이터 전송이 성공적으로 끝났을 때 실행");
 			            
 			        }
