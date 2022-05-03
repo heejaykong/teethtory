@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,7 @@ import com.mycompany.webapp.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/treatment")
 @Log4j2
@@ -43,6 +45,7 @@ public class TreatmentController {
 		
 		model.addAttribute("dentist", json);
 		model.addAttribute("patientssn", patientssn);
+		
 		return "treatment/main";
 //		또는
 //		return "treatment/emptyTreatmentList";
