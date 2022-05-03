@@ -80,7 +80,7 @@ flex-direct:row;
     		<div style="position:absolute; margin-left:1rem;left:80%">
 	    	<span class="stamp is-nope">예약취소</span>
 	    	</div>
-    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과 진료 예약</h4></div>
+    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
 	    	
     	<div style="margin-left:1rem;"><h5>일정: 2022. 04. 29(금) 10:30</h5></div>
 		<div class="container" style=" margin-bottom:1rem;">
@@ -95,7 +95,7 @@ flex-direct:row;
     		<div style="position:absolute; margin-left:1rem; left:80%">
 	    	<span class="stamp is-approved">예약확정</span>
 	    	</div>
-    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과 진료 예약</h4></div>
+    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
 	    	
     	<div style="margin-left:1rem;"><h5>일정: 2022. 04. 29(금) 10:30</h5></div>
 		<div class="container" style=" margin-bottom:1rem;">
@@ -109,9 +109,10 @@ flex-direct:row;
     		<div style="position:absolute; margin-left:1rem;left:80%">
 	    	 <span class="stamp">예약대기</span>
 	    	</div>
-    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과 진료 예약</h4></div>
+    	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
 	    	
-    	<div style="margin-left:1rem;"><h5>일정: 2022. 04. 29(금) 10:30</h5></div>
+    	<div style="margin-left:1rem;"><h5>예약일정: 2022. 04. 29(금) 10:30</h5></div>
+    	<div style="margin-left:1rem;"><h5>신청일자: 2022. 04. 29(금) 10:30</h5></div>
 		<div class="container" style=" margin-bottom:1rem;">
 			<input type="submit" value="예약변경"
 						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
