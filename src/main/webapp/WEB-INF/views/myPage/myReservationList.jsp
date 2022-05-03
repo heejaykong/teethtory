@@ -182,17 +182,8 @@ flex-direct:row;
 			return 0;
 		})
 
-		// data.sort(function(a, b) {
-		// 	if(a.treatdate > b.treatdate) {
-		// 		return -1;
-		// 	}
-		// 	if(a.treatdate < b.treatdate) {
-		// 		return 1;
-		// 	}
-		// 	return 0;
-		// })
 		console.log('------------------------------------');
-		for(let i=0; i<totalArray.length; i++) {
+		for(let i=0; i<totalArray.length(); i++) {
 			console.log('totalArray[' + i + ']["submitdate"]' + totalArray[i]["submitdate"]);
 		}
 	</script>
