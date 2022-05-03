@@ -37,6 +37,7 @@ public class TreatmentController {
 		String patientssn = user.getUserssn();
 		List<Dentist> dentist = myDentistService.getMyDentist(userid);
 		int dentistnum = myDentistService.getMyDentist(userid).size();
+		
 		model.addAttribute("dentistnum", dentistnum);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("dentist", dentist);

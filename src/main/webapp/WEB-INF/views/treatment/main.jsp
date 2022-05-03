@@ -91,19 +91,22 @@
 	</div>
 	<script type="text/javascript">
 	getData();
-
+	
 	function windowdd() {
 		const promise = new Promise((resolve, reject) => {
-			let list = ["cat"];
+			let list = [];
 			for(let i=0; i<${dentist}.dentist.length; i++) {
 				$.ajax({
 					method:"POST",
 					url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}",
 					data: {
 						// pageNo: pageNo
-					}
+					},
+					async: false
 				}).done((data) => {
+					console.log(data);
 					for(let j=0; j<data.treatment.length; j++) {
+						data.treatment[j].denname = (data.denname);
 						list.push(data.treatment[j]);
 					}
 				});
@@ -123,23 +126,31 @@
 			let data = await windowdd();
 			console.log(data);
 			
+			data.sort(function(a, b) {
+				if(a.treatdate > b.treatdate) {
+					return -1;
+				}
+				if(a.treatdate < b.treatdate) {
+					return 1;
+				}
+				return 0;
+			})
 			let aReviewHtml = '';
-	
-			/* $("#test").append(aReviewHtml);
-			var treatdate = $(".treatdate").text();
-			console.log(treatdate);
-			for(let i=0; i<data.treatment.length; i++) {
+			console.log("orderedDate:", data)
+			console.log(data.length);
+			for(let i=0; i<data.length; i++) {
 				console.log(i);
 				aReviewHtml += '<div class="d-flex" onclick="getDetails()">';
 				aReviewHtml += '	<div class="d-flex flex-column align-items-center justify-content-center">';
 				aReviewHtml += '		<div>';
-				aReviewHtml += '			<span style="font-size: 2rem; margin-right: 0.5rem;">'+ data.treatment[i].treattype + '</span><span>'+ data.denname +'</span>';
+				aReviewHtml += '			<span style="font-size: 2rem; margin-right: 0.5rem;">'+ data[i].treattype + '</span><span>'+ data[i].denname +'</span>';
 				aReviewHtml += '		</div>';
-				aReviewHtml += '		<div class="treatdate">'+ data.treatment[i].treatdate +'</div>';
+				aReviewHtml += '		<div class="treatdate">'+ data[i].treatdate +'</div>';
 				aReviewHtml += '	</div>';
 				aReviewHtml += '	<img src="${pageContext.request.contextPath}/resources/images/ㅠㅠ.png">';
 				aReviewHtml += '</div>';
-			} */
+			}
+			$("#test").append(aReviewHtml);
 		} catch (error) {
 			console.log(error, "error");
 		} finally {
