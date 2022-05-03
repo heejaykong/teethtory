@@ -35,13 +35,12 @@ public class TreatmentController {
 		String userid = (String) session.getAttribute("sessionUserid");
 		User user = userservice.getUser(userid);
 		String patientssn = user.getUserssn();
-		List<Dentist> dentist = myDentistService.getMyDentist(userid);
-		int dentistnum = myDentistService.getMyDentist(userid).size();
 		
-		model.addAttribute("dentistnum", dentistnum);
+		List<Dentist> dentist = myDentistService.getMyDentist(userid);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("dentist", dentist);
 		String json = jsonObject.toString();
+		
 		model.addAttribute("dentist", json);
 		model.addAttribute("patientssn", patientssn);
 		return "treatment/main";
