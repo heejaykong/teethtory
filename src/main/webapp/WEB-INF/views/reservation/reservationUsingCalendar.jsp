@@ -101,7 +101,7 @@
                   <div style="flex-grow:1; margin-top:2rem;">
                       <div style="margin-top:10px;">
                           <div style="margin-bottom:1rem;">날짜 선택</div>
-                      <input type="date" id="start" onchange="handler(event)"/>
+                      <input type="date" id="start" onchange="handler(event);"/>
 
                       </div>
                   </div>
@@ -119,9 +119,9 @@
 
                               </div>
 
-                                   <div id="timecell">
-                                  <div id="cellbutton" class="container row text-center mx-0">
-                                      <div class="item">
+                                   <div id="timecell" class="container row">
+                                 <!-- <div id="cellbutton" class="container row text-center mx-0">
+                                  <div class="item">
                                           <div id="cc"class="cell py-1">9:00</div>
                                       </div>
                                       <div class="item">
@@ -176,10 +176,10 @@
                                           <div id="cc"class="cell py-1">4:00</div>
                                       </div>
                                       <div class="item">
-                                          <!-- <div class="cell py-1" type="button" onclick="input_time(t)" value="gd">4:30</div> -->
+                                         
                                           <div id="cc"class="cell py-1">4:30</div>
-                                      </div>
-                                  </div>
+                                      </div> 
+                                  </div> -->
                               </div>
 
                           </div>
@@ -208,37 +208,61 @@
 	</div> 
 
     <script>
+    		 
              document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
+            	$("#timecell").html("");
                 var date = document.getElementById('dateSelect').value=e.target.value;
+               
                 document.getElementById('timecell').style.visibility="visible";
-                console.log(date);
+                
                 var formatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
                 console.log(formatDate);
                 $.ajax({
-                	
                 	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + formatDate
                 })
              	.done((data) => {
-             		console.log(data.date);
+             		
+             			time=data.date.split("");
+						
+             			for(var i=0; i<48;i++){
+             				var atime =[];
+                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+             				if(time[i]==1){
+             					var creatediv = document.createElement("div");
+             					$("#timecell").append(creatediv);
+             					/* 
+             					creatediv.setAttribute("class",""); */
+             					
+             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					creatediv.setAttribute("onclick","btnVisible()")
+             					creatediv.setAttribute("style",createdivStyle);
+             					creatediv.innerHTML=atime[i];
+             					
+             				}
+             			}	
              	})
             }
-
-            $('.cell').click(function(){
+           /*  $('.cell').click(function(){
          	    var cell_time_check = $(this).attr("id");
-         	  
          	});
-			
             $('.cell').click(function(){
            		document.getElementById('reservationtime').value = $(this).text();
            	
             $('.cell').removeClass('select');
             $(this).addClass('select');
-            document.getElementById('pointForm').style.visibility="visible";
+            */
            	
+            
+          
+            function btnVisible(){
             document.getElementById('check').style.visibility="visible";
-            });
+            document.getElementById('pointForm').style.visibility="visible";
+           	document.getElementById('reservationtime').value= $(this).text();
+           
+            };
+           
            /* $('#test').click(function(){
             
             document.getElementById('reservationtime').value=document.getElementById('test').value
@@ -248,6 +272,9 @@
           		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
           	});
      </script>
+
+
+
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

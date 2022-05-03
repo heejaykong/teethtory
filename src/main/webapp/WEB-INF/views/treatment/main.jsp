@@ -81,6 +81,7 @@
 
 		<div class="dropdown-label" style="margin-top: 2rem;">치료 종류 선택</div>
 		<div class="dropdown">
+		
 			<button class="dropbtn" style="margin-top: 1rem; width: 22rem;">
 				<span id="alltext" style="text-align: center;">전체</span> <span
 					class="dropbtn_click" style="float: right;" onclick="dropdown()">></span>

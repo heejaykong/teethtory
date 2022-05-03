@@ -23,4 +23,4 @@
     <i class="fa-brands fa-youtube"></i>
 </div>
 </div>
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>  
