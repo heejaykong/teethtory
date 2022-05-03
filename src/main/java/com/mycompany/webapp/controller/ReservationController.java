@@ -114,5 +114,6 @@ public class ReservationController {
 		log.info("실행");
 		
 		return "reservation/afterReservationUsingCalendar";
+	
 	}
 }

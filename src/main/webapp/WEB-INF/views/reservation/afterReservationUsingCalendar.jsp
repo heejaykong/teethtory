@@ -47,16 +47,16 @@
         <div style="margin-top:80px; text-decoration: none; color:grey; margin-left:1rem;">예약자 정보</div>
         <div>
             <div>
-                <div style="margin-top:20px; margin-left:1rem;">이름  <input style="margin-top:20px; margin-left: 30px; border:0px solid black;" type="text" placeholder="이름을 입력하세요."></div>
+                <div style="margin-top:20px; margin-left:1rem;">이름  <input id="name" style="margin-top:20px; margin-left: 30px; border:0px solid black;" type="text" placeholder="이름을 입력하세요."></div>
             </div>
             <div>
-                <div style="margin-top:20px; margin-left:1rem;">연락처  <input style="margin-top:20px; margin-left: 15px;border:0px solid black;" type="text" placeholder="연락처를 입력하세요."></div>
+                <div style="margin-top:20px; margin-left:1rem;">연락처  <input id="phone" style="margin-top:20px; margin-left: 15px;border:0px solid black;" type="text" placeholder="연락처를 입력하세요."></div>
             </div>
         </div>
    </div>
-
+ 
     <div>
-        <div style="margin-top:40px; margin-left:1rem;">예약 사유</div>
+        <div  style="margin-top:40px; margin-left:1rem;">예약 사유</div>
         <input id="reservation" type="text" placeholder="진료를 예약하는 이유를 적어주세요(증상, 희망 진료 등)" style="border:0.5px solid lightgrey;">
     </div>
     <div>
@@ -98,12 +98,28 @@ $.ajax({
    		 return this.substr(0, index) + replacement + this.substr(index + replacement.length);
 		}
 		console.log(a.replaceAt(atimeIndex+1,"0"));
-		changeAvailableTime=a.replaceAt(atimeIndex+1,"0");
-		//changeAvailableTime  예약 후 disabled 시간
+		testchangeAvailableTime=a.replaceAt(atimeIndex+1,"0");
+		console.log(testchangeAvailableTime.substr(9,48));
+		changeAvailableTime=testchangeAvailableTime.substr(9,48);
+		//changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
+		
 		
 		$("#submit").click(function(){
+			console.log("asda");
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
-		
+			$.ajax({
+			    url: 'http://localhost:8080/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
+			    type: 'POST',
+			    data: { "name": $("#name").val(),
+			    	"phone": $("#phone").val(),
+			    	"reservation": $("#reservation").val(),
+			        "availabletime": changeAvailableTime},
+			    success: function (data) {
+			            alert("데이터 전송이 성공적으로 끝났을 때 실행");
+			            
+			        }
+			});
+			
 		})
 	});
 	
