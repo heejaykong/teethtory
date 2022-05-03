@@ -12,8 +12,49 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
+<<<<<<< HEAD
+	<main class="main">
+	  <section class="history-desc-section row"> 
+	    <article class="desc-card card col-mid-8 justify-content-center">
+	      <div class="desc-card__header card-header px-5 py-4 d-flex">
+	        <div class="desc-card__header__col flex-grow-1">
+	          <div class="round-thumbnail mb-3">
+	            <i class="fa-solid fa-tooth fa-lg"></i>
+	          </div>
+	          <h6 class="dentist-visited">서울시 마포구 무슨동 햇살치과</h6>
+	          <h1 class="treatment-title">
+	            임플란트<span class="treatment-date" style="margin-right:1rem;">2022. 05. 04.</span>
+	            <div class="dropdown" style="display:inline-block;">
+				  별점:
+				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+				    ★★★★★
+				  </button>
+				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <a class="dropdown-item" href="#">★★★★★</a>
+				    <a class="dropdown-item" href="#">★★★★☆</a>
+				    <a class="dropdown-item" href="#">★★★☆☆</a>
+				    <a class="dropdown-item" href="#">★★☆☆☆</a>
+				    <a class="dropdown-item" href="#">★☆☆☆☆</a>
+				  </div>
+				</div>
+	          </h1>
+	        </div>
+	      </div>
+	      <!-- 여기 form태그로 다시 만들어야 함 -->
+	      <div class="desc-card__body card-body px-5 py-4">
+		      <textarea class="form-control" aria-label="With textarea" placeholder="후기를 작성하세요."></textarea>
+		      <div style="text-align:right;">
+			      <a href="cancelForm"><button type="button" class="btn btn-light">취소</button></a>
+			      <a href="postReview"><button type="button" class="btn btn-warning">작성</button></a>
+		      </div>
+	      </div>
+	    </article>
+	  </section>
+	</main>
+
 	<main class="main located-at-bottom-of-header">
 		<h1 class="page-title">후기 작성</h1>
+
 
 		<%-- 치과 정보요약 영역--%>
 		<section class="dentist-info-section">

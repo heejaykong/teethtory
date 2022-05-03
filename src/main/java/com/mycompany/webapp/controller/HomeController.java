@@ -24,10 +24,18 @@ public class HomeController {
 	//header에서 '마이페이지' 클릭시에, MyPageController의 myDentist()가 실행됨.
 	@Resource
 	private UserService userService;
-
+	
 	@RequestMapping("/")
-	public String home() {
-		log.info("실행");
+	public String home(HttpSession session, Model model) {
+		//Header에 이름, 포인트 값 넘기는 코드
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}
 		return "home/main";
 	}
 	

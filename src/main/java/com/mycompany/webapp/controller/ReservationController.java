@@ -3,6 +3,8 @@ package com.mycompany.webapp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -17,8 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Dentist;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.DentistService;
 import com.mycompany.webapp.service.MyDentistService;
+import com.mycompany.webapp.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -26,6 +30,10 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequestMapping("/reservation")
 public class ReservationController {
+	
+	@Resource
+	private UserService userService;
+	
 	@Resource
 	private DentistService dentistService;
 	@Resource
@@ -37,8 +45,16 @@ public class ReservationController {
 			, @RequestParam(defaultValue="null") String denname
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
-		log.info("실행");
-		
+
+		//Header에 이름, 포인트 값 넘기는 코드
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}
 		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
 			log.info("denname: " + denname);
@@ -106,9 +122,12 @@ public class ReservationController {
 		log.info("실행");
 		return "reservation/reservationUsingCalendar";
 	}
+	
 	@RequestMapping("/afterReservationUsingCalendar")
 	public String AfterReservationUsingCalendar() {
 		log.info("실행");
+		
 		return "reservation/afterReservationUsingCalendar";
+	
 	}
 }
