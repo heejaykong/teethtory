@@ -254,9 +254,14 @@
              			for(var i=0; i<48;i++){
              				var atime =[];
              				var butime=[];
-                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                 		
+             				if((i*30)%60==0){
+                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+             				}
+             				else if((i*30)%60!=0){
+             				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+                     		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
+             				}
              				if(time[i]==1 && dtime[i]==1){
              					console.log(butime);
              					var creatediv = document.createElement("div");
@@ -308,7 +313,7 @@
             
           	$('.reservate').click(function(){
           		
-          		reservationtime = document.getElementById('start').value.substr(5,2)+"월 "+document.getElementById('start').value.substr(8,2)+"일 "+document.getElementById('reservationtime').value;
+          		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
           		
           		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime;
           	});

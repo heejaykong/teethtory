@@ -63,10 +63,52 @@
         <button id="submit" type="button" style="border: 0px solid black; margin-top:1rem;">예약 신청하기</button>
     </div>
 <script>
+var date = "<%= request.getParameter("date") %>";
+console.log(date);
+
+
+document.getElementById("reservationSelectTime").innerHTML=date;
+var aformatDate =date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
+console.log(aformatDate);
+
+if(date.length==14){
+var tformatDate =date.substr(10,1)+date.substr(12,2);
+atimeIndex=(tformatDate.substr(0,1)*2)+(tformatDate.substr(1,2)/30)+8;
+}
+else if(date.length==15){
+	var tformatDate =date.substr(10,2)+date.substr(13,2);
+	atimeIndex=(tformatDate.substr(0,2)*2)+(tformatDate.substr(2,2)/30)+8;
+}
+//atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
+console.log(atimeIndex);
+
+
+
+
+$.ajax({
+	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+	})
+	.done((data) => {
+		a=JSON.stringify(data);
+		console.log("문자열 형태 : "+a);
+		b=a.charAt(atimeIndex);
+		console.log(b);
+		//b의 위치를 0으로
+		String.prototype.replaceAt = function(index, replacement) {
+   		 return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+		}
+		console.log(a.replaceAt(atimeIndex+1,"0"));
+		changeAvailableTime=a.replaceAt(atimeIndex+1,"0");
+		//changeAvailableTime  예약 후 disabled 시간
+		
+		$("#submit").click(function(){
+			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
+		
+		})
+	});
 	
-	var date = "<%= request.getParameter("date") %>";
-	console.log(date);
-	document.getElementById("reservationSelectTime").innerHTML=date;
+	
+	
 </script>	
 
 
