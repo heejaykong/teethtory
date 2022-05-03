@@ -110,7 +110,9 @@ $.ajax({
 			$.ajax({
 			    url: 'http://localhost:8080/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
 			    type: 'POST',
-			    data: { "name": $("#name").val(),
+			    data: { 
+			    	"tformatDate":tformatDate,
+			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
 			        "availabletime": changeAvailableTime},
