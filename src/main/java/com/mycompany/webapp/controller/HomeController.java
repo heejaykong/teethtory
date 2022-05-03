@@ -26,8 +26,15 @@ public class HomeController {
 	private UserService userService;
 
 	@RequestMapping("/")
-	public String home() {
-		log.info("실행");
+	public String home(HttpSession session, Model model) {
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}
 		return "home/main";
 	}
 	
