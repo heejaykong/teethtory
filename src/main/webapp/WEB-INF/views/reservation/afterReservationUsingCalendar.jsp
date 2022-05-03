@@ -35,7 +35,7 @@
    <div class="container" id="top">
         <div>
             <div style="margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
-            <div style="margin-top:20px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;">05.01(금)09:00</div>
+            <div id="reservationSelectTime" style="margin-top:20px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;">05.01(금)09:00</div>
         </div>
         <div>
             <div style="border:1px solid black; margin-top:20px; margin-left:150px; width:80px;height:50px;">이미지</div>
@@ -62,7 +62,12 @@
     <div>
         <button id="submit" type="button" style="border: 0px solid black; margin-top:1rem;">예약 신청하기</button>
     </div>
-
+<script>
+	
+	var date = "<%= request.getParameter("date") %>";
+	console.log(date);
+	document.getElementById("reservationSelectTime").innerHTML=date;
+</script>	
 
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>

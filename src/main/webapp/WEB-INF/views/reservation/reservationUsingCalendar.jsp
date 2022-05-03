@@ -202,7 +202,7 @@
                           </div>
 
                       </div>
-                       <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/reservation/AfterReservationUsingCalendar'">다음 단계</button>
+                       <button id="check" class="reservate" type="button" style="visibility:hidden; margin-top:1rem;">다음 단계</button>
 
                   </div>
           </div>
@@ -294,24 +294,25 @@
             $(this).addClass('select');
             */
             function btnVisible(){
-            	
-          
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
            	document.getElementById('reservationtime').value= $(event.target).text();
+
             };
-           
+            
            /* $('#test').click(function(){
             
             document.getElementById('reservationtime').value=document.getElementById('test').value
            });
                */
+            
           	$('.reservate').click(function(){
-          		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
+          		
+          		reservationtime = document.getElementById('start').value.substr(5,2)+"월 "+document.getElementById('start').value.substr(8,2)+"일 "+document.getElementById('reservationtime').value;
+          		
+          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime;
           	});
      </script>
-
-
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

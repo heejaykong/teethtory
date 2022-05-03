@@ -3,6 +3,8 @@ package com.mycompany.webapp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -109,6 +111,7 @@ public class ReservationController {
 	@RequestMapping("/afterReservationUsingCalendar")
 	public String AfterReservationUsingCalendar() {
 		log.info("실행");
+		
 		return "reservation/afterReservationUsingCalendar";
 	}
 }
