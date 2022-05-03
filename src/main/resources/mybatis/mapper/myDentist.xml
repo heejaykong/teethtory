@@ -3,11 +3,11 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.MyDentistDao">
-
+<!--
 	<select id="selectByUserid" parameterType="string" resultType="myDentist">
 		SELECT userid, denno FROM mydentists WHERE userid=#{userid}
 	</select>
-	
+-->	
 	<select id="countByUseridNDenno" resultType="int">
 		SELECT count(*)
 		FROM mydentists

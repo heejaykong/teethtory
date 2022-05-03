@@ -31,7 +31,8 @@
 		$.ajax({
 			// console.log('ajax 시작~~');
 			method:"POST",
-			url:"http://localhost:"+${dendomain} +"/springframework-mini-project-dentist/deninfo/getdeninfo",
+			url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
+			// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
 			data: {
 			},
 			async: false
