@@ -72,7 +72,7 @@
 		font-size:15px;
 	}
 	#timeForm{
-	    margin-top:5rem;
+	    margin-top:3rem;
 	}
 	.fa-calendar-day{
 	   color:  #ffa048;
@@ -83,6 +83,30 @@
 	#top{
 	    align-items: start;
 	}
+	#enabletime{
+	
+	justify-content:center;
+	text-align:center;
+	 align-items : center;
+	}
+	.modal{ 
+  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
+}
+.modal_content{
+  border:2px solid orange;
+  width:400px; height:200px;
+  background:#fff; border-radius:10px;
+  position:relative; top:30%; left:50%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
+}
+#enabletime:active {
+  color: green;
+  border: 3px solid green;
+}
+
 	
 	</style>	
 </head>
@@ -123,75 +147,18 @@
                               </div>
 
                                    <div id="timecell" class="container row">
-                                 <!-- <div id="cellbutton" class="container row text-center mx-0">
-                                  <div class="item">
-                                          <div id="cc"class="cell py-1">9:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">9:30</div>
-                                      </div>
-
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">10:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">10:30</div>
-                                      </div>
-                                  </div>
-                                  <div id="cellbutton" class="container row text-center mx-0">
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">11:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">11:30</div>
-                                      </div>
-
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">12:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">12:30</div>
-                                      </div>
-                                  </div>
-                                  <div id="cellbutton" class="container row text-center mx-0">
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">1:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">1:30</div>
-                                      </div>
-
-                                     <div class="item">
-                                          <div id="cc"class="cell py-1">2:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">2:30</div>
-                                      </div>
-                                  </div>
-                                  <div id="cellbutton" class="container row text-center mx-0">
-                                     <div class="item">
-                                          <div id="cc"class="cell py-1">3:00</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">3:30</div>
-                                      </div>
-                                      <div class="item">
-                                          <div id="cc"class="cell py-1">4:00</div>
-                                      </div>
-                                      <div class="item">
-                                         
-                                          <div id="cc"class="cell py-1">4:30</div>
-                                      </div> 
-                                  </div> -->
                               </div>
 
                           </div>
 
                       </div>
                   </div>
-                  <div style="flex-grow:1; margin-top:4.5rem;"> 
-                      <div>스케일링 진료인가요?</div>
+                 
+                  <div style="flex-grow:1; margin-top:6rem;"> 
+                   <hr>
+                     <div>스케일링 진료인가요?</div>
                       <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
+                       
                           <div>
                           <input type="checkbox" id="usepoint"/>
                           </div>
@@ -207,16 +174,20 @@
                   </div>
           </div>
       </div>
+      <div class="modal">
+	  <div class="modal_content" type="text"></div>
+	  </div>
 	 	</section>
 	</div> 
 
     <script>
     		
     		
-             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+            document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
             	$("#timecell").html("");
+            	
                 var date = document.getElementById('dateSelect').value=e.target.value;
                	const date2 = new Date(date);
                	dayIndex=date2.getDay();
@@ -264,24 +235,26 @@
              				}
              				if(time[i]==1 && dtime[i]==1){
              					console.log(butime);
-             					var creatediv = document.createElement("div");
+             					var creatediv = document.createElement("button");
              					$("#timecell").append(creatediv);
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+             					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					creatediv.setAttribute("onclick","btnVisible()")
              					creatediv.setAttribute("id","enabletime")
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
              					
              				}else if(dtime[i]==1 && time[i]==0){
-             					var creatediv = document.createElement("div");
+             					var creatediv = document.createElement("button");
+             					creatediv.setAttribute("onclick","btnWarn()")
+             					creatediv.setAttribute("id","disabletime")
              					$("#timecell").append(creatediv);
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+             					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
@@ -302,19 +275,20 @@
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
            	document.getElementById('reservationtime').value= $(event.target).text();
-
+           	
             };
             
-           /* $('#test').click(function(){
-            
-            document.getElementById('reservationtime').value=document.getElementById('test').value
-           });
-               */
-            
+          	function btnWarn(){
+          		
+          		$(".modal").fadeIn();
+          		$(".modal_content").text("해당 시간은 예약할 수 없습니다.");
+          		$(".modal_content").click(function(){
+        		$(".modal").fadeOut();
+        		}); 
+          	}
           	$('.reservate').click(function(){
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
-          		
           		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime;
           	});
      </script>
