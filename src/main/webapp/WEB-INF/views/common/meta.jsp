@@ -14,5 +14,5 @@
 <%-- global stylesheets --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/footer.css" />

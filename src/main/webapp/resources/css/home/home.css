@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.home-explain-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--deep-inner-space) var(--default-inner-space);
+}
+.main-copy {
+  color: var(--almost-black-gray);
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 1rem;
+}
+.sub-copy {
+  color: var(--almost-black-gray);
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.home-explain-image img {
+  width: 100%;
+}
