@@ -25,6 +25,7 @@
 	#timecell{
 	justify-content: center;
 	height:10rem;
+	text-align:center;
 	}
 	.cell {
 	    border: 1px solid #BDBDBD;
@@ -82,6 +83,7 @@
 	#top{
 	    align-items: start;
 	}
+	
 	</style>	
 </head>
 <body>
@@ -262,8 +264,9 @@
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					creatediv.setAttribute("onclick","btnVisible()")
+             					creatediv.setAttribute("id","enabletime")
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
              					
@@ -273,7 +276,7 @@
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
@@ -290,14 +293,12 @@
             $('.cell').removeClass('select');
             $(this).addClass('select');
             */
-           	
-            
-          
             function btnVisible(){
+            	
+          
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
-           	document.getElementById('reservationtime').value= $(this).text();
-           
+           	document.getElementById('reservationtime').value= $(event.target).text();
             };
            
            /* $('#test').click(function(){
