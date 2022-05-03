@@ -227,14 +227,14 @@
                 /* console.log(aformatDate); */
                 
                 $.ajax({
-                	url:"http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+                	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })
              	.done((data) => {
              		 time=data.date.split("");
              		/*  console.log(time); */
              		 
              		 $.ajax({
-                     	url:"http://localhost:8080/springframework-mini-project-dentist/businesshour/getHour?businessday=" + week[dayIndex]
+                     	url:"http://localhost:8082/springframework-mini-project-dentist/businesshour/getHour?businessday=" + week[dayIndex]
                      })
                      .done((data) => {
              			businesstime=data;

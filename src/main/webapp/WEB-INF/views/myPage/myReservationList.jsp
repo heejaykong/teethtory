@@ -120,7 +120,82 @@ flex-direct:row;
 						class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
 		</div>
     </div>
-    	</div>		
+    	</div>
+
+	<script>
+		//웹 서버로부터 사용자의 내치과 객체들을 리스트로 받아오는 통신.
+		var totalArray = [];
+		$.ajax({
+			// url: "myPage/myReservationList",
+			url: "${pageContext.request.contextPath}/myPage/myReservationList",
+			method:"POST",
+			async: false,
+			// url: ${dendomain} + "/springframework-mini-project/myPage/myReservationList",
+			data: {
+			}
+		})
+		.done((data) => {
+			console.log('data : ' + data);
+			console.log('typeof data : ' + typeof data);
+			console.log('data["myDentistList"] : ' + data["myDentistList"]);
+			console.log('data["myDentistList"][0]["dendomain"] : ' + data["myDentistList"][0]["dendomain"]);
+			console.log('data["myDentistList"][1]["dendomain"] : ' + data["myDentistList"][1]["dendomain"]);
+			console.log('data["patientssn"] : ' + data["patientssn"]);
+			console.log('typeof data["myDentistList"] : ' + typeof data["myDentistList"]);
+			console.log('data["myDentistList"].length : ' + data["myDentistList"].length);
+			for(let i=0; i<data["myDentistList"].length; i++) {
+				// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
+				$.ajax({
+					url: "http://localhost:" + data["myDentistList"][i]["dendomain"] + "/springframework-mini-project-dentist/reservation/reservationList",
+					method:"POST",
+					async: false,
+					data: {
+						//주민번호 받아와야 함.
+						patientssn: data["patientssn"]
+					}
+				})
+				.done((data) => {
+					//data : reservationList(reservation 객체들을 담은 attay)
+					console.log('data["reservationList"] : ' + data["reservationList"]);
+					console.log('typeof data["reservationList"] : ' + typeof data["reservationList"]);
+					console.log('data["reservationList"][0] : ' + data["reservationList"][0]);
+					console.log('typeof data["reservationList"][0] : ' + typeof data["reservationList"][0]);
+					console.log('data["reservationList"][0]["submitdate"] : ' + data["reservationList"][0]["submitdate"]);
+					console.log('typeof data["reservationList"][0]["submitdate"] : ' + typeof data["reservationList"][0]["submitdate"]);
+					//치과 1개로부터 받아온 reservation 객체를 전역변수인 totalList에 모으기.
+					for(let j=0; j<data["reservationList"].length; j++) {
+						totalArray.push(data["reservationList"][j]);
+					}
+				});
+			}
+		});
+		//사용자의 모든 '내 치과'에 요청을 보내서 받아온 reservation 객체들을 담은 array를 정렬.
+		console.log('totalArray : ' + totalArray);
+		totalArray.sort(function(a, b) {
+			if(a["submitdate"] > b["submitdate"]) {
+				console.log('a["submitdate"] : ' + a["submitdate"] + ', b["submitdate"] : ' + b["submitdate"]);
+				return -1;
+			}
+			if(a["submitdate"] < b["submitdate"]) {
+				return 1;
+			}
+			return 0;
+		})
+
+		// data.sort(function(a, b) {
+		// 	if(a.treatdate > b.treatdate) {
+		// 		return -1;
+		// 	}
+		// 	if(a.treatdate < b.treatdate) {
+		// 		return 1;
+		// 	}
+		// 	return 0;
+		// })
+		console.log('------------------------------------');
+		for(let i=0; i<totalArray.length; i++) {
+			console.log('totalArray[' + i + ']["submitdate"]' + totalArray[i]["submitdate"]);
+		}
+	</script>
 
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
