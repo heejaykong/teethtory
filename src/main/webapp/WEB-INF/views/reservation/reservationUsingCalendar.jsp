@@ -25,6 +25,7 @@
 	#timecell{
 	justify-content: center;
 	height:10rem;
+	text-align:center;
 	}
 	.cell {
 	    border: 1px solid #BDBDBD;
@@ -82,6 +83,7 @@
 	#top{
 	    align-items: start;
 	}
+	
 	</style>	
 </head>
 <body>
@@ -200,7 +202,7 @@
                           </div>
 
                       </div>
-                       <button id="check" class="reservate" type="button" style="visibility:hidden" onclick="location.href='${pageContext.request.contextPath}/reservation/AfterReservationUsingCalendar'">다음 단계</button>
+                       <button id="check" class="reservate" type="button" style="visibility:hidden; margin-top:1rem;">다음 단계</button>
 
                   </div>
           </div>
@@ -252,9 +254,14 @@
              			for(var i=0; i<48;i++){
              				var atime =[];
              				var butime=[];
-                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                 		
+             				if((i*30)%60==0){
+                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+             				}
+             				else if((i*30)%60!=0){
+             				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+                     		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
+             				}
              				if(time[i]==1 && dtime[i]==1){
              					console.log(butime);
              					var creatediv = document.createElement("div");
@@ -262,8 +269,9 @@
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					creatediv.setAttribute("onclick","btnVisible()")
+             					creatediv.setAttribute("id","enabletime")
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
              					
@@ -273,7 +281,7 @@
              					/* 
              					creatediv.setAttribute("class",""); */
              					
-             					var createdivStyle= "width:4rem; height:1.5rem; text-aligh:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey;";
+             					var createdivStyle= "width:4rem; height:1.5rem; text-align:center; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
              					
              					creatediv.setAttribute("style",createdivStyle);
              					creatediv.innerHTML=atime[i];
@@ -290,27 +298,26 @@
             $('.cell').removeClass('select');
             $(this).addClass('select');
             */
-           	
-            
-          
             function btnVisible(){
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
-           	document.getElementById('reservationtime').value= $(this).text();
-           
+           	document.getElementById('reservationtime').value= $(event.target).text();
+
             };
-           
+            
            /* $('#test').click(function(){
             
             document.getElementById('reservationtime').value=document.getElementById('test').value
            });
                */
+            
           	$('.reservate').click(function(){
-          		alert(document.getElementById('start').value+" "+document.getElementById('reservationtime').value+" 예약 완료");
+          		
+          		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
+          		
+          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime;
           	});
      </script>
-
-
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

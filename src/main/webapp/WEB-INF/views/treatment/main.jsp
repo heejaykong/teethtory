@@ -100,7 +100,6 @@
                     </a>
                 `;
             }
-
 		</script>
 	</main>
 	
@@ -140,7 +139,6 @@
 		})
 		return promise;
 	}
-
 	async function getData(selectedTreattype) {
 		try {
 			$(".selected-treattype-results-section").html("");
@@ -170,7 +168,6 @@
 			
 		}
 	}
-
 	</script>
 	<script>
 	   /*  window.onload=()=>{

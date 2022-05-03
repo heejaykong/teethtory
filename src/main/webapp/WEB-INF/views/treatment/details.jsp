@@ -53,7 +53,7 @@
 	                  title="<b id='toothNum'>14번<br/>치아</b>"
 	                  style="top: 33.6%; left: 28.5%; width: 5.59%"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/14.png"
-	                />
+	                /> 
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>13번<br/>치아</b>"
