@@ -78,7 +78,7 @@ flex-direct:row;
     </div>
     <div style="position:relative; border:1px solid lightgrey ;border-radius:1rem; margin:0.5rem;"> 
     		<div style="position:absolute; margin-left:1rem;left:80%">
-	    	<span class="stamp is-nope">예약불가</span>
+	    	<span class="stamp is-nope">예약취소</span>
 	    	</div>
     	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과 진료 예약</h4></div>
 	    	
