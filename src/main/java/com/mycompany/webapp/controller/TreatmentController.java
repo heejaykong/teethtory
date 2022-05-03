@@ -24,16 +24,25 @@ import lombok.extern.log4j.Log4j2;
 public class TreatmentController {
 	
 	@Resource
-	private UserService userservice;
+	private UserService userService;
 	
 	@Resource
 	private MyDentistService myDentistService;
-	
+		
 	@GetMapping("/main")
 	public String showTreatmentsList(HttpSession session, Model model) {
-//		TBD: patientSsn에 해당하는 치료내역 목록 가져오기
+		
+		//Header에 이름, 포인트 값 넘기는 코드
 		String userid = (String) session.getAttribute("sessionUserid");
-		User user = userservice.getUser(userid);
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}		
+//		TBD: patientSsn에 해당하는 치료내역 목록 가져오기
+		User user = userService.getUser(userid);
 		String patientssn = user.getUserssn();
 		
 		List<Dentist> dentist = myDentistService.getMyDentist(userid);

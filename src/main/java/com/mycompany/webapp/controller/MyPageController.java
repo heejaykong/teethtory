@@ -34,7 +34,7 @@ public class MyPageController {
 	private MyDentistService myDentistService;
 	@Resource
 	private DentistService dentistService;
-	
+
 	//마이페이지 메인화면.
 	@RequestMapping("/main")
 	public String myPageMenu(HttpSession session, Model model) {
