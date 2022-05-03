@@ -196,7 +196,7 @@
 		// 치과의 기본정보를 가져오는 ajax 통신.(deninfo)
 		$.ajax({
 			method:"POST",
-			url: "http://localhost:8082/springframework-mini-project-dentist/deninfo/getdeninfo",
+			url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getdeninfo",
 			// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
 			data: {
 			},
@@ -210,7 +210,7 @@
 		//치과의 영업시간을 가져옴.
 		$.ajax({
 			method:"POST",
-			url: "http://localhost:8082/springframework-mini-project-dentist/businesshour/getBusinessHour",
+			url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/businesshour/getBusinessHour",
 			// url: ${dendomain} + "/springframework-mini-project-dentist/businesshour/getBusinessHour",
 			data: {
 			},
@@ -289,7 +289,7 @@
 				// console.log('ajax 시작~~');
 				method:"POST",
 				// async: false,
-				url: "http://localhost:8082/springframework-mini-project-dentist/review/getReviews",
+				url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/review/getReviews",
 				// url: ${dendomain} + "/springframework-mini-project-dentist/review/getReviews",
 				data: {
 					pageNo: pageNo
