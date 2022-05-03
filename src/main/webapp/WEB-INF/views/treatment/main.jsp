@@ -118,7 +118,7 @@
 			for(let i=0; i<${dentist}.dentist.length; i++) {
 				$.ajax({
 					method:"POST",
-					url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
+					url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
 					data: {
 						// pageNo: pageNo
 					},
@@ -126,7 +126,7 @@
 				}).done((data) => {
 					console.log(data);
 					for(let j=0; j<data.treatment.length; j++) {
-						data.treatment[j].denname = (data.denname);
+						data.treatment[j].denname = data.denname;
 						list.push(data.treatment[j]);
 					}
 				});
@@ -153,6 +153,7 @@
 				}
 				return 0;
 			})
+			
 			let aReviewHtml = '';
 			console.log("orderedDate:", data)
 			console.log(data.length);

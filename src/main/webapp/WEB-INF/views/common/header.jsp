@@ -55,11 +55,7 @@
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-
-								4,600.toLocaleString()
-
-								${point} <%-- .toLocaleString() --%>
-
+								${point}
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>

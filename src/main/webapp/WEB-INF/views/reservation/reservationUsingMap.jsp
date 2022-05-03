@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation.css" />
 	<div class="located-at-bottom-of-header">
 	<div style="flex-direction: row; width: 10rem;">
-		<div><a onclick=window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
+		<div><a onclick = window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
 		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500;"></p></span></div>
 	</div>
 	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;" onclick="moveRoadView()"></div>
@@ -27,7 +27,6 @@
 		<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
 	</div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
-	<%-- <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4b29a2d04639a115f1a9cea4ad69f3b9"></script> --%>
 	<script>
 		$.ajax({
 			// console.log('ajax 시작~~');
@@ -114,7 +113,6 @@
 			//지도 아래에 치과 이름, 주소, 연락처 띄우기.
 			document.getElementById('denaddress').innerHTML = DENADDRESS;
 			document.getElementById('dencontact').innerHTML = DENCONTACT;
-
 		});
 	</script>
 
