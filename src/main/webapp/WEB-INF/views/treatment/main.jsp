@@ -78,7 +78,7 @@
             </nav>
         </c:if>
 		<script>
-            function template({treattype, denname, datestring}) {
+            function template({treattype, denname, treatdate}) {
                 // TBD: 각 치과마다 비동기적으로 가져온 데이터들을 날짜순으로 다시 정렬해서 뿌려야 함.
                 // TBD: dentistname(치료를 진행한 치과 이름)을 가져오는 작업 따로 해줘서 뿌려야 함.
                 // TBD: treatdate 파싱해서 yyyy. MM. dd. (요일) 포맷으로 뿌려야 함.
@@ -91,7 +91,7 @@
                                     `+ treattype +`
                                     <span class="subtitle">`+ denname +`</span>
                                 </h4>
-                                <p class="text-md">`+ datestring +`</p>
+                                <p class="text-md">`+ treatdate +`</p>
                             </div>
                             <div class="list-item__thumbnail">
                                 <img src="https://dummyimage.com/600x400/000/fff" alt="treatment thumbnail image"/>
