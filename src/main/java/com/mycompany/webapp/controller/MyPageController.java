@@ -24,6 +24,7 @@ import com.mycompany.webapp.service.DentistService;
 import com.mycompany.webapp.service.MyDentistService;
 import com.mycompany.webapp.service.PointService;
 import com.mycompany.webapp.service.UserService;
+import com.mycompany.webapp.service.UserService.LoginResult;
 
 import lombok.extern.log4j.Log4j2;
 @Controller
@@ -171,8 +172,10 @@ public class MyPageController {
 	
 	//마이페이지에서 햄버거 메뉴 중 '설정' 클릭시에 사용자의 계정정보 페이지 출력.
 	@RequestMapping("/myInformation")
-	public String myInformation() {
-		log.info("실행");
+	public String myInformation(HttpSession session, Model model) {
+		String userid = (String) session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
+		model.addAttribute("user", user);
 		return "myPage/myInformation";
 	}
 
@@ -184,10 +187,21 @@ public class MyPageController {
 	}
 	
 	//마이페이지 - 설정 - '탈퇴하기' 클릭시에 출력
-	@RequestMapping("/signOut")
-	public String signOut() {
+	@GetMapping("/signOut")
+	public String signOutForm() {
 		log.info("실행");
 		return "myPage/signOut";
+	}
+	
+	@PostMapping("/signOut")
+	public String signOut(User user, Model model) {
+		LoginResult result = userService.login(user);
+		if (result == LoginResult.FAILED) {
+			model.addAttribute("error", "아이디나 비밀번호가 일치하지 않습니다.");
+			return "myPage/signOut";
+		}
+		
+		return "redirect:/";
 	} 
 
 }
