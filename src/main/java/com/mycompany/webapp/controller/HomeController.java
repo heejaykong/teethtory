@@ -40,8 +40,13 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-	public String loginForm() {
-		log.info("실행");
+	public String loginForm(HttpSession session, Model model) {
+		String formError = (String) session.getAttribute("formError");
+		if (formError != null) {
+			model.addAttribute("error", formError);
+			session.removeAttribute("formError");
+			return "home/login";
+		}
 		return "home/login";
 	}
 	
@@ -55,6 +60,8 @@ public class HomeController {
 		session.setAttribute("sessionUserid", user.getUserid());
 		log.info("로그인 성공한 유저: " + user.getUserid());
 		log.info("sessionUserid에 저장된 userid: " + session.getAttribute("sessionUserid"));
+		
+		//Form 에러시 문구 띄우는 코드
 		return "redirect:/";
 	}
 	
