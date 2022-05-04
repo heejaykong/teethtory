@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -87,16 +87,14 @@ width:0.01rem;
 
 	<div class="modal">
 		<div class="modal_content">
-			<h5 id="date">text</h5>
-			<hr>
-			<h5 id="description">text</h5>
+			<h5 id="description">text</h5><span id="date" class="ml-3">text</span>
 			<hr>
 			<h5 id="title">text</h5>
 		</div>
 	</div>
-<div>${patientssn}</div>
 
-<script>
+	<script>
+
 
 (function(){
 	
@@ -142,7 +140,10 @@ width:0.01rem;
 			 },
 
 			// 이벤트 start=예약날짜(selectday) title= 병원이름?(denname), description=예약정보
-			events: list
+
+			events: testList
+			 
+
 			});
 			// 캘린더 랜더링
 			
@@ -151,30 +152,78 @@ width:0.01rem;
 			})();
 </script>
 	<script>
-	let list = [];
-	let myDentistList = ${myDentistList}.myDentistList;
-	console.log(myDentistList);
-		for(let i=0; i<myDentistList.length; i++) {
+	getData();
+	let testList = [];
+	
+	function windowdd() {
+		let myDentistList = ${myDentistList}.myDentistList;
+		
+		const promise = new Promise((resolve, reject) => {
+			let list = [];
 			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
-			$.ajax({
-				url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/reservation/reservationList",
-				method:"POST",
-				async: false,
-				data: {
-					patientssn: "${patientssn}"
-				}
-			})
-			.done((data) => {
-				console.log(data.reservationList);
-				data.reservationList.forEach((element) => {
-					list.push(	{title: element.resdesc
-								, description: myDentistList[i].denname
-								, start: element.submitdate}
-					)
+			for(let i=0; i < myDentistList.length; i++) {
+				$.ajax({
+					url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/reservation/reservationList",
+					method:"POST",
+					async: false,
+					data: {
+						patientssn: "${patientssn}"
+					}
 				})
-				console.log("list", list);
-			});
+				.done((data) => {
+					console.log(data.reservationList);
+					data.reservationList.forEach((element) => {
+						list.push(	{title: element.resdesc
+									, description: myDentistList[i].denname
+									, start: element.selecteddate + " " +element.selectedtime
+									, color: "#6A5ACD"}
+						)
+					})
+				});
+			}
+			// 사용자의 모든 '내 치과'에 진료정보를 확인해서 받아오는 통신.
+			for(let i=0; i < myDentistList.length; i++) {
+				$.ajax({
+					url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn",
+					method:"POST",
+					async: false,
+					data: {
+						patientssn: "${patientssn}"
+					}
+				})
+				.done((data) => {
+					data.treatment.forEach((element) => {
+						list.push(	{title: element.treattype
+									, description: data.denname
+									, start: element.treatdate
+									, color: "#FF5675"}
+						)
+					})
+				});
+			}
+			console.log("allList", list);
+			
+			if(list != null) {
+				resolve(list);
+			} else {
+				reject({message: "실패"});
+			}
+			
+		});
+		return promise;
+	}
+	
+	async function getData() {
+		try {
+			data = await windowdd();
+			console.log("data", data);
+			testList = data;
+		} catch (error) {
+			console.log(error, "error");
+		} finally {
+			
 		}
+	}
 	</script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
