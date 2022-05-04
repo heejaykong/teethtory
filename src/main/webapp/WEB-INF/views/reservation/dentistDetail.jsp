@@ -72,12 +72,12 @@
 
         //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(denno 필요.)
         let yesBtn = document.getElementById('btn-yes');
-        yesBtn.onclick = function() {
-            let denNoForReservation = document.getElementById('denNo').value;
-            //내 치과에 등록된 치과인지 점검.
-            location.href = "";
-            //내 치과에 등록된
-        }
+        // yesBtn.onclick = function() {
+        //     let denNoForReservation = document.getElementById('denNo').value;
+        //     //내 치과에 등록된 치과인지 점검.
+        //     location.href = "";
+        //     //내 치과에 등록된
+        // }
 	})
 	
 	function handleHidden(e, task, denno) {
@@ -89,12 +89,12 @@
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
 
-		// const hiddenDenNo = denno;
-		// if(task === 'add') {
-		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
-		// } else if(task === 'delete') {
-		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
-		// }
+		const hiddenDenNo = denno;
+		if(task === 'add') {
+			location.href = "myDentist?denno=" + denno + "&task=" + task;
+		} else if(task === 'delete') {
+			location.href = "myDentist?denno=" + denno + "&task=" + task;
+		}
 	}
 	
 	function toggleOff(e) {
