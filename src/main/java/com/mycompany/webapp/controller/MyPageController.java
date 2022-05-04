@@ -56,7 +56,19 @@ public class MyPageController {
 		}
 		return "redirect:/";
 	}
-
+	@RequestMapping("/eastegg")
+	public String eastegg(HttpSession session, Model model) {
+		//Header에 이름, 포인트 값 넘기는 코드
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}
+		return "myPage/eastegg";
+	}
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
 	public String myDentist(HttpSession session
