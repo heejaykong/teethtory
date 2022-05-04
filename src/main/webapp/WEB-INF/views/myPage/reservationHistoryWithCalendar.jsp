@@ -6,7 +6,7 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 
-<meta charset='utf-8' />
+<meta charset='utf-8'/>
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <!-- jquery CDN -->
@@ -32,7 +32,6 @@ html, body {
 .modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
 }
-
 .modal_content{
   border:2px solid orange;
   width:400px; height:200px;
@@ -51,15 +50,16 @@ html, body {
 	<div id='calendar'></div>
 	</div>
 	
- 	<div class="modal">
+ 	  <div class="modal">
 	  <div class="modal_content"><h5 id="date">text</h5>
 	  <hr>
 	  <h5 id="content">text</h5>
 	  </div>
-	</div>
+	  </div>
 <script>
 
 (function(){
+	
 	$(function(){
 // calendar element 취득
 		var calendarEl = $('#calendar')[0];
@@ -75,7 +75,6 @@ html, body {
 			center: 'title',
 			right: 'next'
 },
-
 			initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 			navLinks: false, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
 			editable: true, // 수정 가능?
@@ -106,6 +105,7 @@ html, body {
 			},
 			eventClick: function(info) {
 			   	//모달띄우기
+			
 			$(".modal").fadeIn();
 			$("#date").text(info.event.start.toLocaleString());
 		    $("#content").text(info.event.title);
@@ -114,7 +114,9 @@ html, body {
 			$(".modal_content").click(function(){
 		   	$(".modal").fadeOut();
 		     }); 
-			  },
+			 },
+			 
+			
 			  
 			// 이벤트 start=예약날짜(selectday) tilte= 병원이름?(denname)
 			events: [
@@ -132,12 +134,12 @@ html, body {
 					start: '2022-05-05',
 					}
 			]
+			 
 			});
 			// 캘린더 랜더링
 			calendar.render();
 			});
 			})();
-
 </script>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
