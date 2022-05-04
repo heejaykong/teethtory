@@ -132,6 +132,8 @@ flex-direct:row;
 </div>
 
 	<script>
+
+
 		//웹 서버로부터 사용자의 내치과 객체들을 리스트로 받아오는 통신.
 		var totalArray = [];
 		$.ajax({
@@ -210,38 +212,41 @@ flex-direct:row;
 			for(let i=pager.startRowIndex; i<=pager.endRowIndex; i++) {
 				console.log('i : ' + i);
 				console.log('pager.endRowIndex : ' + pager.endRowIndex);
-				aReservationHtml += '<div style="position:relative;  border:1px solid lightgrey; border-radius:1rem; margin:0.5rem;"> ';
-				aReservationHtml += '	<div style="display: none;" value="' + totalArray[i]["dendomain"] + '"></div>';
+				aReservationHtml += '<div id="aReservationContainer" style="position:relative;  border:1px solid lightgrey; border-radius:1rem; margin:0.5rem;"> ';
 				aReservationHtml += '	<div style="position:absolute; margin-left:1rem;left:80%">';
 				if(totalArray[i]["isfixed"] === false && totalArray[i]["ispending"] === false) {
-					aReservationHtml += '	<span class="stamp is-nope">취소</span>';
+					aReservationHtml += '		<span class="stamp is-nope">취소</span>';
 				} else if(totalArray[i]["isfixed"] === false && totalArray[i]["ispending"] === true) {
-					aReservationHtml += '	<span class="stamp">대기중</span>';
+					aReservationHtml += '		<span class="stamp">대기중</span>';
 				} else if(totalArray[i]["isfixed"] === true && totalArray[i]["ispending"] === false) {
-					aReservationHtml += '	<span class="stamp is-approved">확정</span>';
+					aReservationHtml += '		<span class="stamp is-approved">확정</span>';
 				} else {//불가능한 경우
 					//시간이 된다면 오류로그 쌓는 DB를 만들어서 쌓으면 좋을듯.
 				}
-				aReservationHtml += '	</div>';
-				aReservationHtml += '<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>' + totalArray[i]["denname"] + '</h4></div>';
-				aReservationHtml += '<div style="margin-left:1rem;"><h5>예약일정: ' + totalArray[i]["selecteddate"] + ' ' + totalArray[i]["selectedtime"] + '</h5></div>';
-				aReservationHtml += '<div style="margin-left:1rem;"><h5>신청일자: ' + totalArray[i]["submitdate"] + '</h5></div>';
+				aReservationHtml += '		</div>';
+				aReservationHtml += '	<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>' + totalArray[i]["denname"] + '</h4></div>';
+				aReservationHtml += '	<div style="margin-left:1rem;"><h5>예약일정: ' + totalArray[i]["selecteddate"] + ' ' + totalArray[i]["selectedtime"] + '</h5></div>';
+				aReservationHtml += '	<div style="margin-left:1rem;"><h5>신청일자: ' + totalArray[i]["submitdate"] + '</h5></div>';
 				//취소사유가 있는 경우는 무조건 취소된 경우이므로, 취소사유가 있는 경우에만 취소사유를 표시.
 				if(totalArray[i]["canceldesc"] !== undefined) {
-					aReservationHtml += '<div style="margin-left:1rem;"><h5>취소사유: ' + totalArray[i]["canceldesc"] + '</h5></div>';
+					aReservationHtml += '	<div style="margin-left:1rem;"><h5>취소사유: ' + totalArray[i]["canceldesc"] + '</h5></div>';
 				}
-				aReservationHtml += '<div class="container" style=" margin-bottom:1rem;">';	
 				if( ( (totalArray[i]["isfixed"] === false && totalArray[i]["ispending"] === true)
 					|| (totalArray[i]["isfixed"] === true && totalArray[i]["ispending"] === false) )
 					&& (new Date(totalArray[i]["selecteddate"]) > new Date()) ) {
-						aReservationHtml += '	<input type="submit" value="예약취소"';	
-						aReservationHtml += '				class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">';	
+						aReservationHtml += '	<div onclick="cancelReservation(' + totalArray[i]["dendomain"] + ', ' + parseInt(totalArray[i]["resno"]) + ')" class="container" style=" margin-bottom:1rem;">';	
+						// aReservationHtml += '	<div class="container cancelBtn" style=" margin-bottom:1rem;">';
+						aReservationHtml += '		<div id="dendomain" style="display: none;" value="' + totalArray[i]["dendomain"] + '"></div>';
+						aReservationHtml += '		<div id="resno" style="display: none;" value="' + totalArray[i]["resno"] + '"></div>';
+						aReservationHtml += '		<input type="text" value="예약취소" readonly';	
+						aReservationHtml += '					class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">';	
+						aReservationHtml += '		</div>';
 				}
-				aReservationHtml += '	</div>';
 				aReservationHtml += '</div>';
 				$("#reservationListContainer").html(aReservationHtml);
 			}
 		}
+
 		// printPaginationBtn(pager); //페이지 로드되고 1회만 실행. 이후부터는 페이지네이션용 버튼 클릭시마다 setPager -> printPaginationBtn 새로 실행.
 		function printPaginationBtn(pager) {
 			//페이지네이션 버튼 출력.
@@ -316,6 +321,7 @@ flex-direct:row;
 		}
 
 		function cancelReservation(dendomain, resno) {
+			console.log('cancelReservation~~~');
 			$.ajax({
 				// url: dendomain + "/springframework-mini-project-dentist/reservation/cancelReservation",
 				url: "http://localhost:" + dendomain + "/springframework-mini-project-dentist/reservation/cancelReservation",
@@ -334,7 +340,14 @@ flex-direct:row;
 				location.reload();
 			});
 		}
-		
+
+		$('.cancelBtn').click(function() {
+			console.log('~~~~~`');
+			// let dendomainForAjax = $(this).parent('#dendomain').val();
+			let dendomainForAjax = $(this).children('#dendomain').val();
+			console.log('dendomainForAjax : ' + dendomainForAjax);
+		});
+
 		//rowsPerPage, pagesPerGroup, totalRows, pageNo
 		setPager(1); //페이지 로드되고, ajax통신이 끝나면 최초 1회 실행.
 	</script>
