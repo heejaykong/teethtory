@@ -84,6 +84,8 @@ else if(date.length==15){
 	var tformatDate =date.substr(10,2)+date.substr(13,2);
 	atimeIndex=(tformatDate.substr(0,2)*2)+(tformatDate.substr(2,2)/30)+8;
 }
+
+
 //atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
 console.log(atimeIndex);
 $.ajax({

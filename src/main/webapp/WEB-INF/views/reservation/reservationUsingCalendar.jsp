@@ -200,7 +200,7 @@
                	
                 var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
                 /* console.log(aformatDate); */
-                
+                console.log(aformatDate);
                 $.ajax({
                 	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })

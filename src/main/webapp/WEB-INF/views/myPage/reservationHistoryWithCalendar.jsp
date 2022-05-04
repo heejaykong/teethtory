@@ -84,18 +84,6 @@ width:0.01rem;
 	<div id='calendar-container'>
 		<div id='calendar'></div>
 	</div>
-<<<<<<< HEAD
-	
- 	  <div class="modal">
-	  <div class="modal_content"><h5 id="date">text</h5>
-	  
-	  <h5 id="content">text</h5>
-	  <h5 id="description">text</h5>
-	  </div>
-	  </div>
-	  </section>
-	</div> 
-=======
 
 	<div class="modal">
 		<div class="modal_content">
@@ -107,7 +95,7 @@ width:0.01rem;
 		</div>
 	</div>
 <div>${patientssn}</div>
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project
+
 <script>
 
 (function(){
@@ -137,61 +125,24 @@ width:0.01rem;
 			nowIndicator: true, // 현재 시간 마크
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			locale: 'ko', // 한국어 설정
-<<<<<<< HEAD
-			
-=======
 
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project
 			eventClick: function(info) {
 			   	//모달띄우기
 			
 			$(".modal").fadeIn();
-<<<<<<< HEAD
-			
-			$("#date").text(info.event.start.toLocaleString().slice(0,-3));
-			
-		    $("#content").text(info.event.title);
-		   
-		   
-=======
+
 			$("#date").text((info.event.start.toLocaleString()).slice(0, -3));
 		    $("#title").text(info.event.title);
 		    $("#description").text(info.event.extendedProps.description);
-		    
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project
 			info.el.style.borderColor = 'red';
 			//모달 띄워져있는거 클릭시 없어짐
 			$(".modal_content").click(function(){
 		   	$(".modal").fadeOut();
 		     }); 
 			 },
-			
-			
-			  
-<<<<<<< HEAD
-			// 이벤트 start=예약날짜(selectday) tilte= 병원이름?(denname)
-			events: [
-				{	
-					title: '임플란트',
-					start: '2022-05-01T16:00:00',
-					
-					},
-					
-					{
-						title: '임플란트',
-						start: '2022-05-02T22:00:00',
-					},
-					{
-						title: '임플란트',
-						start: '2022-05-03T22:00:00',
-					}
-			]
-			
-=======
+
 			// 이벤트 start=예약날짜(selectday) title= 병원이름?(denname), description=예약정보
 			events: list
-			 
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project
 			});
 			// 캘린더 랜더링
 			
