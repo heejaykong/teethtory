@@ -62,7 +62,7 @@
 		
 		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
 		
-		<!-- 댓글 부분 -->
+		
 
 	<div class="donut">
 		<form method="post"

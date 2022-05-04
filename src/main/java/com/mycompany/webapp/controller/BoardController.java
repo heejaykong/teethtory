@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Comment;
 import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.BoardService;
 import com.mycompany.webapp.service.CommentService;
+import com.mycompany.webapp.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -26,14 +28,28 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/board")
 @Log4j2
 public class BoardController {
+	
+	@Resource
+	private UserService userService;
+	
 	@Resource
 	private BoardService boardService;
 	
 	@Resource
 	private CommentService commentService;
-
+	
 	@GetMapping("/boardList")
-	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model) {
+	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
+		//Header에 이름, 포인트 값 넘기는 코드
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("point", point);
+		}
+		
 		int totalBoardNum = boardService.getTotalBoardCount();
 
 		Pager pager = new Pager(5, 5, totalBoardNum, pageNo);

@@ -2,10 +2,14 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%-- <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> --%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 
@@ -43,7 +47,7 @@
 				<div class="profile__img"></div>
 				<div class="profile__nametag">
 					<p class="name">
-						<span id="username">김영희</span> 님
+						<span id="username">${name}</span> 님
 					</p>
 					<a href="#">
 						<p class="mypoint">
@@ -51,7 +55,10 @@
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-								4,600 <%-- .toLocaleString() --%>
+
+
+								${point}
+
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>

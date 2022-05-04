@@ -6,15 +6,20 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Dentist;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Point;
+import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.DentistService;
 import com.mycompany.webapp.service.MyDentistService;
 import com.mycompany.webapp.service.PointService;
@@ -33,11 +38,18 @@ public class MyPageController {
 	private MyDentistService myDentistService;
 	@Resource
 	private DentistService dentistService;
-	
+
 	//마이페이지 메인화면.
 	@RequestMapping("/main")
-	public String myPageMenu() {
-		log.info("실행");
+	public String myPageMenu(HttpSession session, Model model) {
+		String userid = (String) session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
+		String name = user.getUsername();
+		String email = user.getUseremail();
+		int point = user.getUserpoint();
+		model.addAttribute("name", name);
+		model.addAttribute("email", email);
+		model.addAttribute("point", point);
 		return "myPage/main";
 	}
 
@@ -124,12 +136,38 @@ public class MyPageController {
 		return "myPage/myPointList";
 	}
 	
+	@GetMapping("/myReservationList")
+	public String myReservationList() {
+		log.info("실행");
+		return "myPage/myReservationList";
+	}
+
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/myReservationList", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String myReservationList(HttpSession session) {
+		String userId = (String) session.getAttribute("sessionUserid");
+		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+		List<Dentist> myDentistList = myDentistService.getMyDentist(userId);
+		log.info(myDentistList);
+		JSONObject jsonObject = new JSONObject();
+		//주민번호
+		jsonObject.put("patientssn", userService.getUser(userId).getUserssn());
+		//jsp에서 for문을 이용해서 dendomain만 추출해서 ajax통신해야함.
+		jsonObject.put("myDentistList", myDentistList);
+		log.info(jsonObject);
+		
+		return jsonObject.toString();
+	}
+	
 	//마이페이지 - 캘린더.
 	@RequestMapping("/reservationHistoryWithCalendar")
 	public String reservationHistoryWithCalendar() {
 		log.info("실행");
 		return "myPage/reservationHistoryWithCalendar";
 	}
+	
+	
 	
 	//마이페이지에서 햄버거 메뉴 중 '설정' 클릭시에 사용자의 계정정보 페이지 출력.
 	@RequestMapping("/myInformation")
@@ -152,9 +190,4 @@ public class MyPageController {
 		return "myPage/signOut";
 	} 
 
-	@RequestMapping("/myReservationList")
-	public String myReservationList() {
-		log.info("실행");
-		return "myPage/myReservationList";
-	}
 }
