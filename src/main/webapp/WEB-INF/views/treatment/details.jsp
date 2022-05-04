@@ -12,7 +12,9 @@
 
 
 	<main class="main located-at-bottom-of-header">
-	    <h1 class="page-title" id="treatment-type">충치 치료</h1>
+	
+		<h1 class="page-title" id="treatment-type">충치 치료</h1>
+		<span>#<span id="treatno">00</span></span>
 	    <section class="mouth-section">
 	        <div class="mouth">
 	            <div class="mouth__upper-jaw">
@@ -142,7 +144,7 @@
 	        </li>
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">치료한 치아</h6>
-	            <p class="desc-item__content"><span id="teeth-number">#16, #17</span></p>
+	            <p class="desc-item__content"><span id="teeth-numbers">-</span></p>
 	        </li>
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">병명</h6>
@@ -157,21 +159,11 @@
 	            <p class="desc-item__content">치료 전</p>
 	            <!-- tbd -->
 	            <div class="before-imgs-wrapper">
-	              <!-- <a href="imageDetail/1">
-	                <img class="content__img" src="https://dummyimage.com/600x400/000/fff" alt="dummy"/>
-	              </a>
-	              <a href="#">
-	                <img class="content__img" src="https://dummyimage.com/600x400/000/fff" alt="dummy"/>
-	              </a> -->
+	              	<!-- 치료 전 이미지들 display -->
 	            </div>
 	            <p class="desc-item__content">치료 후</p>
 	            <div class="after-imgs-wrapper">
-	              <!-- <a href="#">
-	                <img class="content__img" src="https://dummyimage.com/600x400/000/fff" alt="dummy"/>
-	              </a>
-	              <a href="#">
-	                <img class="content__img" src="https://dummyimage.com/600x400/000/fff" alt="dummy"/>
-	              </a> -->
+					<!-- 치료 후 이미지들 display -->
 	            </div>
 	        </li>
 	        <li class="desc-item">
@@ -191,11 +183,11 @@
 	      <a href="#" class="btn-large-hollow">이 치과 진료 예약하기</a>
 	    </section>
 	</main>
+
+	<%-- 변수 선언 --%>
+	<c:set var="treatno" value="${treatno}" />
+
 	<script>
-	  const DUMMY_TOOTH_ID_LIST = [16, 17];
-	  const DUMMY_BEFORE_IMAGES_SRC = ["before_cavity1.jpg", "before_cavity2.jpg"];
-	  const DUMMY_AFTER_IMAGES_SRC = ["after_cavity2.png", "after_cavity1.jpg"];
-	  
 	  $(function(){
 	    // 각 치아에 id 동적으로 부여
 	    document.querySelectorAll(".mouth .tooth").forEach((tooth)=>{
@@ -203,24 +195,65 @@
 	      const toothId = srcList[srcList.length-1].split(".")[0];
 	      tooth.id = toothId;
 	    });
-	  
-	    // 동적으로 표시해야 할 치아들을 각각 표시하기
-	    DUMMY_TOOTH_ID_LIST.forEach(toothId => {
-	      $("#"+toothId).addClass('marked-teeth');
-	    });
-	
-	    // 이미지 동적으로 랜더링
-	    DUMMY_BEFORE_IMAGES_SRC.forEach(src => {
-	      $(".before-imgs-wrapper").append(
-	        "<a href='#'><img class='content__img' src='${pageContext.request.contextPath}/resources/images/treatment/"+ src +"' alt='dummy'/></a>"
-	      );
-	    });
-	    DUMMY_AFTER_IMAGES_SRC.forEach(src => {
-	      $(".after-imgs-wrapper").append(
-	        "<a href='#'><img class='content__img' src='${pageContext.request.contextPath}/resources/images/treatment/"+ src +"' alt='dummy'/></a>"
-	      );
-	    });
+
+		// treatno에 해당되는 treatment 객체 받아오기
+		const treatno = '${treatno}';
+		$.ajax({
+			type:"POST",
+			url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+			//async: false,
+			data: {} // 전송할 데이터
+		}).done((data) => {
+			console.log(data.attachmentList);
+
+			const treattype = data.treattype;
+			$("#treatment-type").html(treattype);
+
+			const treatno = data.treatno;
+			$("#treatno").html(treatno);
+
+			// 동적으로 표시해야 할 치아들을 각각 색깔로 표시하기
+			const teeth = data.teeth;
+			teeth.map(({toothno}) => {
+				$("#"+toothno).addClass('marked-teeth');
+			});
+			// '치료한 치아' 항목에 줄글로 치아 표시하기
+			const teethWithPrefix = teeth.map(({toothno}) => ("#" + toothno));
+			$("#teeth-numbers").html(teethWithPrefix.join(", "));
+
+			const treatdate = data.treatdate;
+			$("#treatment-date").html(treatdate);
+
+			const doctorcomment = data.doctorcomment;
+			$("#doctor-comment").html(doctorcomment);
+		    
+			// 이미지 동적으로 랜더링
+			const attachmentList = data.attachmentList;
+			attachmentList.map(({bsavedfilename, asavedfilename}) => {
+				if (bsavedfilename) {
+					$(".before-imgs-wrapper").append(
+						"<a href='imageShow?filename="+bsavedfilename+"'><img class='content__img' src='http://localhost:8082/springframework-mini-project-dentist/resources/images/treatment/"+ bsavedfilename +"' alt='dummy'/></a>"
+					);
+				}
+				if (asavedfilename) {
+					$(".after-imgs-wrapper").append(
+						"<a href='imageShow?filename="+asavedfilename+"'><img class='content__img' src='http://localhost:8082/springframework-mini-project-dentist/resources/images/treatment/"+ asavedfilename +"' alt='dummy'/></a>"
+					);
+				}
+			});
+
+			const materialcompany = data.materialcompany;
+			$("#equipment-company").html(materialcompany);
+
+			const doctorname = data.doctorname;
+			$("#doctor-name").html(doctorname);
+
+			const treatcost = data.treatcost;
+			$("#cost").html(treatcost.toLocaleString());
+		});
+
 	  });
+
 	  $(function () {
 	    $(".upper-jaw__upper-teeth>img").attr("data-toggle", "tooltip");
 	    $(".upper-jaw__upper-teeth>img").attr("data-placement", "top");
