@@ -44,14 +44,17 @@ public class MyPageController {
 	@RequestMapping("/main")
 	public String myPageMenu(HttpSession session, Model model) {
 		String userid = (String) session.getAttribute("sessionUserid");
-		User user = userService.getUser(userid);
-		String name = user.getUsername();
-		String email = user.getUseremail();
-		int point = user.getUserpoint();
-		model.addAttribute("name", name);
-		model.addAttribute("email", email);
-		model.addAttribute("point", point);
-		return "myPage/main";
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			String email = user.getUseremail();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("email", email);
+			model.addAttribute("point", point);
+			return "myPage/main";
+		}
+		return "redirect:/";
 	}
 
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
@@ -163,7 +166,16 @@ public class MyPageController {
 	
 	//마이페이지 - 캘린더.
 	@RequestMapping("/reservationHistoryWithCalendar")
-	public String reservationHistoryWithCalendar() {
+	public String reservationHistoryWithCalendar(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("sessionUserid");
+		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+		List<Dentist> myDentistList = myDentistService.getMyDentist(userId);
+		String patientssn = userService.getUser(userId).getUserssn();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("myDentistList", myDentistList);
+		String json = jsonObject.toString();
+		model.addAttribute("myDentistList", json);
+		model.addAttribute("patientssn", patientssn);
 		log.info("실행");
 		return "myPage/reservationHistoryWithCalendar";
 	}
