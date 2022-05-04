@@ -26,6 +26,7 @@
 <div class="located-at-bottom-of-header">
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span onclick="location.href='boardList'">커뮤니티</span>
+		<c:if test="${board.boardwriter == userid}">
 		<div class="btn-group">
 		  <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 		  </button>
@@ -34,6 +35,7 @@
 		    <button class="dropdown-item" type="button" onclick="location.href='boardDelete?boardno=${board.boardno}'">삭제</button>
 		  </div>
 		</div>
+		</c:if>
 	</div>
 	<hr style="margin: 0px;">
 	<div class="donut">
@@ -76,7 +78,7 @@
 				</tr>
 			</table>
 		</form>
-		<button  class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
+		<button class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
 		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
@@ -87,7 +89,8 @@
 				</div>
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 				  <button type="button" class="btn"><i class="fa-regular fa-thumbs-up"></i></button>
-				
+				  
+				  <c:if test="${comment.commentwriter == userid}">
 				  <div class="btn-group dropleft" role="group">
 				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 				    </button>
@@ -96,6 +99,7 @@
 				      <a class="dropdown-item" href="commentDelete?commentno=${comment.commentno}">댓글 삭제</a>
 				    </div>
 				  </div>
+				  </c:if>
 				</div>
 			</div>
 			<div id="content">${comment.commentcontent}</div>

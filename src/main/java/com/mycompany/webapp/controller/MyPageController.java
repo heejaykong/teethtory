@@ -24,6 +24,7 @@ import com.mycompany.webapp.service.DentistService;
 import com.mycompany.webapp.service.MyDentistService;
 import com.mycompany.webapp.service.PointService;
 import com.mycompany.webapp.service.UserService;
+import com.mycompany.webapp.service.UserService.LoginResult;
 
 import lombok.extern.log4j.Log4j2;
 @Controller
@@ -43,14 +44,17 @@ public class MyPageController {
 	@RequestMapping("/main")
 	public String myPageMenu(HttpSession session, Model model) {
 		String userid = (String) session.getAttribute("sessionUserid");
-		User user = userService.getUser(userid);
-		String name = user.getUsername();
-		String email = user.getUseremail();
-		int point = user.getUserpoint();
-		model.addAttribute("name", name);
-		model.addAttribute("email", email);
-		model.addAttribute("point", point);
-		return "myPage/main";
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			String email = user.getUseremail();
+			int point = user.getUserpoint();
+			model.addAttribute("name", name);
+			model.addAttribute("email", email);
+			model.addAttribute("point", point);
+			return "myPage/main";
+		}
+		return "redirect:/";
 	}
 
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
@@ -162,7 +166,16 @@ public class MyPageController {
 	
 	//마이페이지 - 캘린더.
 	@RequestMapping("/reservationHistoryWithCalendar")
-	public String reservationHistoryWithCalendar() {
+	public String reservationHistoryWithCalendar(HttpSession session, Model model) {
+		String userId = (String) session.getAttribute("sessionUserid");
+		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+		List<Dentist> myDentistList = myDentistService.getMyDentist(userId);
+		String patientssn = userService.getUser(userId).getUserssn();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("myDentistList", myDentistList);
+		String json = jsonObject.toString();
+		model.addAttribute("myDentistList", json);
+		model.addAttribute("patientssn", patientssn);
 		log.info("실행");
 		return "myPage/reservationHistoryWithCalendar";
 	}
@@ -176,8 +189,10 @@ public class MyPageController {
 	
 	//마이페이지에서 햄버거 메뉴 중 '설정' 클릭시에 사용자의 계정정보 페이지 출력.
 	@RequestMapping("/myInformation")
-	public String myInformation() {
-		log.info("실행");
+	public String myInformation(HttpSession session, Model model) {
+		String userid = (String) session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
+		model.addAttribute("user", user);
 		return "myPage/myInformation";
 	}
 
@@ -189,10 +204,22 @@ public class MyPageController {
 	}
 	
 	//마이페이지 - 설정 - '탈퇴하기' 클릭시에 출력
-	@RequestMapping("/signOut")
-	public String signOut() {
+	@GetMapping("/signOut")
+	public String signOutForm() {
 		log.info("실행");
 		return "myPage/signOut";
+	}
+	
+	@PostMapping("/signOut")
+	public String signOut(User user, Model model, HttpSession session) {
+		LoginResult result = userService.login(user);
+		if (result == LoginResult.FAILED) {
+			model.addAttribute("error", "아이디나 비밀번호가 일치하지 않습니다.");
+			return "myPage/signOut";
+		}
+		userService.deleteUser(user.getUserid());
+		session.removeAttribute("sessionUserid");
+		return "redirect:/";
 	} 
 
 }

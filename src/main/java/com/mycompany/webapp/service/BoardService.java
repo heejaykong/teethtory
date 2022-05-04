@@ -27,11 +27,21 @@ public class BoardService {
 	}
 	
 	public Board getBoard(int boardno) {
-		return boardDao.selectByBoardno(boardno);
+		Board board = boardDao.selectByBoardno(boardno);
+		if(board.getBoardwriter() == null) {
+			board.setBoardwriter("(알 수 없음)");
+		}
+		return board;
 	}
 	
 	public List<Board> getBoards(Pager pager) {
-		return boardDao.selectByPage(pager);
+		List<Board> boardList = boardDao.selectByPage(pager);
+		for(Board board : boardList) {
+			if(board.getBoardwriter() == null) {
+				board.setBoardwriter("(알 수 없음)");
+			}
+		}
+		return boardList;
 	}
 	
 	public List<Board> getBoardsByUserid(String userid, Pager pager) {
@@ -39,7 +49,13 @@ public class BoardService {
 	}
 	
 	public List<Board> getBoardsByTitleContent(String boardtitle, Pager pager) {
-		return boardDao.selectByTitleContent(boardtitle,pager);
+		List<Board> boardList = boardDao.selectByTitleContent(boardtitle, pager);
+		for(Board board : boardList) {
+			if(board.getBoardwriter() == null) {
+				board.setBoardwriter("(알 수 없음)");
+			}
+		}
+		return boardList;
 	}
 	
 	
