@@ -26,15 +26,19 @@
 html, body {
 
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 }
 /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
 .fc-event-time{
-	font-size:2px;
+	font-size:1px;
+	white-space:normal;
 }
+.fc-event-title{
+	display:none;
+}
+
 .fc-daygrid-event-dot{
-margin:0px;
-width:0.01rem;
+ 
 }
 .fc-header-toolbar {
 	padding-top: 1em;
@@ -52,9 +56,6 @@ width:0.01rem;
 	display: none;
 }
 
-.fc-event-time {
-	font-size: 2px;
-}
 
 .fc-daygrid-event-dot {
 	margin: 0px;
