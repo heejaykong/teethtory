@@ -194,13 +194,14 @@ public class MyPageController {
 	}
 	
 	@PostMapping("/signOut")
-	public String signOut(User user, Model model) {
+	public String signOut(User user, Model model, HttpSession session) {
 		LoginResult result = userService.login(user);
 		if (result == LoginResult.FAILED) {
 			model.addAttribute("error", "아이디나 비밀번호가 일치하지 않습니다.");
 			return "myPage/signOut";
 		}
-		
+		userService.deleteUser(user.getUserid());
+		session.removeAttribute("sessionUserid");
 		return "redirect:/";
 	} 
 
