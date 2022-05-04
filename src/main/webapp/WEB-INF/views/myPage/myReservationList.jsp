@@ -235,44 +235,28 @@ flex-direct:row;
 			pager.startRowNo = parseInt( (pager.pageNo - 1) * pager.rowsPerPage ) + 1;
 			//페이지의 시작 행 인덱스(0, ..., n-1) for mysql
 			pager.startRowIndex = pager.startRowNo - 1;
-			//페이지의 마지막 행 번호
-			pager.endRowNo = parseInt( pager.pageNo * pager.rowsPerPage );
-			//페이지의 마지막 행 인덱스
-			pager.endRowIndex = pager.endRowNo - 1;
-			//페이지 로드되고 1회만 실행. 이후부터는 페이지네이션용 버튼 클릭시마다 setPager -> printPaginationBtn 새로 실행.
-			function printPaginationBtn(pager) {
-				//페이지네이션 버튼 출력.
-				let paginationHtml = '';
-				paginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="setPager(1)">처음</a>';
-		
-				if(pager.groupNo>1) {
-					paginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="setPager(' + parseInt(pager.startPageNo-1) + ')">이전</a>';
-				}
-				for(let i=pager.startPageNo; i<=pager.endPageNo; i++) {
-					if(pager.pageNo != i) {
-						paginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="setPager(' + i + ')">' + i + '</a>';
-					} else {
-						paginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="setPager(' + i + ')">' + i + '</a>';
-					}
-				}
-				if(pager.groupNo<pager.totalGroupNo) {
-					paginationHtml += '		<a class="btn btn-outline-info btn-sm" onClick="setPager(' + parseInt(pager.endPageNo+1) + ')">다음</a>';
-				}
-				paginationHtml += '		<a class="btn btn-outline-primary btn-sm"  onClick="setPager(' + parseInt(pager.totalPageNo) + ')">맨끝</a>';
-		
-				$("#paginationContainer").html(paginationHtml);
+			if(parseInt( pager.pageNo * pager.rowsPerPage ) > pager.totalRows) {
+				//페이지의 마지막 행 번호
+				pager.endRowNo = pager.totalRows;
+				//페이지의 마지막 행 인덱스
+				pager.endRowIndex = pager.totalRows - 1;
+			} else {
+				//페이지의 마지막 행 번호
+				pager.endRowNo = parseInt( pager.pageNo * pager.rowsPerPage );
+				//페이지의 마지막 행 인덱스
+				pager.endRowIndex = pager.endRowNo - 1;
 			}
-			printPaginationBtn(pager);
+
+			//페이지 로드되고 1회만 실행. 이후부터는 페이지네이션용 버튼 클릭시마다 setPager -> printPaginationBtn 새로 실행.
 			pringReservationList(pager)
+			printPaginationBtn(pager);
 		}
-		//rowsPerPage, pagesPerGroup, totalRows, pageNo
-		setPager(1); //페이지 로드되고, ajax통신이 끝나면 최초 1회 실행.
-		// printPaginationBtn(pager); //페이지 로드되고 1회만 실행. 이후부터는 페이지네이션용 버튼 클릭시마다 setPager -> printPaginationBtn 새로 실행.
-		
 		//한 그룹당 예약목록 출력.
 		function pringReservationList(pager) {
 			let aReservationHtml = '';
 			for(let i=pager.startRowIndex; i<=pager.endRowIndex; i++) {
+				console.log('i : ' + i);
+				console.log('pager.endRowIndex : ' + pager.endRowIndex);
 				aReservationHtml += '<div style="position:relative;  border:1px solid lightgrey; border-radius:1rem; margin:0.5rem;"> ';
 				aReservationHtml += '	<div style="position:absolute; margin-left:1rem;left:80%">';
 				if(totalArray[i]["isfixed"] === false && totalArray[i]["ispending"] === false) {
@@ -312,6 +296,32 @@ flex-direct:row;
 				$("#reservationListContainer").html(aReservationHtml);
 			}
 		}
+		// printPaginationBtn(pager); //페이지 로드되고 1회만 실행. 이후부터는 페이지네이션용 버튼 클릭시마다 setPager -> printPaginationBtn 새로 실행.
+		function printPaginationBtn(pager) {
+			//페이지네이션 버튼 출력.
+			let paginationHtml = '';
+			paginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="setPager(1)">처음</a>';
+	
+			if(pager.groupNo>1) {
+				paginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="setPager(' + parseInt(pager.startPageNo-1) + ')">이전</a>';
+			}
+			for(let i=pager.startPageNo; i<=pager.endPageNo; i++) {
+				if(pager.pageNo != i) {
+					paginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="setPager(' + i + ')">' + i + '</a>';
+				} else {
+					paginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="setPager(' + i + ')">' + i + '</a>';
+				}
+			}
+			if(pager.groupNo<pager.totalGroupNo) {
+				paginationHtml += '		<a class="btn btn-outline-info btn-sm" onClick="setPager(' + parseInt(pager.endPageNo+1) + ')">다음</a>';
+			}
+			paginationHtml += '		<a class="btn btn-outline-primary btn-sm"  onClick="setPager(' + parseInt(pager.totalPageNo) + ')">맨끝</a>';
+	
+			$("#paginationContainer").html(paginationHtml);
+		}
+		//rowsPerPage, pagesPerGroup, totalRows, pageNo
+		setPager(1); //페이지 로드되고, ajax통신이 끝나면 최초 1회 실행.
+		
 		
 	</script>
 
