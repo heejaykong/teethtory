@@ -46,8 +46,7 @@
 	  	var modal = $(this)
 	  	modal.find('.modal-title').text(recipient)
 	  	modal.find('.modal-body').text(body)
-
-
+		
 	})
 	
 	function handleHidden(e, task, denno) {

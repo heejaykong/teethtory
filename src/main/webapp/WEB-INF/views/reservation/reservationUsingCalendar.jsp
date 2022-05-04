@@ -128,7 +128,7 @@
                   <div style="flex-grow:1; margin-top:2rem;">
                       <div style="margin-top:10px;">
                           <div style="margin-bottom:1rem;">날짜 선택</div>
-                      <input type="date" id="start" onchange="handler(event);"/>
+                      <input type="date" id="start" min="2022-05-03" onchange="handler(event);"/>
 
                       </div>
                   </div>
@@ -181,7 +181,9 @@
 	</div> 
 
     <script>
+    //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		
+    		document.getElementById('start').min=new Date().toISOString().substring(0, 10);
     		
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
@@ -198,7 +200,7 @@
                	
                 var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
                 /* console.log(aformatDate); */
-                
+                console.log(aformatDate);
                 $.ajax({
                 	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
                 })
@@ -219,46 +221,47 @@
 								btime.push(businesstime[k]);
 							}
 						}
-						ctime=btime.toString();
-						dtime=ctime.split("");
-             			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
-             			for(var i=0; i<48;i++){
-             				var atime =[];
-             				var butime=[];
-             				if((i*30)%60==0){
-                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
-                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
-             				}
-             				else if((i*30)%60!=0){
-             				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                     		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
-             				}
-             				if(time[i]==1 && dtime[i]==1){
-             					console.log(butime);
-             					var creatediv = document.createElement("button");
-             					$("#timecell").append(creatediv);
-             					/* 
-             					creatediv.setAttribute("class",""); */
-             					
-             					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
-             					creatediv.setAttribute("onclick","btnVisible()")
-             					creatediv.setAttribute("id","enabletime")
-             					creatediv.setAttribute("style",createdivStyle);
-             					creatediv.innerHTML=atime[i];
-             					
-             				}else if(dtime[i]==1 && time[i]==0){
-             					var creatediv = document.createElement("button");
-             					creatediv.setAttribute("onclick","btnWarn()")
-             					creatediv.setAttribute("id","disabletime")
-             					$("#timecell").append(creatediv);
-             					/* 
-             					creatediv.setAttribute("class",""); */
-             					
-             					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
-             					
-             					creatediv.setAttribute("style",createdivStyle);
-             					creatediv.innerHTML=atime[i];
-             				}
+				    ctime=btime.toString();
+				    dtime=ctime.split("");
+           			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
+           			for(var i=0; i<48;i++){
+           				var atime =[];
+           				var butime=[];
+           				if((i*30)%60==0){
+               			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+               			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+           				}
+           				else if((i*30)%60!=0){
+           				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+                   		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
+           				}
+           				
+           				if(time[i]==1 && dtime[i]==1){
+           					console.log(butime);
+           					var creatediv = document.createElement("button");
+           					$("#timecell").append(creatediv);
+           					/* 
+           					creatediv.setAttribute("class",""); */
+           					
+           					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					creatediv.setAttribute("onclick","btnVisible()")
+           					creatediv.setAttribute("id","enabletime")
+           					creatediv.setAttribute("style",createdivStyle);
+           					creatediv.innerHTML=atime[i];
+           					
+           				}else if(dtime[i]==1 && time[i]==0){
+           					var creatediv = document.createElement("button");
+           					creatediv.setAttribute("onclick","btnWarn()")
+           					creatediv.setAttribute("id","disabletime")
+           					$("#timecell").append(creatediv);
+           					/* 
+           					creatediv.setAttribute("class",""); */
+           					
+           					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					
+           					creatediv.setAttribute("style",createdivStyle);
+           					creatediv.innerHTML=atime[i];
+           				}
              			}	
                      })})
             }

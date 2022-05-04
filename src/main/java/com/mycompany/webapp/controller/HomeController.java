@@ -97,4 +97,9 @@ public class HomeController {
 		}
 		return "redirect:/login";
 	}
+	@RequestMapping("/easteregg")
+	public String easteregg() {
+		log.info("실행");
+		return "home/easteregg";
+	}
 }
