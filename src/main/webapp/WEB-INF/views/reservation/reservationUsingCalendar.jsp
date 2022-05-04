@@ -219,46 +219,46 @@
 								btime.push(businesstime[k]);
 							}
 						}
-						ctime=btime.toString();
-						dtime=ctime.split("");
-             			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
-             			for(var i=0; i<48;i++){
-             				var atime =[];
-             				var butime=[];
-             				if((i*30)%60==0){
-                 			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
-                 			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
-             				}
-             				else if((i*30)%60!=0){
-             				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
-                     		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
-             				}
-             				if(time[i]==1 && dtime[i]==1){
-             					console.log(butime);
-             					var creatediv = document.createElement("button");
-             					$("#timecell").append(creatediv);
-             					/* 
-             					creatediv.setAttribute("class",""); */
-             					
-             					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
-             					creatediv.setAttribute("onclick","btnVisible()")
-             					creatediv.setAttribute("id","enabletime")
-             					creatediv.setAttribute("style",createdivStyle);
-             					creatediv.innerHTML=atime[i];
-             					
-             				}else if(dtime[i]==1 && time[i]==0){
-             					var creatediv = document.createElement("button");
-             					creatediv.setAttribute("onclick","btnWarn()")
-             					creatediv.setAttribute("id","disabletime")
-             					$("#timecell").append(creatediv);
-             					/* 
-             					creatediv.setAttribute("class",""); */
-             					
-             					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
-             					
-             					creatediv.setAttribute("style",createdivStyle);
-             					creatediv.innerHTML=atime[i];
-             				}
+				    ctime=btime.toString();
+				    dtime=ctime.split("");
+           			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
+           			for(var i=0; i<48;i++){
+           				var atime =[];
+           				var butime=[];
+           				if((i*30)%60==0){
+               			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+               			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+           				}
+           				else if((i*30)%60!=0){
+           				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+                   		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
+           				}
+           				if(time[i]==1 && dtime[i]==1){
+           					console.log(butime);
+           					var creatediv = document.createElement("button");
+           					$("#timecell").append(creatediv);
+           					/* 
+           					creatediv.setAttribute("class",""); */
+           					
+           					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					creatediv.setAttribute("onclick","btnVisible()")
+           					creatediv.setAttribute("id","enabletime")
+           					creatediv.setAttribute("style",createdivStyle);
+           					creatediv.innerHTML=atime[i];
+           					
+           				}else if(dtime[i]==1 && time[i]==0){
+           					var creatediv = document.createElement("button");
+           					creatediv.setAttribute("onclick","btnWarn()")
+           					creatediv.setAttribute("id","disabletime")
+           					$("#timecell").append(creatediv);
+           					/* 
+           					creatediv.setAttribute("class",""); */
+           					
+           					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					
+           					creatediv.setAttribute("style",createdivStyle);
+           					creatediv.innerHTML=atime[i];
+           				}
              			}	
                      })})
             }
