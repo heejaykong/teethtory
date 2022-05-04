@@ -51,8 +51,28 @@
                         </script>
 
                         <div style="display: flex; flex-direction: column; align-items: center;">
+                        
                             <c:if test="${searchedDentistList == null}">
-                                <p>검색된 치과가 없습니다.</p>
+                            <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
+                                <c:forEach var="myDentistList" items="${myDentistList}">
+                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; border-radius: 10%"
+                                    onclick="goReservationUsingMap(${myDentistList.denno});">
+                                    <div class="history-list__item" style="margin-left: 1rem; width: inherit;">
+                                        <!--
+                                        <div class="item__col">
+                                            <img
+                                                src="/springframework-mini-project/resources/images/signOut.jpg"
+                                                class="round-thumbnail">
+                                        </div>
+                                        -->
+                                        <div>
+                                            <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentistList.denname}</div>
+                                            <span class="dentist-visited">${myDentistList.denaddress}</span>
+                                            <div id="denNo" style="display:none;">${myDentistList.denno}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                             </c:if>
                             <c:forEach var="searchedDentist" items="${searchedDentistList}">
                                 <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; border-radius: 10%"
