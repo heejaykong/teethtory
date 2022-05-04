@@ -1,25 +1,29 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-마이페이지</title>
+<%@ include file="/WEB-INF/views/common/meta.jsp"%>
+<title>치스토리-마이페이지</title>
 
-<meta charset='utf-8'/>
+<meta charset='utf-8' />
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <!-- jquery CDN -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- fullcalendar CDN -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+<link
+	href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css'
+	rel='stylesheet' />
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
 <!-- fullcalendar 언어 CDN -->
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
+<script
+	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 /* body 스타일 */
 html, body {
-	overflow: hidden;
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 	font-size: 14px;
 }
@@ -29,34 +33,58 @@ html, body {
 	padding-left: 1em;
 	padding-right: 1em;
 }
-.modal{ 
-  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
+
+.modal {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	display: none;
 }
-.modal_content{
-  border:2px solid orange;
-  width:400px; height:200px;
-  background:#fff; border-radius:10px;
-  position:relative; top:30%; left:50%;
-  margin-top:-100px; margin-left:-200px;
-  text-align:center;
-  box-sizing:border-box; padding:74px 0;
-  line-height:23px; cursor:pointer;
+
+.fc-event-time {
+	font-size: 2px;
+}
+
+.fc-daygrid-event-dot {
+	margin: 0px;
+}
+
+.modal_content {
+	border: 2px solid orange;
+	width: 400px;
+	height: 200px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 30%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -200px;
+	text-align: center;
+	box-sizing: border-box;
+	padding: 74px 0;
+	line-height: 23px;
+	cursor: pointer;
 }
 </style>
 </head>
-	<body style="padding:30px;">
+<body style="padding: 30px;">
 	<!-- calendar 태그 -->
 	<div id='calendar-container'>
-	<div id='calendar'></div>
+		<div id='calendar'></div>
 	</div>
-	
- 	  <div class="modal">
-	  <div class="modal_content"><h5 id="date">text</h5>
-	  <hr>
-	  <h5 id="content">text</h5>
-	  </div>
-	  </div>
-<script>
+
+	<div class="modal">
+		<div class="modal_content">
+			<h5 id="description">text</h5><span id="date" class="ml-3">text</span>
+			<hr>
+			<h5 id="title">text</h5>
+		</div>
+	</div>
+	<script>
 
 (function(){
 	
@@ -77,38 +105,20 @@ html, body {
 },
 			initialView: 'dayGridMonth', // 초기 로드 될때 보이는 캘린더 화면(기본 설정: 달)
 			navLinks: false, // 날짜를 선택하면 Day 캘린더나 Week 캘린더로 링크
-			editable: true, // 수정 가능?
+			editable: false, // 수정 가능?
 			selectable: true, // 달력 일자 드래그 설정가능
 			nowIndicator: true, // 현재 시간 마크
 			dayMaxEvents: true, // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
 			locale: 'ko', // 한국어 설정
-			eventAdd: function(obj) { // 이벤트가 추가되면 발생하는 이벤트
-			console.log(obj);
-			},
-			eventChange: function(obj) { // 이벤트가 수정되면 발생하는 이벤트
-			console.log(obj);
-			},
-			eventRemove: function(obj){ // 이벤트가 삭제되면 발생하는 이벤트
-			console.log(obj);
-			},
-			select: function(arg) { // 캘린더에서 드래그로 이벤트를 생성할 수 있다.
-			var title = prompt('Event Title:')
-			if (title) {
-			calendar.addEvent({
-			title: title,
-			start: arg.start,
-			end: arg.end,
-			allDay: arg.allDay
-			})
-			}
-			calendar.unselect()
-			},
+
 			eventClick: function(info) {
 			   	//모달띄우기
 			
 			$(".modal").fadeIn();
-			$("#date").text(info.event.start.toLocaleString());
-		    $("#content").text(info.event.title);
+			$("#date").text((info.event.start.toLocaleString()).slice(0, -3));
+		    $("#title").text(info.event.title);
+		    $("#description").text(info.event.extendedProps.description);
+		    
 			info.el.style.borderColor = 'red';
 			//모달 띄워져있는거 클릭시 없어짐
 			$(".modal_content").click(function(){
@@ -118,22 +128,8 @@ html, body {
 			 
 			
 			  
-			// 이벤트 start=예약날짜(selectday) tilte= 병원이름?(denname)
-			events: [
-				{
-					title: '임플란트',
-					start: '2022-05-01',
-					},
-					
-					{
-					title: '치과 방문 치과 방문 치과 방문 치과 방문',
-					start: '2022-05-02',
-					},
-					{
-					title: '테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스테스트테스트테스트테스트테스',
-					start: '2022-05-05',
-					}
-			]
+			// 이벤트 start=예약날짜(selectday) title= 병원이름?(denname), description=예약정보
+			events: testList
 			 
 			});
 			// 캘린더 랜더링
@@ -141,7 +137,80 @@ html, body {
 			});
 			})();
 </script>
-
+	<script>
+	getData();
+	let testList = [];
+	
+	function windowdd() {
+		let myDentistList = ${myDentistList}.myDentistList;
+		
+		const promise = new Promise((resolve, reject) => {
+			let list = [];
+			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
+			for(let i=0; i < myDentistList.length; i++) {
+				$.ajax({
+					url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/reservation/reservationList",
+					method:"POST",
+					async: false,
+					data: {
+						patientssn: "${patientssn}"
+					}
+				})
+				.done((data) => {
+					console.log(data.reservationList);
+					data.reservationList.forEach((element) => {
+						list.push(	{title: element.resdesc
+									, description: myDentistList[i].denname
+									, start: element.selecteddate + " " +element.selectedtime
+									, color: "#6A5ACD"}
+						)
+					})
+				});
+			}
+			// 사용자의 모든 '내 치과'에 진료정보를 확인해서 받아오는 통신.
+			for(let i=0; i < myDentistList.length; i++) {
+				$.ajax({
+					url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn",
+					method:"POST",
+					async: false,
+					data: {
+						patientssn: "${patientssn}"
+					}
+				})
+				.done((data) => {
+					data.treatment.forEach((element) => {
+						list.push(	{title: element.treattype
+									, description: data.denname
+									, start: element.treatdate
+									, color: "#FF5675"}
+						)
+					})
+				});
+			}
+			console.log("allList", list);
+			
+			if(list != null) {
+				resolve(list);
+			} else {
+				reject({message: "실패"});
+			}
+			
+		});
+		return promise;
+	}
+	
+	async function getData() {
+		try {
+			data = await windowdd();
+			console.log("data", data);
+			testList = data;
+		} catch (error) {
+			console.log(error, "error");
+		} finally {
+			
+		}
+	}
+	</script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

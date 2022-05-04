@@ -20,7 +20,7 @@
 		<%-- 로그인 에러 배지 --%>
 		<c:if test="${error != null}">
 			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				<strong>저런! 로그인에 실패하셨어요.</strong>
+				<strong>저런! 로그인에 실패하셨어요.</strong><br>
 				<span>${error}</span>
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
@@ -31,11 +31,11 @@
 		<form action="login" method="post" class="default-form">
 			<label for="userid">아이디</label>
 			<input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요."
-			value="spring"/>
+			/>
 
 			<label for="userpassword">비밀번호</label>
 			<input id="userpassword" name="userpassword" type="password" placeholder="비밀번호를 입력해 주세요."
-			value="1111"/>
+			/>
 
 			<button type="submit" class="form-submit-btn btn-large-solid">로그인</button>
 		</form>
