@@ -166,6 +166,11 @@ public class MyPageController {
 		log.info("실행");
 		return "myPage/reservationHistoryWithCalendar";
 	}
+	@RequestMapping("/easteregg")
+	public String easteregg() {
+		log.info("실행");
+		return "myPage/easteregg";
+	}
 	
 	
 	

@@ -15,10 +15,10 @@
 	}
 </style>
 <div style="text-align: center;" class="mt-5">
-<div class="hiddenMS">지금까지 이동현님이</div>
+<div id="priceId" class="hiddenMS">지금까지 님이</div>
 <div class="hiddenMS mb-5">치아에 총 투자한 금액은?</div>
-<h1 class="mb-5"><span style="border-bottom: 2px solid; color: orange;">2,000,000,000원</span></h1>
 
+<h1 id="price" class="mb-5"><span style="border-bottom: 2px solid; color: orange;">2,000,000,000원</span></h1>
 </div>
 <input type="button" id="test" value="Custom"/>
 
@@ -26,6 +26,14 @@
 
 
 <script>
+$.ajax({
+	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+})
+	.done((data) => {
+
+
+
+
 
 Kakao.init('722eeaf26a4e1f0ba38f274b71d6e0c3'); 
 console.log(Kakao.isInitialized());
@@ -73,11 +81,7 @@ Kakao.Link.createDefaultButton({
 	    sum: 'Total',
 	    sumOp: '15000원',
 	  },
-	  social: {
-	    likeCount: 10,
-	    commentCount: 20,
-	    sharedCount: 30,
-	  },
+	  
 	  buttons: [
 	    {
 	      title: '웹으로 이동',
@@ -96,4 +100,4 @@ Kakao.Link.createDefaultButton({
 
   
 </script>
-<%@ include file="/WEB-INF/views/common/footer.jsp"%>  
+<%@ include file="/WEB-INF/views/common/footer.jsp"%> 

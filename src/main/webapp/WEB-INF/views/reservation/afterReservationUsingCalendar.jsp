@@ -35,12 +35,10 @@
 
    <div class="container" id="top">
         <div>
-            <div style="margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
-            <div id="reservationSelectTime" style="margin-top:20px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;">05.01(금)09:00</div>
+            <div style="width:10rem; margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
+            <div id="reservationSelectTime" style="margin-top:25px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;">05.01(금)09:00</div>
         </div>
-        <div>
-            <div style="border:1px solid black; margin-top:20px; margin-left:150px; width:80px;height:50px;">이미지</div>
-        </div>   
+        
    </div>
 
 
@@ -66,12 +64,17 @@
 <script>
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
-
-formatdate=date.substr(5,2)+"월"+date.substr(8,2)+"일 "+date.substr(10,2)+"시"+date.substr(13,2)+"분";
-
+if(date.length==15){
+formatdate=date.substr(5,2)+"월 "+date.substr(8,2)+"일 "+date.substr(10,2)+"시 "+date.substr(13,2)+"분 ";
+}
+else if(date.length==14){
+formatdate=date.substr(5,2)+"월 "+date.substr(8,2)+"일 "+date.substr(10,1)+"시 "+date.substr(12,2)+"분 ";
+}
 document.getElementById("reservationSelectTime").innerHTML=formatdate;
 var aformatDate =date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
 console.log(aformatDate);
+
+
 
 if(date.length==14){
 var tformatDate =date.substr(10,1)+date.substr(12,2);
@@ -83,13 +86,10 @@ else if(date.length==15){
 }
 //atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
 console.log(atimeIndex);
-
 $.ajax({
-
 	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
 	})
 	.done((data) => {
-
 		a=JSON.stringify(data);
 		console.log("문자열 형태 : "+a);
 		b=a.charAt(atimeIndex);
@@ -106,7 +106,7 @@ $.ajax({
 		
 		
 		$("#submit").click(function(){
-			console.log("asda");
+			
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
 			$.ajax({
 			    url: 'http://localhost:8082/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,

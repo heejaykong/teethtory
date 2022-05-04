@@ -122,17 +122,8 @@
 		
 				
         <hr>
-        <div style="margin-left:1rem; margin-bottom:1rem">알림</div>
-        <div id="container">
-          <div class="toggle-switch" style="margin-left:1rem">
-            <input type="checkbox" id="chkTog4">
-            <label for="chkTog4">
-              <span class="toggle-track"></span>
-            </label>
-
-          </div>
-          <div style="margin-left:0.5rem;"><h5> 진료일 하루 전에 알림 수신하기</h5></div>
-        </div>
+        <div style="margin-left:1rem; margin-bottom:1rem"><a href="easteregg"><h4>비용</h4></a></div>
+        
         <div style="margin-top:2rem; margin-left:1rem;">
         <a href='signOut'>
           치스토리 탈퇴하기

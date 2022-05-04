@@ -128,7 +128,7 @@
                   <div style="flex-grow:1; margin-top:2rem;">
                       <div style="margin-top:10px;">
                           <div style="margin-bottom:1rem;">날짜 선택</div>
-                      <input type="date" id="start" onchange="handler(event);"/>
+                      <input type="date" id="start" min="2022-05-03" onchange="handler(event);"/>
 
                       </div>
                   </div>
@@ -181,7 +181,9 @@
 	</div> 
 
     <script>
+    //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		
+    		document.getElementById('start').min=new Date().toISOString().substring(0, 10);
     		
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
@@ -233,6 +235,7 @@
            				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
                    		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
            				}
+           				
            				if(time[i]==1 && dtime[i]==1){
            					console.log(butime);
            					var creatediv = document.createElement("button");
