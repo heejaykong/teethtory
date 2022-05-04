@@ -77,147 +77,101 @@
                 </ul>
             </nav>
         </c:if>
-		<script>
-            function template({treattype, denname, treatdate}) {
-                // TBD: 각 치과마다 비동기적으로 가져온 데이터들을 날짜순으로 다시 정렬해서 뿌려야 함.
-                // TBD: dentistname(치료를 진행한 치과 이름)을 가져오는 작업 따로 해줘서 뿌려야 함.
-                // TBD: treatdate 파싱해서 yyyy. MM. dd. (요일) 포맷으로 뿌려야 함.
-                
-                return `
-                    <a href="#">
-                        <div class="list-item hover-effect">
-                            <div class="list-item__info-summary">
-                                <h4 class="title">
-                                    `+ treattype +`
-                                    <span class="subtitle">`+ denname +`</span>
-                                </h4>
-                                <p class="text-md">`+ treatdate +`</p>
-                            </div>
-                            <div class="list-item__thumbnail">
-                                <img src="https://dummyimage.com/600x400/000/fff" alt="treatment thumbnail image"/>
-                            </div>
-                        </div>
-                    </a>
-                `;
-            }
-		</script>
 	</main>
 	
-	<script type="text/javascript">
-	getData("ALL");
-	
-	function handleSelectChange(event) {
-		var selectedTreattype = event.target.value;
-		getData(selectedTreattype);
-	}
-	
-	function windowdd(selectedTreattype) {
-		console.log(selectedTreattype);
-		const promise = new Promise((resolve, reject) => {
-			let list = [];
-			for(let i=0; i<${dentist}.dentist.length; i++) {
-				$.ajax({
-					method:"POST",
-					url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-					data: {
-						// pageNo: pageNo
-					},
-					async: false
-				}).done((data) => {
-					console.log(data);
-					for(let j=0; j<data.treatment.length; j++) {
-						data.treatment[j].denname = data.denname;
-						list.push(data.treatment[j]);
-					}
-				});
-			}
-			if(list != null) {
-				resolve(list);
-			} else {
-				reject({message: "실패"});
-			}
-		})
-		return promise;
-	}
-	async function getData(selectedTreattype) {
-		try {
-			$(".selected-treattype-results-section").html("");
-			data = await windowdd(selectedTreattype);
-			
-			data.sort(function(a, b) {
-				if(a.treatdate > b.treatdate) {
-					return -1;
-				}
-				if(a.treatdate < b.treatdate) {
-					return 1;
-				}
-				return 0;
-			})
-			
-			let aReviewHtml = '';
-			console.log("orderedDate:", data)
-			console.log(data.length);
-			data.forEach(treatment => {
-                 const listItem = template(treatment);
-                 $(".selected-treattype-results-section").append(
-                     listItem
-                 )
-             });
-		} catch (error) {
-			console.log(error, "error");
-		} finally {
-			
-		}
-	}
-	</script>
 	<script>
-	   /*  window.onload=()=>{
-	        document.querySelector('.dropbtn_click').onclick = ()=>{
-	          dropdown();
-	        }
-	        document.getElementsByClassName('treatment').onclick = ()=>{
-	          showMenu(value);
-	        };
-	        dropdown = () => {
-	          var v = document.querySelector('.dropdown-content');
-	          var dropbtn = document.querySelector('.dropbtn')
-	          v.classList.toggle('show');
-	          dropbtn.style.borderColor = 'rgb(94, 94, 94)';
-	        }
-	  
-	        showMenu=(value)=>{
-	          var dropbtn_icon = document.querySelector('.dropbtn_icon');
-	          var dropbtn_content = document.querySelector('.dropbtn_content');
-	          var dropbtn_click = document.querySelector('.dropbtn_click');
-	          var dropbtn = document.querySelector('.dropbtn');
-	  
-	          dropbtn_icon.innerText = '';
-	          dropbtn_content.innerText = value;
-	          dropbtn_content.style.color = '#252525';
-	          dropbtn.style.borderColor = '#3992a8';
-	        }
-	      }
-	      window.onclick= (e)=>{
-	        if(!e.target.matches('.dropbtn_click')){
-	          var dropdowns = document.getElementsByClassName("dropdown-content");
-	  
-	          var dropbtn_icon = document.querySelector('.dropbtn_icon');
-	          var dropbtn_content = document.querySelector('.dropbtn_content');
-	          var dropbtn_click = document.querySelector('.dropbtn_click');
-	          var dropbtn = document.querySelector('.dropbtn');
-	  
-	          var i;
-	          for (i = 0; i < dropdowns.length; i++) {
-	            var openDropdown = dropdowns[i];
-	            if (openDropdown.classList.contains('show')) {
-	              openDropdown.classList.remove('show');
-	            }
-	          }
-	        }
-	      } */
+		function handleListItemClick(treatno) {
+ 			$.ajax({
+ 				type: "GET",
+ 				url: "details?treatno=" + treatno
+ 			}).done(() => {
+ 				window.location.href = "details?treatno=" + treatno;
+ 			});
+	 	}
+	 	
+		function template({treatno, treattype, denname, treatdate}) {
+	       // TBD: 각 치과마다 비동기적으로 가져온 데이터들을 날짜순으로 다시 정렬해서 뿌려야 함.(동현쓰 완)
+	       // TBD: dentistname(치료를 진행한 치과 이름)을 가져오는 작업 따로 해줘서 뿌려야 함.(동현쓰 완)
+	       // TBD: treatdate 파싱해서 yyyy. MM. dd. (요일) 포맷으로 뿌려야 함.(동현쓰 완)
+	       return `
+	        <div onclick="handleListItemClick(`+ treatno +`)" class="list-item hover-effect">
+	            <div class="list-item__info-summary">
+	                <h4 class="title">
+	                    `+ treattype +`
+	                    <span class="subtitle">`+ denname +`</span>
+	                </h4>
+	                <p class="text-md">`+ treatdate +`</p>
+	            </div>
+	            <div class="list-item__thumbnail">
+	                <img src="https://dummyimage.com/600x400/000/fff" alt="treatment thumbnail image"/>
+	            </div>
+	        </div>
+	       `;
+       }
+		
+		
+		getData("ALL");
+		
+		function handleSelectChange(event) {
+			var selectedTreattype = event.target.value;
+			getData(selectedTreattype);
+		}
+		
+		function windowdd(selectedTreattype) {
+			console.log(selectedTreattype);
+			const promise = new Promise((resolve, reject) => {
+				let list = [];
+				for(let i=0; i<${dentist}.dentist.length; i++) {
+					$.ajax({
+						method:"POST",
+						url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
+						<%--url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
+						--%>
+						data: {
+						},
+						async: false
+					}).done((data) => {
+						data.treatment.forEach(item => {
+							item.denname = data.denname;
+							list.push(item);
+						});
+					});
+				}
+				if(list != null) {
+					resolve(list);
+				} else {
+					reject({message: "실패"});
+				}
+			})
+			return promise;
+		}
+	
+		async function getData(selectedTreattype) {
+			try {
+				$(".selected-treattype-results-section").html("");
+				data = await windowdd(selectedTreattype);
+				//const smalldata = data.slice(0,5);
+				data.sort(function(a, b) {
+					if(a.treatdate > b.treatdate) {
+						return -1;
+					}
+					if(a.treatdate < b.treatdate) {
+						return 1;
+					}
+					return 0;
+				})
+				//console.log("orderedDate:", data);
+				//console.log(data.length);
+				data.forEach(treatment => {
+	                 const listItem = template(treatment);
+	                 $(".selected-treattype-results-section").append(listItem);
+	             });
+			} catch (error) {
+				console.log(error, "error");
+			} finally {}
+		}
 	</script>
-
-
+	
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

@@ -10,24 +10,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Dentist;
+import com.mycompany.webapp.dto.Treatment;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.MyDentistService;
 import com.mycompany.webapp.service.UserService;
 
 import lombok.extern.log4j.Log4j2;
 
-@CrossOrigin
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/treatment")
 @Log4j2
 public class TreatmentController {
-	
+	// *** USER서버쪽 컨트롤러입니다 ***
 	@Resource
 	private UserService userService;
-	
 	@Resource
 	private MyDentistService myDentistService;
 		
@@ -56,18 +58,27 @@ public class TreatmentController {
 		model.addAttribute("patientssn", patientssn);
 		
 		return "treatment/main";
-//		또는
-//		return "treatment/emptyTreatmentList";
 	}
 	
 	@GetMapping("/details")
-	public String details() {
-//		TBD: treatNo에 해당하는 치료 상세화면으로 가기
-//		return "treatment/details?treatNo=" + treatNo;
+	public String detailsGet(@RequestParam String treatno, Model model) {
+		log.info("treatno: " + treatno);
+		model.addAttribute("treatno", treatno);
+		return "treatment/details";
+	}
+	@PostMapping("/details")
+	public String detailsPost(Treatment treatment, Model model) {
+//		TBD: treatment 객체를 뷰에 넘기기...
+		log.info("treatment:" + treatment);
+		model.addAttribute("treatment", treatment);
 		return "treatment/details";
 	}
 	
-	
+	@RequestMapping("/imageShow")
+	public String imageShow(@RequestParam String filename, Model model) {
+		model.addAttribute("filename", filename);
+		return "treatment/imageShow";
+	}
 	
 	//-------------------------------
 	@RequestMapping("/reviewForm")
