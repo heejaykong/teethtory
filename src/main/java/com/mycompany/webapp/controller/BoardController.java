@@ -86,11 +86,19 @@ public class BoardController {
 		List<Comment> comments = commentService.getComments(boardno, pager);
 		model.addAttribute("comments", comments);
 		session.setAttribute("boardno", boardno);
+		
+		String userid = (String) session.getAttribute("sessionUserid");
+		model.addAttribute("userid", userid);
 		return "board/boardDetail";
 	}
 	
 	@RequestMapping("/boardWriteForm")
-	public String boardWriteForm() {
+	public String boardWriteForm(HttpSession session) {
+		if(session.getAttribute("sessionUserid") == null) {
+			String formError = "글 작성을 위해선 로그인을 해주세요!";
+			session.setAttribute("formError", formError);
+			return "redirect:/login";
+		}
 		return "board/boardWriteForm";
 	}
 	
@@ -149,6 +157,11 @@ public class BoardController {
 	
 	@PostMapping("/commentWrite")
 	public String commentWrite(Comment comment, HttpSession session){
+		if(session.getAttribute("sessionUserid") == null) {
+			String formError = "댓글 작성을 위해선 로그인을 해주세요!";
+			session.setAttribute("formError", formError);
+			return "redirect:/login";
+		}
 		String userid = (String) session.getAttribute("sessionUserid");
 		comment.setCommentwriter(userid);
 		
