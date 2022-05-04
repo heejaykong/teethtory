@@ -24,10 +24,18 @@
 <style>
 /* body 스타일 */
 html, body {
+
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 	font-size: 14px;
 }
 /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
+.fc-event-time{
+	font-size:2px;
+}
+.fc-daygrid-event-dot{
+margin:0px;
+width:0.01rem;
+}
 .fc-header-toolbar {
 	padding-top: 1em;
 	padding-left: 1em;
@@ -84,19 +92,24 @@ html, body {
 			<h5 id="title">text</h5>
 		</div>
 	</div>
+
 	<script>
+
 
 (function(){
 	
 	$(function(){
+		
 // calendar element 취득
 		var calendarEl = $('#calendar')[0];
 // full-calendar 생성하기
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 		height: '700px', // calendar 높이 설정
-		expandRows: true, // 화면에 맞게 높이 재설정
+		expandRows: false, // 화면에 맞게 높이 재설정
 		slotMinTime: '08:00', // Day 캘린더에서 시작 시간
 		slotMaxTime: '20:00', // Day 캘린더에서 종료 시간
+		
+		
 // 해더에 표시할 툴바
 		headerToolbar: {
 			left: 'prev',
@@ -115,24 +128,25 @@ html, body {
 			   	//모달띄우기
 			
 			$(".modal").fadeIn();
+
 			$("#date").text((info.event.start.toLocaleString()).slice(0, -3));
 		    $("#title").text(info.event.title);
 		    $("#description").text(info.event.extendedProps.description);
-		    
 			info.el.style.borderColor = 'red';
 			//모달 띄워져있는거 클릭시 없어짐
 			$(".modal_content").click(function(){
 		   	$(".modal").fadeOut();
 		     }); 
 			 },
-			 
-			
-			  
+
 			// 이벤트 start=예약날짜(selectday) title= 병원이름?(denname), description=예약정보
+
 			events: testList
 			 
+
 			});
 			// 캘린더 랜더링
+			
 			calendar.render();
 			});
 			})();
