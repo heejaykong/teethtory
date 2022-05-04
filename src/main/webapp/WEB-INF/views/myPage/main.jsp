@@ -39,30 +39,58 @@ a:hover { color: orange; }
       </div>
       <div style="text-align:center;"><h2>${name}</h4></div>
       <div style="text-align:center;"><h3>${email}</h3></div>
-      <hr>
-      <div class="container">
-	      <div>
-	      <i class="fa-solid fa-house-chimney-medical"></i>
-	      </div>
-	      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myDentist"><h4>내 치과</h4></a></div>
-      </div>
-      <div class="container">
-	      <div><i class="fa-solid fa-person-circle-check"></i></div>
-	      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myReservationList"><h4>예약 현황</h4></a></div>
-      </div>
-
-      <div class="container">
-	      <div><i class="fa-solid fa-coins"></i></div>
-	      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myPointList"><h4>내 포인트</h4></a><span>${point}</span></div>
-      </div>
-      <div class="container">
-	      <div><i class="fa-solid fa-calendar-day"></i></div>
-	      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="reservationHistoryWithCalendar"><h4>캘린더</h4></a></div>
-      </div>
-      <div class="container">
-	      <div><i class="fa-solid fa-gear"></i></div>
-	      <div style="margin-left:0.5rem; margin-bottom:0.5rem;"><a href="myInformation"><h4>설정</h4></a></div>
-      </div>
+      
+    <div class="sidebar-menu__profile-block">
+		<div class="profile">
+			<div class="profile__img"></div>
+			<div class="profile__nametag">
+				<p class="name">
+					<span id="username">${name}</span> 님
+				</p>
+				<a href="#">
+					<p class="mypoint">
+						<span class="mypoint__icon">
+							<i class="fa-solid fa-circle-dollar-to-slot"></i>
+						</span>
+						<span class="mypoint__amount">
+							${point}
+						</span>
+						<span class="mypoint__arrow-right">
+							<i class="fa-solid fa-chevron-right"></i>
+						</span>
+					</p>
+				</a>
+			</div>
+		</div>
+	</div>
+    <!-- 옅은 회색 분리막대 -->
+	<div class="thick-divider"></div>
+	
+	<!-- 메뉴블록 -->
+	<nav class="sidebar-menu__nav-block">
+		<ul class="menu-list">
+			<a class="menu-btn" href="myDentist">
+				<span class="menu-btn__icon"><i class="fa-solid fa-house-chimney-medical"></i></span>
+				<li class="menu-btn__name">내 치과</li>
+			</a>
+			<a class="menu-btn" href="myReservationList">
+				<span class="menu-btn__icon"><i class="fa-solid fa-person-circle-check"></i></span>
+				<li class="menu-btn__name">예약 현황</li>
+			</a>
+			<a class="menu-btn" href="myPointList">
+				<span class="menu-btn__icon"><i class="fa-solid fa-coins"></i></span>
+				<li class="menu-btn__name">내 포인트</li><span>${point}</span>
+			</a>
+			<a class="menu-btn" href="reservationHistoryWithCalendar">
+				<span class="menu-btn__icon"><i class="fa-solid fa-calendar-day"></i></span>
+				<li class="menu-btn__name">캘린더</li>
+			</a>
+			<a class="menu-btn" href="myInformation">
+				<span class="menu-btn__icon"><i class="fa-solid fa-gear"></i></span>
+				<li class="menu-btn__name">설정</li>
+			</a>
+		</ul>
+	</nav>
 </div>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>

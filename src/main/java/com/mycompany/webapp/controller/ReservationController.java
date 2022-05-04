@@ -46,15 +46,21 @@ public class ReservationController {
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 
-		//Header에 이름, 포인트 값 넘기는 코드
+		
 		String userid = (String) session.getAttribute("sessionUserid");
 		if(userid != null) {
+			//Header에 이름, 포인트 값 넘기는 코드
 			User user = userService.getUser(userid);
 			String name = user.getUsername();
 			int point = user.getUserpoint();
 			model.addAttribute("name", name);
 			model.addAttribute("point", point);
+			
+			//예약화면에 내 기본 등록 병원 값 넘기는 코드
+			List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
+			model.addAttribute("myDentistList", myDentistList);
 		}
+		
 		//치과 검색.(이름으로 검색.)
 		if(!denname.equals("null")) {
 			log.info("denname: " + denname);
