@@ -10,6 +10,12 @@
 #myDentistRegistrationTab {
 	color: rgb(242, 101, 34);
 }
+.fa-search{ 
+ font-family: 'Font Awesome 5 Free';
+  position: relative;
+  left: -30px;
+  content: "\f007";  
+}
 
 
 </style>
