@@ -1,103 +1,154 @@
-<%@ page session="false" language="java"
-	contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css">
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<%@ include file="/WEB-INF/views/common/meta.jsp"%>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css" />
+<title>치스토리-(이스터에그)</title>
+</head>
 <style>
-	.hiddenMS {
-		font-size: 30px;
+	h2 {
+		font-size: 1.4rem;
+	    font-weight: 600;
+	    color: var(--almost-black-gray);
 	}
 	
-	h1 {
-		font-size: 90px;
+	#price{
+		margin: 3.5rem 0 2rem 0;
 	}
 </style>
-<div style="text-align: center;" class="mt-5">
-<div id="priceId" class="hiddenMS">지금까지 님이</div>
-<div class="hiddenMS mb-5">치아에 총 투자한 금액은?</div>
+<body style="text-align: center;">
+	<main class="located-at-bottom-of-header">
+		<div class="logo">
+			<a href="${pageContext.request.contextPath}/">
+				<h1 class="logo-text-orange-lg">치스토리</h1>
+			</a>
+		</div>
+	</main>
+	<div>
+		<h2 class="page-title">지금까지 ${name}님이</h2>
+		<h2>치아에 총 투자한 금액은?</h2>
+	</div>
 
-<h1 id="price" class="mb-5"><span style="border-bottom: 2px solid; color: orange;">2,000,000,000원</span></h1>
-</div>
-<input type="button" id="test" value="Custom"/>
-
+	<!-- 밑줄 넣기 -->
+	<h1 class="logo-text-orange-lg" id="price"></h1>
+	
+	<button class="btn-large-solid" id="test">카톡으로 공유하기</button>
+	<hr>
+	<div>
+		<h2 class="page-title">지금까지 ${name}님이</h2>
+		<h2>가장 정성을 쏟은 치아는?</h2>
+	</div>
+	<h1 class="logo-text-orange-lg" id="price">{1등치아}{2등치아}{3등치아}</h1>
+</body>
 
 
 
 <script>
-$.ajax({
-	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
-})
-	.done((data) => {
+	console.log(${myDentistList});
+	getData();
+	let allCost = 0;
+	function windowdd() {
+		let myDentistList = ${myDentistList}.myDentistList;
+		
+		const promise = new Promise((resolve, reject) => {
+			let list = [];
+			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
+			for(let i=0; i < myDentistList.length; i++) {
+				$.ajax({
+					url: "http://localhost:" + myDentistList[i].dendomain + "/springframework-mini-project-dentist/treatment/easteregg",
+					method:"POST",
+					async: false,
+					data: {
+						patientssn: "${patientssn}"
+					}
+				})
+				.done((data) => {
+					console.log(data);
+					list = data;
+				});
+			}
+			if(list != null) {
+				resolve(list);
+			} else {
+				reject({message: "실패"});
+			}
+			
+		});
+		return promise;
+	}
+	
+	async function getData() {
+		try {
+			let data = await windowdd();
+			data.list.forEach((element) => {
+				allCost += element.treatcost;
+			})
+			$("#price").html(allCost.toLocaleString() + "원");
+			console.log(allCost.toLocaleString());
+		} catch (error) {
+			console.log(error, "error");
+		} finally {
+			
+		}
+	}
 
+	Kakao.init('722eeaf26a4e1f0ba38f274b71d6e0c3');
+	console.log(Kakao.isInitialized());
+	Kakao.Link.createDefaultButton({
+				container : '#test',
+				objectType : 'feed',
+				content : {
+					title : '비용 공유',
+					description : '아메리카노, 빵, 케익',
+					imageUrl : "${pageContext.request.contextPath}/resources/images/easteregg/kt.png",
+					link : {
+						mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
+						androidExecutionParams : 'test',
+					},
+				},
+				itemContent : {
+					profileText : 'Kakao',
+					profileImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+					titleImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
+					titleImageText : 'Cheese cake',
+					titleImageCategory : 'Cake',
+					items : [ {
+						item : 'Cake1',
+						itemOp : '1000원',
+					}, {
+						item : 'Cake2',
+						itemOp : '2000원',
+					}, {
+						item : 'Cake3',
+						itemOp : '3000원',
+					}, {
+						item : 'Cake4',
+						itemOp : '4000원',
+					}, {
+						item : 'Cake5',
+						itemOp : '5000원',
+					}, ],
+					sum : 'Total',
+					sumOp : '15000원',
+				},
 
-
-
-
-Kakao.init('722eeaf26a4e1f0ba38f274b71d6e0c3'); 
-console.log(Kakao.isInitialized());
-Kakao.Link.createDefaultButton({
-	container: '#test',
-    objectType: 'feed',
-	  content: {
-	    title: '비용 공유',
-	    description: '아메리카노, 빵, 케익',
-	    imageUrl:
-	      'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
-	    link: {
-	      mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-	      androidExecutionParams: 'test',
-	    },
-	  },
-	  itemContent: {
-	    profileText: 'Kakao',
-	    profileImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-	    titleImageUrl: 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-	    titleImageText: 'Cheese cake',
-	    titleImageCategory: 'Cake',
-	    items: [
-	      {
-	        item: 'Cake1',
-	        itemOp: '1000원',
-	      },
-	      {
-	        item: 'Cake2',
-	        itemOp: '2000원',
-	      },
-	      {
-	        item: 'Cake3',
-	        itemOp: '3000원',
-	      },
-	      {
-	        item: 'Cake4',
-	        itemOp: '4000원',
-	      },
-	      {
-	        item: 'Cake5',
-	        itemOp: '5000원',
-	      },
-	    ],
-	    sum: 'Total',
-	    sumOp: '15000원',
-	  },
-	  
-	  buttons: [
-	    {
-	      title: '웹으로 이동',
-	      link: {
-	        mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-	      },
-	    },
-	    {
-	      title: '앱으로 이동',
-	      link: {
-	        mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-	      },
-	    },
-	  ]
-	});
-
-  
+				buttons : [
+						{
+							title : '웹으로 이동',
+							link : {
+								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
+							},
+						},
+						{
+							title : '앱으로 이동',
+							link : {
+								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
+							},
+						}, ]
+			});
 </script>
-<%@ include file="/WEB-INF/views/common/footer.jsp"%> 
+
+</html>

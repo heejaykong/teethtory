@@ -32,11 +32,11 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-
+<div class="located-at-bottom-of-header">
    <div class="container" id="top">
         <div>
             <div style="width:10rem; margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
-            <div id="reservationSelectTime" style="margin-top:25px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;">05.01(금)09:00</div>
+            <div id="reservationSelectTime" style="margin-top:25px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;"></div>
         </div>
         
    </div>
@@ -60,6 +60,7 @@
     </div>
     <div>
         <button id="submit" type="button" style="border: 0px solid black; margin-top:1rem;">예약 신청하기</button>
+    </div>
     </div>
 <script>
 var date = "<%= request.getParameter("date") %>";
@@ -118,11 +119,10 @@ $.ajax({
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
-			        "availabletime": changeAvailableTime},
-			    success: function (data) {  
-			            alert("데이터 전송이 성공적으로 끝났을 때 실행");
-			            
+			        "availabletime": changeAvailableTime
 			        }
+			}).done((data) => {
+				window.location.href = "/";
 			});
 			
 		})
