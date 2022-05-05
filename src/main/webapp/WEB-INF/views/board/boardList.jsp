@@ -45,7 +45,7 @@
 				<span class="mr-2">${board.boardwriter}</span>
 				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span>	
 			</div>
-			<div><h4>${board.boardtitle}</h4></div>
+			<div><h3>${board.boardtitle}</h3></div>
 			<div>${board.boardcontent}</div>
 			<div style="text-align: right;" class="mt-2">
 				<span><i class="fa-solid fa-image"></i></span><span>1</span>
