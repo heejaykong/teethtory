@@ -10,6 +10,8 @@
 #myDentistRegistrationTab {
 	color: rgb(242, 101, 34);
 }
+
+
 </style>
 </head>
 <body>
@@ -114,10 +116,10 @@
 	</c:forEach>
 
 <hr>
-<h6 style="padding-top: 2rem; padding-left: 1.5rem;">치과 검색하기</h6>
-<div style="padding-left: 2rem; padding-bottom: 0.5rem; width: 92%;">
+<h3 style="margin-top: 1.5rem; margin-left: 1rem; margin-bottom:1rem;">치과 검색하기</h3>
+<div style="padding-left: 1rem; padding-bottom: 0.5rem; width: 92%;">
 	<input id="searching-keyword" type="text" placeholder="치과를 등록해보세요." style="width: inherit; margin-right: 0.5rem;">
-	<span><i id="submit" class="fas fa-search"></i></span>
+	<i id="submit" class="fas fa-search"></i>
 </div>
 
 <script>
