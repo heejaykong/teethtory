@@ -162,7 +162,7 @@
 				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에 추가하시겠습니까?">내 치과 목록에 추가</div>
 		</div>
 	</c:forEach>
-	<div>
+	<div style="margin-top:1rem;">
 		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=1">처음</a>
 		<c:if test="${pager.groupNo>1}">
 			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.startPageNo-1}">이전</a>
