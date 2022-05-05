@@ -26,14 +26,6 @@
 
 
 <script>
-$.ajax({
-	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
-})
-	.done((data) => {
-
-
-
-
 
 Kakao.init('722eeaf26a4e1f0ba38f274b71d6e0c3'); 
 console.log(Kakao.isInitialized());
