@@ -6,18 +6,31 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 </head>
+<style>
+.fa-search{
+  font-weight : 900;
+  font-family: "Font Awesome 5 Free";
+  background-color : transparent;
+  border : none;
+  cursor : pointer;
+  position : absolute;
+  right : 5px;
+  top : 50%;
+  transform : translatey(-50%);
+}
+</style>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <div class="located-at-bottom-of-header">
-	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem; border:1px solid black;">
-		<span onclick="location.href='boardList'">커뮤니티</span>
+	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
+		<span style="margin-top:1rem; color:orange;"onclick="location.href='boardList'">커뮤니티</span>
 		
-		<div style="position:relative;">
-		<input id="search" type="text" value="${boardtitle}" style="width:8rem;"/><i class="fas fa-search" style="position:absolute;" 
+		<div style="position:relative; margin-top:0.5rem;">
+		<input id="search" type="text" value="${boardtitle}" style="width:10rem;"/><i class="fas fa-search" style="position:absolute;" 
 		onclick="searchBoard()"></i>
 		</div>
 			
-			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
+			<i style="margin-top:1rem;" class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
 		
 	</div>
 	<hr style="margin: 0px;">
