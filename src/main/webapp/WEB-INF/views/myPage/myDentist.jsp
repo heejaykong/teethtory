@@ -51,8 +51,8 @@
 	
 	function handleHidden(e, task, denno) {
 		const targetEl = e.target;
-		const theElement = targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item");
-		$(targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
+		const theElement = targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item");
+		$(targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
 		
 		const denName = targetEl.parentNode.parentNode.querySelector(".denName");
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
