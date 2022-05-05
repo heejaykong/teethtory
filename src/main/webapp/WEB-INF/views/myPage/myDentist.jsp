@@ -36,17 +36,18 @@
 	</div>
 </div>
 <script>
-	$('#exampleModal').on('show.bs.modal', function (event) {
+	    $('#exampleModal').on('show.bs.modal', function (event) {
 	  	var button = $(event.relatedTarget) // Button that triggered the modal
 	  	var recipient = button.data('whatever') // Extract info from data-* attributes
 	  	var body = button.data('body')
+	  	
 	  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 	  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 	  	console.log("aaa");
 	  	var modal = $(this)
-	  	modal.find('.modal-title').text(recipient)
+	  	
+	  	modal.find('.modal-header').text("ddd") //모달 헤더에 붙는 이름
 	  	modal.find('.modal-body').text(body)
-		
 	})
 	
 	function handleHidden(e, task, denno) {
@@ -54,10 +55,24 @@
 		const theElement = targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item");
 		$(targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
 		
-		const denName = targetEl.parentNode.parentNode.querySelector(".denName");
+		const denName = targetEl.parentNode.parentNode.querySelector("#denName_3").textContent;
+		console.log(denName);
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
-
+		console.log(denidvalue);
+		$('#exampleModal').on('show.bs.modal', function (event) {
+		  	var button = $(event.relatedTarget) // Button that triggered the modal
+		  	var recipient = button.data('whatever') // Extract info from data-* attributes
+		  	var body = button.data('body')
+		  	
+		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+		  	console.log("aaa");
+		  	var modal = $(this)
+		  	
+		  	modal.find('.modal-header').text("등록된 치과 "+ denName) //모달 헤더에 붙는 이름
+		  	modal.find('.modal-body').text(body)
+		})
 		// const hiddenDenNo = denno;
 		// if(task === 'add') {
 		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
