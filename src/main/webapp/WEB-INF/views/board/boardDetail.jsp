@@ -25,7 +25,7 @@
 	
 <div class="located-at-bottom-of-header">
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
-		<span onclick="location.href='boardList'">커뮤니티</span>
+		<span style="margin-top:1rem;"onclick="location.href='boardList'">커뮤니티</span>
 		<c:if test="${board.boardwriter == userid}">
 		<div class="btn-group">
 		  <button type="button" class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -78,7 +78,7 @@
 				</tr>
 			</table>
 		</form>
-		<button class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
+		<button style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
 		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">

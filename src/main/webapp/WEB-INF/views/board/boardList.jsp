@@ -6,20 +6,33 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 </head>
+<style>
+.fa-search{
+  font-weight : 900;
+  font-family: "Font Awesome 5 Free";
+  background-color : transparent;
+  border : none;
+  cursor : pointer;
+  position : absolute;
+  right : 5px;
+  top : 50%;
+  transform : translatey(-50%);
+}
+</style>
 <body>
 
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
 <div class="located-at-bottom-of-header">
-	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem; border:1px solid black;">
-		<span onclick="location.href='boardList'">커뮤니티</span>
+	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
+		<span style="margin-top:1rem; color:orange;" onclick="location.href='boardList'">커뮤니티</span>
 		
-		<div style="position:relative;">
-		<input id="search" type="text" value="" style="width:8rem;"/><i class="fas fa-search" style="position:absolute;" 
+		<div style="position:relative; margin-top:0.5rem;">
+		<input id="search" type="text" value="" style="width:10rem;"/><i class="fas fa-search" style="position:absolute;" 
 		onclick="searchBoard()"></i>
 		</div>
 			
-			<i class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
+			<i style="margin-top:1rem;"class="fa-solid fa-pen-to-square ml-2" onclick="location.href='boardWriteForm'"></i>
 	</div>
 	<hr style="margin: 0px;">
 	<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
@@ -32,7 +45,7 @@
 				<span class="mr-2">${board.boardwriter}</span>
 				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span>	
 			</div>
-			<div><h4>${board.boardtitle}</h4></div>
+			<div><h3>${board.boardtitle}</h3></div>
 			<div>${board.boardcontent}</div>
 			<div style="text-align: right;" class="mt-2">
 				<span><i class="fa-solid fa-image"></i></span><span>1</span>

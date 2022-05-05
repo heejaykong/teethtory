@@ -40,8 +40,6 @@
         </div>
         
    </div>
-
-
    <div>
         <div style="margin-top:80px; text-decoration: none; color:grey; margin-left:1rem;">예약자 정보</div>
         <div>
@@ -53,7 +51,6 @@
             </div>
         </div>
    </div>
- 
     <div>
         <div  style="margin-top:40px; margin-left:1rem;">예약 사유</div>
         <input id="reservation" type="text" placeholder="진료를 예약하는 이유를 적어주세요(증상, 희망 진료 등)" style="border:0.5px solid lightgrey;">
@@ -63,6 +60,7 @@
     </div>
     </div>
 <script>
+console.log('dendomain : ' + ${dendomain});
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
 if(date.length==15){
@@ -76,7 +74,6 @@ var aformatDate =date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(
 console.log(aformatDate);
 
 
-
 if(date.length==14){
 var tformatDate =date.substr(10,1)+date.substr(12,2);
 atimeIndex=(tformatDate.substr(0,1)*2)+(tformatDate.substr(1,2)/30)+8;
@@ -88,9 +85,11 @@ else if(date.length==15){
 
 
 //atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
-console.log(atimeIndex);
+console.log('atimeIndex : ' + atimeIndex);
+
 $.ajax({
-	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
+	, async: false
 	})
 	.done((data) => {
 		a=JSON.stringify(data);
@@ -106,13 +105,12 @@ $.ajax({
 		console.log(testchangeAvailableTime.substr(9,48));
 		changeAvailableTime=testchangeAvailableTime.substr(9,48);
 		//changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
-		
-		
 		$("#submit").click(function(){
-			
-			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
+			console.log("asda");
+			console.log("tformatDate : " + tformatDate);
+			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
 			$.ajax({
-			    url: 'http://localhost:8082/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
+			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
 			    type: 'POST',
 			    data: { 
 			    	"tformatDate":tformatDate,
@@ -120,11 +118,15 @@ $.ajax({
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
 			        "availabletime": changeAvailableTime
-			        }
-			}).done((data) => {
-				window.location.href = "/";
+				}
+				, async: false
+			})
+			.done((data) => {
+				console.log('data : ' + data);
+				console.log('???');
+				alert("데이터 전송이 성공적으로 끝났을 때 실행");
+				location.href = "${pageContext.request.contextPath}/";
 			});
-			
 		})
 	});
 	

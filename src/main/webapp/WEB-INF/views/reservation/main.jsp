@@ -27,11 +27,11 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
     <div class="located-at-bottom-of-header">
 
-                        <div style="margin-top:20px; margin-left:1rem;font-weight:bold;">
+                        <div style="margin-top:1rem; margin-left:1rem;font-weight:bold;">
                             <h3>진료 예약하기</h3>
                         </div>
                         <div id="top" class="container">
-                            <div>
+                            <div >
                             <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5px solid lightgrey;">
 	                        <span><i id="submit" class="fas fa-search"></i></span>
                             </div>
@@ -55,7 +55,7 @@
                             <c:if test="${searchedDentistList == null}">
                             <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
                                 <c:forEach var="myDentistList" items="${myDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; border-radius: 10%"
+                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; margin-top:1rem;"
                                     onclick="goReservationUsingMap(${myDentistList.denno});">
                                     <div class="history-list__item" style="margin-left: 1rem; width: inherit;">
                                         <!--
@@ -94,7 +94,7 @@
                                 </div>
                             </c:forEach>
                         </div>
-                            <div>
+                            <div style="margin-top:1rem; text-align: center;">
                             <a class="btn btn-outline-primary btn-sm" onClick="get_list(1)">처음</a>
                             <c:if test="${pager.groupNo>1}">
                                 <a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.startPageNo-1})">이전</a>

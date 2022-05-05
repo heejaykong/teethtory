@@ -3,8 +3,6 @@ package com.mycompany.webapp.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -108,7 +106,7 @@ public class ReservationController {
 		
 		return "reservation/dentistDetail";
 	}
-	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String dentistDetail(HttpSession session
@@ -125,14 +123,25 @@ public class ReservationController {
 	}
 	
 	//특정 치과 상세 페이지에서 '예약하기' 버튼 클릭시에 달력과 버튼을 이용한 예약신청 화면으로 이동.
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@RequestMapping("/reservationUsingCalendar")
-	public String reservationUsingCalendar() {
+	public String reservationUsingCalendar(@RequestParam("dendomain") String dendomain
+			, HttpSession session,Model model) {
+		String userid =(String)session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
 		log.info("실행");
+		int point = user.getUserpoint();
+		model.addAttribute("point",point);
+		model.addAttribute("dendomain", dendomain);
 		return "reservation/reservationUsingCalendar";
 	}
 	
-	@RequestMapping("/afterReservationUsingCalendar")
-	public String AfterReservationUsingCalendar() {
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@GetMapping("/afterReservationUsingCalendar")
+	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
+			, Model model) {
+		log.info("실행");
+		model.addAttribute("dendomain", dendomain);
 		return "reservation/afterReservationUsingCalendar";
 	}
 }
