@@ -183,8 +183,6 @@
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		
-    		document.getElementById('start').min=new Date().toISOString().substring(0, 10);
-    		
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
             
             function handler(e){
@@ -197,19 +195,21 @@
                	console.log(week[dayIndex]);
                	
                 document.getElementById('timecell').style.visibility="visible";
-               	
+				console.log('date : ' + date);
+				console.log('typeof date : ' + typeof date);
                 var aformatDate = date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
-                /* console.log(aformatDate); */
-                console.log(aformatDate);
+                console.log('asformatDate : ' + aformatDate);
+                console.log('typeof asformatDate : ' + typeof aformatDate);
+
                 $.ajax({
-                	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+                	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
                 })
              	.done((data) => {
              		 time=data.date.split("");
-             		/*  console.log(time); */
+             		console.log(time);
              		 
              		 $.ajax({
-                     	url:"http://localhost:8082/springframework-mini-project-dentist/businesshour/getHour?businessday=" + week[dayIndex]
+                     	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/businesshour/getHour?businessday=' + week[dayIndex]
                      })
                      .done((data) => {
              			businesstime=data;
@@ -292,7 +292,7 @@
           	$('.reservate').click(function(){
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
-          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime;
+          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime + "&dendomain=" + ${dendomain};
           	});
      </script>
 

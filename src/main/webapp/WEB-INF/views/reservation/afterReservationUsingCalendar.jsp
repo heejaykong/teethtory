@@ -59,6 +59,7 @@
         <button id="submit" type="button" style="border: 0px solid black; margin-top:1rem;">예약 신청하기</button>
     </div>
 <script>
+console.log('dendomain : ' + ${dendomain});
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
 if(date.length==15){
@@ -83,9 +84,11 @@ else if(date.length==15){
 
 
 //atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;   9시반이면 00000000000000000001(20) 10시이면 000000000000000000001(21)
-console.log(atimeIndex);
+console.log('atimeIndex : ' + atimeIndex);
+
 $.ajax({
-	url:"http://localhost:8082/springframework-mini-project-dentist/availablehour/getHour?date=" + aformatDate
+	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
+	, async: false
 	})
 	.done((data) => {
 		a=JSON.stringify(data);
@@ -101,25 +104,28 @@ $.ajax({
 		console.log(testchangeAvailableTime.substr(9,48));
 		changeAvailableTime=testchangeAvailableTime.substr(9,48);
 		//changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
-		
-		
-		$("#submit").click(function(){ 
-			
-			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex
+		$("#submit").click(function(){
+			console.log("asda");
+			console.log("tformatDate : " + tformatDate);
+			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
 			$.ajax({
-			    url: 'http://localhost:8082/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
+			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
 			    type: 'POST',
 			    data: { 
 			    	"tformatDate":tformatDate,
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
-			        "availabletime": changeAvailableTime},
-			    success: function (data) {  
-			            alert("데이터 전송이 성공적으로 끝났을 때 실행");
-			        }
+			        "availabletime": changeAvailableTime
+				}
+				, async: false
+			})
+			.done((data) => {
+				console.log('data : ' + data);
+				console.log('???');
+				alert("데이터 전송이 성공적으로 끝났을 때 실행");
+				location.href = "${pageContext.request.contextPath}/";
 			});
-			
 		})
 	});
 	
