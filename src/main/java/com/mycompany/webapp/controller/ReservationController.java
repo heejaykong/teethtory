@@ -126,8 +126,12 @@ public class ReservationController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@RequestMapping("/reservationUsingCalendar")
 	public String reservationUsingCalendar(@RequestParam("dendomain") String dendomain
-			, Model model) {
+			, HttpSession session,Model model) {
+		String userid =(String)session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
 		log.info("실행");
+		int point = user.getUserpoint();
+		model.addAttribute("point",point);
 		model.addAttribute("dendomain", dendomain);
 		return "reservation/reservationUsingCalendar";
 	}

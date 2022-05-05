@@ -102,10 +102,6 @@
 			infowindow.close();
 			});
 			
-			//마커 클릭시 해당 치과 이동
-			kakao.maps.event.addListener(marker, 'click', function() {
-				window.location.href = '/springframework-mini-project/reservation/dentistDetail';
-			});
 
 			//지도 상단에 뒤로가기 아이콘 우측에 치과 이름 표시하기.
 			let dennames = document.getElementsByClassName('denname');

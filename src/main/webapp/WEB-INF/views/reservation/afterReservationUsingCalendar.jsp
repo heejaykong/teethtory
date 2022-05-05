@@ -40,8 +40,6 @@
         </div>
         
    </div>
-
-
    <div>
         <div style="margin-top:80px; text-decoration: none; color:grey; margin-left:1rem;">예약자 정보</div>
         <div>
@@ -53,7 +51,6 @@
             </div>
         </div>
    </div>
- 
     <div>
         <div  style="margin-top:40px; margin-left:1rem;">예약 사유</div>
         <input id="reservation" type="text" placeholder="진료를 예약하는 이유를 적어주세요(증상, 희망 진료 등)" style="border:0.5px solid lightgrey;">
@@ -74,7 +71,6 @@ formatdate=date.substr(5,2)+"월 "+date.substr(8,2)+"일 "+date.substr(10,1)+"�
 document.getElementById("reservationSelectTime").innerHTML=formatdate;
 var aformatDate =date.substr(0,4) + "/" +  date.substr(5,2) + "/" + date.substr(8,2);
 console.log(aformatDate);
-
 
 
 if(date.length==14){
@@ -108,8 +104,6 @@ $.ajax({
 		console.log(testchangeAvailableTime.substr(9,48));
 		changeAvailableTime=testchangeAvailableTime.substr(9,48);
 		//changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
-		
-		
 		$("#submit").click(function(){
 			console.log("asda");
 			console.log("tformatDate : " + tformatDate);

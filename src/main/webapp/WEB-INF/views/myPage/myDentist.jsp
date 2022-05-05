@@ -10,6 +10,14 @@
 #myDentistRegistrationTab {
 	color: rgb(242, 101, 34);
 }
+.fa-search{ 
+ font-family: 'Font Awesome 5 Free';
+  position: relative;
+  left: -30px;
+  content: "\f007";  
+}
+
+
 </style>
 </head>
 <body>
@@ -114,10 +122,10 @@
 	</c:forEach>
 
 <hr>
-<h6 style="padding-top: 2rem; padding-left: 1.5rem;">치과 검색하기</h6>
-<div style="padding-left: 2rem; padding-bottom: 0.5rem; width: 92%;">
+<h3 style="margin-top: 1.5rem; margin-left: 1rem; margin-bottom:1rem;">치과 검색하기</h3>
+<div style="padding-left: 1rem; padding-bottom: 0.5rem; width: 92%;">
 	<input id="searching-keyword" type="text" placeholder="치과를 등록해보세요." style="width: inherit; margin-right: 0.5rem;">
-	<span><i id="submit" class="fas fa-search"></i></span>
+	<i id="submit" class="fas fa-search"></i>
 </div>
 
 <script>
@@ -154,7 +162,7 @@
 				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에 추가하시겠습니까?">내 치과 목록에 추가</div>
 		</div>
 	</c:forEach>
-	<div>
+	<div style="margin-top:1rem;">
 		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=1">처음</a>
 		<c:if test="${pager.groupNo>1}">
 			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.startPageNo-1}">이전</a>

@@ -165,7 +165,7 @@
                          <div>
                           <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
                           <p>(-10,000point)</p>
-                          <p>잔여 포인트 (5,000point)</p>
+                          <p>잔여 포인트 ${point-10000}</p>
                           </div>
 
                       </div>
