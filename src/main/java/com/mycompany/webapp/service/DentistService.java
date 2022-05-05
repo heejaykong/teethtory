@@ -41,6 +41,12 @@ public class DentistService {
 		return dentistDao.selectByDenenno(denno);
 	}
 	
+	//사용자가 치료내역에서 후기를 작성한 뒤 해당 치과의 상세화면으로 넘기기 위해서,
+	//dentist서버단에서 넘겨받은 dendomain값으로 치과객체를 찾아오는 메소드.
+	public Dentist getDentistByDendomain(String dendomain) {
+		return dentistDao.selectByDendomain(dendomain);
+	}
+	
 	//치과 목록 만들어두기.(구현X. 더미 데이터 생성용.)
 	public void addDentist(Dentist dentist) {
 		dentistDao.insert(dentist);
