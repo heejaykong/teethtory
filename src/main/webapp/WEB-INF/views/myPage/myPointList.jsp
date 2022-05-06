@@ -17,7 +17,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-			<div class="d-flex">
+			<div class="d-flex located-at-bottom-of-header">
 				<div class="col-sm-10">
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">포인트 내역</a>
