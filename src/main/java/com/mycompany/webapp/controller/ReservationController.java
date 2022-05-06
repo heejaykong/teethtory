@@ -138,14 +138,17 @@ public class ReservationController {
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/afterReservationUsingCalendar")
-	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain,
-		Model model,HttpSession session) {
+
+	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
+			, Model model, HttpSession session) {
+
 		log.info("실행");
-		String userid = (String)session.getAttribute("sessionUserid");
-		User user = userService.getUser(userid);
-		
-		model.addAttribute("userssn", user.getUserssn());
+
+		String userid = (String) session.getAttribute("sessionUserid");
+		String patientssn = userService.getUser(userid).getUserssn();
+
 		model.addAttribute("dendomain", dendomain);
+		model.addAttribute("patientssn", patientssn);
 		return "reservation/afterReservationUsingCalendar";
 	}
 }

@@ -127,7 +127,6 @@
            	</div>
            	`;
 		}
-
 		$(function(){
 			getData("ALL");
 			document.querySelector("#treattype").addEventListener("change", handleSelectChange);
@@ -141,7 +140,7 @@
 				console.log(selectedTreattype);
 				const promise = new Promise((resolve, reject) => {
 					let list = [];
-          console.log("dentist", ${dentist}.dentist);
+          			console.log("dentist", ${dentist}.dentist);
 					for(let i=0; i<${dentist}.dentist.length; i++) {
 						$.ajax({
 							method:"POST",
