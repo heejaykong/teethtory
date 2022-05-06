@@ -38,26 +38,12 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
-	        <button type="button" class="btn btn-primary" style="width: 10rem;">예</button>
+	        <button id="yesBtn" type="button" class="btn btn-primary" style="width: 10rem;">예</button>
 	      </div>
 	    </div>
 	</div>
 </div>
 <script>
-	    $('#exampleModal').on('show.bs.modal', function (event) {
-	  	var button = $(event.relatedTarget) // Button that triggered the modal
-	  	var recipient = button.data('whatever') // Extract info from data-* attributes
-	  	var body = button.data('body')
-	  	
-	  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	  	console.log("aaa");
-	  	var modal = $(this)
-	  	
-	  	modal.find('.modal-header').text("ddd") //모달 헤더에 붙는 이름
-	  	modal.find('.modal-body').text(body)
-	})
-	
 	function handleHidden(e, task, denno) {
 		const targetEl = e.target;
 		const theElement = targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item");
@@ -76,17 +62,19 @@
 		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
 		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
 		  	console.log("aaa");
-		  	var modal = $(this)
+		  	var modal = $(this);
 		  	
-		  	modal.find('.modal-header').text("등록된 치과 "+ denName) //모달 헤더에 붙는 이름
-		  	modal.find('.modal-body').text(body)
+		  	modal.find('.modal-header').text("등록된 치과 "+ denName); //모달 헤더에 붙는 이름
+		  	modal.find('.modal-body').text(body);
+
+			$('#yesBtn').on('click', function() {
+				if(task === 'add') {
+					location.href = "myDentist?denno=" + denno + "&task=" + task;
+				} else if(task === 'delete') {
+					location.href = "myDentist?denno=" + denno + "&task=" + task;
+				}
+			})
 		})
-		// const hiddenDenNo = denno;
-		// if(task === 'add') {
-		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
-		// } else if(task === 'delete') {
-		// 	location.href = "myDentist?denno=" + denno + "&task=" + task;
-		// }
 	}
 	
 	function toggleOff(e) {
