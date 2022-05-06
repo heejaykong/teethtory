@@ -77,63 +77,12 @@ flex-direct:row;
     	<h4>예약 현황</h4>
     </div>
 	<div id="reservationListContainer">
-		<%-- <div style="position:relative; border:1px solid lightgrey ;border-radius:1rem; margin:0.5rem;"> 
-			<div style="position:absolute; margin-left:1rem;left:80%">
-				<span class="stamp is-nope">예약취소</span>
-			</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
-				
-			<div style="margin-left:1rem;"><h5>일정: 2022. 04. 29(금) 10:30</h5></div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div> --%>
-		
-	<%-- <div style="position:relative;  border:1px solid lightgrey;border-radius:1rem; margin:0.5rem;"> 
-				<div style="position:absolute; margin-left:1rem; left:80%">
-					<span class="stamp is-approved">예약확정</span>
-				</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;">
-				<h4>A치과</h4>
-			</div>
-				
-			<div style="margin-left:1rem;">
-				<h5>일정: 2022. 04. 29(금) 10:30</h5>
-			</div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div> --%>
-
-		<div style="position:relative;  border:1px solid lightgrey; border-radius:1rem; margin:0.5rem;"> 
-				<div style="position:absolute; margin-left:1rem;left:80%">
-				<span class="stamp">예약대기</span>
-				</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
-				
-			<div style="margin-left:1rem;"><h5>예약일정: 2022. 04. 29(금) 10:30</h5></div>
-			<div style="margin-left:1rem;"><h5>신청일자: 2022. 04. 29(금) 10:30</h5></div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div>
-	</div><%--id: reservationListContainer--%>
+	</div>
 	<div id="paginationContainer">
 	</div>
 </div>
 
 	<script>
-
-
 		//웹 서버로부터 사용자의 내치과 객체들을 리스트로 받아오는 통신.
 		var totalArray = [];
 		$.ajax({

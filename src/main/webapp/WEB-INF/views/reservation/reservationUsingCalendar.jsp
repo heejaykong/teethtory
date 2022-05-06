@@ -165,7 +165,7 @@
                          <div>
                           <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
                           <p>(-10,000point)</p>
-                          <p>잔여 포인트 ${point-10000}</p>
+                          <p id="mypoint">잔여 포인트 ${point}</p>
                           </div>
 
                       </div>
@@ -214,7 +214,6 @@
                      .done((data) => {
              			businesstime=data;
              			
-             			/* console.log(businesstime); */
 						let btime=[];
 						for(let k in businesstime){
 							if(businesstime.hasOwnProperty(k)){
@@ -240,8 +239,6 @@
            					console.log(butime);
            					var creatediv = document.createElement("button");
            					$("#timecell").append(creatediv);
-           					/* 
-           					creatediv.setAttribute("class",""); */
            					
            					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
            					creatediv.setAttribute("onclick","btnVisible()")
@@ -254,9 +251,7 @@
            					creatediv.setAttribute("onclick","btnWarn()")
            					creatediv.setAttribute("id","disabletime")
            					$("#timecell").append(creatediv);
-           					/* 
-           					creatediv.setAttribute("class",""); */
-           					
+           
            					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
            					
            					creatediv.setAttribute("style",createdivStyle);
@@ -265,22 +260,22 @@
              			}	
                      })})
             }
-           /*  $('.cell').click(function(){
-         	    var cell_time_check = $(this).attr("id");
-         	});
-            $('.cell').click(function(){
-           		document.getElementById('reservationtime').value = $(this).text();
-           	
-            $('.cell').removeClass('select');
-            $(this).addClass('select');
-            */
             function btnVisible(){
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
            	document.getElementById('reservationtime').value= $(event.target).text();
            	
             };
-            
+            $(document).ready(function(){
+          	    $("#usepoint").change(function(){
+          	        if($("#usepoint").is(":checked")){
+          	           
+          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
+          	        }else{
+          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
+          	        }
+          	    });
+          	});
           	function btnWarn(){
           		
           		$(".modal").fadeIn();
@@ -289,6 +284,7 @@
         		$(".modal").fadeOut();
         		}); 
           	}
+          	
           	$('.reservate').click(function(){
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;

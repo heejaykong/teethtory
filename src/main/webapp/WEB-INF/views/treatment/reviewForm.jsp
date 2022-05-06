@@ -12,81 +12,19 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<<<<<<< HEAD
-	<main class="main">
-	  <section class="history-desc-section row"> 
-	    <article class="desc-card card col-mid-8 justify-content-center">
-	      <div class="desc-card__header card-header px-5 py-4 d-flex">
-	        <div class="desc-card__header__col flex-grow-1">
-	          <div class="round-thumbnail mb-3">
-	            <i class="fa-solid fa-tooth fa-lg"></i>
-	          </div>
-	          <h6 class="dentist-visited">서울시 마포구 무슨동 햇살치과</h6>
-	          <h1 class="treatment-title">
-	            임플란트<span class="treatment-date" style="margin-right:1rem;">2022. 05. 04.</span>
-	            <div class="dropdown" style="display:inline-block;">
-				  별점:
-				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-				    ★★★★★
-				  </button>
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				    <a class="dropdown-item" href="#">★★★★★</a>
-				    <a class="dropdown-item" href="#">★★★★☆</a>
-				    <a class="dropdown-item" href="#">★★★☆☆</a>
-				    <a class="dropdown-item" href="#">★★☆☆☆</a>
-				    <a class="dropdown-item" href="#">★☆☆☆☆</a>
-				  </div>
-				</div>
-	          </h1>
-	        </div>
-	      </div>
-	      <!-- 여기 form태그로 다시 만들어야 함 -->
-	      <div class="desc-card__body card-body px-5 py-4">
-		      <textarea class="form-control" aria-label="With textarea" placeholder="후기를 작성하세요."></textarea>
-		      <div style="text-align:right;">
-			      <a href="cancelForm"><button type="button" class="btn btn-light">취소</button></a>
-			      <a href="postReview"><button type="button" class="btn btn-warning">작성</button></a>
-		      </div>
-	      </div>
-	    </article>
-	  </section>
-	</main>
-
 	<main class="main located-at-bottom-of-header">
 		<h1 class="page-title">후기 작성</h1>
 
-
 		<%-- 치과 정보요약 영역--%>
 		<section class="dentist-info-section">
-			<%-- TBD: 넘어온 치과정보 뿌려주기(아래 script태그 참고) --%>
+			<%-- 넘겨받은 치과 정보요약 display --%>
 		</section>
-		<script>
-			const DUMMY_OBJECT = {
-				denname: "부산 치과",
-				treatdate: "2007-02-02", // TBD: yyyy. MM. dd. 형식으로 뿌려야 함
-				denaddress: "부산시 해운대구 어쩌구로 897-767"
-			};
-			function template({denname, treatdate, denaddress}) {
-				return `
-					<div class="list-item no-padding no-border-bottom">
-						<div class="list-item__info-summary">
-							<h4 class="title">
-								`+ denname +`
-								<span class="subtitle">`+ treatdate +`</span>
-							</h4>
-							<p class="text-sm">`+ denaddress +`</p>
-						</div>
-					</div>
-				`;
-			}
-			$(function() {
-				const element = template(DUMMY_OBJECT);
-				$(".dentist-info-section").html(element);
-			});
-		</script>
 
 		<%-- 후기 작성 영역 --%>
-		<form action="reviewForm" class="review-form">
+		<form class="review-form">
+			
+			<input name="userid" id="userid" value="${sessionUserid}" hidden />
+			
 			<div class="starscore-input">
 				<label for="starscore">별점:</label>
 				<select name="starscore" id="starscore">
@@ -185,6 +123,7 @@
 			</div>
 			<textarea
 				name="reviewcontent"
+				id="reviewcontent"
 				class="review-content-textarea"
 				rows="5" cols="30"
 				minlength="5"
@@ -197,7 +136,69 @@
 			</button>
 		</form>
 	</main>
+	
+	<%-- 변수 선언 --%>
+	<c:set var="treatno" value="${treatno}"/>
+	<c:set var="denno" value="${denno}"/>
+	<c:set var="sessionUserid" value="${sessionUserid}"/>
 
+	<script>
+		const treatno = '${treatno}';
+		const sessionUserid = '${sessionUserid}';
+		const denno = '${denno}'
+		
+		$(function() {
+			// 치과 정보요약 데이터 가져오기
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+			}).done(({treatno, denname, treatdate, denaddress}) => {
+				const treatmentSummary = {
+					treatno, denname, treatdate, denaddress
+				}
+				console.log(treatmentSummary);
+				paintTreatmentSummary(treatmentSummary);
+			});
+		});
+
+		function template({denname, treatdate, denaddress}) {
+			return `
+				<div class="list-item no-padding no-border-bottom">
+					<div class="list-item__info-summary">
+						<h4 class="title">
+							`+ denname +`
+							<span class="subtitle">`+ treatdate +`</span>
+						</h4>
+						<p class="text-sm">`+ denaddress +`</p>
+					</div>
+				</div>
+			`;
+		}
+		
+		function paintTreatmentSummary(treatmentSummary) {
+			const summaryTagHTML = template(treatmentSummary);
+			$(".dentist-info-section").html(summaryTagHTML);
+		}
+		
+		// form 제출할때 해당 치과 상세페이지로 redirect
+		document.querySelector("form").addEventListener("submit", (e) => {
+			e.preventDefault();
+			
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8082/springframework-mini-project-dentist/review/postReview?treatno=" + treatno,
+				data: {
+					userid: sessionUserid,
+					starscore: parseFloat($("#starscore").val()),
+					reviewcontent: $("#reviewcontent").val()
+				}
+			}).done(() => {
+				// 리뷰를 작성한 치과의 상세페이지로 넘어가면서, 후기목록 영역("#엘리먼트id")으로 스크롤 anchor하기
+				location.href = '${pageContext.request.contextPath}' + "/reservation/dentistDetail?denno=" + denno + "#reviewContainer";
+			});
+		});
+ 	</script>
+	
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

@@ -59,6 +59,10 @@
   url("../fonts/NotoSansKR-Black.otf") format('truetype')
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	letter-spacing: -0.05rem;
 	font-family: 'Noto Sans KR', sans-serif;
@@ -150,6 +154,13 @@ body {
 	font-weight: 700;
 	padding: 0.8rem;
 }
+.btn-disabled,
+.btn-disabled:hover {
+	cursor: not-allowed;
+	border-color: var(--osstem-gray);
+	background-color: var(--osstem-gray);
+}
+
 
 /* Global styles - background colors */
 .background-pale-peach {

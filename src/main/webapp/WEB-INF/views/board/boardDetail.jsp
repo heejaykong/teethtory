@@ -20,6 +20,21 @@
 }
 </style>
 </head>
+<script>
+	$.ajax({
+		url: "boardDetailAttachedFile?boardno=" + ${board.boardno},
+		method:"GET",
+	})
+	.done((data) => {
+		console.log('data : ' + data);
+		console.log('typeof data : ' + typeof data);
+		if(data == '') {
+			$('#attachedImg').attr("style", "display:none");
+		} else {
+			$('#attachedImg').attr("src", "boardDetailAttachedFile?boardno=" + ${board.boardno});
+		}
+	});
+</script>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
@@ -48,8 +63,7 @@
 			<div>${board.boardcontent}</div>
 			
 			<div>
-				<img src="${pageContext.request.contextPath}/resources/images/puppy3.jpeg" width="50%" height="100rem;">
-				<img src="${pageContext.request.contextPath}/resources/images/puppy1.jpeg" width="50%" height="100rem;">
+				<img id="attachedImg" width="50%" height="100rem;">
 			</div>
 			
 			<div style="text-align: left;" class="mt-2">
@@ -73,12 +87,12 @@
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
 				<td><input type="hidden" name="boardno" value="${board.boardno}"/></td>
-					<td><textarea id="updateform" class="form-control" placeholder="글 내용"
-							name="commentcontent" maxlength="2048" style="height: 50px;"></textarea></td>
+					<td><textarea required id="updateform" class="form-control" placeholder="글 내용"
+							name="commentcontent" maxlength="2048" style="height: 50px; width:92%;"></textarea></td>
 				</tr>
 			</table>
 		</form>
-		<button style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
+		<button id="write"style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
 		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
@@ -140,7 +154,9 @@
 	  </ul>
 	</nav>
 </div>
+<script>
 
+</script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
