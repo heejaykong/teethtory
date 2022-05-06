@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-마이페이지</title>
+	<title>치스토리 - 마이페이지</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/main.css">
 </head>
 <body>

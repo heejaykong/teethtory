@@ -200,7 +200,13 @@ body {
 	font-size: 1.4rem;
 	font-weight: 600;
 	color: var(--almost-black-gray);
-	margin: 3.5rem 0 2rem 0;
+	margin: 3.5rem 0 2rem;
+}
+.section-title {
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--gray);
+	margin: 3rem 0 2rem;
 }
 .error {
 	color: red;

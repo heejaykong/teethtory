@@ -3,149 +3,71 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/views/common/meta.jsp"%>
-<title>치스토리-마이페이지</title>
-
-<style>
-.container {
-	display: flex;
-	flex-direction: row;
-}
-
-#changebtn {
-	color: white;
-	background-color: #f47d36;
-	border-color: #f47d36;
-	width: 100%;
-	height: 3rem;
-	border-radius: 1rem;
-}
-
-.toggle-switch input {
-	-webkit-appearance: none;
-	-webkit-border-radius: 0;
-}
-
-.toggle-switch input {
-	-webkit-appearance: none;
-	-webkit-border-radius: 0;
-}
-
-#container {
-	display: flex;
-	width: 100%;
-}
-
-.toggle-switch input[type=checkbox] {
-	display: none;
-}
-
-.toggle-track {
-	display: inline-block;
-	position: relative;
-	width: 60px;
-	height: 25px;
-	border-radius: 60px;
-	background: #8b8b8b;
-}
-
-.toggle-track:before {
-	content: '';
-	display: block;
-	position: absolute;
-	top: -6px;
-	left: -15px;
-	width: 27px;
-	height: 27px;
-	margin: 5px;
-	background: #fff;
-	border-radius: 100%;
-	border: 1px solid #8b8b8b;
-	transition: left 0.3s;
-}
-
-.toggle-switch input[type=checkbox]+label .toggle-track:after {
-	content: 'OFF';
-	display: inline-block;
-	position: absolute;
-	right: 8px;
-	color: #fff;
-}
-
-.toggle-switch input[type=checkbox]:checked+label .toggle-track {
-	background: #FA9AA6;
-}
-
-.toggle-switch input[type=checkbox]:checked+label .toggle-track:before {
-	left: 40px;
-	border: 1px solid #FA9AA6;
-}
-
-.toggle-switch input[type=checkbox]:checked+label .toggle-track:after {
-	content: 'ON';
-	left: 5px;
-}
-</style>
+	<%@ include file="/WEB-INF/views/common/meta.jsp"%>
+	<title>치스토리 - 설정</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/myInformation.css">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<div class="located-at-bottom-of-header">
-		<div style="margin-left: 1rem; margin-top: 1rem;">
-			<h4>설정</h4>
-		</div>
-		<hr>
-		<div style="margin-left: 1rem;">
-			<strong><h4>회원정보</h4></strong>
-		</div>
-		<hr>
+	<main class="main located-at-bottom-of-header">
 
-		<div class="container">
-			<div style="margin-right: 2.5rem; margin-bottom: 1rem;">이름</div>
-			<div>${user.username}</div>
-		</div>
-
-		<div class="container">
-			<div style="margin-right: 1.7rem; margin-bottom: 1rem;">아이디</div>
-			<div>${user.userid}</div>
-		</div>
-
-		<div class="container">
-			<div style="margin-right: 1.7rem; margin-bottom: 1rem;">이메일</div>
-			<div>${user.useremail}</div>
-		</div>
-
-		<div class="container">
-			<div style="margin-right: 1rem; margin-bottom: 1rem;">비밀번호</div>
-			<div>*******</div>
-		</div>
-
-		<div class="container">
-			<div style="margin-right: 1rem; margin-bottom: 1rem;">휴대번호</div>
-			<div>${user.userphone}</div>
-		</div>
-
-		<button id="changebtn"
-			style="margin-top: 2rem; margin-left: 0.25rem; text-align: center;"
-			onclick="location.href='myInformationEditor'">회원정보 수정</button>
-
-
-		<hr>
-		<div style="margin-left: 1rem; margin-bottom: 1rem">알림</div>
-		<div id="container">
-			<div class="toggle-switch" style="margin-left: 1rem">
-				<input type="checkbox" id="chkTog4"> <label for="chkTog4">
-					<span class="toggle-track"></span>
-				</label>
-
+		<%-- TBD: 이메일/비밀번호/휴대폰번호 변경 폼 각각 만들기(현재 전부 myInformationEditor임) --%>
+		<%-- TBD: 치스토리 탈퇴하기 요청경로 워딩 바꾸기(signOut -> deleteAccount) --%>
+		
+		<%-- 회원정보 블록 --%>
+		<section class="user-info-settings-block">
+			<h1 class="page-title">설정</h1>
+			<h3 class="section-title">회원 정보</h3>
+			<div class="row-item">
+				<p class="row-item__title">이름</p>
+				<span class="row-item__content">
+					${user.username}
+				</span>
 			</div>
-			<div style="margin-left: 0.5rem;">
-				<h5>진료일 하루 전에 알림 수신하기</h5>
+			<div class="row-item">
+				<p class="row-item__title">아이디</p>
+				<span class="row-item__content">
+					${user.userid}
+				</span>
 			</div>
-		</div>
-		<div style="margin-top: 2rem; margin-left: 1rem;">
-			<a href='signOut'> 치스토리 탈퇴하기 </a>
-		</div>
-	</div>
+			<div class="row-item">
+				<p class="row-item__title">이메일</p>
+				<span class="row-item__content">
+					${user.useremail}
+					<a href="myInformationEditor" class="row-item__content__btn">이메일 변경</a>
+				</span>
+			</div>
+			<div class="row-item">
+				<p class="row-item__title">비밀번호</p>
+				<span class="row-item__content">
+					**********
+					<a href="myInformationEditor" class="row-item__content__btn">비밀번호 변경</a>
+				</span>
+			</div>
+			<div class="row-item">
+				<p class="row-item__title">휴대폰 번호</p>
+				<span class="row-item__content">
+					${user.userphone}
+					<a href="myInformationEditor" class="row-item__content__btn">휴대폰 번호 변경</a>
+				</span>
+			</div>
+		</section>
+
+		<%-- 옅은 막대기 --%>
+		<div class="thick-divider"></div>
+
+		<%-- 알림 블록 --%>
+		<section class="noti-settings-block">
+			<h3 class="section-title">알림</h3>
+			
+			<div class="custom-control custom-switch">
+				<input type="checkbox" class="custom-control-input" id="notiToggleBtn">
+				<label class="custom-control-label" for="notiToggleBtn">진료일 하루 전에 알림 수신하기</label>
+			</div>
+
+			<a href="deleteAccount(구 signOut)" class="deleteAccountLink">치스토리 탈퇴하기</a>
+		</section>
+	</main>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
