@@ -49,16 +49,13 @@
 					<p class="name">
 						<span id="username">${name}</span> 님
 					</p>
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/myPage/myPointList">
 						<p class="mypoint">
 							<span class="mypoint__icon">
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-
-
 								${point}
-
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>
@@ -67,9 +64,13 @@
 					</a>
 				</div>
 			</div>
-			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white">
+			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white" style="margin-bottom:-1rem;">
 				<i class="mypage-btn__icon fa-solid fa-user"></i>
 				마이페이지
+			</a>
+			<a href="${pageContext.request.contextPath}/logout" class="mypage-btn btn-large-hollow-white" style="background-color:#f26522; text-decoration:none; color:white">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				로그아웃
 			</a>
 		</c:if>
 	</div>
@@ -101,6 +102,12 @@
 			$(".sidebar-menu").removeClass("hidden");
 			$(".sidebar-menu").addClass("revealed");
 			$("body").addClass("overflow-hidden");
+			
+			//포인트에 맞추어 프로필 색 변경
+			if(${sessionUserid != null}) {
+				$(".profile__img").css("background-color","${backgroundColor}");
+			}
+
 		});
 		
 		$("#sidebar-menu__exit-btn").on("click", function(){
@@ -110,4 +117,5 @@
 		});
 
 	})
+	
 </script>

@@ -13,7 +13,7 @@
 <div class="d-flex justify-content-between mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
 	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardList'"></i>글 쓰기</span> 
-	<span><input type="submit" value="완료" form="boardWriteForm" class="btn btn-sm btn-danger"></input> </span>
+	<span><input  type="submit" id="complete" value="완료" form="boardWriteForm" class="btn btn-sm btn-danger"></input> </span>
 </div>
 <hr style="margin: 0px;">
 <div class="donut">
@@ -24,13 +24,13 @@
 				style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th><input type="text" class="form-control"
+						<th><input required type="text" class="form-control" id="title"
 							placeholder="글 제목" name="boardtitle" maxlength="50"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><textarea class="form-control" placeholder="글 내용"
+						<td><textarea required class="form-control" placeholder="글 내용" id="content"
 								name="boardcontent" maxlength="2048" style="height: 350px;"></textarea></td>
 					</tr>
 					<tr>
@@ -46,6 +46,9 @@
 		width="100%" height="100rem;">
 </div>
 </div>
+	<script>
+	
+	</script>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

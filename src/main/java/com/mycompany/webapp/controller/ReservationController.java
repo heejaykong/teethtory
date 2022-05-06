@@ -143,6 +143,5 @@ public class ReservationController {
 		log.info("실행");
 		model.addAttribute("dendomain", dendomain);
 		return "reservation/afterReservationUsingCalendar";
-	
 	}
 }
