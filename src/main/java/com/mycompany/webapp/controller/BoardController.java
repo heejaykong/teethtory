@@ -124,8 +124,9 @@ public class BoardController {
 		if (!board.getBattach().isEmpty()) { // Multipartfile은 넘어오지 않아도 null값이 아니라 객체 하나가 들어가서 null로 체크하지 않는다.
 			board.setBimageoriginalfilename(board.getBattach().getOriginalFilename());
 			board.setBimagecontenttype(board.getBattach().getContentType());
-			board.setBimageoriginalfilename(new Date().getTime() + "-" + board.getBimageoriginalfilename());
-			File file = new File("C:/Temp/uploadfiles/" + board.getBimagesavedfilename());
+			board.setBimageoriginalfilename(board.getBimageoriginalfilename());
+			board.setBimagesavedfilename(new Date().getTime() + "-" + board.getBimageoriginalfilename());
+			File file = new File("/Users/choisukhee/Documents/2022/오스템 임플란트/중간 프로젝트/fileStorage/" + board.getBimagesavedfilename());
 			board.getBattach().transferTo(file);
 		}
 
