@@ -46,24 +46,37 @@ public class BoardController {
 	
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
-		//Header에 이름, 포인트 값 넘기는 코드
-		String userid = (String) session.getAttribute("sessionUserid");
-		if(userid != null) {
-			User user = userService.getUser(userid);
-			String name = user.getUsername();
-			int point = user.getUserpoint();
-			model.addAttribute("name", name);
-			model.addAttribute("point", point);
-		}
-		
+				
 		int totalBoardNum = boardService.getTotalBoardCount();
 
 		Pager pager = new Pager(5, 5, totalBoardNum, pageNo);
 		model.addAttribute("pager", pager);
 
 		List<Board> boards = boardService.getBoards(pager);
+		for(Board board : boards) {
+			String userid = board.getBoardwriter();
+			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
+			if(!userid.equals("(알 수 없음)")) {
+				int point = 30000;
+				point = userService.getPointBalance(userid);
+				String backgroundColor = "#cd7f32";
+				if(point > 20000) {
+					backgroundColor = "gold";
+				} else if(point > 10000) {
+					backgroundColor = "silver";
+				}
+				board.setBackgroundColor(backgroundColor);
+				board.setCommentcount(commentcount);
+			}
+			
+			
+			if(board.getBimageoriginalfilename() != null) {
+				board.setFilecount(true);
+			}
+			
+		}
+		
 		model.addAttribute("boards", boards);
-
 		return "board/boardList";
 	}
 	
@@ -75,6 +88,26 @@ public class BoardController {
 		model.addAttribute("pager", pager);
 
 		List<Board> boards = boardService.getBoardsByTitleContent(boardtitle, pager);
+		for(Board board : boards) {
+			String userid = board.getBoardwriter();
+			
+			if(!userid.equals("(알 수 없음)")) {
+				int point = 30000;
+				point = userService.getPointBalance(userid);
+				String backgroundColor = "#cd7f32";
+				if(point > 20000) {
+					backgroundColor = "gold";
+				} else if(point > 10000) {
+					backgroundColor = "silver";
+				}
+				board.setBackgroundColor(backgroundColor);
+			}
+			
+			if(board.getBimageoriginalfilename() != null) {
+				board.setFilecount(true);
+			}
+			
+		}
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardtitle", boardtitle);
 		return "board/searchBoardList";
@@ -83,6 +116,19 @@ public class BoardController {
 	@GetMapping("/boardDetail") //여기에서 댓글도 같이 출력
 	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		Board board = boardService.getBoard(boardno);
+		String boardUserid = board.getBoardwriter();
+		
+		if(!boardUserid.equals("(알 수 없음)")) {
+			int point = 30000;
+			point = userService.getPointBalance(boardUserid);
+			String backgroundColor = "#cd7f32";
+			if(point > 20000) {
+				backgroundColor = "gold";
+			} else if(point > 10000) {
+				backgroundColor = "silver";
+			}
+			board.setBackgroundColor(backgroundColor);
+		}
 		model.addAttribute("board", board);
 
 		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
@@ -90,6 +136,23 @@ public class BoardController {
 		model.addAttribute("pager", pager);
 		
 		List<Comment> comments = commentService.getComments(boardno, pager);
+
+		for(Comment comment : comments) {
+			String commentUserid = comment.getCommentwriter();
+			
+			if(!commentUserid.equals("(알 수 없음)")) {
+				int point = 30000;
+				point = userService.getPointBalance(commentUserid);
+				String backgroundColor = "#cd7f32";
+				if(point > 20000) {
+					backgroundColor = "gold";
+				} else if(point > 10000) {
+					backgroundColor = "silver";
+				}
+				comment.setBackgroundColor(backgroundColor);
+			}
+			
+		}
 		model.addAttribute("comments", comments);
 		session.setAttribute("boardno", boardno);
 		

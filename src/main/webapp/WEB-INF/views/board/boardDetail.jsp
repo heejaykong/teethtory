@@ -18,6 +18,11 @@
   box-sizing:border-box; padding:74px 0;
   line-height:23px; cursor:pointer;
 }
+	.writer__img {
+		width: 1rem;
+		height: 1rem;
+		border-radius: 50%;
+	}
 </style>
 </head>
 <script>
@@ -57,7 +62,7 @@
 	
 		<div class="board d-flex flex-column" style="margin: 1rem 1rem 0.5rem 1rem;">
 			<div class="mb-2">
-			<span class="mr-2">금니</span>
+			<div class="writer__img" style="display: inline-block; background-color: ${board.backgroundColor};"></div>
 			<span class="mr-2">${board.boardwriter}</span>
 			<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div>${board.boardcontent}</div>
@@ -98,7 +103,7 @@
 		<div class="board d-flex flex-column" style="padding: 1rem;">
 			<div class="d-flex justify-content-between mb-2">
 				<div>
-					<span class="mr-2"><i class="fa-solid fa-medal"></i></span>
+					<div class="writer__img" style="display: inline-block; background-color: ${comment.backgroundColor};"></div>
 					<span class="mr-2">${comment.commentwriter}</span>
 				</div>
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
