@@ -62,6 +62,10 @@
 		const promise = new Promise((resolve, reject) => {
 			let list = [];
 			let allCost = 0;
+			var toothRankMap = new Map();
+			// var sortedToothRankMap = new Map();
+			// var toothRankObj = {};
+			// var innerTop3ToothnoList = [];
 			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
 			for(let i=0; i < myDentistList.length; i++) {
 				$.ajax({
@@ -80,11 +84,66 @@
 					})
 					//전체 치아 순위 구하는 반복문
 					data.toothno.forEach((element) => {
+						console.log('data.toothno : ' + element["toothno"]);
 						list.push(element);
 					})
-					
+					console.log('list : ' + list);
+					console.log('list[0]["toothno"] : ' + list[0]["toothno"]);
+					//list를 치아 갯수만큼 반복문 돌면서 카운팅.
+					// const toothRankObj = {}; //더 상단에 전역변수로 선언해야 함.
+					console.log('for(let i=0; i<list.length; i++) 시작~~');
+					for(let i=0; i<list.length; i++) {
+						console.log('list[' + i + ']["toothno"] : ' + list[i]["toothno"]);
+						console.log('toothRankMap.has(list[i]["toothno"] : ' + toothRankMap.has(list[i]["toothno"]));
+						// console.log('toothRankObj.hasOwnProperty(list[i]["toothno"] : ' + toothRankObj.hasOwnProperty(list[i]["toothno"]));
+						if(toothRankMap.has(list[i]["toothno"])) {
+							console.log('Map contains key1');
+							//이미 해당 toothno를 key로 하는 원소가 있으므로, key에 대한 value를 찾아서 +1.
+							toothRankMap.set(list[i]["toothno"], toothRankMap.get(list[i]["toothno"]) + 1);
+							// toothRankObj[list[i]["toothno"]] = toothRankObj[list[i]["toothno"]] + 1;
+							// console.log('toothRankObj[list[' + i + ']["toothno"]] : ' + toothRankObj[list[i]["toothno"]]);
+						} else {
+							//toothno를 key로 하고, value가 1인 원소를 생성.
+							toothRankMap.set(list[i]["toothno"], 1);
+							// toothRankObj[list[i]["toothno"]] = 1;
+						}
+					}
 				});
+			}			
+			// toothRankMap.forEach((value, key, mapObject) => {
+			// 	console.log('toothRankMap.forEach');
+			// 	console.log(key + ' : ' + value);
+			// 	// console.log('value : ' + value);
+			// 	// console.log('typeof value : ' + typeof value);
+			// 	// console.log('Math.max(...toothRankMap.values()) : ' + Math.max(...toothRankMap.values()));
+			// 	// console.log('typeof Math.max(...toothRankMap.values()) : ' + typeof Math.max(...toothRankMap.values()));
+			// 	// console.log('value === Math.max(...toothRankMap.values()) : ' + value === Math.max(...toothRankMap.values()));
+			// 	//toothRankMap를 value기준으로 내림차순 정렬.
+
+			// });
+			const sortedToothRankMap = new Map( [...toothRankMap.entries()].sort((a, b) => b[1] - a[1]) );
+			console.log('sortedToothRankMap : ' + sortedToothRankMap);
+			console.log('typeof sortedToothRankMap : ' + typeof sortedToothRankMap);
+			console.log('sortedToothRankMap.size : ' + sortedToothRankMap.size);
+			let keys = Array.from(sortedToothRankMap.keys());
+			if(sortedToothRankMap.size >= 3) {//toothno의 종류가 3가지 이상인 경우.
+				for(let i=0; i<3; i++) {
+					console.log('keys[' + i + '] : ' + keys[i]);
+				}
+			} else {//toothno의 종류가 2가지 미만인 경우.
+				for(let i=0; i<keys.length; i++) {
+					console.log('keys[' + i + '] : ' + keys[i]);
+					if(i === 0) {
+						$('#first').html("🥇 " + keys[i] + "번");
+					} else if(i === 1) {
+						$('#second').html("🥈 " + keys[i] + "번");
+					} else {
+						$('#third').html("🥉 " + keys[i] + "번");
+					}
+				}
 			}
+
+
 			list.push(allCost);
 			if(list != null) {
 				console.log(allCost);
@@ -105,17 +164,13 @@
 			
 			console.log("after", data);
 			
-/* 			for(int i=0; i < data.length - 1; i++) {
-				
-			} */
-			
-			/* data.toothno.forEach((element) => {
-				console.log(element);
-			})
-			 */
-			/* $("#first").html(🥇 + "data.toothno[0].treatno");
-			$("#second").html(🥈 + "data.toothno[1].treatno");
-			$("#third").html(🥉 + "data.toothno[2].treatno"); */
+ 			for(let i=0; i < data.length - 1; i++) {
+				console.log('data[' + i + '] : ' + data[i]);
+			}
+
+			// $("#first").html(🥇);
+			// $("#second").html(🥈 + "data.toothno[1].treatno");
+			// $("#third").html(🥉 + "data.toothno[2].treatno");
 		} catch (error) {
 			console.log(error, "error");
 		} finally {
