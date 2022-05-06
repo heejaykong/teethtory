@@ -165,7 +165,7 @@
                          <div>
                           <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
                           <p>(-10,000point)</p>
-                          <p>잔여 포인트 ${point-10000}</p>
+                          <p id="mypoint">잔여 포인트 ${point}</p>
                           </div>
 
                       </div>
@@ -263,6 +263,7 @@
            					creatediv.innerHTML=atime[i];
            				}
              			}	
+           				
                      })})
             }
            /*  $('.cell').click(function(){
@@ -280,7 +281,16 @@
            	document.getElementById('reservationtime').value= $(event.target).text();
            	
             };
-            
+            $(document).ready(function(){
+          	    $("#usepoint").change(function(){
+          	        if($("#usepoint").is(":checked")){
+          	           
+          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
+          	        }else{
+          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
+          	        }
+          	    });
+          	});
           	function btnWarn(){
           		
           		$(".modal").fadeIn();
@@ -289,6 +299,7 @@
         		$(".modal").fadeOut();
         		}); 
           	}
+          	
           	$('.reservate').click(function(){
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
