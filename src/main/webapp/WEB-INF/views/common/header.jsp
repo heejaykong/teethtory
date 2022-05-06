@@ -64,9 +64,13 @@
 					</a>
 				</div>
 			</div>
-			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white">
+			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white" style="margin-bottom:-1rem;">
 				<i class="mypage-btn__icon fa-solid fa-user"></i>
 				마이페이지
+			</a>
+			<a href="${pageContext.request.contextPath}/logout" class="mypage-btn btn-large-hollow-white" style="background-color:#f26522; text-decoration:none; color:white">
+				<i class="mypage-btn__icon fa-solid fa-user"></i>
+				로그아웃
 			</a>
 		</c:if>
 	</div>
