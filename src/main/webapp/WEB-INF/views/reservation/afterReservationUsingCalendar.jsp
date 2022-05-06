@@ -60,7 +60,7 @@
     </div>
     </div>
 <script>
-console.log('userssn : ' + "${userssn}");
+console.log('patientssn : ' + "${patientssn}");
 console.log('dendomain : ' + ${dendomain});
 $.ajax({
 	method:"POST",
@@ -125,15 +125,16 @@ $.ajax({
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
 			$.ajax({
 			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
-			    type: 'POST',
+			    type: 'GET',
 			    data: { 
-			        "patientssn":"${userssn}",
+			    	
+			        "patientssn" : "${patientssn}", 
 			    	"tformatDate":tformatDate,
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
 			        "availabletime": changeAvailableTime,
-			        "patientssn" : ${patientssn}
+			       
 				}
 				, async: false
 			})
