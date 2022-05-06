@@ -344,6 +344,7 @@
 					aReviewHtml += '	</div>';
 					aReviewHtml += '</a>';
 				}
+				
 				$("#reviewContainer").html(aReviewHtml);
 				//리뷰 페이지네이션 추가.
 				let aReviewPaginationHtml = '';
@@ -371,7 +372,19 @@
 
 		}
 		getReviewsWithPagination(-1);
-
+	</script>
+	<script>
+		$(function() {
+			// 희재 코멘트:
+			// 만약 사용자가 후기를 작성해서 이 화면으로 redirect 된 경우라면
+			// local.href 끝에 "#(엘리먼트id값)"이 붙게 됨. "#(엘리먼트id값)"이 붙은 경우
+			// 해당 엘리먼트로 스크롤 anchor 처리하려는 코드임(동작은 하지만 수정 필요).
+			const id = location.hash.substring(1);
+			if (tag !== "") {
+				const targetEl = document.querySelector("#"+id);
+				$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
+			}
+		});
 	</script>
 </body>
 </html>
