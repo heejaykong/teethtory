@@ -78,7 +78,7 @@
 				</tr>
 			</table>
 		</form>
-		<button style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
+		<button id="write"style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite" disabled="true">댓글 작성</button>
 		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
@@ -140,7 +140,15 @@
 	  </ul>
 	</nav>
 </div>
-
+<script>
+$(function(){
+	$("#updateform").on('input',function(){
+		if($("#updateform").val()!=''){
+			$("#write").attr("disabled",false);
+		}
+	});
+ })
+</script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

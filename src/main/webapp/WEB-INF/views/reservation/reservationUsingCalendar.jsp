@@ -214,7 +214,6 @@
                      .done((data) => {
              			businesstime=data;
              			
-             			/* console.log(businesstime); */
 						let btime=[];
 						for(let k in businesstime){
 							if(businesstime.hasOwnProperty(k)){
@@ -240,8 +239,6 @@
            					console.log(butime);
            					var creatediv = document.createElement("button");
            					$("#timecell").append(creatediv);
-           					/* 
-           					creatediv.setAttribute("class",""); */
            					
            					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
            					creatediv.setAttribute("onclick","btnVisible()")
@@ -254,27 +251,15 @@
            					creatediv.setAttribute("onclick","btnWarn()")
            					creatediv.setAttribute("id","disabletime")
            					$("#timecell").append(creatediv);
-           					/* 
-           					creatediv.setAttribute("class",""); */
-           					
+           
            					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
            					
            					creatediv.setAttribute("style",createdivStyle);
            					creatediv.innerHTML=atime[i];
            				}
              			}	
-           				
                      })})
             }
-           /*  $('.cell').click(function(){
-         	    var cell_time_check = $(this).attr("id");
-         	});
-            $('.cell').click(function(){
-           		document.getElementById('reservationtime').value = $(this).text();
-           	
-            $('.cell').removeClass('select');
-            $(this).addClass('select');
-            */
             function btnVisible(){
             document.getElementById('check').style.visibility="visible";
             document.getElementById('pointForm').style.visibility="visible";
