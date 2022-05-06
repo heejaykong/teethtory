@@ -30,6 +30,7 @@ import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 
 import lombok.extern.log4j.Log4j2;
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/myPage")
 @Log4j2

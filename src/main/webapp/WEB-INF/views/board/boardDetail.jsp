@@ -57,7 +57,7 @@
 	
 		<div class="board d-flex flex-column" style="margin: 1rem 1rem 0.5rem 1rem;">
 			<div class="mb-2">
-			<span class="mr-2">금니</span>
+			<span class="mr-2"><i class="fa-solid fa-medal"></i></span>
 			<span class="mr-2">${board.boardwriter}</span>
 			<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span></div>
 			<div>${board.boardcontent}</div>
