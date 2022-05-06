@@ -73,12 +73,12 @@
 				style="text-align: center; border: 1px solid #dddddd">
 				<tr>
 				<td><input type="hidden" name="boardno" value="${board.boardno}"/></td>
-					<td><textarea id="updateform" class="form-control" placeholder="글 내용"
-							name="commentcontent" maxlength="2048" style="height: 50px;"></textarea></td>
+					<td><textarea required id="updateform" class="form-control" placeholder="글 내용"
+							name="commentcontent" maxlength="2048" style="height: 50px; width:92%;"></textarea></td>
 				</tr>
 			</table>
 		</form>
-		<button id="write"style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite" disabled="true">댓글 작성</button>
+		<button id="write"style="margin-left: 1rem;"class="btn btn-primary btn-sm" form="commentWrite">댓글 작성</button>
 		
 		<c:forEach var="comment" items="${comments}">
 		<div class="board d-flex flex-column" style="padding: 1rem;">
@@ -141,13 +141,7 @@
 	</nav>
 </div>
 <script>
-$(function(){
-	$("#updateform").on('input',function(){
-		if($("#updateform").val()!=''){
-			$("#write").attr("disabled",false);
-		}
-	});
- })
+
 </script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
