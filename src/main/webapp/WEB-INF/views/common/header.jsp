@@ -49,16 +49,13 @@
 					<p class="name">
 						<span id="username">${name}</span> 님
 					</p>
-					<a href="#">
+					<a href="${pageContext.request.contextPath}/myPage/myPointList">
 						<p class="mypoint">
 							<span class="mypoint__icon">
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-
-
 								${point}
-
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>
@@ -101,6 +98,12 @@
 			$(".sidebar-menu").removeClass("hidden");
 			$(".sidebar-menu").addClass("revealed");
 			$("body").addClass("overflow-hidden");
+			
+			//포인트에 맞추어 프로필 색 변경
+			if(${sessionUserid != null}) {
+				$(".profile__img").css("background-color","${backgroundColor}");
+			}
+
 		});
 		
 		$("#sidebar-menu__exit-btn").on("click", function(){
@@ -110,4 +113,5 @@
 		});
 
 	})
+	
 </script>

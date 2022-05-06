@@ -56,7 +56,30 @@ public class MyPageController {
 		}
 		return "redirect:/";
 	}
+	
+	//이스터에그 화면
+	@RequestMapping("/easteregg")
+	public String eastegg(HttpSession session, Model model) {
+		//Header에 이름, 포인트 값 넘기는 코드
+		String userid = (String) session.getAttribute("sessionUserid");
+		if(userid != null) {
+			User user = userService.getUser(userid);
+			String name = user.getUsername();
+			model.addAttribute("name", name);
+		}
 
+		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+		List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
+		String patientssn = userService.getUser(userid).getUserssn();
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("myDentistList", myDentistList);
+		String json = jsonObject.toString();
+		model.addAttribute("myDentistList", json);
+		model.addAttribute("patientssn", patientssn);
+		log.info("실행");
+		return "myPage/easteregg";
+	}
+	
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
 	public String myDentist(HttpSession session
@@ -178,14 +201,7 @@ public class MyPageController {
 		model.addAttribute("patientssn", patientssn);
 		log.info("실행");
 		return "myPage/reservationHistoryWithCalendar";
-	}
-	@RequestMapping("/easteregg")
-	public String easteregg() {
-		log.info("실행");
-		return "myPage/easteregg";
-	}
-	
-	
+	}	
 	
 	//마이페이지에서 햄버거 메뉴 중 '설정' 클릭시에 사용자의 계정정보 페이지 출력.
 	@RequestMapping("/myInformation")

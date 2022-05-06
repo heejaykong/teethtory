@@ -172,20 +172,28 @@
 	        </li>
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">의사</h6>
-	            <p class="desc-item__content"><span id="doctor-name">김긍정(<span id="dentist-name">Ant 치과</span>)</span></p>
+	            <p class="desc-item__content">
+	            	<span id="doctor-name">
+	            		김긍정<span id="dentist-name">(Ant 치과)</span>
+	            	</span>
+	            </p>
 	        </li>
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">치료비</h6>
 	            <p class="desc-item__content"><span id="cost">60,000</span>원</p>
 	        </li>
 	      </ul>
-	      <a href="reviewForm" class="btn-large-solid">치료 후기 작성하기</a>
+	      
+	      <a href="reviewForm?treatno=${treatno}&denno=${denno}" id="reviewFormBtn" class="btn-large-solid">
+	      	치료 후기 작성하기
+	      </a>
 	      <a href="#" class="btn-large-hollow">이 치과 진료 예약하기</a>
 	    </section>
 	</main>
 
 	<%-- 변수 선언 --%>
 	<c:set var="treatno" value="${treatno}" />
+	<c:set var="denno" value="${denno}" />
 
 	<script>
 	  $(function(){
@@ -204,7 +212,7 @@
 			//async: false,
 			data: {} // 전송할 데이터
 		}).done((data) => {
-			console.log(data.attachmentList);
+			console.log(data);
 
 			const treattype = data.treattype;
 			$("#treatment-type").html(treattype);
@@ -247,9 +255,21 @@
 
 			const doctorname = data.doctorname;
 			$("#doctor-name").html(doctorname);
+			
+			const dentistname = data.denname;
+			$("#doctor-name").append(
+				`<span id="dentist-name">(`+ dentistname +`)</span>`
+			);
 
 			const treatcost = data.treatcost;
 			$("#cost").html(treatcost.toLocaleString());
+			
+			// 만약 이미 후기가 작성된 치료내역이라면, '치료 후기 작성하기' 버튼모양 바꿔치기
+			if (data.isreviewed){
+				$('#reviewFormBtn').bind('click', false);
+				$("#reviewFormBtn").html("치료 후기 작성하기(완료)");
+				$('#reviewFormBtn').addClass("btn-disabled");
+			}
 		});
 
 	  });

@@ -61,14 +61,17 @@ public class TreatmentController {
 	}
 	
 	@GetMapping("/details")
-	public String detailsGet(@RequestParam String treatno, Model model) {
-		log.info("treatno: " + treatno);
+	public String detailsGet(@RequestParam String treatno,
+							@RequestParam String denno,
+							Model model) {
+		// 리스트 중 하나 클릭 시 treatno와 denno만 물고 details 화면으로 넘어감.
+		log.info("treatno: " + treatno + "denno: " + denno);
 		model.addAttribute("treatno", treatno);
+		model.addAttribute("denno", denno);
 		return "treatment/details";
 	}
 	@PostMapping("/details")
 	public String detailsPost(Treatment treatment, Model model) {
-//		TBD: treatment 객체를 뷰에 넘기기...
 		log.info("treatment:" + treatment);
 		model.addAttribute("treatment", treatment);
 		return "treatment/details";
@@ -81,22 +84,13 @@ public class TreatmentController {
 	}
 	
 	//-------------------------------
-	@RequestMapping("/reviewForm")
-	public String reviewForm(Model model) {
-//		model.addAttribute(치과정보넘기기)
+	@GetMapping("/reviewForm")
+	public String showReviewForm(@RequestParam String treatno,
+								@RequestParam String denno,
+								Model model) {
+		// 치료내역 상세화면에서 후기 작성하기 클릭 시 treatno와 denno만 물고 reviewForm 화면으로 넘어감.
+		model.addAttribute("treatno", treatno);
+		model.addAttribute("denno", denno);
 		return "treatment/reviewForm";
 	}
-
-	@RequestMapping("/cancelForm")
-	public String cancelForm() {
-//		model.addAttribute(치과정보넘기기)
-		return "redirect:/treatment/";
-	}
-
-	@RequestMapping("/postReview")
-	public String postReview() {
-//		model.addAttribute(치과정보넘기기)
-		return "redirect:/treatment/";
-	}
-
 }

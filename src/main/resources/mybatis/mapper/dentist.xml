@@ -49,6 +49,11 @@
 		FROM dentists
 		WHERE denno=#{denno}
 	</select>
+	<select id="selectByDendomain" parameterType="string" resultType="dentist">
+		SELECT denno, dendomain, denname, denaddress
+		FROM dentists
+		WHERE dendomain=#{dendomain}
+	</select>
 	
 	<!-- 더미 데이터 생성용. 구현X. -->
 	<insert id="insert" parameterType="dentist">

@@ -56,7 +56,7 @@
 			AND pointisplus=1
 			AND pointamount=100
 			AND pointdesc='로그인 포인트'
-			AND pointdate=sysdate
+			AND TO_CHAR(pointdate, 'YY/MM/DD') = TO_CHAR(sysdate, 'YY/MM/DD')
 	</select>
 	
 	<insert id="insert" parameterType="point">
