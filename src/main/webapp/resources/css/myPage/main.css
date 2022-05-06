@@ -1,0 +1,47 @@
+/* 마이페이지: 프로필블록 */
+/* 희재 코멘트: header.css의 .sidebar-menu__profile-block와 그 이하 클래스들과 거의 동일(나중에 모듈화 시도하기) */
+.profile-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 2.5rem var(--deep-inner-space) 2.5rem;
+}
+.profile__img {
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	background-color: var(--divider-gray);
+	margin-bottom: 1rem;
+}
+.name {
+	color: var(--almost-black-gray);
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 0.4rem;
+}
+.email {
+	color: var(--dark-gray);
+}
+
+/* 마이페이지: 메뉴블록 */
+.mypage__nav-block {
+	padding: var(--deep-inner-space);
+}
+.menu-btn-style-2 {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	color: var(--almost-black-gray);
+	padding: 1.2rem 0;
+}
+.menu-btn-style-2:hover .menu-btn__icon,
+.menu-btn-style-2:hover .menu-btn__name {
+	color: var(--osstem-orange);
+}
+	.menu-btn-style-2__col {
+	display: flex;
+	align-items: center;
+}
+.menu-btn-style-2 .mypoint__amount {
+	color: var(--osstem-orange);
+}
