@@ -80,7 +80,10 @@ html, body {
 }
 </style>
 </head>
-<body style="padding: 30px;">
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
+
+<body class="located-at-bottom-of-header">
+	<h1 id="loading" style="font-size: 2rem;">치아를 모으는 중입니다....</h1>
 	<!-- calendar 태그 -->
 	<div id='calendar-container'>
 		<div id='calendar'></div>
@@ -153,6 +156,7 @@ html, body {
 			})();
 </script>
 	<script>
+	$("#loading").show();
 	getData();
 	let testList = [];
 	
@@ -194,9 +198,10 @@ html, body {
 				})
 				.done((data) => {
 					data.treatment.forEach((element) => {
+						let newDate = element.treatdate.substr(0,4) + "-" +  element.treatdate.substr(6,2) + "-" + element.treatdate.substr(10,2);
 						list.push(	{title: element.treattype
 									, description: data.denname
-									, start: element.treatdate
+									, start: newDate
 									, color: "#FF5675"}
 						)
 					})
@@ -219,6 +224,7 @@ html, body {
 			data = await windowdd();
 			console.log("data", data);
 			testList = data;
+			$("#loading").hide();
 		} catch (error) {
 			console.log(error, "error");
 		} finally {
