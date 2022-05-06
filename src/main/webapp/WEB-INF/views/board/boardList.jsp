@@ -43,9 +43,9 @@
 	<div class="d-flex justify-content-between mx-4 mt-2" style="height: 3rem; font-size: 1.5rem;">
 		<span style="margin-top:0.7rem;" onclick="location.href='boardList'">자유게시판</span>
 		
-		<div style="position:relative; margin-top:0.2rem; right: 0%;">
-		<input id="search" type="text" value="" style="width:8rem;"/><i class="fas fa-search" style="position:absolute;" 
-		onclick="searchBoard()"></i>
+		<div style="position:relative; margin-top:0.2rem; margin-right: -4rem;">
+		<input id="search" type="text" value="" style="width:8rem; border-radius: 0.2rem;"/>
+		<i class="fas fa-search" style="position:absolute; margin-bottom:0.8rem;" onclick="searchBoard()"></i>
 		</div>
 		<i style="margin-top:0.8rem; margin-right: -1rem;"class="fa-solid fa-pen-to-square" onclick="location.href='boardWriteForm'"></i>
 	
