@@ -60,6 +60,7 @@
     </div>
     </div>
 <script>
+console.log('userssn : ' + "${userssn}");
 console.log('dendomain : ' + ${dendomain});
 $.ajax({
 	method:"POST",
@@ -104,6 +105,7 @@ $.ajax({
 	, async: false
 	})
 	.done((data) => {
+		
 		a=JSON.stringify(data);
 		console.log("문자열 형태 : "+a);
 		b=a.charAt(atimeIndex);
@@ -125,6 +127,7 @@ $.ajax({
 			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
 			    type: 'POST',
 			    data: { 
+			        "patientssn":"${userssn}",
 			    	"tformatDate":tformatDate,
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),

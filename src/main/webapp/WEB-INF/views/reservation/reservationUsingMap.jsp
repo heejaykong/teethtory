@@ -21,7 +21,7 @@
 		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500;"></p></span></div>
 	</div>
 	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;" onclick="moveRoadView()"></div>
-	<div id="denninfo" onClick="goDentistDetail()" style="border: 0.5rem ridge orange;">
+	<div id="denninfo" onClick="goDentistDetail()">
 		<span><p class="denname" style="font-size: 2rem; font-weight: 500; color:rgb(242, 101, 34);"></p></span><br/>
 		<span><p id="denaddress" style="font-size: 1.2rem; font-weight: 300;"></p></span><br/>
 		<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
