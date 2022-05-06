@@ -53,7 +53,7 @@
 			</div>
 		</section>
 
-		<%-- 옅은 막대기 --%>
+		<%-- 옅은 회색 분리막대 --%>
 		<div class="thick-divider"></div>
 
 		<%-- 알림 블록 --%>
