@@ -99,7 +99,7 @@
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
-				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 10rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
+				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 9.5rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
