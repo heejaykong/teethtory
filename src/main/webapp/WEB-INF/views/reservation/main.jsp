@@ -26,14 +26,13 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
     <div class="located-at-bottom-of-header">
-
                         <div style="margin-top:1rem; margin-left:1rem;font-weight:bold;">
                             <h3>진료 예약하기</h3>
                         </div>
                         <div id="top" class="container">
                             <div >
-                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5px solid lightgrey;">
-	                        <span><i id="submit" class="fas fa-search"></i></span>
+                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5rem solid lightgrey;">
+	                        <span style="margin-left:-2rem;"><i id="submit" class="fas fa-search"></i></span>
                             </div>
                         </div>
             
@@ -55,7 +54,7 @@
                             <c:if test="${searchedDentistList == null}">
                             <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
                                 <c:forEach var="myDentistList" items="${myDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: lightgrey; margin-top:1rem;"
+                                <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
                                     onclick="goReservationUsingMap(${myDentistList.denno});">
                                     <div class="history-list__item" style=" width: inherit;">
                                         <!--
@@ -112,7 +111,12 @@
                             <c:if test="${pager.groupNo<pager.totalGroupNo}">
                                 <a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.endPageNo+1})">다음</a>
                             </c:if>
-                            <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            <c:if test="${pager.totalGroupNo == null}">
+                                <a class="btn btn-outline-primary btn-sm">맨끝</a>
+                            </c:if>
+                            <c:if test="${pager.totalGroupNo != null}">
+                                <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            </c:if>
                         </div>
                         <script>
                             function get_list(pageNo) {

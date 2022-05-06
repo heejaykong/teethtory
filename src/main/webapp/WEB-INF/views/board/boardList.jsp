@@ -103,12 +103,15 @@
 	</nav>
 	</div>
 	<script>
+		
 		function searchBoard(){
 			var s = document.getElementById('search').value;
 			
 			location.href='searchBoardList?boardtitle='+s;
 			
 		}
+		
+	
 	</script>
 
 

@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-치과 상세</title>
 <style>
-.btn {
+#Registered {
 	color: white;
 	background-color: #f47d36;
 	border-color: #f47d36;
@@ -119,7 +119,7 @@
 	</div>
 	<div>
 		<%-- dendomain 파라메터로 전달해야 함. --%>
-		<a class="btn" onclick="checkRegistered()">예약하기</a>
+		<a class="btn" id="Registered" onclick="checkRegistered()">예약하기</a>
 	</div>
 	<script>
 		function checkRegistered() {
@@ -302,6 +302,7 @@
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
 
 				console.log('data : ' + data);
+				console.log('data.reviredate : ' + data.reviewdate);
 				console.log('data.averageStars : ' + data.averageStars);
 				console.log('data.totalReviewNum : ' + data.totalReviewNum);
 				console.log('data.reviewList : ' + data.reviewList);
@@ -339,7 +340,7 @@
 					aReviewHtml += '	<div>';
 					aReviewHtml += '		<small><img src="/images/submit.png" style="width: 10px;"></small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["userid"] + '</small>';
-					aReviewHtml += '		<small>날짜추가해야함!!!</small>';
+					aReviewHtml += '		<small>' + data.reviewList[i]["reviewdate"] + '</small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["lastvisitcount"] + '번째 방문</small>';
 					aReviewHtml += '	</div>';
 					aReviewHtml += '</a>';
@@ -348,7 +349,7 @@
 				$("#reviewContainer").html(aReviewHtml);
 				//리뷰 페이지네이션 추가.
 				let aReviewPaginationHtml = '';
-				aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewsWithPagination(1)">처음</a>';
+				aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">처음</a>';
 
 				if(pager[0].groupNo>1) {
 					aReviewPaginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">이전</a>';
