@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -52,6 +51,7 @@ public class MyPageController {
 
 	
 	//이스터에그 화면
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@RequestMapping("/easteregg")
 	public String eastegg(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
