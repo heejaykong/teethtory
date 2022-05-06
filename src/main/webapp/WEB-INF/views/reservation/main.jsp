@@ -21,6 +21,8 @@
 		a:link { color: red; text-decoration: none;}
 		a:visited { color: black; text-decoration: none;}
 		a:hover { color: orange; }
+		
+		
 	</style>
 </head>
 <body>
@@ -32,8 +34,8 @@
                         </div>
                         <div id="top" class="container">
                             <div >
-                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5px solid lightgrey;">
-	                        <span><i id="submit" class="fas fa-search"></i></span>
+                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5rem ridge lightgrey;">
+	                        <span style="margin-left:-2rem;"><i id="submit" class="fas fa-search"></i></span>
                             </div>
                         </div>
             
@@ -55,7 +57,7 @@
                             <c:if test="${searchedDentistList == null}">
                             <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
                                 <c:forEach var="myDentistList" items="${myDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: lightgrey; margin-top:1rem;"
+                                <div id="a-dentist" style="width: 90%; position: relative; border: ridge 0.5rem; border-color: orange; margin-top:1rem;"
                                     onclick="goReservationUsingMap(${myDentistList.denno});">
                                     <div class="history-list__item" style=" width: inherit;">
                                         <!--
