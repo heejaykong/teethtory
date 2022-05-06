@@ -186,8 +186,6 @@
 			
 		    document.getElementById('start').min = today.toISOString().substring(0, 10);
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
-           
-            
             
             function handler(e){
             	$("#timecell").html("");
