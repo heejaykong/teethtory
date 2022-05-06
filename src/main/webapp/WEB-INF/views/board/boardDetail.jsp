@@ -20,6 +20,21 @@
 }
 </style>
 </head>
+<script>
+	$.ajax({
+		url: "boardDetailAttachedFile?boardno=" + ${board.boardno},
+		method:"GET",
+	})
+	.done((data) => {
+		console.log('data : ' + data);
+		console.log('typeof data : ' + typeof data);
+		if(data == '') {
+			$('#attachedImg').attr("style", "display:none");
+		} else {
+			$('#attachedImg').attr("src", "boardDetailAttachedFile?boardno=" + ${board.boardno});
+		}
+	});
+</script>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
@@ -48,8 +63,7 @@
 			<div>${board.boardcontent}</div>
 			
 			<div>
-				<img src="${pageContext.request.contextPath}/resources/images/puppy3.jpeg" width="50%" height="100rem;">
-				<img src="${pageContext.request.contextPath}/resources/images/puppy1.jpeg" width="50%" height="100rem;">
+				<img id="attachedImg" width="50%" height="100rem;">
 			</div>
 			
 			<div style="text-align: left;" class="mt-2">
