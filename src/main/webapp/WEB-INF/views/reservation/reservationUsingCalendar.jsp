@@ -160,7 +160,7 @@
                       <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
                        
                           <div>
-                          <input type="checkbox" id="usepoint"/>
+                          <input type="checkbox" id="usepoint" disabled/>
                           </div>
                          <div>
                           <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
@@ -183,9 +183,11 @@
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
-
+			
 		    document.getElementById('start').min = today.toISOString().substring(0, 10);
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+           
+            
             
             function handler(e){
             	$("#timecell").html("");
@@ -268,18 +270,21 @@
            	document.getElementById('reservationtime').value= $(event.target).text();
            	
             };
-            $(document).ready(function(){
-          	    $("#usepoint").change(function(){
+            if(${point}>=10000){
+            	 $('#usepoint').removeAttr("disabled");
+            	 $(document).ready(function(){
+          	    	$("#usepoint").change(function(){
+          	    
           	        if($("#usepoint").is(":checked")){
           	           
           	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
+          	       
           	        }else{
           	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
           	        }
-          	    });
-          	});
+          	    })
+          	})};
           	function btnWarn(){
-          		
           		$(".modal").fadeIn();
           		$(".modal_content").text("해당 시간은 예약할 수 없습니다.");
           		$(".modal_content").click(function(){
@@ -291,6 +296,7 @@
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
           		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime + "&dendomain=" + ${dendomain};
+          		
           	});
      </script>
 

@@ -132,15 +132,18 @@ public class ReservationController {
 		log.info("실행");
 		int point = user.getUserpoint();
 		model.addAttribute("point",point);
+	
 		model.addAttribute("dendomain", dendomain);
 		return "reservation/reservationUsingCalendar";
 	}
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/afterReservationUsingCalendar")
-	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
-			, Model model) {
+	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain,
+			
+			 Model model) {
 		log.info("실행");
+		
 		model.addAttribute("dendomain", dendomain);
 		return "reservation/afterReservationUsingCalendar";
 	}
