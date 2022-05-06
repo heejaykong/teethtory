@@ -21,14 +21,11 @@
 		a:link { color: red; text-decoration: none;}
 		a:visited { color: black; text-decoration: none;}
 		a:hover { color: orange; }
-		
-		
 	</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
     <div class="located-at-bottom-of-header">
-
                         <div style="margin-top:1rem; margin-left:1rem;font-weight:bold;">
                             <h3>진료 예약하기</h3>
                         </div>
@@ -114,7 +111,12 @@
                             <c:if test="${pager.groupNo<pager.totalGroupNo}">
                                 <a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.endPageNo+1})">다음</a>
                             </c:if>
-                            <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            <c:if test="${pager.totalGroupNo == null}">
+                                <a class="btn btn-outline-primary btn-sm">맨끝</a>
+                            </c:if>
+                            <c:if test="${pager.totalGroupNo != null}">
+                                <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            </c:if>
                         </div>
                         <script>
                             function get_list(pageNo) {

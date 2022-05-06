@@ -85,7 +85,7 @@
 				<span class="menu-btn__icon"><i class="fa-solid fa-tooth"></i></span>
 				<li class="menu-btn__name">치료 내역 모아보기</li>
 			</a>
-			<a class="menu-btn" href="${pageContext.request.contextPath}/reservation/main">
+			<a id="goReservation" class="menu-btn" href="${pageContext.request.contextPath}/reservation/main">
 				<span class="menu-btn__icon"><i class="fa-solid fa-clock"></i></span>
 				<li class="menu-btn__name">진료 예약하기</li>
 			</a>
@@ -97,6 +97,11 @@
 	</nav>
 </aside>
 <script>
+	$('#goReservation').click(() => {
+		// console.log("$('#goReservation').click()");
+		window.localStorage.removeItem('searchingKeyword_LS');
+	});
+
 	$(function(){
 		$("#header__hamburger-btn").on("click", function(){
 			$(".sidebar-menu").removeClass("hidden");
