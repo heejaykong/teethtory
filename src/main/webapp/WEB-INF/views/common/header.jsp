@@ -69,7 +69,7 @@
 				마이페이지
 			</a>
 			<a href="${pageContext.request.contextPath}/logout" class="mypage-btn btn-large-hollow-white" style="background-color:#f26522; text-decoration:none; color:white">
-				<i class="mypage-btn__icon fa-solid fa-user"></i>
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 				로그아웃
 			</a>
 		</c:if>

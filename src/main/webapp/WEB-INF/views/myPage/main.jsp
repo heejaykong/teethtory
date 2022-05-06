@@ -47,6 +47,7 @@ a:hover { color: orange; }
 				<p class="name">
 					<span id="username">${name}</span> 님
 				</p>
+				
 				<a href="#">
 					<p class="mypoint">
 						<span class="mypoint__icon">
