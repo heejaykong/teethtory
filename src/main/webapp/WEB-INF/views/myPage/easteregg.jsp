@@ -18,6 +18,10 @@
 	#price{
 		margin: 3.5rem 0 2rem 0;
 	}
+	
+	.ranking {
+		margin: 2rem 0 0 0;
+	}
 </style>
 <body style="text-align: center;">
 	<main class="located-at-bottom-of-header">
@@ -41,7 +45,9 @@
 		<h2 class="page-title">지금까지 ${name}님이</h2>
 		<h2>가장 정성을 쏟은 치아는?</h2>
 	</div>
-	<h1 class="logo-text-orange-lg" id="price">{1등치아}{2등치아}{3등치아}</h1>
+	<h1 class="logo-text-orange-lg ranking" id="first">🥇{1등치아}</h1>
+	<h1 class="logo-text-orange-lg ranking" id="second">🥈{2등치아}</h1>
+	<h1 class="logo-text-orange-lg ranking" id="third">🥉{3등치아}</h1>
 </body>
 
 
@@ -55,6 +61,7 @@
 		
 		const promise = new Promise((resolve, reject) => {
 			let list = [];
+			let allCost = 0;
 			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
 			for(let i=0; i < myDentistList.length; i++) {
 				$.ajax({
@@ -67,10 +74,20 @@
 				})
 				.done((data) => {
 					console.log(data);
-					list = data;
+					//전체 가격 더하는 반복문
+					data.list.forEach((element) => {
+						allCost += element.treatcost;
+					})
+					//전체 치아 순위 구하는 반복문
+					data.toothno.forEach((element) => {
+						list.push(element);
+					})
+					
 				});
 			}
+			list.push(allCost);
 			if(list != null) {
+				console.log(allCost);
 				resolve(list);
 			} else {
 				reject({message: "실패"});
@@ -83,11 +100,22 @@
 	async function getData() {
 		try {
 			let data = await windowdd();
-			data.list.forEach((element) => {
-				allCost += element.treatcost;
+			console.log(data);
+			$("#price").html(data[data.length - 1].toLocaleString() + "원");
+			
+			console.log("after", data);
+			
+/* 			for(int i=0; i < data.length - 1; i++) {
+				
+			} */
+			
+			/* data.toothno.forEach((element) => {
+				console.log(element);
 			})
-			$("#price").html(allCost.toLocaleString() + "원");
-			console.log(allCost.toLocaleString());
+			 */
+			/* $("#first").html(🥇 + "data.toothno[0].treatno");
+			$("#second").html(🥈 + "data.toothno[1].treatno");
+			$("#third").html(🥉 + "data.toothno[2].treatno"); */
 		} catch (error) {
 			console.log(error, "error");
 		} finally {
