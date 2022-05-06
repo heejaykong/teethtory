@@ -37,15 +37,15 @@ a:hover { color: orange; }
       <div id="profileBox">
         <img src="/springframework-mini-project/resources/images/signOut.jpg" id="profile"style="width:100%;">
       </div>
-      <div style="text-align:center;"><h2>${name}</h4></div>
-      <div style="text-align:center;"><h3>${email}</h3></div>
+      <div style="text-align:center;"><h2>${headerInfo.name}</h4></div>
+      <div style="text-align:center;"><h3>${headerInfo.email}</h3></div>
       
     <div class="sidebar-menu__profile-block">
 		<div class="profile">
-			<div class="profile__img"></div>
+			<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
 			<div class="profile__nametag">
 				<p class="name">
-					<span id="username">${name}</span> 님
+					<span id="username">${headerInfo.name}</span> 님
 				</p>
 				<a href="#">
 					<p class="mypoint">
@@ -53,7 +53,7 @@ a:hover { color: orange; }
 							<i class="fa-solid fa-circle-dollar-to-slot"></i>
 						</span>
 						<span class="mypoint__amount">
-							${point}
+							${headerInfo.point}
 						</span>
 						<span class="mypoint__arrow-right">
 							<i class="fa-solid fa-chevron-right"></i>
@@ -79,7 +79,7 @@ a:hover { color: orange; }
 			</a>
 			<a class="menu-btn" href="myPointList">
 				<span class="menu-btn__icon"><i class="fa-solid fa-coins"></i></span>
-				<li class="menu-btn__name">내 포인트</li><span>${point}</span>
+				<li class="menu-btn__name">내 포인트</li><span>${headerInfo.point}</span>
 			</a>
 			<a class="menu-btn" href="reservationHistoryWithCalendar">
 				<span class="menu-btn__icon"><i class="fa-solid fa-calendar-day"></i></span>
@@ -92,7 +92,10 @@ a:hover { color: orange; }
 		</ul>
 	</nav>
 </div>
+<script>
+	console.log(${headerInfo});
 
+</script>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

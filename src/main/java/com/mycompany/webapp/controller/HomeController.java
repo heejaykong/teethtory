@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.mycompany.webapp.aspect.HeaderCheck;
+import com.mycompany.webapp.dto.HeaderInfo;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.PointService;
 import com.mycompany.webapp.service.UserService;
@@ -31,22 +33,6 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(HttpSession session, Model model) {
-		//Header에 이름, 포인트 값 넘기는 코드
-		String userid = (String) session.getAttribute("sessionUserid");
-		if(userid != null) {
-			User user = userService.getUser(userid);
-			String name = user.getUsername();
-			int point = user.getUserpoint();
-			model.addAttribute("name", name);
-			model.addAttribute("point", point);
-			String backgroundColor = "#cd7f32";
-			if(point > 20000) {
-				backgroundColor = "gold";
-			} else if(point > 10000) {
-				backgroundColor = "silver";
-			}
-			model.addAttribute("backgroundColor", backgroundColor);
-		}
 		return "home/main";
 	}
 	
@@ -72,7 +58,7 @@ public class HomeController {
 		session.setAttribute("sessionUserid", user.getUserid());
 		log.info("로그인 성공한 유저: " + user.getUserid());
 		log.info("sessionUserid에 저장된 userid: " + session.getAttribute("sessionUserid"));
-		
+
 		//하루 한 번 로그인 할때 포인트 적립하는 코드
 		pointService.addLoginPoint(user.getUserid());
 
@@ -82,6 +68,7 @@ public class HomeController {
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("sessionUserid");
+		session.removeAttribute("headerInfo");
 		log.info(
 			"로그아웃. 세션에서 sessionUserid를 remove한 뒤의 getAttribute(\"sessionUserid\"):" + session.getAttribute("sessionUserid")
 		);

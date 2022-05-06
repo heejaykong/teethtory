@@ -31,7 +31,7 @@
 	<!-- 프로필블록 -->
 	<div class="sidebar-menu__profile-block">
 		
-		<c:if test="${sessionUserid == null}">
+		<c:if test="${headerInfo.userid == null}">
 			<h1 id="sidebar-menu__logo" class="logo-text-orange-lg">
 				치스토리
 			</h1>
@@ -42,12 +42,12 @@
 			<a href="${pageContext.request.contextPath}/login" class="login-btn btn-large-solid">로그인</a>
 			<a href="${pageContext.request.contextPath}/signup" class="signup-btn btn-large-hollow">회원가입</a>
 		</c:if>
-		<c:if test="${sessionUserid != null}">
+		<c:if test="${headerInfo.userid != null}">
 			<div class="profile">
-				<div class="profile__img"></div>
+				<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
 				<div class="profile__nametag">
 					<p class="name">
-						<span id="username">${name}</span> 님
+						<span id="username">${headerInfo.name}</span> 님
 					</p>
 					<a href="${pageContext.request.contextPath}/myPage/myPointList">
 						<p class="mypoint">
@@ -55,7 +55,7 @@
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-								${point}
+								${headerInfo.point}
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>
@@ -98,12 +98,6 @@
 			$(".sidebar-menu").removeClass("hidden");
 			$(".sidebar-menu").addClass("revealed");
 			$("body").addClass("overflow-hidden");
-			
-			//포인트에 맞추어 프로필 색 변경
-			if(${sessionUserid != null}) {
-				$(".profile__img").css("background-color","${backgroundColor}");
-			}
-
 		});
 		
 		$("#sidebar-menu__exit-btn").on("click", function(){
