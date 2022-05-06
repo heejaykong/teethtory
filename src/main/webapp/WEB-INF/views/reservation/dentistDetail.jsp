@@ -302,6 +302,7 @@
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
 
 				console.log('data : ' + data);
+				console.log('data.reviredate : ' + data.reviewdate);
 				console.log('data.averageStars : ' + data.averageStars);
 				console.log('data.totalReviewNum : ' + data.totalReviewNum);
 				console.log('data.reviewList : ' + data.reviewList);
@@ -339,7 +340,7 @@
 					aReviewHtml += '	<div>';
 					aReviewHtml += '		<small><img src="/images/submit.png" style="width: 10px;"></small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["userid"] + '</small>';
-					aReviewHtml += '		<small>날짜추가해야함!!!</small>';
+					aReviewHtml += '		<small>' + data.reviewList[i]["reviewdate"] + '</small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["lastvisitcount"] + '번째 방문</small>';
 					aReviewHtml += '	</div>';
 					aReviewHtml += '</a>';

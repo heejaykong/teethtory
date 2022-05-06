@@ -41,7 +41,7 @@
 		<c:forEach var="board" items="${boards}">
 		<div class="board d-flex flex-column" style="padding: 1rem;" onclick="location.href='boardDetail?boardno=${board.boardno}'">
 			<div class="mb-2">
-				<span class="mr-2">금니</span>
+				<span id="grade" class="mr-2"><i class="fa-solid fa-medal"></i></span>
 				<span class="mr-2">${board.boardwriter}</span>
 				<span><fmt:formatDate value="${board.boarddate}" pattern="yyyy-MM-dd HH:mm"/></span>	
 			</div>
@@ -92,6 +92,7 @@
 			location.href='searchBoardList?boardtitle='+s;
 			
 		}
+	
 	</script>
 
 

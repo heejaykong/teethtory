@@ -77,7 +77,7 @@
 					}
 				})
 				.done((data) => {
-					console.log(data);
+					console.log("data:"+data);
 					//전체 가격 더하는 반복문
 					data.list.forEach((element) => {
 						allCost += element.treatcost;

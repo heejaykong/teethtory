@@ -92,9 +92,9 @@
 		<div style="width: 90%; position: relative;">
 			<div class="history-list__item" style="margin-left: 1rem; width: inherit;">
 				<div class="item__col">
-					<img
+					<!-- <img
 						src="/springframework-mini-project/resources/images/signOut.jpg"
-						class="round-thumbnail">
+						class="round-thumbnail"> -->
 				</div>
 				<div>
 					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentist.denname}</div>
