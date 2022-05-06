@@ -117,7 +117,8 @@ $.ajax({
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
-			        "availabletime": changeAvailableTime
+			        "availabletime": changeAvailableTime,
+			        "patientssn" : ${patientssn}
 				}
 				, async: false
 			})
