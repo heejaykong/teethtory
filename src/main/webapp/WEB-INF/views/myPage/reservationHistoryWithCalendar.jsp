@@ -194,9 +194,10 @@ html, body {
 				})
 				.done((data) => {
 					data.treatment.forEach((element) => {
+						let newDate = element.treatdate.substr(0,4) + "-" +  element.treatdate.substr(6,2) + "-" + element.treatdate.substr(10,2);
 						list.push(	{title: element.treattype
 									, description: data.denname
-									, start: element.treatdate
+									, start: newDate
 									, color: "#FF5675"}
 						)
 					})
