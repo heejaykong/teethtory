@@ -25,6 +25,7 @@ public class PointService {
 	private UserDao userDao;
 	
 	public boolean checkGotLoginPoint(String userid) {
+		log.info("selectPoint", pointDao.selectTodaysLoginPoint(userid));
 		if(pointDao.selectTodaysLoginPoint(userid) != null) {//로그인 포인트 획득 이력 행 존재.
 			return true;
 		} else {//로그인 획득 이력 행 부존재.
@@ -33,7 +34,7 @@ public class PointService {
 	}
 	
 	//로그인 포인트 획득.
-	public boolean addLoginPoint(String userid) {
+	public void addLoginPoint(String userid) {
 		//당일에 로그인 포인트 획득 이력이 있는지 점검.
 		int insertResult = 0;
 		if(checkGotLoginPoint(userid) == false) {//로그인 포인트 획득X. 로그인 포인트 제공하면 됨.
@@ -44,21 +45,15 @@ public class PointService {
 			point.setPointdesc("로그인 포인트");
 			//pointdate는 쿼리문에서 sysdate로 입력.
 			insertResult = pointDao.insert(point);
+			
+			//users테이블의 userpoint에 100포인트 추가한 값으로 update.		
+			User user = new User();
+			user = userDao.selectByUserid(userid);
+			int userPoint = user.getUserpoint();
+			user.setUserpoint(userPoint+100);
+			int updateResult = userDao.update(user);
 		}
-		
-		//users테이블의 userpoint에 100포인트 추가한 값으로 update.
-		//users테이블의 userpoint에 100포인트 추가한 값으로 update.
-		User user = new User();
-		user = userDao.selectByUserid(userid);
-		int userPoint = user.getUserpoint();
-		user.setUserpoint(userPoint+100);
-		int updateResult = userDao.update(user);
-		
-		if(insertResult == 1 && updateResult == 1) {
-			return true;
-		} else {
-			return false;
-		}
+
 	}
 	
 	//스케일링 할인.

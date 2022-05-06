@@ -121,11 +121,12 @@
 			console.log(selectedTreattype);
 			const promise = new Promise((resolve, reject) => {
 				let list = [];
+				console.log("dentist", ${dentist}.dentist);
 				for(let i=0; i<${dentist}.dentist.length; i++) {
 					$.ajax({
 						method:"POST",
 						url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-						<%--url: "http://localhost:" + ${dentist}.dentist[i].denno + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
+						<%--url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
 						--%>
 						data: {
 						},

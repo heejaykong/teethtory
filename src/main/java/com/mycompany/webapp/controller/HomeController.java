@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.mycompany.webapp.dto.User;
+import com.mycompany.webapp.service.PointService;
 import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 import com.mycompany.webapp.service.UserService.SignupResult;
@@ -25,6 +26,9 @@ public class HomeController {
 	@Resource
 	private UserService userService;
 	
+	@Resource
+	private PointService pointService;
+	
 	@RequestMapping("/")
 	public String home(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
@@ -35,12 +39,20 @@ public class HomeController {
 			int point = user.getUserpoint();
 			model.addAttribute("name", name);
 			model.addAttribute("point", point);
+			String backgroundColor = "#cd7f32";
+			if(point > 20000) {
+				backgroundColor = "gold";
+			} else if(point > 10000) {
+				backgroundColor = "silver";
+			}
+			model.addAttribute("backgroundColor", backgroundColor);
 		}
 		return "home/main";
 	}
 	
 	@GetMapping("/login")
 	public String loginForm(HttpSession session, Model model) {
+		//Form 에러시 문구 띄우는 코드
 		String formError = (String) session.getAttribute("formError");
 		if (formError != null) {
 			model.addAttribute("error", formError);
@@ -61,7 +73,9 @@ public class HomeController {
 		log.info("로그인 성공한 유저: " + user.getUserid());
 		log.info("sessionUserid에 저장된 userid: " + session.getAttribute("sessionUserid"));
 		
-		//Form 에러시 문구 띄우는 코드
+		//하루 한 번 로그인 할때 포인트 적립하는 코드
+		pointService.addLoginPoint(user.getUserid());
+
 		return "redirect:/";
 	}
 	
