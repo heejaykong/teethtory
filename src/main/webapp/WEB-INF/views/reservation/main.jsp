@@ -30,12 +30,12 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
     <div class="located-at-bottom-of-header">
-                        <div style="margin-top:6rem; margin-left:1rem;font-weight:bold;">
-                            <h3>진료 예약하기</h3>
+                        <div style="margin-top:6rem; margin-left:1rem;font-weight:bold;font-size:1.5em;">
+                           진료 예약하기
                         </div>
                         <div id="top" class="container">
                             <div >
-                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요.">
+                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요." style="width:90%; height:3rem; border:0.25rem solid lightgrey;">
 	                        <span style="margin-left:-2rem;"><i id="submit" class="fas fa-search"></i></span>
                             </div>
                         </div>
