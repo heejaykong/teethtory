@@ -46,12 +46,10 @@
 		<h2 class="page-title">지금까지 ${name}님이</h2>
 		<h2>가장 정성을 쏟은 치아는?</h2>
 	</div>
-	<h1 class="logo-text-orange-lg ranking" id="first">🥇{1등치아}</h1>
-	<h1 class="logo-text-orange-lg ranking" id="second">🥈{2등치아}</h1>
-	<h1 class="logo-text-orange-lg ranking" id="third">🥉{3등치아}</h1>
+	<h1 class="logo-text-orange-lg ranking" id="first"></h1>
+	<h1 class="logo-text-orange-lg ranking" id="second"></h1>
+	<h1 class="logo-text-orange-lg ranking" id="third"></h1>
 </body>
-
-
 
 <script>
 	console.log(${myDentistList});
@@ -64,9 +62,6 @@
 			let list = [];
 			let allCost = 0;
 			var toothRankMap = new Map();
-			// var sortedToothRankMap = new Map();
-			// var toothRankObj = {};
-			// var innerTop3ToothnoList = [];
 			// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
 			for(let i=0; i < myDentistList.length; i++) {
 				$.ajax({
@@ -111,17 +106,6 @@
 					}
 				});
 			}			
-			// toothRankMap.forEach((value, key, mapObject) => {
-			// 	console.log('toothRankMap.forEach');
-			// 	console.log(key + ' : ' + value);
-			// 	// console.log('value : ' + value);
-			// 	// console.log('typeof value : ' + typeof value);
-			// 	// console.log('Math.max(...toothRankMap.values()) : ' + Math.max(...toothRankMap.values()));
-			// 	// console.log('typeof Math.max(...toothRankMap.values()) : ' + typeof Math.max(...toothRankMap.values()));
-			// 	// console.log('value === Math.max(...toothRankMap.values()) : ' + value === Math.max(...toothRankMap.values()));
-			// 	//toothRankMap를 value기준으로 내림차순 정렬.
-
-			// });
 			const sortedToothRankMap = new Map( [...toothRankMap.entries()].sort((a, b) => b[1] - a[1]) );
 			console.log('sortedToothRankMap : ' + sortedToothRankMap);
 			console.log('typeof sortedToothRankMap : ' + typeof sortedToothRankMap);
@@ -129,10 +113,6 @@
 			let keys = Array.from(sortedToothRankMap.keys());
 			if(sortedToothRankMap.size >= 3) {//toothno의 종류가 3가지 이상인 경우.
 				for(let i=0; i<3; i++) {
-					console.log('keys[' + i + '] : ' + keys[i]);
-				}
-			} else {//toothno의 종류가 2가지 미만인 경우.
-				for(let i=0; i<keys.length; i++) {
 					console.log('keys[' + i + '] : ' + keys[i]);
 					if(i === 0) {
 						$('#first').html("🥇 " + keys[i] + "번");
@@ -142,8 +122,16 @@
 						$('#third').html("🥉 " + keys[i] + "번");
 					}
 				}
+			} else {//toothno의 종류가 3가지 미만인 경우.
+				for(let i=0; i<keys.length; i++) {
+					console.log('keys[' + i + '] : ' + keys[i]);
+					if(i === 0) {
+						$('#first').html("🥇 " + keys[i] + "번");
+					} else if(i === 1) {
+						$('#second').html("🥈 " + keys[i] + "번");
+					}
+				}
 			}
-
 
 			list.push(allCost);
 			if(list != null) {
