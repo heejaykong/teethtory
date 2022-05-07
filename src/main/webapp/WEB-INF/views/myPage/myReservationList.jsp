@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
@@ -95,14 +96,14 @@ flex-direct:row;
 			}
 		})
 		.done((data) => {
-			console.log('data : ' + data);
+			 console.log('data : ' + data);
 			console.log('typeof data : ' + typeof data);
 			console.log('data["myDentistList"] : ' + data["myDentistList"]);
 			console.log('data["myDentistList"][0]["dendomain"] : ' + data["myDentistList"][0]["dendomain"]);
 			console.log('data["myDentistList"][1]["dendomain"] : ' + data["myDentistList"][1]["dendomain"]);
 			console.log('data["patientssn"] : ' + data["patientssn"]);
 			console.log('typeof data["myDentistList"] : ' + typeof data["myDentistList"]);
-			console.log('data["myDentistList"].length : ' + data["myDentistList"].length);
+			console.log('data["myDentistList"].length : ' + data["myDentistList"].length); 
 			for(let i=0; i<data["myDentistList"].length; i++) {
 				// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
 				$.ajax({
@@ -127,7 +128,7 @@ flex-direct:row;
 					console.log('data["reservationList"][0]["dendomain"] : ' + data["reservationList"][0]["dendomain"]);
 					console.log('typeof data["reservationList"][0]["dendomain"] : ' + typeof data["reservationList"][0]["dendomain"]);
 					console.log('data["reservationList"][0]["isfixed"] : ' + data["reservationList"][0]["isfixed"]);
-					console.log('typeof data["reservationList"][0]["isfixed"] : ' + typeof data["reservationList"][0]["isfixed"]);
+					console.log('typeof data["reservationList"][0]["isfixed"] : ' + typeof data["reservationList"][0]["isfixed"]); 
 					//치과 1개로부터 받아온 reservation 객체를 전역변수인 totalList에 모으기.
 					for(let j=0; j<data["reservationList"].length; j++) {
 						totalArray.push(data["reservationList"][j]);
