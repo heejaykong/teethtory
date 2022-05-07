@@ -11,23 +11,43 @@
 			location.href = "dentistDetail?denno=" + ${denno};
 		}
 	</script>
+	<style>
+.modal{ 
+ position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.1); top:0; left:0; display:none;
+}
+.modal_content{
+  border:2px solid orange;
+  width:300px; height:300px;
+  background:#fff; border-radius:30%;
+  position:relative; top:30%; left:65%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
+}
+	</style>
 </body>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation.css" />
 	<div class="located-at-bottom-of-header">
-	<div style="flex-direction: row; width: 10rem;">
+	<div class="container"style="display:flex;flex-direction: row;">
 		<div><a onclick = window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
-		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500;"></p></span></div>
+		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500; margin-top:0.5rem; margin-left:1rem;"></p></span></div>
 	</div>
-	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;" onclick="moveRoadView()"></div>
-	<div id="denninfo" onClick="goDentistDetail()">
+	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;"></div>
+	
+	<div class="modal">
+	  <div class="modal_content">
+	  	<div id="denninfo">
 		<span><p class="denname" style="font-size: 2rem; font-weight: 500; color:rgb(242, 101, 34);"></p></span><br/>
 		<span><p id="denaddress" style="font-size: 1.2rem; font-weight: 300;"></p></span><br/>
 		<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
+		<button class="btn-large-solid"style="margin-top:1rem;"onClick="goDentistDetail()">상세보기</button>
 	</div>
-
+	  </div>
+	  </div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
 
 	<script>
@@ -93,17 +113,6 @@
 				content : DENNAME
 			});
 			
-			//마커에 마우스오버 이벤트를 등록합니다
-			kakao.maps.event.addListener(marker, 'mouseover', function() {
-			infowindow.open(map, marker);
-			});
-			
-			//마커에 마우스아웃 이벤트를 등록합니다
-			kakao.maps.event.addListener(marker, 'mouseout', function() {
-			infowindow.close();
-			});
-			
-
 			//지도 상단에 뒤로가기 아이콘 우측에 치과 이름 표시하기.
 			let dennames = document.getElementsByClassName('denname');
 			for( var i = 0; i < dennames.length; i++ ){
@@ -112,6 +121,14 @@
 			//지도 아래에 치과 이름, 주소, 연락처 띄우기.
 			document.getElementById('denaddress').innerHTML = DENADDRESS;
 			document.getElementById('dencontact').innerHTML = DENCONTACT;
+			
+			kakao.maps.event.addListener(marker,'click',function(){
+				$(".modal").fadeIn();
+          		
+          		$(".modal_content").click(function(){
+        		$(".modal").fadeOut();
+        		}); 
+			})
 		});
 	</script>
 
