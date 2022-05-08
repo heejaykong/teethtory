@@ -106,11 +106,11 @@
 		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
-		<div id="denname" class="mt-4 mb-1" style="font-size: 2rem;"></div>
+		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
 		<div class="mb-3">
 			<i class="fa-solid fa-star" style="color: #ffa048;"></i>
 			<span id="averageStars" style="color: #ffa048;"></span>
-			<span>리뷰</span>
+			<span class="ml-2">리뷰</span>
 			<span id="totalReviewNum" style="color: #ffa048;"></span>
 		</div>
 		<a class="btn-large-solid mb-4" onclick="checkRegistered()" style="display: block;">진료 예약하기</a>
@@ -119,12 +119,12 @@
 	
 
 	<div class="mx-5">
-		<div class="d-flex mb-2">
+		<div class="d-flex mb-3">
 			<i class="fa-solid fa-phone mr-4"></i>
 			<div id="dencontact"></div>
 		</div>
 		
-		<div class="d-flex mb-2">
+		<div class="d-flex mb-3">
 			<i class="fa-solid fa-location-dot mr-4"></i>
 			<div id="denaddress" class="ml-1"></div>
 		</div>
