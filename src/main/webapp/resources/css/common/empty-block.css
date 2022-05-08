@@ -1,0 +1,19 @@
+/* 빈 목록 컴포넌트 */
+.empty-block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 4rem 0;
+}
+.empty-block img {
+	width: 5rem;
+	margin-bottom: 1rem;
+}
+.empty-block .text {
+	color: var(--ligther-gray);
+	text-align: center;
+	font-size: 1.2rem;
+	font-weight: 500;
+	line-height: 1.4;
+}

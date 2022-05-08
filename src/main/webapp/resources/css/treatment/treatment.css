@@ -48,24 +48,6 @@
 	font-weight: 500;
 }
 
-/* 드롭다운 선택한 결과 영역(빈 목록) */
-.emptly-block {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 4rem 0;
-}
-.emptly-block img {
-	width: 5rem;
-	margin-bottom: 1rem;
-}
-.emptly-block .text {
-	color: var(--ligther-gray);
-	font-size: 1.2rem;
-	font-weight: 500;
-}
-
 /* 드롭다운 선택한 결과 영역 */
 .selected-treattype-results-section {
 	display: flex;

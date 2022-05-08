@@ -8,6 +8,7 @@
 	<title>치료 내역 모아보기 - 치스토리</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -167,13 +168,13 @@
 					
 					// 만약 해당 내역이 없을 경우 없다고 표시
 					if (!data.length) {
-						const emptlyBlockTemplate = `
-						    <div class="emptly-block">
+						const emptyBlockTemplate = `
+						    <div class="empty-block">
 			                    <img width="100%" src="${pageContext.request.contextPath}/resources/images/toothCharacter/neutral-smile.png" alt="neutral-smile-tooth-character">
 			                    <p class="text">치료 내역이 없어요.</p>
 			                </div>
 						`;
-		                 $(".selected-treattype-results-section").html(emptlyBlockTemplate);
+		                 $(".selected-treattype-results-section").html(emptyBlockTemplate);
 		                 return;
 					}
 					
