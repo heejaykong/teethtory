@@ -1,176 +1,235 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-내 치과</title>
-
-<style>
-#myDentistRegistrationTab {
-	color: rgb(242, 101, 34);
-}
-.fa-search{ 
- font-family: 'Font Awesome 5 Free';
-  position: relative;
-  left: -30px;
-  content: "\f007";  
-}
-
-
-</style>
+	<title>치스토리 - 내 치과</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/myDentist.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<!-- 추가 눌렀을때 확인하는 Modal창 -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-	  <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        내 치과 목록에 추가하시겠습니까?
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
-	        <button id="yesBtn" type="button" class="btn btn-primary" style="width: 10rem;">예</button>
-	      </div>
-	    </div>
-	</div>
-</div>
-<script>
-	function handleHidden(e, task, denno) {
-		const targetEl = e.target;
-		const theElement = targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item");
-		$(targetEl.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
+	<main class="main located-at-bottom-of-header">
 		
-		const denName = targetEl.parentNode.parentNode.querySelector("#denName_3").textContent;
-		console.log(denName);
-		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
-		theElement.dataset.whatever = denidvalue;
-		console.log(denidvalue);
-		$('#exampleModal').on('show.bs.modal', function (event) {
-		  	var button = $(event.relatedTarget) // Button that triggered the modal
-		  	var recipient = button.data('whatever') // Extract info from data-* attributes
-		  	var body = button.data('body')
-		  	
-		  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-		  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-		  	console.log("aaa");
-		  	var modal = $(this);
-		  	
-		  	modal.find('.modal-header').text("등록된 치과 "+ denName); //모달 헤더에 붙는 이름
-		  	modal.find('.modal-body').text(body);
+		<%-- '내 치과 목록' 블록 --%>
+		<section class="my-dentists-list-block">
+			<h1 class="page-title">내 치과 목록</h1>
 
-			$('#yesBtn').on('click', function() {
-				if(task === 'add') {
-					location.href = "myDentist?denno=" + denno + "&task=" + task;
-				} else if(task === 'delete') {
-					location.href = "myDentist?denno=" + denno + "&task=" + task;
-				}
-			})
-		})
-	}
+			<c:if test="${fn:length(myDentists) == 0}">
+				<div class="empty-block">
+					<img src="${pageContext.request.contextPath}/resources/images/toothCharacter/tears.png" alt="tears-tooth-character">
+					<p class="text">
+						내 치과 목록이 비었어요.<br/>
+						내 치과를 추가해 주세요.
+					</p>
+				</div>
+			</c:if>		
+			
+			<c:forEach var="myDentist" items="${myDentists}">
+				<%-- 내 치과 리스트아이템 --%>
+				<div class="dentist-list-item" data-denno="${myDentist.denno}" data-denname="${myDentist.denname}">
+					<div class="dentist-list-item__main-body">
+						<div class="main-body__col">
+							<div class="main-body__img"></div>
+							<div class="main-body__nametag">
+								<p class="name overflow-ellipsis">${myDentist.denname}</p>
+								<span class="address overflow-ellipsis">${myDentist.denaddress}</span>
+							</div>
+						</div>
+						<div class="main-body__col">
+							<span class="dropdown-btn">
+								<i class="fa-solid fa-chevron-down"></i>
+							</span>
+						</div>
+					</div>
+					<%-- 바디 클릭하면 보이는 드롭다운메뉴--%>
+					<div class="dentist-list-item__dropdown-menu-list basic-shadow" style="display: none;">
+						<ol class="menu-list">
+							<li class="menu-btn delete-btn"
+								data-toggle="modal" data-target="#confirmModal">
+								내 치과 목록에서 삭제하기
+							</li>
+						</ol>
+					</div>
+				</div>
+			</c:forEach>
+		</section>
+		
+		<div class="thick-divider"></div>
+
+		<%-- '추가하기' 블록 --%>
+		<section class="add-dentist-block">
+			<h3 class="section-title-sm">추가하기</h3>
+
+			<%-- 검색바 --%>
+			<div class="search-bar-component">
+				<input id="searchInput" type="text" class="search-bar__input" placeholder="내 치과를 검색해 보세요."/>
+				<span id="searchBtn" class="search-bar__submit-btn">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</span>
+			</div>
+			
+			<%-- 검색결과 --%>
+			<div class="search-result">
+				<c:if test="${fn:length(searchedDentistList) == 0}">
+					<div class="empty-block">
+						<img src="${pageContext.request.contextPath}/resources/images/toothCharacter/looking-with-a-magnifying-glass.png" alt="looking-with-a-magnifying-glass-tooth-character">
+						<p class="text">검색된 치과가 없어요.</p>
+					</div>
+				</c:if>
+				
+				<c:if test="${fn:length(searchedDentistList) > 0}">
+					<c:forEach var="searchedDentist" items="${searchedDentistList}">
+						<%-- 검색결과 치과 리스트 아이템 --%>
+						<%-- TBD: 이미 내 치과에 등록된 놈이면 모양 비활성화하기 기능구현 --%>
+						<div class="dentist-list-item" data-denno="${searchedDentist.denno}" data-denname="${searchedDentist.denname}">
+							<div class="dentist-list-item__main-body">
+								<div class="main-body__col">
+									<div class="main-body__img"></div>
+									<div class="main-body__nametag">
+										<p class="name overflow-ellipsis">${searchedDentist.denname}</p>
+										<span class="address overflow-ellipsis">${searchedDentist.denaddress}</span>
+									</div>
+								</div>
+								<div class="main-body__col">
+									<span class="dropdown-btn">
+										<i class="fa-solid fa-chevron-down"></i>
+									</span>
+								</div>
+							</div>
+							<%-- 바디 클릭하면 보이는 드롭다운메뉴--%>
+							<div class="dentist-list-item__dropdown-menu-list basic-shadow" style="display: none;">
+								<ol class="menu-list">
+									<li class="menu-btn add-btn"
+										data-toggle="modal" data-target="#confirmModal">
+										내 치과 목록에 추가하기
+									</li>
+								</ol>
+							</div>
+						</div>
+					</c:forEach>
+
+					<%-- 페이지네이션 --%>
+					<div class="pagination-component">
+						<a href="myDentist?denname=${denname}&pageNo=1">
+							<div class="pagination-btn">
+								<i class="fa-solid fa-angles-left"></i>
+							</div>
+						</a>
+						<c:if test="${pager.groupNo>1}">
+							<a href="myDentist?denname=${denname}&pageNo=${pager.startPageNo-1}">
+								<div class="pagination-btn">
+									<i class="fa-solid fa-angle-left"></i>
+								</div>
+							</a>
+						</c:if>
+		
+						<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+							<c:if test="${pager.pageNo != i}">
+								<a href="myDentist?denname=${denname}&pageNo=${i}">
+									<div class="pagination-btn">
+										${i}
+									</div>
+								</a>
+							</c:if>
+							<c:if test="${pager.pageNo == i}">
+								<a href="myDentist?denname=${denname}&pageNo=${i}">
+									<div class="pagination-btn pagination-btn-current">
+										${i}
+									</div>
+								</a>
+							</c:if>
+						</c:forEach>
+		
+						<c:if test="${pager.groupNo<pager.totalGroupNo}">
+							<a href="myDentist?denname=${denname}&pageNo=${pager.endPageNo+1}">
+								<div class="pagination-btn">
+									<i class="fa-solid fa-angle-right"></i>
+								</div>
+							</a>
+						</c:if>
+						<a href="myDentist?denname=${denname}&pageNo=${pager.totalPageNo}">
+							<div class="pagination-btn">
+								<i class="fa-solid fa-angles-right"></i>
+							</div>
+						</a>
+					</div>
+				</c:if>
+			</div>
+
+		</section>
+	</main>
 	
-	function toggleOff(e) {
-		const targetEl = e.target;
-		$(targetEl).toggle();
-	}
-</script>
-
-<h4 style="padding-top: 2rem; padding-left: 1.5rem; padding-bottom: 0.5rem;">내 치과 목록</h4>
-	<!-- core와 EL을 이용해서 목록 보여주기. -->
-	<c:if test="${myDentists == null}">
-		<p>등록한 치과가 없습니다. 이미지로 대체해야 함!</p>
-	</c:if>
-	<c:forEach var="myDentist" items="${myDentists}">
-		<div style="width: 90%; position: relative;">
-			<div class="history-list__item" style="margin-left: 1rem; width: inherit;">
-				<div class="item__col">
-					<img
-						src="/springframework-mini-project/resources/images/signOut.jpg"
-						class="round-thumbnail">
+	<%-- 치과 삭제/추가 시 뜨는 모달 --%>
+	<div id="confirmModal" class="modal fade" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"></h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-				<div>
-					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentist.denname}</div>
-					<span class="dentist-visited">${myDentist.denaddress}</span>
-					<div id="denNoForDelete" style="display:none;">${myDentist.denno}</div>
+				<div class="modal-body">
+					<%--
+					선택된 버튼에 따라
+					내 치과 목록에서 삭제하시겠어요?
+					또는
+					내 치과 목록에 추가하시겠어요? 표시
+					--%>
 				</div>
-				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event, 'delete', ${myDentist.denno});"></i>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-osstem-secondary" data-dismiss="modal">아뇨</button>
+					<button id="confirmBtn" type="button" class="btn btn-osstem-primary">네</button>
+				</div>
 			</div>
-			<div class="history-list-hidden__item" id="hidden_3"
-				style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
-				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에서 삭제하시겠습니까?">내 치과 목록에 삭제</div>
 		</div>
-	</c:forEach>
-
-<hr>
-<h3 style="margin-top: 1.5rem; margin-left: 1rem; margin-bottom:1rem;">치과 검색하기</h3>
-<div style="padding-left: 1rem; padding-bottom: 0.5rem; width: 92%;">
-	<input id="searching-keyword" type="text" placeholder="치과를 등록해보세요." style="width: inherit; margin-right: 0.5rem;">
-	<i id="submit" class="fas fa-search"></i>
-</div>
-
-<script>
-	let submitIcon = document.getElementById('submit');
-	submitIcon.onclick = function() {
-		var searchingKeyword = document.getElementById('searching-keyword').value;
-		const dennameKey = searchingKeyword;
-		location.href = "myDentist?denname=" + searchingKeyword;
-		console.log(searchingKeyword);
-	}
-</script>
-
-<div style="display: flex; flex-direction: column; align-items: center;">
-	<c:if test="${searchedDentistList == null}">
-		<p>검색된 치과가 없습니다.</p>
-	</c:if>
-	<c:forEach var="searchedDentist" items="${searchedDentistList}">
-		<div style="width: 90%; position: relative;">
-			<div class="history-list__item" style="margin-left: 1rem; width: inherit;">
-				<div class="item__col">
-					<img
-						src="/springframework-mini-project/resources/images/signOut.jpg"
-						class="round-thumbnail">
-				</div>
-				<div>
-					<div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
-					<span class="dentist-visited">${searchedDentist.denaddress}</span>
-					<div id="denNoForRegi" style="display:none;">${searchedDentist.denno}</div>
-				</div>
-				<i class="fa-solid fa-caret-down" style="cursor: pointer;" onclick="handleHidden(event, 'add', ${searchedDentist.denno});"></i>
-			</div>
-			<div class="history-list-hidden__item" id="hidden_3"
-				style="margin: 0px 1rem 0px 1rem; position: absolute; width: inherit; bottom: -3; z-index: 10; display: none;"
-				data-toggle="modal" data-target="#exampleModal" data-whatever="C치과" data-body="내 치과 목록에 추가하시겠습니까?">내 치과 목록에 추가</div>
-		</div>
-	</c:forEach>
-	<div style="margin-top:1rem;">
-		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=1">처음</a>
-		<c:if test="${pager.groupNo>1}">
-			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.startPageNo-1}">이전</a>
-		</c:if>
-		
-		<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-			<c:if test="${pager.pageNo != i}">
-				<a class="btn btn-outline-success btn-sm" href="myDentist?denname=${denname}&pageNo=${i}">${i}</a>
-			</c:if>
-			<c:if test="${pager.pageNo == i}">
-				<a class="btn btn-danger btn-sm" href="myDentist?denname=${denname}&pageNo=${i}">${i}</a>
-			</c:if>
-		</c:forEach>
-		
-		<c:if test="${pager.groupNo<pager.totalGroupNo}">
-			<a class="btn btn-outline-info btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.endPageNo+1}">다음</a>
-		</c:if>
-		<a class="btn btn-outline-primary btn-sm" href="myDentist?denname=${denname}&pageNo=${pager.totalPageNo}">맨끝</a>
 	</div>
-</div>
+
+	<script>
+		// 검색바 로직
+		$("#searchBtn").on("click", () => {
+			const searchingKeyword = $("#searchInput").val();
+			location.href = "myDentist?denname=" + searchingKeyword;
+		});
+
+		function isDeleteBtn(btnTriggered) {
+			if (!btnTriggered[0].classList.contains("delete-btn")){
+				return false;
+			}
+			return true;			
+		}
+
+		$(function() {
+			// 치과당 클릭할 때 클릭된 타겟의 드롭다운 토글하기
+			$(".dentist-list-item").click(function(){
+				$(".dentist-list-item__dropdown-menu-list", this).toggle();
+			});
+			$('#confirmModal').on('show.bs.modal', function (event) {
+				const btnTriggered = $(event.relatedTarget);
+				const targetDenno = btnTriggered.closest("[data-denno]").data("denno");
+				const targetDenname = btnTriggered.closest("[data-denname]").data("denname");
+
+				// 모달을 trigger한 치과와 버튼(삭제/추가)에 따라 내용 다르게 그려주기
+				const modal = $(this);
+				//const message =  btnTriggered[0].classList.contains("delete-btn") ?
+				const message =  isDeleteBtn(btnTriggered) ?
+						"내 치과 목록에서 삭제하시겠어요?" : "내 치과 목록에 추가하시겠어요?";
+				modal.find(".modal-title").html(targetDenname);
+				modal.find(".modal-body").html(message);
+
+				// 모달의 '예' 버튼 선택 시 상황(삭제/추가)에 따라 다르게 요청하기
+				$('#confirmBtn').on("click", function() {
+					const task = isDeleteBtn(btnTriggered) ? "delete" : "add";
+					location.href = "myDentist?denno=" + targetDenno + "&task=" + task;
+				});
+			});
+		})
+	</script>
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
