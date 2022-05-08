@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css" />
@@ -25,6 +24,7 @@
 	}
 </style>
 <body style="text-align: center;">
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<main class="located-at-bottom-of-header">
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}/">

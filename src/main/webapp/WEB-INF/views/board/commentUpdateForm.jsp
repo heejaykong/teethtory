@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 <div class="located-at-bottom-of-header">
 <div class="d-flex justify-content-between mx-4 mt-2"
@@ -21,13 +21,13 @@
 	<div class="comment" style="margin: 1rem 1rem 0.5rem 1rem;">
 		<form method="post"
 			action="commentUpdate" id="commentUpdate">
-			<input type="hidden" name="boardno" value="${comment.boardno}"/>
-			<input type="hidden" name="commentno" value="${comment.commentno}"/>
+			<input required type="hidden" name="boardno" value="${comment.boardno}"/>
+			<input required type="hidden" name="commentno" value="${comment.commentno}"/>
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tbody>
 					<tr>
-						<td><textarea class="form-control"
+						<td><textarea required class="form-control"
 								name="commentcontent" maxlength="2048" style="height: 350px;">
 								${comment.commentcontent}</textarea></td>
 					</tr>

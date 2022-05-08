@@ -4,18 +4,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 마이페이지</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/main.css">
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<main class="main located-at-bottom-of-header">
 		<%-- 마이페이지 프로필블록 --%>
 		<section class="profile-block">
-			<div class="profile__img"></div>
+			<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
 			<p class="name">${headerInfo.name}</p>
 			<span class="email">${headerInfo.email}</span>
 		</section>

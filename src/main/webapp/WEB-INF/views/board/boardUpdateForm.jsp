@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
+
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
 <div class="located-at-bottom-of-header">
@@ -27,13 +28,13 @@
 				style="text-align: center; border: 1px solid #dddddd">
 				<thead>
 					<tr>
-						<th><input type="text" class="form-control"
+						<th><input required type="text" class="form-control"
 							 name="boardtitle" maxlength="50" value="${board.boardtitle}"></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><textarea class="form-control"
+						<td><textarea required class="form-control"
 								name="boardcontent" maxlength="2048" style="height: 350px;">
 								${board.boardcontent}</textarea></td>
 					</tr>

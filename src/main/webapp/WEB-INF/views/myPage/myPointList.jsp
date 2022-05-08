@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 
 <style>
-	#myPointTab {
+/* 	#myPointTab {
 		color: rgb(242, 101, 34);
-	}
+	} */
 	.fa-coins{
 		color:  #ffa048;
 	}
 </style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 			<div class="d-flex located-at-bottom-of-header">
@@ -23,14 +23,12 @@
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">포인트 내역</a>
 					</nav>
-					<div style="margin-top:2rem; margin-left:1rem;">
-						<h2><strong>내 포인트</strong></h2>
+					<div class="d-flex mb-2" style="margin-top:1rem; margin-left:1rem;">
+						<h2 class="mr-2"><strong>내 포인트</strong></h2>
+						<div class="mr-1"><i class="fa-solid fa-coins"></i></div>
+						<div><h2>${pointBalance}</h2></div>
 					</div>
 					<div class="container" style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
-						<div>
-							<i class="fa-solid fa-coins"></i>
-						</div>
-						<div><h2>${pointBalance}</h2></div>
 
 						<div style="display:flex; flex-direction:column;">
 							<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,7 +61,7 @@
 							<thead class="thead-light">
 								<tr>
 								<th scope="col">포인트</th>
-								<th scope="col" colspan="2">적립 구분</th>
+								<th scope="col">적립 구분</th>
 								<th scope="col">날짜</th>
 								</tr>
 							</thead>
@@ -144,48 +142,49 @@
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 <script>
-function list_active(list_id) {
-	let list = document.getElementById(list_id);
-	list.setAttribute("class", "active");
-	console.log('...');
-	const LS_SPECIFICATION_TOTAL = "TOTAL";
-	const LS_SPECIFICATION_GOT = "GOT";
-	const LS_SPECIFICATION_USED = "USED";
+	function list_active(list_id) {
+		let list = document.getElementById(list_id);
+		list.setAttribute("class", "active");
 
-	let list_total_element = document.getElementById("list_total");
-	let list_got_element = document.getElementById("list_got");
-	let list_used_element = document.getElementById("list_used");
-	//사용 안 하는 탭들 active 속성 제거.
-	if(list_id === "list_total") {
-		list_got_element.removeAttribute("class", "active");
-		list_used_element.removeAttribute("class", "active");
-		localStorage.setItem("selectedTab", LS_SPECIFICATION_TOTAL);
-		console.log('list_total 외에 active 속성 제거');
-	} else if(list_id === "list_got") {
-		list_total_element.removeAttribute("class", "active");
-		list_used_element.removeAttribute("class", "active");
-		localStorage.setItem("selectedTab", LS_SPECIFICATION_GOT);
-		console.log('list_got 외에 active 속성 제거');
-	} else if(list_id === "list_used") {
-		list_total_element.removeAttribute("class", "active");
-		list_got_element.removeAttribute("class", "active");
-		localStorage.setItem("selectedTab", LS_SPECIFICATION_USED);
-		console.log('list_used 외에 active 속성 제거');
-	}
-
-	if(localStorage.getItem("selectedTab") === null) {
-		localStorage.setItem("selectedTab", LS_SPECIFICATION_TOTAL);
-	} else {
-		localStorage.setItem("selectedTab", localStorage.getItem("selectedTab"));
-	}
+		const LS_SPECIFICATION_TOTAL = "TOTAL";
+		const LS_SPECIFICATION_GOT = "GOT";
+		const LS_SPECIFICATION_USED = "USED";
 	
-}
+		let list_total_element = document.getElementById("list_total");
+		let list_got_element = document.getElementById("list_got");
+		let list_used_element = document.getElementById("list_used");
 		
-function get_list(pageNo) {
-	const userId = 'spring';
-	let specification = localStorage.getItem("selectedTab");
-	location.href = "myPointList?pageNo=" + pageNo + "&specification=" + specification;
-}
+		//사용 안 하는 탭들 active 속성 제거.
+		if(list_id === "list_total") {
+			
+			localStorage.setItem("selectedTab", LS_SPECIFICATION_TOTAL);
+			console.log('list_total 외에 active 속성 제거');
+			
+		} else if(list_id === "list_got") {
+			
+			localStorage.setItem("selectedTab", LS_SPECIFICATION_GOT);
+			console.log('list_got 외에 active 속성 제거');
+			
+		} else if(list_id === "list_used") {
+			
+			localStorage.setItem("selectedTab", LS_SPECIFICATION_USED);
+			console.log('list_used 외에 active 속성 제거');
+			
+		}
+	
+		if(localStorage.getItem("selectedTab") === null) {
+			localStorage.setItem("selectedTab", LS_SPECIFICATION_TOTAL);
+		} else {
+			localStorage.setItem("selectedTab", localStorage.getItem("selectedTab"));
+		}
+		
+	}
+			
+	function get_list(pageNo) {
+		const userId = 'spring';
+		let specification = localStorage.getItem("selectedTab");
+		location.href = "myPointList?pageNo=" + pageNo + "&specification=" + specification;
+	}
 </script>
 
 </body>

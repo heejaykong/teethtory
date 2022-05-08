@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 <style>
@@ -73,6 +72,7 @@
 	});
 </script>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
 <div class="located-at-bottom-of-header">
@@ -100,14 +100,14 @@
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
-				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 9.5rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
+				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 8rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
 			<div class="mb-3" id="boardcontent">${board.boardcontent}</div>
 			<div style="font-size: 0.8rem;">
 				<div>
-					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">0</span>
+					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>
 					<span class="ml-1" style="color: rgb(18, 220, 247)"><i class="fa-regular fa-comment"></i></span><span class="ml-1" style="color: rgb(18, 220, 247)">${board.commentcount}</span>
 				</div>
 			</div>
@@ -156,7 +156,7 @@
 			<div id="commentcontent" class="mb-2">${comment.commentcontent}</div>
 			<div style="text-align: left; font-size: 0.8rem;">
 				<span style="color: dimgray;"><fmt:formatDate value="${comment.commentdate}" pattern="MM/dd HH:mm"/></span>
-				<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span style="color: red" class="ml-1">15</span>
+				<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span style="color: red" class="ml-1">${comment.commentlike}</span>
 			</div>
 		</div>
 		</c:forEach>

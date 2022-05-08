@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-치과 상세</title>
 <style>
@@ -35,10 +34,9 @@
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
 	
-
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <div class="modal-content">
@@ -103,25 +101,71 @@
 		$(targetEl).toggle();
 	}
 </script>
-
+<div class="located-at-bottom-of-header">
 	<div>
-		<img
-			src="${pageContext.request.contextPath}/resources/images/photo17.jpg"
-			width="100%">
+		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
 	</div>
-	<div style="text-align: center; margin-top: 50px;">
-		<span id="denname" style="font-size: xx-large;"></span>
+	<div class="mx-3" style="text-align: center;">
+		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
+		<div class="mb-3">
+			<i class="fa-solid fa-star" style="color: #ffa048;"></i>
+			<span id="averageStars" style="color: #ffa048;"></span>
+			<span class="ml-2">리뷰</span>
+			<span id="totalReviewNum" style="color: #ffa048;"></span>
+		</div>
+		<a class="btn-large-solid mb-4" onclick="checkRegistered()" style="display: block;">진료 예약하기</a>
 	</div>
-	<div style="text-align: center; flex-direction: row;">
-		<div><i class="fa-solid fa-star"></i></div>
-		<div id="averageStars"></div>
-		<div><p>리뷰</p></div>
-		<div id="totalReviewNum"></div>
-	</div>
-	<div>
 		<%-- dendomain 파라메터로 전달해야 함. --%>
-		<a class="btn" id="Registered" onclick="checkRegistered()">예약하기</a>
+	
+
+	<div class="mx-5">
+		<div class="d-flex mb-3">
+			<i class="fa-solid fa-phone mr-4"></i>
+			<div id="dencontact"></div>
+		</div>
+		
+		<div class="d-flex mb-3">
+			<i class="fa-solid fa-location-dot mr-4"></i>
+			<div id="denaddress" class="ml-1"></div>
+		</div>
+		
+		<div class="d-flex mb-2">
+			<i class="fa-regular fa-clock mr-4"></i>
+			<div>
+				<div class="mb-2">진료시간</div>
+				<div id="businessHourContainer">
+					<div id="mon" class="mb-2"></div>
+					<div id="tue" class="mb-2"></div>
+					<div id="wed" class="mb-2"></div>
+					<div id="thur" class="mb-2"></div>
+					<div id="fri" class="mb-2"></div>
+					<div id="sat" class="mb-2"></div>
+					<div id="sun" class="mb-2"></div>
+				</div>			
+			</div>
+		</div>
+		
+		<div class="d-flex">
+			<div id="businessHourContainer">
+				<div id="mon"></div>
+				<div id="tue"></div>
+				<div id="wed"></div>
+				<div id="thur"></div>
+				<div id="fri"></div>
+				<div id="sat"></div>
+				<div id="sun"></div>
+			</div>
+		</div>
 	</div>
+
+	<div id="reviewContainer" class="list-group">
+		<%-- 여기에 ajax로 받아온 후기 정보 대입. --%>
+	</div>
+	<div id="reviewPaginationContainer">
+		<%-- 여기에 페이지네이션 처리. --%>
+	</div>
+</div>
+	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
 		function checkRegistered() {
 			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
@@ -149,50 +193,6 @@
 			});
 		}
 	</script>
-	<div style="margin-left: 1rem;">
-		<div style="display: flex; flex-direction: row;">
-			<div>
-				<i class="fa-solid fa-phone"></i>
-			</div>
-			<div id="dencontact"></div>
-		</div>
-		<div style="display: flex; flex-direction: row;">
-			<div>
-				<i class="fa-solid fa-location-dot"></i>
-			</div>
-			<div id="denaddress"></div>
-		</div>
-		<div style="display: flex; flex-direction: row;">
-			<div>
-				<i class="fa-solid fa-location-dot"></i>
-			</div>
-			<div>진료시간</div>
-		</div>
-		<div style="display: flex; flex-direction: row;">
-			<div>
-				<i class="fa-regular fa-clock"></i>
-			</div>
-			<div id="businessHourContainer">
-				<div id="mon"></div>
-				<div id="tue"></div>
-				<div id="wed"></div>
-				<div id="thur"></div>
-				<div id="fri"></div>
-				<div id="sat"></div>
-				<div id="sun"></div>
-			</div>
-		</div>
-	</div>
-
-	<div id="reviewContainer" class="list-group">
-		<%-- 여기에 ajax로 받아온 후기 정보 대입. --%>
-	</div>
-	<div id="reviewPaginationContainer">
-		<%-- 여기에 페이지네이션 처리. --%>
-	</div>
-
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
-
 	<script>
 		// 치과의 기본정보를 가져오는 ajax 통신.(deninfo)
 		$.ajax({
@@ -260,19 +260,19 @@
 				}
 
 				if(businessDay === "MONDAY") {
-					document.getElementById('mon').innerHTML = "월요일 " + businessHourForHtml;
+					document.getElementById('mon').innerHTML = "월 " + businessHourForHtml;
 				} else if(businessDay === "TUESDAY") {
-					document.getElementById('tue').innerHTML = "화요일 " + businessHourForHtml;
+					document.getElementById('tue').innerHTML = "화 " + businessHourForHtml;
 				} else if(businessDay === "WEDNESDAY") {
-					document.getElementById('wed').innerHTML = "수요일 " + businessHourForHtml;
+					document.getElementById('wed').innerHTML = "수 " + businessHourForHtml;
 				} else if(businessDay === "THURSDAY") {
-					document.getElementById('thur').innerHTML ="목요일 " + businessHourForHtml;
+					document.getElementById('thur').innerHTML ="목 " + businessHourForHtml;
 				} else if(businessDay === "FRIDAY") {
-					document.getElementById('fri').innerHTML = "금요일 " + businessHourForHtml;
+					document.getElementById('fri').innerHTML = "금 " + businessHourForHtml;
 				} else if(businessDay === "SATURDAY") {
-					document.getElementById('sat').innerHTML = "토요일 " + businessHourForHtml;
+					document.getElementById('sat').innerHTML = "토 " + businessHourForHtml;
 				} else if(businessDay === "SUNDAY") {
-					document.getElementById('sun').innerHTML = "일요일 " + businessHourForHtml;
+					document.getElementById('sun').innerHTML = "일 " + businessHourForHtml;
 				}
 			}
 
@@ -312,9 +312,9 @@
 				let aReviewHtml = '';
 				for(let i=0; i<data.reviewList.length; i++) {
 					console.log('i : ' + i);
-					aReviewHtml += '<a href="#" class="list-group-item list-group-item-action">';
-					aReviewHtml += '	<div class="d-flex">';
-					aReviewHtml += '		<small class="mr-1">';
+					aReviewHtml += '<a href="#" class="list-group-item list-group-item-action" style="font-size: 0.9rem;">';
+					aReviewHtml += '	<div class="d-flex mb-1" style="color: #ffa048;">';
+					aReviewHtml += '		<small class="mr-2">';
 					if(data.reviewList[i]["starscore"] % 1 !== 0) {//n.5점
 						console.log('data.reviewList[i]["starscore"] : ' + data.reviewList[i]["starscore"]);
 						console.log('parseInt(data.reviewList[i]["starscore"]) : ' + parseInt(data.reviewList[i]["starscore"]));
@@ -337,11 +337,11 @@
 					aReviewHtml += '		</small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["starscore"] + '</small>';
 					aReviewHtml += '	</div>';
-					aReviewHtml += '	<div>' + data.reviewList[i]["reviewcontent"] + '</div>';
+					aReviewHtml += '	<div class="mb-1" style="font-weight: bold;">' + data.reviewList[i]["reviewcontent"] + '</div>';
 					aReviewHtml += '	<div>';
-					aReviewHtml += '		<small><img src="/images/submit.png" style="width: 10px;"></small>';
-					aReviewHtml += '		<small>' + data.reviewList[i]["userid"] + '</small>';
-					aReviewHtml += '		<small>' + data.reviewList[i]["reviewdate"] + '</small>';
+/* 					aReviewHtml += '		<small><img src="/images/submit.png" style="width: 10px;"></small>'; */
+					aReviewHtml += '		<small>' + data.reviewList[i]["userid"] + " | " + '</small>';
+					aReviewHtml += '		<small>' + data.reviewList[i]["reviewdate"] + " | " + '</small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["lastvisitcount"] + '번째 방문</small>';
 					aReviewHtml += '	</div>';
 					aReviewHtml += '</a>';

@@ -30,7 +30,7 @@ public class HeaderCheckAfter {
 	private UserService userService;
 	
 	/*	@Around("@annotation(com.mycompany.webapp.aspect.HeaderCheck)")*/
-	@Around("execution(public * com.mycompany.webapp.controller.HomeController.login(..))")
+	@Around("execution(public * com.mycompany.webapp.controller.*Controller.*(..))")
 	public Object method(ProceedingJoinPoint joinpoint) throws Throwable {
 		
 		Object result = joinpoint.proceed();

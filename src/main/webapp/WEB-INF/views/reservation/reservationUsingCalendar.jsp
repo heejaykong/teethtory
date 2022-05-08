@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	
 	<title>치스토리-진료 예약하기</title>
@@ -112,9 +111,9 @@
 	</style>	
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
-
+	
       <div id="all">
         <div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
         <div id="top-a" style="display:inline; margin-left:1rem;">
