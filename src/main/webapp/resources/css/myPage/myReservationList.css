@@ -1,0 +1,119 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	padding: 0 var(--default-inner-space);
+}
+.reservation-list-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	border: var(--card-border);
+	border-radius: 7px;
+	padding: var(--default-inner-space);
+	margin-bottom: 2rem;
+}
+.reservation-list-item:hover {
+	box-shadow: var(--basic-shadow);
+}
+.stamp {
+	position: absolute;
+	right: 1rem;
+	top: -1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 0.25rem solid #555;
+	border-radius: 50%;
+	min-width: 6rem;
+	min-height: 6rem;
+	font-size: 3rem;
+	font-weight: 700;
+	-webkit-mask-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/8399/grunge.png');
+	-webkit-mask-size: 944px 604px;
+	-webkit-mask-position: 2rem 3rem;
+	mix-blend-mode: multiply;
+	transform: rotate(-10deg);
+}
+.stamp-pending {
+	color: var(--light-gray);
+	border: 0.5rem double var(--light-gray);
+	font-size: 1.2rem;
+}
+.stamp-fixed {
+	color: #0A9928;
+	border: 0.5rem double #0A9928;
+	font-size: 2rem;
+}
+.stamp-canceled {
+	color: #D23;
+	border: 0.5rem double #D23;
+	font-size: 2rem;
+}
+.stamp-fixed > .stamp-message:before {
+	content: "확정";
+}
+.stamp-pending > .stamp-message:before {
+	content: '확정 \00000a 대기 중'; /* white-space: pre;와 혼용해야 \00000a(=줄바꿈)이 됨 */
+	white-space: pre;
+}
+.stamp-canceled > .stamp-message:before {
+	content: "취소";
+}
+
+.reservation__title {
+	color: var(--osstem-orange);
+	font-size: 1.2rem;
+	font-weight: 500;
+	margin-bottom: 0.4rem;
+}
+.reservation__text {
+	color: var(--gray);
+	font-size: 0.9rem;
+}
+.reservation__text-2 {
+	color: var(--dark-gray);
+	font-size: 0.9rem;
+	font-weight: 500;
+	margin-top: 0.5rem;
+	margin-bottom: -0.9rem;
+}
+.reservation__btns {
+	display: flex;
+	align-items: center;
+	margin-top: 2rem;
+}
+.reservation__btn {
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid var(--osstem-orange);
+	border-radius: 3px;
+	background-color: var(--osstem-orange);
+	color: white;
+	font-weight: 500;
+	padding: 0.6rem ;
+	margin-bottom: 0.4rem;
+}
+.reservation__btn:hover {
+	color: white;
+	background-color: var(--osstem-orange-dark);
+	border-color: var(--osstem-orange-dark);
+}
+.reservation__btn + .reservation__btn {
+	margin-left: 0.5rem;
+}
+.reservation__btn.disabled,
+.reservation__btn.disabled:hover {
+	cursor: not-allowed;
+	background-color: var(--lighter-gray);
+	border-color: var(--lighter-gray);
+	color: white;
+}
+.reservation__btn.disabled:after {
+	content: " (완료)";
+}
+.reservation__small-text {
+	color: var(--light-gray);
+	font-size: 0.8rem;
+}

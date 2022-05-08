@@ -159,7 +159,8 @@ public class MyPageController {
 		model.addAttribute("points", list);		
 		return "myPage/myPointList";
 	}
-	
+
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/myReservationList")
 	public String myReservationList() {
 		log.info("실행");
