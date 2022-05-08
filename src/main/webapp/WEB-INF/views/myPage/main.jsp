@@ -15,7 +15,7 @@
 	<main class="main located-at-bottom-of-header">
 		<%-- 마이페이지 프로필블록 --%>
 		<section class="profile-block">
-			<div class="profile__img"></div>
+			<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
 			<p class="name">${headerInfo.name}</p>
 			<span class="email">${headerInfo.email}</span>
 		</section>
