@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -158,7 +159,7 @@
 								<i class="fa-solid fa-angles-right"></i>
 							</div>
 						</a>
-					</div>
+					</div><%-- 페이지네이션 끝 --%>
 				</c:if>
 			</div>
 
