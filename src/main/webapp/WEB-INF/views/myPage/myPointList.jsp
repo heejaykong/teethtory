@@ -23,14 +23,12 @@
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">포인트 내역</a>
 					</nav>
-					<div style="margin-top:2rem; margin-left:1rem;">
+					<div class="d-flex" style="margin-top:2rem; margin-left:1rem;">
 						<h2><strong>내 포인트</strong></h2>
+						<div><i class="fa-solid fa-coins"></i></div>
+						<div><h2>${pointBalance}</h2></div>
 					</div>
 					<div class="container" style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
-						<div>
-							<i class="fa-solid fa-coins"></i>
-						</div>
-						<div><h2>${pointBalance}</h2></div>
 
 						<div style="display:flex; flex-direction:column;">
 							<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -63,7 +61,7 @@
 							<thead class="thead-light">
 								<tr>
 								<th scope="col">포인트</th>
-								<th scope="col" colspan="2">적립 구분</th>
+								<th scope="col">적립 구분</th>
 								<th scope="col">날짜</th>
 								</tr>
 							</thead>

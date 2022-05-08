@@ -81,7 +81,7 @@ a:hover { color: orange; }
 			</a>
 			<a class="menu-btn" href="myPointList">
 				<span class="menu-btn__icon"><i class="fa-solid fa-coins"></i></span>
-				<li class="menu-btn__name">내 포인트</li><span style="margin-left:0.5rem; color:orange;">${headerInfo.point}</span>
+				<li class="menu-btn__name">내 포인트</li>
 			</a>
 			<a class="menu-btn" href="reservationHistoryWithCalendar">
 				<span class="menu-btn__icon"><i class="fa-solid fa-calendar-day"></i></span>

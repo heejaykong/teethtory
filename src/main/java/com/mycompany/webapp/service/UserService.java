@@ -75,11 +75,10 @@ public class UserService {
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		String endcodedPassword = passwordEncoder.encode(user.getUserpassword());
 		user.setUserpassword(endcodedPassword);
+		
 		// user_role 세팅
 		user.setUser_role("ROLE_USER");
-		// 기본 userpoint값 세팅
-		user.setUserpoint(3000);
-		
+
 		this.createUser(user);
 		return SignupResult.SUCCESSFUL;
 	}

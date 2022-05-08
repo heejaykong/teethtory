@@ -1,5 +1,7 @@
 package com.mycompany.webapp.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -8,10 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.mycompany.webapp.aspect.HeaderCheck;
-import com.mycompany.webapp.dto.HeaderInfo;
+import com.mycompany.webapp.dto.Point;
 import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.PointService;
 import com.mycompany.webapp.service.UserService;
@@ -95,6 +95,17 @@ public class HomeController {
 		if(signupResult == SignupResult.FAILED__DUPLICATED_ID) {
 			model.addAttribute("error", "중복된 아이디가 있습니다.");
 			return "home/signup";
+		}
+		
+		if(signupResult == SignupResult.SUCCESSFUL) {
+			//회원 가입 축하 포인트 지급
+			Point point = new Point();
+			point.setUserid(user.getUserid());
+			point.setPointisplus(true);
+			point.setPointamount(3000);
+			point.setPointdesc("회원가입 선물");
+			point.setPointdate(new Date());
+			pointService.addPoint(point);
 		}
 		return "redirect:/login";
 	}
