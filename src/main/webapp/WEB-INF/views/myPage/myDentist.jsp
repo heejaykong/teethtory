@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-내 치과</title>
 
@@ -22,6 +21,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <!-- 추가 눌렀을때 확인하는 Modal창 -->
