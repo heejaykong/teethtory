@@ -1,0 +1,76 @@
+/* 마이페이지: 설정 화면 */
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 회원정보 블록 */
+.user-info-settings-block,
+.noti-settings-block {
+	padding: 0 var(--default-inner-space);
+}
+.row-item {
+	display: flex;
+	margin-bottom: 2rem;
+}
+.row-item__title {
+	font-size: 1.2rem;
+	color: var(--dark-gray);
+	font-weight: 600;
+	margin-right: 1rem;
+}
+.row-item__content {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.2rem;
+	color: var(--almost-black-gray);
+	font-weight: 500;
+}
+.row-item__content__btn {
+	border: var(--card-border);
+	border-radius: 5px;
+	padding: 0.7rem 0.9rem;
+	color: var(--light-gray);
+	font-size: 1.3rem;
+	font-weight: 500;
+	margin-top: 0.6rem;
+}
+.row-item__content__btn:hover {
+	color: var(--osstem-orange);
+}
+.deleteAccountLink,
+.deleteAccountLink:hover,
+.deleteAccountLink:active {
+	display: inline-block;
+	color: var(--light-gray);
+	font-size: 0.8rem;
+	font-weight: 500;
+	text-decoration: underline;
+	margin-top: 6rem;
+}
+
+
+/* 알림 블록 */
+.custom-control-input:focus~.custom-control-label::before {
+border-color: var(--osstem-orange) !important;
+box-shadow: 0 0 0 0.2rem rgba(242, 101, 34, 0.25) !important;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+border-color: var(--osstem-orange) !important;
+background-color: var(--osstem-orange) !important;
+}
+
+.custom-control-input:active~.custom-control-label::before {
+background-color: var(--osstem-orange) !important;
+border-color: var(--osstem-orange) !important;
+}
+
+.custom-control-input:focus:not(:checked)~.custom-control-label::before {
+border-color: var(--osstem-orange) !important;
+}
+
+.custom-control-input-green:not(:disabled):active~.custom-control-label::before {
+background-color: var(--osstem-orange) !important;
+border-color: var(--osstem-orange) !important;
+}
