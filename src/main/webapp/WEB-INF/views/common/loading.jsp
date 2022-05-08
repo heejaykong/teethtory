@@ -1,11 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <style>
 #loader {
   position: absolute;
@@ -50,21 +43,13 @@
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
-
-
 </style>
-<body>
 <div id="loader"></div>
-    <script type="text/javascript">
-        window.onbeforeunload = function () { document.getElementsByClassName('loader').show();
-       
-        }
-        window.addEventListener('load', function () {
-        	 document.getElementById("loader").style.display = "none";
-		
-        	
-        	
-        	})
-    </script>
-</body>
-</html>
+<script type="text/javascript">
+    window.onbeforeunload = function() {
+    	document.getElementsByClassName('loader').show();
+	}
+    window.addEventListener('load', function () {
+    	document.getElementById("loader").style.display = "none";
+	});
+</script>
