@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css">
 	<title>치스토리-회원가입</title>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<main class="main located-at-bottom-of-header">
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}/">

@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/myInformation.css">
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main class="main located-at-bottom-of-header">
 

@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-치과정보(지도)</title>
 	<script>
@@ -29,6 +28,7 @@
 </body>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation.css" />
 	<div class="located-at-bottom-of-header">

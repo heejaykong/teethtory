@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-치과 상세</title>
 <style>
@@ -35,10 +34,9 @@
 </script>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-
 	
-
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <div class="modal-content">

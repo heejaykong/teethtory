@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-마이페이지</title>
 
@@ -81,6 +80,7 @@ html, body {
 }
 </style>
 </head>
+<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <body class="located-at-bottom-of-header">

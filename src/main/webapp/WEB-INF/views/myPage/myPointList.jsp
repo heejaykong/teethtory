@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 
@@ -16,6 +15,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 			<div class="d-flex located-at-bottom-of-header">

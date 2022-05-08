@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 <style>
@@ -21,6 +20,7 @@
 </style>
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 			<div style="margin-left:0.5rem; margin-top:2rem;">이메일 변경</div>
