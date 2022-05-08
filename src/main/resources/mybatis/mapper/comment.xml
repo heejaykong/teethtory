@@ -17,17 +17,17 @@
 	</select>
 	
 	<select id="selectBycommentno" parameterType="int" resultType="comment">
-		SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+		SELECT commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 		FROM comments
 		WHERE commentno=#{commentno}
 	</select>
 	
 	<select id="selectByPage" resultType="comment">
-		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 			FROM (
-			  SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+			  SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 			  FROM (
-			    SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+			    SELECT commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 			    FROM comments
 			    WHERE boardno=#{boardno}
 			    ORDER BY commentno DESC
@@ -38,11 +38,11 @@
 	</select>
 	
 	<select id="selectByUserid" resultType="comment">
-		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+		SELECT rnum, commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 		FROM (
-			SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter
+			SELECT ROWNUM as rnum, commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 			FROM (
-				SELECT commentno, boardno, commentcontent, commentdate, commentwriter
+				SELECT commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 				FROM comments
 				WHERE commentwriter=#{userid}
 				ORDER BY commentno DESC
@@ -57,11 +57,11 @@
 			select COMMNO_SEQ.nextval from dual
 		</selectKey>
 		INSERT INTO comments(
-			commentno, boardno, commentcontent, commentdate, commentwriter
+			commentno, boardno, commentcontent, commentdate, commentwriter, commentlike
 		)
 		VALUES(
 			#{commentno}, #{boardno}, #{commentcontent}
-			, SYSDATE, #{commentwriter}
+			, SYSDATE, #{commentwriter}, #{commentlike}
 		)
 	</insert>
 	

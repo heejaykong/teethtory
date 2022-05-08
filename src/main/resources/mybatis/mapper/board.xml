@@ -22,20 +22,20 @@
 	<select id="selectByBoardno" parameterType="int" resultType="board">
 		SELECT boardno, boardwriter, boardtitle,
 			boardcontent, boarddate, bimagecontenttype,
-			bimageoriginalfilename, bimagesavedfilename
+			bimageoriginalfilename, bimagesavedfilename, boardlike
 		FROM boards
 		WHERE boardno=#{boardno}
 	</select>
 	
 	<select id="selectByPage" parameterType="pager" resultType="board">
 		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 		FROM (
 		  SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-						   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+						   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 		  FROM (
 		    SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-				   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+				   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 			FROM boards
 		    ORDER BY boardno DESC
 		  )
@@ -46,13 +46,13 @@
 	
 	<select id="selectByUserid" resultType="board">
 		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 		FROM (
 			SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 			FROM (
 				SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 				FROM boards
 				WHERE boardwriter=#{userid}
 				ORDER BY boardno DESC
@@ -64,13 +64,13 @@
 	
 	<select id="selectByTitleContent" resultType="board">
 		SELECT rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+					 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 		FROM (
 			SELECT ROWNUM as rnum, boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+							 bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 			FROM (
 				SELECT boardno, boardwriter, boardtitle, boardcontent, boarddate, 
-					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename
+					   bimagecontenttype, bimageoriginalfilename, bimagesavedfilename, boardlike
 				FROM boards
 				WHERE boardtitle like '%' || #{boarddata} ||'%' or boardcontent like '%' || #{boarddata} ||'%'
 				ORDER BY boardno DESC
@@ -88,10 +88,10 @@
 		</selectKey>
  		INSERT INTO boards (boardno, boardwriter, boardtitle,
 							boardcontent, boarddate, bimagecontenttype,
-							bimageoriginalfilename, bimagesavedfilename)
+							bimageoriginalfilename, bimagesavedfilename, boardlike)
 		VALUES(#{boardno}, #{boardwriter}, #{boardtitle},
 				#{boardcontent}, SYSDATE, #{bimagecontenttype},
-				#{bimageoriginalfilename}, #{bimagesavedfilename})
+				#{bimageoriginalfilename}, #{bimagesavedfilename}, #{boardlike})
 	</insert>
 	
 	<update id="update" parameterType="board">

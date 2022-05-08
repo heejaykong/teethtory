@@ -17,6 +17,7 @@ public class Board {
 	private String bimageoriginalfilename;
 	private String bimagesavedfilename;
 	private MultipartFile battach;
+	private int boardlike;
 	private String backgroundColor;
 	private boolean filecount;
 	private int commentcount;

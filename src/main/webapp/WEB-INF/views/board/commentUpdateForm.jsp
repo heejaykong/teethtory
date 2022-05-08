@@ -21,13 +21,13 @@
 	<div class="comment" style="margin: 1rem 1rem 0.5rem 1rem;">
 		<form method="post"
 			action="commentUpdate" id="commentUpdate">
-			<input type="hidden" name="boardno" value="${comment.boardno}"/>
-			<input type="hidden" name="commentno" value="${comment.commentno}"/>
+			<input required type="hidden" name="boardno" value="${comment.boardno}"/>
+			<input required type="hidden" name="commentno" value="${comment.commentno}"/>
 			<table class="table table-striped"
 				style="text-align: center; border: 1px solid #dddddd">
 				<tbody>
 					<tr>
-						<td><textarea class="form-control"
+						<td><textarea required class="form-control"
 								name="commentcontent" maxlength="2048" style="height: 350px;">
 								${comment.commentcontent}</textarea></td>
 					</tr>

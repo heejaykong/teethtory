@@ -11,5 +11,6 @@ public class Comment {
 	private String commentcontent;
 	private Date commentdate;
 	private String commentwriter;
+	private int commentlike;
 	private String backgroundColor;
 }
