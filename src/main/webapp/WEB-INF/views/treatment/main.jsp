@@ -9,6 +9,7 @@
 	<title>치료 내역 모아보기 - 치스토리</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
@@ -36,16 +37,8 @@
 
 		<!-- 드롭다운 선택한 결과 영역 -->
 		<section class="selected-treattype-results-section">
-            <c:if test="${treatments.length == 0}">
-                <div class="emptly-block">
-                    <img width="100%" src="${pageContext.request.contextPath}/resources/images/toothCharacter/neutral-smile.png" alt="neutral-smile-tooth-character">
-                    <p class="text">치료 내역이 없어요.</p>
-                </div>
-            </c:if>
-            <c:if test="${treatments.length > 0}">
-                <!-- TBD: 다음 템플릿대로 백에서 넘어온 결과 리스트 foreach로 출력 -->
-            </c:if>
-        </section>
+			<!-- 백에서 넘어온 치료내역 리스트 foreach로 출력 -->
+		</section>
 
         <c:if test="${treatments.length > 0}">
            <!--  페이지네이션 -->
@@ -131,6 +124,7 @@
 		}
 		$(function(){
 			getData("ALL");
+			
 			document.querySelector("#treattype").addEventListener("change", handleSelectChange);
 
 			function handleSelectChange(event) {
@@ -170,9 +164,22 @@
 	
 			async function getData(selectedTreattype) {
 				try {
-					$(".selected-treattype-results-section").html("");
 					data = await windowdd(selectedTreattype);
 					// TBD: 아래 smalldata들 다시 data로 바꾸기(테스트할때 너무 오래걸려서 smalldata로 해둠)
+					
+					// 만약 해당 내역이 없을 경우 없다고 표시
+					if (!data.length) {
+						const emptyBlockTemplate = `
+						    <div class="empty-block">
+			                    <img width="100%" src="${pageContext.request.contextPath}/resources/images/toothCharacter/neutral-smile.png" alt="neutral-smile-tooth-character">
+			                    <p class="text">치료 내역이 없어요.</p>
+			                </div>
+						`;
+		                 $(".selected-treattype-results-section").html(emptyBlockTemplate);
+		                 return;
+					}
+					
+					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
 					const smalldata = data.slice(0,5);
 					smalldata.sort(function(a, b) {
 						if(a.treatdate > b.treatdate) {
@@ -185,6 +192,7 @@
 					})
 					//console.log("orderedDate:", data);
 					//console.log(data.length);
+					$(".selected-treattype-results-section").html("");
 					smalldata.forEach(treatment => {
 		                 const listItem = template(treatment);
 		                 $(".selected-treattype-results-section").append(listItem);

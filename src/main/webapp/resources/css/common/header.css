@@ -146,6 +146,10 @@
 	color: var(--almost-black-gray);
 	padding: 1.2rem 0;
 }
+.menu-btn:hover .menu-btn__icon,
+.menu-btn:hover .menu-btn__name {
+	color: var(--osstem-orange);
+}
 .menu-btn__icon {
 	display: flex;
 	justify-content: center;
@@ -156,7 +160,4 @@
 .menu-btn__name {
 	font-size: 1.4rem;
 	font-weight: 500;
-}
-.menu-btn__name:hover {
-	color: var(--osstem-orange);
 }

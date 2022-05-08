@@ -1,0 +1,124 @@
+/* 마이페이지: 내 치과 화면 */
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
+/* '내 치과 목록' 블록 */
+.my-dentists-list-block {
+	padding: 0 var(--default-inner-space) var(--deep-inner-space);
+}
+/* 치과 리스트아이템 컴포넌트 - 메인 바디 */
+.dentist-list-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.3rem;
+}
+.dentist-list-item__main-body {
+	border: var(--card-border);
+	border-radius: 7px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.8rem;
+}
+.dentist-list-item__main-body:hover {
+	cursor: pointer;
+	background-color: var(--pale-peach);
+}
+.main-body__col {
+	display: flex;
+}
+.main-body__img {
+	background-color: var(--divider-gray);
+	min-width: 3.7rem;
+	min-height: 3.7rem;
+	border-radius: 50%;
+	margin-right: 0.8rem;
+}
+.main-body__nametag {
+	display: flex;
+	flex-direction: column;
+}
+.main-body__nametag > .name {
+	color: var(--osstem-orange);
+	font-size: 1.5rem;
+	font-weight: 500;
+	margin-top: 0.2rem;
+	margin-bottom: 0.3rem;
+}
+.main-body__nametag > .address {
+	font-size: 1.2rem;
+	color: var(--dark-gray);
+}
+.name.overflow-ellipsis {
+	width: 12rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.address.overflow-ellipsis {
+	width: 12.5rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.dropdown-btn {
+	color: var(--dark-gray);
+	margin-right: 0.8rem;
+}
+/* 치과 리스트아이템 컴포넌트 - 드롭다운 목록 */
+.dentist-list-item__dropdown-menu-list {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	border: var(--card-border);
+	border-radius: 7px;
+	width: 100%;
+	background-color: white;
+	z-index: 1;
+}
+.dentist-list-item__dropdown-menu-list .menu-btn {
+	padding: 1.2rem var(--deep-inner-space);
+	color: var(--dark-gray);
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.dentist-list-item__dropdown-menu-list .menu-btn:hover {
+	cursor: pointer;
+	background-color: var(--pale-peach);
+}
+
+
+/* '추가하기' 블록 */
+.add-dentist-block {
+	display: flex;
+	flex-direction: column;
+	padding: var(--deep-inner-space) var(--default-inner-space);
+}
+.section-title-sm {
+	color: var(--almost-black-gray);
+	font-size: 1rem;
+	font-weight: 500;
+	margin-bottom: 0.6rem;
+}
+/* 검색바 컴포넌트 */
+.search-bar-component {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.6rem;
+}
+.search-bar__input {
+	flex-grow: 1;
+	border: var(--card-border);
+	border-radius: 3px;
+	padding: 0.3rem 0 0.3rem 0.8rem;
+	margin-right: 0.7rem;
+}
+.search-bar__submit-btn {
+	cursor: pointer;
+	min-width: 1.5rem;
+}
