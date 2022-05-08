@@ -232,6 +232,7 @@ public class MyPageController {
 		}
 		userService.deleteUser(user.getUserid());
 		session.removeAttribute("sessionUserid");
+		session.removeAttribute("headerInfo");
 		return "redirect:/";
 	} 
 
