@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치료 내역 모아보기 - 치스토리</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
@@ -11,6 +12,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
 </head>
 <body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 	<main class="main located-at-bottom-of-header">
@@ -120,7 +122,6 @@
            	</div>
            	`;
 		}
-
 		$(function(){
 			getData("ALL");
 			
@@ -135,7 +136,7 @@
 				console.log(selectedTreattype);
 				const promise = new Promise((resolve, reject) => {
 					let list = [];
-          console.log("dentist", ${dentist}.dentist);
+          			console.log("dentist", ${dentist}.dentist);
 					for(let i=0; i<${dentist}.dentist.length; i++) {
 						$.ajax({
 							method:"POST",

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-진료 예약하기</title>
 	<style>
@@ -35,7 +36,7 @@
 <div class="located-at-bottom-of-header">
    <div class="container" id="top">
         <div>
-            <div style="width:10rem; margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
+            <div id="denname" style="width:10rem; margin-top:20px; font-weight:bold;">Ant 치과 진료예약</div>
             <div id="reservationSelectTime" style="margin-top:25px; text-decoration: none; color: rgb(222, 149, 13); font-weight:bold;"></div>
         </div>
         
@@ -60,7 +61,20 @@
     </div>
     </div>
 <script>
+console.log('patientssn : ' + "${patientssn}");
 console.log('dendomain : ' + ${dendomain});
+$.ajax({
+	method:"POST",
+	url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getdeninfo",
+	// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
+	data: {
+	},
+})
+.done((data) => {
+	document.getElementById('denname').innerHTML = data.denname;
+	
+	console.log(data);
+});
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
 if(date.length==15){
@@ -92,6 +106,7 @@ $.ajax({
 	, async: false
 	})
 	.done((data) => {
+		
 		a=JSON.stringify(data);
 		console.log("문자열 형태 : "+a);
 		b=a.charAt(atimeIndex);
@@ -111,13 +126,16 @@ $.ajax({
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
 			$.ajax({
 			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
-			    type: 'POST',
+			    type: 'GET',
 			    data: { 
+			    	
+			        "patientssn" : "${patientssn}", 
 			    	"tformatDate":tformatDate,
 			    	"name": $("#name").val(),
 			    	"phone": $("#phone").val(),
 			    	"reservation": $("#reservation").val(),
-			        "availabletime": changeAvailableTime
+			        "availabletime": changeAvailableTime,
+			       
 				}
 				, async: false
 			})

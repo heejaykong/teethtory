@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
 </head>
@@ -10,7 +11,7 @@
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
 <div class="located-at-bottom-of-header">
-<div class="d-flex justify-content-between mx-4 mt-2"
+<div class="d-flex justify-content-between align-items-center mx-4 mt-2"
 	style="height: 3rem; font-size: 1.5rem;">
 	<span><i class="fa-solid fa-xmark mr-4" onclick="location.href='boardDetail?boardno=${board.boardno}'"></i>글 수정</span> 
 	<span><input type="submit" value="완료" form="boardUpdate" class="btn btn-sm btn-danger"></input> </span>

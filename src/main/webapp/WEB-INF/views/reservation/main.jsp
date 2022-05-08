@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-진료 예약하기</title>
 	<style>
@@ -21,25 +23,27 @@
 		a:link { color: red; text-decoration: none;}
 		a:visited { color: black; text-decoration: none;}
 		a:hover { color: orange; }
+		
+		
 	</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
     <div class="located-at-bottom-of-header">
-
-                        <div style="margin-top:1rem; margin-left:1rem;font-weight:bold;">
-                            <h3>진료 예약하기</h3>
+                        <div style="margin-top:6rem; margin-left:1rem;font-weight:bold;font-size:1.5em;">
+                           진료 예약하기
                         </div>
                         <div id="top" class="container">
                             <div >
-                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요."style="border:0.5px solid lightgrey;">
-	                        <span><i id="submit" class="fas fa-search"></i></span>
+                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요." style="width:90%; height:3rem; border:0.25rem solid lightgrey;">
+	                        <span style="margin-left:-2rem;"><i id="submit" class="fas fa-search"></i></span>
                             </div>
                         </div>
             
                         <div style="margin-top:1rem; margin-left:1rem;">찾으시는 치과가 없나요?
-                            <a href="#">치과 등록을 요청하세요.</a>
+                            <a style="text-decoration:none;color: rgb(242, 101, 34);"id="enroll"href="${pageContext.request.contextPath}/myPage/myDentist">  치과 등록을 요청하세요!</a>
                         </div>
+                        <hr>
                         <script>
                             let submitIcon = document.getElementById('submit');
                             submitIcon.onclick = function() {
@@ -55,9 +59,9 @@
                             <c:if test="${searchedDentistList == null}">
                             <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
                                 <c:forEach var="myDentistList" items="${myDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; margin-top:1rem;"
+                                <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
                                     onclick="goReservationUsingMap(${myDentistList.denno});">
-                                    <div class="history-list__item" style="margin-left: 1rem; width: inherit;">
+                                    <div class="history-list__item" style=" width: inherit;">
                                         <!--
                                         <div class="item__col">
                                             <img
@@ -70,14 +74,15 @@
                                             <span class="dentist-visited">${myDentistList.denaddress}</span>
                                             <div id="denNo" style="display:none;">${myDentistList.denno}</div>
                                         </div>
+                                        <hr>
                                     </div>
                                 </div>
                             </c:forEach>
                             </c:if>
                             <c:forEach var="searchedDentist" items="${searchedDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; border: solid 0.1rem; border-color: grey; border-radius: 10%"
+                                <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
                                     onclick="goReservationUsingMap(${searchedDentist.denno});">
-                                    <div class="history-list__item" style="margin-left: 1rem; width: inherit;">
+                                    <div class="history-list__item" style="width: inherit;">
                                         <!--
                                         <div class="item__col">
                                             <img
@@ -112,7 +117,12 @@
                             <c:if test="${pager.groupNo<pager.totalGroupNo}">
                                 <a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.endPageNo+1})">다음</a>
                             </c:if>
-                            <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            <c:if test="${pager.totalGroupNo == null}">
+                                <a class="btn btn-outline-primary btn-sm">맨끝</a>
+                            </c:if>
+                            <c:if test="${pager.totalGroupNo != null}">
+                                <a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
+                            </c:if>
                         </div>
                         <script>
                             function get_list(pageNo) {
@@ -124,8 +134,11 @@
                                 localStorage.setItem("denno", denno);
                                 location.href = "reservationUsingMap?denno=" + denno;
                             }
+                            setInterval(function(){
+                            	  $("#enroll").toggle();
+                            	}, 750);
                         </script>
-
+					
             <!-- 마이페이지 - 진료예약현황으로 보내기. -->
             <!--
             <div>

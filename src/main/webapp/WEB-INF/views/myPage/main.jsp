@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 마이페이지</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage/main.css">
@@ -15,8 +16,8 @@
 		<%-- 마이페이지 프로필블록 --%>
 		<section class="profile-block">
 			<div class="profile__img"></div>
-			<p class="name">${name}</p>
-			<span class="email">${email}</span>
+			<p class="name">${headerInfo.name}</p>
+			<span class="email">${headerInfo.email}</span>
 		</section>
 		
 		<%-- 옅은 회색 분리막대 --%>
@@ -40,7 +41,7 @@
 					</div>
 					<div class="menu-btn-style-2__col">
 						<span class="mypoint__amount">
-							<fmt:formatNumber type="number" maxFractionDigits="3" value="${point}" />
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${headerInfo.point}" />
 						</span>
 						<span class="mypoint__arrow-right">
 							<i class="fa-solid fa-chevron-right"></i>

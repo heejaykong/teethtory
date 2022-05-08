@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 상세내용</title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/details.css" />
@@ -187,7 +188,7 @@
 	      <a href="reviewForm?treatno=${treatno}&denno=${denno}" id="reviewFormBtn" class="btn-large-solid">
 	      	치료 후기 작성하기
 	      </a>
-	      <a href="#" class="btn-large-hollow">이 치과 진료 예약하기</a>
+	      <a href="${pageContext.request.contextPath}/reservation/dentistDetail?denno=${denno}" class="btn-large-hollow">이 치과 진료 예약하기</a>
 	    </section>
 	</main>
 

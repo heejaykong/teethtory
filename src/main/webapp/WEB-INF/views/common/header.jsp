@@ -31,7 +31,7 @@
 	<!-- 프로필블록 -->
 	<div class="sidebar-menu__profile-block">
 		
-		<c:if test="${sessionUserid == null}">
+		<c:if test="${headerInfo.userid == null}">
 			<h1 id="sidebar-menu__logo" class="logo-text-orange-lg">
 				치스토리
 			</h1>
@@ -42,12 +42,12 @@
 			<a href="${pageContext.request.contextPath}/login" class="login-btn btn-large-solid">로그인</a>
 			<a href="${pageContext.request.contextPath}/signup" class="signup-btn btn-large-hollow">회원가입</a>
 		</c:if>
-		<c:if test="${sessionUserid != null}">
+		<c:if test="${headerInfo.userid != null}">
 			<div class="profile">
-				<div class="profile__img"></div>
+				<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
 				<div class="profile__nametag">
 					<p class="name">
-						<span id="username">${name}</span> 님
+						<span id="username">${headerInfo.name}</span> 님
 					</p>
 					<a href="${pageContext.request.contextPath}/myPage/myPointList">
 						<p class="mypoint">
@@ -55,7 +55,7 @@
 								<i class="fa-solid fa-circle-dollar-to-slot"></i>
 							</span>
 							<span class="mypoint__amount">
-								${point}
+								${headerInfo.point}
 							</span>
 							<span class="mypoint__arrow-right">
 								<i class="fa-solid fa-chevron-right"></i>
@@ -64,9 +64,13 @@
 					</a>
 				</div>
 			</div>
-			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white">
+			<a href="${pageContext.request.contextPath}/myPage/main" class="mypage-btn btn-large-hollow-white" style="margin-bottom:-1rem;">
 				<i class="mypage-btn__icon fa-solid fa-user"></i>
 				마이페이지
+			</a>
+			<a href="${pageContext.request.contextPath}/logout" class="mypage-btn btn-large-hollow-white" style="background-color:#f26522; text-decoration:none; color:white">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				로그아웃
 			</a>
 		</c:if>
 	</div>
@@ -81,7 +85,7 @@
 				<span class="menu-btn__icon"><i class="fa-solid fa-tooth"></i></span>
 				<li class="menu-btn__name">치료 내역 모아보기</li>
 			</a>
-			<a class="menu-btn" href="${pageContext.request.contextPath}/reservation/main">
+			<a id="goReservation" class="menu-btn" href="${pageContext.request.contextPath}/reservation/main">
 				<span class="menu-btn__icon"><i class="fa-solid fa-clock"></i></span>
 				<li class="menu-btn__name">진료 예약하기</li>
 			</a>
@@ -93,17 +97,16 @@
 	</nav>
 </aside>
 <script>
+	$('#goReservation').click(() => {
+		// console.log("$('#goReservation').click()");
+		window.localStorage.removeItem('searchingKeyword_LS');
+	});
+
 	$(function(){
 		$("#header__hamburger-btn").on("click", function(){
 			$(".sidebar-menu").removeClass("hidden");
 			$(".sidebar-menu").addClass("revealed");
 			$("body").addClass("overflow-hidden");
-			
-			//포인트에 맞추어 프로필 색 변경
-			if(${sessionUserid != null}) {
-				$(".profile__img").css("background-color","${backgroundColor}");
-			}
-
 		});
 		
 		$("#sidebar-menu__exit-btn").on("click", function(){

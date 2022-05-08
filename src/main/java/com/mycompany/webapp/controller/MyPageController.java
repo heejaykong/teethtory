@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.webapp.aspect.HeaderCheck;
 import com.mycompany.webapp.dto.Dentist;
+import com.mycompany.webapp.dto.HeaderInfo;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Point;
 import com.mycompany.webapp.dto.User;
@@ -27,6 +29,7 @@ import com.mycompany.webapp.service.UserService;
 import com.mycompany.webapp.service.UserService.LoginResult;
 
 import lombok.extern.log4j.Log4j2;
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/myPage")
 @Log4j2
@@ -43,21 +46,12 @@ public class MyPageController {
 	//마이페이지 메인화면.
 	@RequestMapping("/main")
 	public String myPageMenu(HttpSession session, Model model) {
-		String userid = (String) session.getAttribute("sessionUserid");
-		if(userid != null) {
-			User user = userService.getUser(userid);
-			String name = user.getUsername();
-			String email = user.getUseremail();
-			int point = user.getUserpoint();
-			model.addAttribute("name", name);
-			model.addAttribute("email", email);
-			model.addAttribute("point", point);
-			return "myPage/main";
-		}
-		return "redirect:/";
+		return "myPage/main";
 	}
+
 	
 	//이스터에그 화면
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@RequestMapping("/easteregg")
 	public String eastegg(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
@@ -82,6 +76,7 @@ public class MyPageController {
 	
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
+	@HeaderCheck
 	public String myDentist(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
 			, @RequestParam(defaultValue="-1") int denno
@@ -89,6 +84,8 @@ public class MyPageController {
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 		log.info("실행");
+		HeaderInfo headerInfo = (HeaderInfo) session.getAttribute("headerInfo");
+		model.addAttribute("headerInfo", headerInfo);
 		String userId = (String) session.getAttribute("sessionUserid");
 		
 		//내 치과 등록하기

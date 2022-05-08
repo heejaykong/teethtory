@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home/home.css">
 	<title>치스토리</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<main class="main located-at-bottom-of-header">
 		<%-- 상단 캐러셀 이미지 --%>
 		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">

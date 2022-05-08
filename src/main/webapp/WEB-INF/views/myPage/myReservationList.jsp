@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
@@ -77,63 +78,12 @@ flex-direct:row;
     	<h4>예약 현황</h4>
     </div>
 	<div id="reservationListContainer">
-		<%-- <div style="position:relative; border:1px solid lightgrey ;border-radius:1rem; margin:0.5rem;"> 
-			<div style="position:absolute; margin-left:1rem;left:80%">
-				<span class="stamp is-nope">예약취소</span>
-			</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
-				
-			<div style="margin-left:1rem;"><h5>일정: 2022. 04. 29(금) 10:30</h5></div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div> --%>
-		
-	<%-- <div style="position:relative;  border:1px solid lightgrey;border-radius:1rem; margin:0.5rem;"> 
-				<div style="position:absolute; margin-left:1rem; left:80%">
-					<span class="stamp is-approved">예약확정</span>
-				</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;">
-				<h4>A치과</h4>
-			</div>
-				
-			<div style="margin-left:1rem;">
-				<h5>일정: 2022. 04. 29(금) 10:30</h5>
-			</div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div> --%>
-
-		<div style="position:relative;  border:1px solid lightgrey; border-radius:1rem; margin:0.5rem;"> 
-				<div style="position:absolute; margin-left:1rem;left:80%">
-				<span class="stamp">예약대기</span>
-				</div>
-			<div style="text-decoration:none; color:orange; margin-left:1rem; margin-top:1rem;"><h4>A치과</h4></div>
-				
-			<div style="margin-left:1rem;"><h5>예약일정: 2022. 04. 29(금) 10:30</h5></div>
-			<div style="margin-left:1rem;"><h5>신청일자: 2022. 04. 29(금) 10:30</h5></div>
-			<div class="container" style=" margin-bottom:1rem;">
-				<input type="submit" value="예약변경"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-				<input type="submit" value="예약취소"
-							class="btn btn-block btn-osstem"style="margin-left:0.5rem; margin-top:2rem; width:45%; height:3rem;">
-			</div>
-		</div>
-	</div><%--id: reservationListContainer--%>
+	</div>
 	<div id="paginationContainer">
 	</div>
 </div>
 
 	<script>
-
-
 		//웹 서버로부터 사용자의 내치과 객체들을 리스트로 받아오는 통신.
 		var totalArray = [];
 		$.ajax({
@@ -146,14 +96,14 @@ flex-direct:row;
 			}
 		})
 		.done((data) => {
-			console.log('data : ' + data);
+			 console.log('data : ' + data);
 			console.log('typeof data : ' + typeof data);
 			console.log('data["myDentistList"] : ' + data["myDentistList"]);
 			console.log('data["myDentistList"][0]["dendomain"] : ' + data["myDentistList"][0]["dendomain"]);
 			console.log('data["myDentistList"][1]["dendomain"] : ' + data["myDentistList"][1]["dendomain"]);
 			console.log('data["patientssn"] : ' + data["patientssn"]);
 			console.log('typeof data["myDentistList"] : ' + typeof data["myDentistList"]);
-			console.log('data["myDentistList"].length : ' + data["myDentistList"].length);
+			console.log('data["myDentistList"].length : ' + data["myDentistList"].length); 
 			for(let i=0; i<data["myDentistList"].length; i++) {
 				// 사용자의 모든 '내 치과'에 예약정보를 확인해서 받아오는 통신.
 				$.ajax({
@@ -178,7 +128,7 @@ flex-direct:row;
 					console.log('data["reservationList"][0]["dendomain"] : ' + data["reservationList"][0]["dendomain"]);
 					console.log('typeof data["reservationList"][0]["dendomain"] : ' + typeof data["reservationList"][0]["dendomain"]);
 					console.log('data["reservationList"][0]["isfixed"] : ' + data["reservationList"][0]["isfixed"]);
-					console.log('typeof data["reservationList"][0]["isfixed"] : ' + typeof data["reservationList"][0]["isfixed"]);
+					console.log('typeof data["reservationList"][0]["isfixed"] : ' + typeof data["reservationList"][0]["isfixed"]); 
 					//치과 1개로부터 받아온 reservation 객체를 전역변수인 totalList에 모으기.
 					for(let j=0; j<data["reservationList"].length; j++) {
 						totalArray.push(data["reservationList"][j]);

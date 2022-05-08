@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
 
@@ -22,8 +23,8 @@
 					<nav class="navbar navbar-expand-lg navbar-light bg-light">
 						<a class="navbar-brand" href="#">포인트 내역</a>
 					</nav>
-					<div style="margin-top:2rem;">
-						<h3>내 포인트</h3>
+					<div style="margin-top:2rem; margin-left:1rem;">
+						<h2><strong>내 포인트</strong></h2>
 					</div>
 					<div class="container" style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
 						<div>
