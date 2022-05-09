@@ -72,7 +72,11 @@
                                         <div>
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentistList.denname}</div>
                                             <span class="dentist-visited">${myDentistList.denaddress}</span>
+<<<<<<< HEAD
                                             <div id="dendomain" style="display:none;">${myDentistList.dendomain}</div>
+=======
+                                            <div id="denDomain" style="display:none;">${myDentistList.dendomain}</div>
+>>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project
                                         </div>
                                         <hr>
                                     </div>
@@ -94,6 +98,7 @@
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
                                             <span class="dentist-visited">${searchedDentist.denaddress}</span>
                                             <div id="dendomain" style="display:none;">${searchedDentist.dendomain}</div>
+
                                         </div>
                                     </div>
                                 </div>
