@@ -34,7 +34,7 @@
 	<div class="located-at-bottom-of-header">
 	<div class="container"style="display:flex;flex-direction: row;">
 		<div><a onclick = window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
-		<div><span style="width: 30px"><p class="denname" style="font-size: 2rem; font-weight: 500; margin-top:0.5rem; margin-left:1rem;"></p></span></div>
+		<div><span style="width: 30px"><p class="denname" style="font-size: 1.5rem; font-weight: 500; margin-top:0.75rem; margin-left:1rem;"></p></span></div>
 	</div>
 	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;"></div>
 	

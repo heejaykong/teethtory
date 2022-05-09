@@ -127,8 +127,8 @@
 
 	<div class="mx-5">
 		<div class="d-flex mb-3">
-			<i class="fa-solid fa-phone mr-4"></i>
-			<div id="dencontact"></div>
+			<i class="fa-solid fa-phone mr-4" onclick="contact()"></i>
+			<a id="dencontact" onclick="contact()"></a>
 		</div>
 		
 		<div class="d-flex mb-3">
@@ -248,8 +248,15 @@
 			},
 		})
 		.done((data) => {
-			/* console.log('data',data); */
 
+			console.log('data : ' + data);
+			console.log('typeof data : ' + typeof data);
+			console.log('data[0] : ' + data[0]);
+			console.log('typeof data[0] : ' + typeof data[0]);
+			console.log('data[0][0] : ' + data[0][0]);
+			console.log('typeof data[0][0] : ' + typeof data[0][0]);
+			console.log('Object.keys(data).length : ' + Object.keys(data).length);
+			/* console.log('data',data); */
 			for(let i=0; i<Object.keys(data).length; i++) {
 				let businessDay = data[i][0];
 				let businessHour = data[i][1];
@@ -407,6 +414,10 @@
 
 		}
 		getReviewsWithPagination(-1);
+		
+		function contact(){
+			document.location.href='tel:'+$(dencontact);
+		}
 	</script>
 	<script>
 		$(function() {

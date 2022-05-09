@@ -183,12 +183,75 @@
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
-			
-		    document.getElementById('start').min = today.toISOString().substring(0, 10);
-            document.getElementById('start').value = new Date().toISOString().substring(0, 10);
-           
-            
-            
+    	    document.getElementById('start').min = today.toISOString().substring(0, 10);
+    	   	ddd= new Date().toISOString().substring(0, 10)
+            todayFormat=ddd.substr(0,4)+"/"+ddd.substr(5,2)+"/"+ddd.substr(8,2);
+    	    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
+    	   	$("#timecell").html("");
+        	
+        	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
+
+            document.getElementById('timecell').style.visibility="visible";
+
+            $.ajax({
+            	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + todayFormat
+            })
+         	.done((data) => {
+         		time=data.date.split("");
+         		console.log(time);
+         		 
+         		 $.ajax({
+                 	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/businesshour/getHour?businessday=' + week[today.getDay()]
+                 })
+                 .done((data) => {
+         			businesstime=data;
+         			
+					let btime=[];
+					for(let k in businesstime){
+						if(businesstime.hasOwnProperty(k)){
+							btime.push(businesstime[k]);
+						}
+					}
+			    ctime=btime.toString();
+			    dtime=ctime.split("");
+       			console.log(dtime); //dtime businesshour   --> time, dtime 사용해야함
+       			for(var i=0; i<48;i++){
+       				var atime =[];
+       				var butime=[];
+       				if((i*30)%60==0){
+           			atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+           			butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60+"0";
+       				}
+       				else if((i*30)%60!=0){
+       				atime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;
+               		butime[i]=Math.floor((i*30)/60)+":"+(i*30)%60;	
+       				}
+       				
+       				if(time[i]==1 && dtime[i]==1){
+       					console.log(butime);
+       					var creatediv = document.createElement("button");
+       					$("#timecell").append(creatediv);
+       					
+       					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+       					creatediv.setAttribute("onclick","btnVisible()")
+       					creatediv.setAttribute("id","enabletime")
+       					creatediv.setAttribute("style",createdivStyle);
+       					creatediv.innerHTML=atime[i];
+       					
+       				}else if(dtime[i]==1 && time[i]==0){
+       					var creatediv = document.createElement("button");
+       					creatediv.setAttribute("onclick","btnWarn()")
+       					creatediv.setAttribute("id","disabletime")
+       					$("#timecell").append(creatediv);
+       
+       					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+       					
+       					creatediv.setAttribute("style",createdivStyle);
+       					creatediv.innerHTML=atime[i];
+       				}
+         			}	
+                 })})
+            //클릭시 시간표 변경
             function handler(e){
             	$("#timecell").html("");
             	
@@ -209,7 +272,7 @@
                 	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
                 })
              	.done((data) => {
-             		 time=data.date.split("");
+             		time=data.date.split("");
              		console.log(time);
              		 
              		 $.ajax({
