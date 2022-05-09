@@ -88,7 +88,7 @@
 					<c:forEach var="searchedDentist" items="${searchedDentistList}">
 						<%-- 검색결과 치과 리스트 아이템 --%>
 						<%-- TBD: 이미 내 치과에 등록된 놈이면 모양 비활성화하기 기능구현 --%>
-						<div class="dentist-list-item" data-denno="${searchedDentist.denno}" data-denname="${searchedDentist.denname}">
+						<div class="dentist-list-item" data-denno="${searchedDentist.dendomain}" data-denname="${searchedDentist.denname}">
 							<div class="dentist-list-item__main-body">
 								<div class="main-body__col">
 									<div class="main-body__img"></div>
