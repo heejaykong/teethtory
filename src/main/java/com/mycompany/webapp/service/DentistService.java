@@ -37,9 +37,9 @@ public class DentistService {
 	}
 	
 	//사용자가 예약을 원하는 치과와 통신을 위해서, denno로 치과정보(dendomain) 가져오는 메소드.
-	public Dentist getDentistByDenno(int denno) {
-		return dentistDao.selectByDenenno(denno);
-	}
+//	public Dentist getDentistByDenno(int denno) {
+//		return dentistDao.selectByDenenno(denno);
+//	}
 	
 	//사용자가 치료내역에서 후기를 작성한 뒤 해당 치과의 상세화면으로 넘기기 위해서,
 	//dentist서버단에서 넘겨받은 dendomain값으로 치과객체를 찾아오는 메소드.
