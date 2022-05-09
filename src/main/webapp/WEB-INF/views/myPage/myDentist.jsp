@@ -218,7 +218,6 @@
 
 				// 모달을 trigger한 치과와 버튼(삭제/추가)에 따라 내용 다르게 그려주기
 				const modal = $(this);
-				//const message =  btnTriggered[0].classList.contains("delete-btn") ?
 				const message =  isDeleteBtn(btnTriggered) ?
 						"내 치과 목록에서 삭제하시겠어요?" : "내 치과 목록에 추가하시겠어요?";
 				modal.find(".modal-title").html(targetDenname);
