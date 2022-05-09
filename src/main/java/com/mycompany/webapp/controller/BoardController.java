@@ -49,7 +49,7 @@ public class BoardController {
 				
 		int totalBoardNum = boardService.getTotalBoardCount();
 
-		Pager pager = new Pager(5, 5, totalBoardNum, pageNo);
+		Pager pager = new Pager(20, 5, totalBoardNum, pageNo);
 		model.addAttribute("pager", pager);
 
 		List<Board> boards = boardService.getBoards(pager);
@@ -57,7 +57,7 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			if(!userid.equals("(알 수 없음)")) {
-				int point = 30000;
+				int point = 0;
 				point = userService.getPointBalance(userid);
 				String backgroundColor = "#cd7f32";
 				if(point > 20000) {
@@ -68,7 +68,6 @@ public class BoardController {
 				board.setBackgroundColor(backgroundColor);
 				board.setCommentcount(commentcount);
 			}
-			
 			
 			if(board.getBimageoriginalfilename() != null) {
 				board.setFilecount(true);
@@ -84,7 +83,7 @@ public class BoardController {
 	public String searchBoardList(@RequestParam(defaultValue = "1") int pageNo, String boardtitle, Model model) {
 		int totalBoardNum = boardService.getTotalBoardCountBytitleContent(boardtitle);
 
-		Pager pager = new Pager(5, 5, totalBoardNum, pageNo);
+		Pager pager = new Pager(20, 5, totalBoardNum, pageNo);
 		model.addAttribute("pager", pager);
 
 		List<Board> boards = boardService.getBoardsByTitleContent(boardtitle, pager);
