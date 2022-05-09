@@ -110,7 +110,7 @@
 </script>
 <div class="located-at-bottom-of-header">
 	<div>
-		<img id="dentistImg" width="100%" height="100rem;">
+		<img id="dentistImg" style="background-size: cover; width: 100%;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
 		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
@@ -127,8 +127,8 @@
 
 	<div class="mx-5">
 		<div class="d-flex mb-3">
-			<i class="fa-solid fa-phone mr-4"></i>
-			<div id="dencontact"></div>
+			<i class="fa-solid fa-phone mr-4" onclick="contact()"></i>
+			<a id="dencontact" onclick="contact()"></a>
 		</div>
 		
 		<div class="d-flex mb-3">
@@ -204,10 +204,12 @@
 		// 치과의 대표이미지를 가져오는 통신.(deninfo)
 		console.log('~~~~~~~~~~~~~~~`');
 		console.log('dendomain : ' + ${dendomain});
-		if(typeof data !== "undefind") {
-			$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
+		if(typeof dentistImgData !== "undefind") {
+			$('#dentistImg').attr("src", dentistImgData);
+			// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
 		} else {
-			$('#dentistImg').attr("style", "display: hidden");
+			$('#dentistImg').attr("style", "display: none");
 		}
 
 		// $.ajax({
@@ -246,8 +248,15 @@
 			},
 		})
 		.done((data) => {
-			/* console.log('data',data); */
 
+			console.log('data : ' + data);
+			console.log('typeof data : ' + typeof data);
+			console.log('data[0] : ' + data[0]);
+			console.log('typeof data[0] : ' + typeof data[0]);
+			console.log('data[0][0] : ' + data[0][0]);
+			console.log('typeof data[0][0] : ' + typeof data[0][0]);
+			console.log('Object.keys(data).length : ' + Object.keys(data).length);
+			/* console.log('data',data); */
 			for(let i=0; i<Object.keys(data).length; i++) {
 				let businessDay = data[i][0];
 				let businessHour = data[i][1];
@@ -405,6 +414,10 @@
 
 		}
 		getReviewsWithPagination(-1);
+		
+		function contact(){
+			document.location.href='tel:'+$(dencontact);
+		}
 	</script>
 	<script>
 		$(function() {

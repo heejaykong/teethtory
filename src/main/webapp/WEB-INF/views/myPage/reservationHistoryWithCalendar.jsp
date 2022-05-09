@@ -50,21 +50,20 @@ html, body {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.1);
 	top: 0;
 	left: 0;
 	display: none;
 }
-
-
 .fc-daygrid-event-dot {
 	margin: 0px;
 }
-
 .modal_content {
-	border: 2px solid orange;
+	animation-name: modalcontent;
+	animation-duration: 1s;
+	animation-direction: forwards;
 	width: 400px;
-	height: 200px;
+	height: 70%;
 	background: #fff;
 	border-radius: 10px;
 	position: relative;
@@ -77,6 +76,10 @@ html, body {
 	padding: 74px 0;
 	line-height: 23px;
 	cursor: pointer;
+}
+@keyframes modalcontent{
+	0% { left:50%; top:70%; background-color:#fff; }
+	100%  { left:50%; top:30%; background-color:#fff; }
 }
 </style>
 </head>
@@ -99,7 +102,6 @@ html, body {
 	</div>
 
 	<script>
-
 
 (function(){
 	
