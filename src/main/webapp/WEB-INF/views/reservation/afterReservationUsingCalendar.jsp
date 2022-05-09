@@ -29,6 +29,29 @@
 	}
 	</style>
 </head>
+<script>
+	$.ajax({
+		method:"POST",
+		url: "${pageContext.request.contextPath}/reservation/getRecipientInformation",
+		data: {
+		}
+	})
+	.done((data) => {
+		console.log('~~');
+		console.log('data : ' + data);
+		console.log('typeof data : ' + typeof data);
+		console.log('data["userName"] : ' + data["userName"]);
+		console.log('typeof data["userName"] : ' + typeof data["userName"]);
+		// console.log('JSON.parse( data ) : ' + JSON.parse( data ) );
+		// console.log('typeof JSON.parse( data ) : ' + typeof JSON.parse( data ) );
+		// console.log('JSON.parse( data )["userPhone"] : ' + JSON.parse( data )["userPhone"] );
+		// console.log('typeof JSON.parse( data )["userPhone"] : ' + typeof JSON.parse( data )["userPhone"] );
+		// console.log('JSON.parse( data )["userName"] : ' + JSON.parse( data )["userName"] );
+		// console.log('typeof JSON.parse(data)["userName"] : ' + typeof JSON.parse( data )["userName"] );
+		$('input#name').attr('placeholder', data["userName"]);
+		$('input#phone').attr('placeholder', data["userPhone"]);
+	});
+</script>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
@@ -45,10 +68,10 @@
         <div style="margin-top:80px; text-decoration: none; color:grey; margin-left:1rem;">예약자 정보</div>
         <div>
             <div>
-                <div style="margin-top:20px; margin-left:1rem;">이름  <input id="name" style="margin-top:20px; margin-left: 30px; border:0px solid black;" type="text" placeholder="이름을 입력하세요."></div>
+                <div style="margin-top:20px; margin-left:1rem;">이름  <input id="name" style="margin-top:20px; margin-left: 30px; border:0px solid black;" type="text"></div>
             </div>
             <div>
-                <div style="margin-top:20px; margin-left:1rem;">연락처  <input id="phone" style="margin-top:20px; margin-left: 15px;border:0px solid black;" type="text" placeholder="연락처를 입력하세요."></div>
+                <div style="margin-top:20px; margin-left:1rem;">연락처  <input id="phone" style="margin-top:20px; margin-left: 15px;border:0px solid black;" type="text"></div>
             </div>
         </div>
    </div>
