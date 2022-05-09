@@ -138,7 +138,6 @@ public class ReservationController {
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/afterReservationUsingCalendar")
-
 	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
 			, Model model, HttpSession session) {
 

@@ -299,7 +299,10 @@
 				//pager 객체 변수로 선언.
 				var pager = data.pager;
 
-				document.getElementById('averageStars').innerHTML = data.averageStars;
+				let roundedAverageStars = Math.round(data.averageStars / 0.01)  * 0.01;
+				console.log('roundedAverageStars : ' + roundedAverageStars);
+
+				document.getElementById('averageStars').innerHTML = roundedAverageStars;
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
 
 				console.log('data : ' + data);
