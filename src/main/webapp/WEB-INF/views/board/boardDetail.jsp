@@ -132,9 +132,9 @@
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
-			<div class="mb-3" id="boardcontent">${board.boardcontent}</div>
-			<img id="attachedImg" style="background-size: cover; width: 100%;">
-			<div style="font-size: 0.8rem;">
+			<div class="mb-2" id="boardcontent">${board.boardcontent}</div>
+			<c:if test="${board.filecount}"><img id="attachedImg" style="background-size: cover; width: 100%;"></c:if>
+			<div style="font-size: 0.8rem;" class="mt-2">
 				<div>
 					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>
 					<span class="ml-1" style="color: rgb(18, 220, 247)"><i class="fa-regular fa-comment"></i></span><span class="ml-1" style="color: rgb(18, 220, 247)">${board.commentcount}</span>

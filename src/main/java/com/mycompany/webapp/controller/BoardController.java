@@ -162,6 +162,10 @@ public class BoardController {
 			board.setCommentcount(commentcount);
 		}
 		
+		if(board.getBimageoriginalfilename() != null) {
+			board.setFilecount(true);
+		}
+		
 		model.addAttribute("board", board);
 
 		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
