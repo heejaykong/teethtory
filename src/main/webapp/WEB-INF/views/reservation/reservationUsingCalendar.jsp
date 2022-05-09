@@ -126,7 +126,7 @@
 
           <div class="container" id="bottom">
                   <div style="flex-grow:1; margin-top:2rem;">
-                      <div style="margin-top:10px;">
+                      <div style="margin-top:10px;"> 
                           <div style="margin-bottom:1rem;">날짜 선택</div>
                       <input type="date" id="start" min="2022-05-03" onchange="handler(event);"/>
 
@@ -186,6 +186,12 @@
     	    document.getElementById('start').min = today.toISOString().substring(0, 10);
     	   	todayFormatHipen= new Date().toISOString().substring(0, 10)
             todayFormat=todayFormatHipen.substr(0,4)+"/"+todayFormatHipen.substr(5,2)+"/"+todayFormatHipen.substr(8,2);
+    	   	
+    	    //예약 달력 max 한달 후까지만 
+    	   	let oneMonthLater = new Date(today.setMonth(today.getMonth()+1));
+    	   	
+    	   	document.getElementById('start').max = oneMonthLater.toISOString().substring(0, 10);
+    	   	
     	    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
     	   	$("#timecell").html("");
     	   	var date = document.getElementById('dateSelect').value=todayFormatHipen;
