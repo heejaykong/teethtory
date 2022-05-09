@@ -26,7 +26,7 @@
 html, body {
 
 	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	font-size: 12px;
+	/* font-size: 12px; */
 }
 /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
 .fc-event-time{
