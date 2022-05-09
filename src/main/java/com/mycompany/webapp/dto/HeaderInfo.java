@@ -9,4 +9,5 @@ public class HeaderInfo {
 	private String email;
 	private String name;
 	private int point;
+	private String doctor;
 }
