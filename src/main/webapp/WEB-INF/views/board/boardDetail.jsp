@@ -90,6 +90,8 @@
 		</c:if>
 	</div>
 	<hr style="margin: 0px;">
+
+	<img id="attachedImg">
 	
 	<div class="donut mx-3 mt-2" >
 	
