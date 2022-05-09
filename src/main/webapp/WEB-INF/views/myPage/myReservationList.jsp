@@ -24,6 +24,29 @@
 		</div>
 	</main>
 
+	<%-- 예약취소 시 뜨는 모달 --%>
+	<div id="confirmModal" class="modal fade" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">
+						<%-- 예약 개요 들어감 --%>
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<%-- 확실해요? --%>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-osstem-secondary" data-dismiss="modal">아뇨</button>
+					<button id="confirmBtn" type="button" class="btn btn-osstem-primary">네</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script>
 		// 예약의 status(확정/취소/대기) 전역상수 선언
 		const STATUS_CANCELED = 0;
@@ -36,26 +59,18 @@
 //------utils functions start----------------------------------------------------------
 		// 예약의 현재 상태(확정/취소/대기) 반환
 		function getReservationStatus({isfixed, ispending}) {
-			if(!isfixed && !ispending) {
-				return STATUS_CANCELED;
-			}
-			if(isfixed && !ispending) {
-				return STATUS_FIXED;
-			}
-			if(!isfixed && ispending) {
-				return STATUS_PENDING;
-			}
+			if(!isfixed && !ispending) return STATUS_CANCELED;
+			if(isfixed && !ispending) return STATUS_FIXED;
+			if(!isfixed && ispending) return STATUS_PENDING;
 			return;//불가능한 경우
 			//시간이 된다면 오류로그 쌓는 DB를 만들어서 쌓으면 좋을듯.
 		}
 
 		// '예약취소' 버튼 띄울지말지 여부값 뱉어내는 함수
 		function getIsCancelable(status, selecteddate) {
-			// 1. 이미 취소가 된 예약이거나
-			// 2. 날짜가 지나버린 예약이면 isCancelable이 false이다.
 			const now = new Date();
-			if (status === STATUS_CANCELED) return false;
-			if (selecteddate < now) return false;
+			if (status === STATUS_CANCELED) return false;// 1. 이미 취소가 된 예약이거나
+			if (selecteddate < now) return false;// 2. 날짜가 지나버린 예약이면 isCancelable이 false이다.
 			return true;
 		}
 
@@ -105,7 +120,7 @@
 			template += '	<div class="reservation__btns">';
 			template += '		<%-- <button href="#" class="reservation__btn">예약변경</button> --%>';
 
-			if (isCancelable) template += '		<button onclick="cancelReservation(event)" class="reservation__btn cancelReservationBtn">예약취소</button>';
+			if (isCancelable) template += '		<button data-toggle="modal" data-target="#confirmModal" class="reservation__btn cancelReservationBtn">예약취소</button>';
 			if (!isCancelable) template += '		<button class="reservation__btn disabled">예약취소</button>';
 
 			template += '	</div>';
@@ -199,9 +214,7 @@
 		}
 
 		// 예약취소 요청 통신
-		function cancelReservation(event) {
-			const targetDendomain = event.target.closest("[data-dendomain]").dataset.dendomain;
-			const targetResno = event.target.closest("[data-resno]").dataset.resno;
+		function cancelReservation(targetDendomain, targetResno) {
 			$.ajax({
 				url: "http://localhost:" + targetDendomain + "/springframework-mini-project-dentist/reservation/cancelReservation",
 				method:"POST",
@@ -254,10 +267,31 @@
 
 		// 이것이 main 함수
 		$(function() {
-			//rowsPerPage, pagesPerGroup, totalRows, pageNo
+			// rowsPerPage, pagesPerGroup, totalRows, pageNo
 			setPager(1); // 문서 로딩 시 페이지네이션 초기화. 이후부터는 페이지네이션 버튼 클릭시마다 setPager 내부-> paintPagination()이 매번 새로 실행됨.
 			paintReservationList(pager)
 			paintPagination(pager);
+
+			// 모달 처리
+			$('#confirmModal').on('show.bs.modal', function (event) {
+				const btnTriggered = $(event.relatedTarget);
+
+				const targetDendomain = btnTriggered.closest("[data-dendomain]").data("dendomain");
+				const targetResno = btnTriggered.closest("[data-resno]").data("resno");
+				
+				const targetTitleHTML = btnTriggered.closest(".reservation-list-item").find(".reservation__title").clone();
+				const targetScheduleHTML = btnTriggered.closest(".reservation-list-item").find(".reservation__text").clone();
+				
+				// 모달을 trigger한 진료예약의 개요를 그려주기
+				const modal = $(this);
+				const message = "진료예약을 취소하시겠어요?";
+				modal.find(".modal-title").html(targetTitleHTML);
+				modal.find(".modal-title").append(targetScheduleHTML);
+				modal.find(".modal-body").html(message);
+
+				// 모달의 '예' 버튼 선택 시 삭제 request하기
+				$('#confirmBtn').on("click", () => cancelReservation(targetDendomain, targetResno));
+			});
 		});
 	</script>
 
