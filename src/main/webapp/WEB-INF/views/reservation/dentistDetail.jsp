@@ -28,6 +28,13 @@
 .fa-clock {
 	color: #ffa048;
 }
+
+.reviewWriter__img {
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+}
+	
 </style>
 <script>
 	localStorage.setItem('dendomain', "${dendomain}");
@@ -103,7 +110,7 @@
 </script>
 <div class="located-at-bottom-of-header">
 	<div>
-		<img id="dentistImg" width="100%" height="100rem;">
+		<img id="dentistImg" style="background-size: cover; width: 100%;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
 		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
@@ -197,10 +204,12 @@
 		// 치과의 대표이미지를 가져오는 통신.(deninfo)
 		console.log('~~~~~~~~~~~~~~~`');
 		console.log('dendomain : ' + ${dendomain});
-		if(typeof data !== "undefind") {
-			$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
+		if(typeof dentistImgData !== "undefind") {
+			$('#dentistImg').attr("src", dentistImgData);
+			// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
 		} else {
-			$('#dentistImg').attr("style", "display: hidden");
+			$('#dentistImg').attr("style", "display: none");
 		}
 
 		// $.ajax({
@@ -239,6 +248,7 @@
 			},
 		})
 		.done((data) => {
+
 			console.log('data : ' + data);
 			console.log('typeof data : ' + typeof data);
 			console.log('data[0] : ' + data[0]);
@@ -246,9 +256,7 @@
 			console.log('data[0][0] : ' + data[0][0]);
 			console.log('typeof data[0][0] : ' + typeof data[0][0]);
 			console.log('Object.keys(data).length : ' + Object.keys(data).length);
-			
-			
-			
+			/* console.log('data',data); */
 			for(let i=0; i<Object.keys(data).length; i++) {
 				let businessDay = data[i][0];
 				let businessHour = data[i][1];
@@ -258,7 +266,6 @@
 				let endLunchTime = -1;
 				
 				let bitArray = businessHour.split('');
-				console.log('typeof bitArray : ' + typeof bitArray);
 				//시작시간.
 				if(businessHour.indexOf("1") === -1) {
 
@@ -327,23 +334,30 @@
 				document.getElementById('averageStars').innerHTML = data.averageStars;
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
 
-				console.log('data : ' + data);
-				console.log('data.reviredate : ' + data.reviewdate);
-				console.log('data.averageStars : ' + data.averageStars);
-				console.log('data.totalReviewNum : ' + data.totalReviewNum);
-				console.log('data.reviewList : ' + data.reviewList);
-				console.log('typeof data.reviewList : ' + typeof data.reviewList);
+				console.log('data',data);
 				//리뷰 내용 추가.
 				let aReviewHtml = '';
+				let lee;
 				for(let i=0; i<data.reviewList.length; i++) {
-					console.log('i : ' + i);
-					aReviewHtml += '<a href="#" class="list-group-item list-group-item-action" style="font-size: 0.9rem;">';
+					//user마다 포인트 체크해서 색 가져오기
+					
+					$.ajax({
+						method:"POST",
+						async: false,
+						url: "${pageContext.request.contextPath}/reservation/getReviewRank",
+						data: {
+							userid: data.reviewList[i].userid
+						}
+					}).done((leedh) => {
+						lee = leedh.backgroundColor;
+					});
+					
+					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex" style="font-size: 0.9rem;">';
+					aReviewHtml += '	<div class="reviewWriter__img mr-2" style="background-color: ' + lee + '"></div>';
+					aReviewHtml += '	<div>';
 					aReviewHtml += '	<div class="d-flex mb-1" style="color: #ffa048;">';
 					aReviewHtml += '		<small class="mr-2">';
 					if(data.reviewList[i]["starscore"] % 1 !== 0) {//n.5점
-						console.log('data.reviewList[i]["starscore"] : ' + data.reviewList[i]["starscore"]);
-						console.log('parseInt(data.reviewList[i]["starscore"]) : ' + parseInt(data.reviewList[i]["starscore"]));
-						console.log('parseInt(data.reviewList[i]["starscore"]) : ' + parseInt(data.reviewList[i]["starscore"]));
 						for(let j=0; j<parseInt(data.reviewList[i]["starscore"]); j++) {
 							aReviewHtml += '			<i class="fa-solid fa-star"></i>';
 						}
@@ -369,7 +383,8 @@
 					aReviewHtml += '		<small>' + data.reviewList[i]["reviewdate"] + " | " + '</small>';
 					aReviewHtml += '		<small>' + data.reviewList[i]["lastvisitcount"] + '번째 방문</small>';
 					aReviewHtml += '	</div>';
-					aReviewHtml += '</a>';
+					aReviewHtml += '	</div>';
+					aReviewHtml += '</div>';
 				}
 				
 				$("#reviewContainer").html(aReviewHtml);
