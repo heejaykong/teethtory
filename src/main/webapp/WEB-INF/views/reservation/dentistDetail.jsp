@@ -110,7 +110,7 @@
 </script>
 <div class="located-at-bottom-of-header">
 	<div>
-		<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg" width="100%" height="100rem;">
+		<img id="dentistImg" width="100%" height="100rem;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
 		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
@@ -201,6 +201,29 @@
 		}
 	</script>
 	<script>
+		// 치과의 대표이미지를 가져오는 통신.(deninfo)
+		console.log('~~~~~~~~~~~~~~~`');
+		console.log('dendomain : ' + ${dendomain});
+		if(typeof data !== "undefind") {
+			$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		} else {
+			$('#dentistImg').attr("style", "display: hidden");
+		}
+
+		// $.ajax({
+		// 	method:"GET",
+		// 	url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage",
+		// 	// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getDentistImage",
+		// 	data: {
+		// 	},
+		// })
+		// .done((data) => {
+		// 	if(typeof data !== "undefind") {
+		// 		$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		// 		// $('#dentistImg').attr("src", data);
+		// 	}
+		// });
+
 		// 치과의 기본정보를 가져오는 ajax 통신.(deninfo)
 		$.ajax({
 			method:"POST",
