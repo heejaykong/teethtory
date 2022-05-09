@@ -1,16 +1,23 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -106,6 +113,7 @@ public class ReservationController {
 		
 		return "reservation/dentistDetail";
 	}
+	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
