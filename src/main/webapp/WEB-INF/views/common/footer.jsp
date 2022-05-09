@@ -19,6 +19,9 @@
 		<a href="https://www.facebook.com/OSSTEM/" class="social-media-btn">
 			<i class="fa-brands fa-facebook fa-2x"></i>
 		</a>
+		<a href="${pageContext.request.contextPath}/myPage/easteregg" class="social-media-btn">
+			<i class="fa-solid fa-egg fa-2x"></i>
+		</a>
 	</div>
 	<div class="footer__info">
 		<h4 class="info__title">(주)치스토리 사업자 정보</h4>

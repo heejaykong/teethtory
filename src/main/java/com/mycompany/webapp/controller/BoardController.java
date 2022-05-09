@@ -100,17 +100,28 @@ public class BoardController {
 		List<Board> boards = boardService.getBoardsByTitleContent(boardtitle, pager);
 		for(Board board : boards) {
 			String userid = board.getBoardwriter();
+			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
 			if(!userid.equals("(알 수 없음)")) {
-				int point = 30000;
+				int point = 0;
 				point = userService.getPointBalance(userid);
-				String backgroundColor = "#cd7f32";
-				if(point > 20000) {
-					backgroundColor = "gold";
-				} else if(point > 10000) {
-					backgroundColor = "silver";
+				String backgroundColor = "";
+				if(point > 50000) {
+					backgroundColor = "fa-tree";
+				} else if(point > 20000) {
+					backgroundColor = "fa-pagelines";
+				} else {
+					backgroundColor = "fa-seedling";
 				}
+				
+				//의사인지 체크하는 코드
+				if(userService.getUser(userid).isIsdoctor()) {
+					board.setDoctor("doctor");
+					backgroundColor = "fa-user-doctor";
+				}
+				
 				board.setBackgroundColor(backgroundColor);
+				board.setCommentcount(commentcount);
 			}
 			
 			if(board.getBimageoriginalfilename() != null) {
@@ -127,18 +138,30 @@ public class BoardController {
 	public String boardDetail(int boardno, @RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 		Board board = boardService.getBoard(boardno);
 		String boardUserid = board.getBoardwriter();
+		int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 		
 		if(!boardUserid.equals("(알 수 없음)")) {
-			int point = 30000;
+			int point = 0;
 			point = userService.getPointBalance(boardUserid);
-			String backgroundColor = "#cd7f32";
-			if(point > 20000) {
-				backgroundColor = "gold";
-			} else if(point > 10000) {
-				backgroundColor = "silver";
+			String backgroundColor = "";
+			if(point > 50000) {
+				backgroundColor = "fa-tree";
+			} else if(point > 20000) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
 			}
+			
+			//의사인지 체크하는 코드
+			if(userService.getUser(boardUserid).isIsdoctor()) {
+				board.setDoctor("doctor");
+				backgroundColor = "fa-user-doctor";
+			}
+			
 			board.setBackgroundColor(backgroundColor);
+			board.setCommentcount(commentcount);
 		}
+		
 		model.addAttribute("board", board);
 
 		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
