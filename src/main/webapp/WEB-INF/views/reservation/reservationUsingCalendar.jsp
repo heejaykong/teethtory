@@ -183,10 +183,9 @@
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
-			
-		    document.getElementById('start').min = today.toISOString().substring(0, 10);
+    	    document.getElementById('start').min = today.toISOString().substring(0, 10);
             document.getElementById('start').value = new Date().toISOString().substring(0, 10);
-           
+            
             
             
             function handler(e){
