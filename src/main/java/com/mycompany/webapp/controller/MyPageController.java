@@ -56,21 +56,28 @@ public class MyPageController {
 	public String eastegg(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
 		String userid = (String) session.getAttribute("sessionUserid");
+		
+		if(session.getAttribute("sessionUserid") == null) {
+			String formError = "숨겨진 달걀을 확인하려면 로그인을 해주세요!";
+			session.setAttribute("formError", formError);
+			return "redirect:/login";
+		}
+		
 		if(userid != null) {
 			User user = userService.getUser(userid);
 			String name = user.getUsername();
 			model.addAttribute("name", name);
+			//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+			List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
+			String patientssn = userService.getUser(userid).getUserssn();
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("myDentistList", myDentistList);
+			String json = jsonObject.toString();
+			model.addAttribute("myDentistList", json);
+			model.addAttribute("patientssn", patientssn);
+			log.info("실행");
 		}
 
-		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
-		List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
-		String patientssn = userService.getUser(userid).getUserssn();
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("myDentistList", myDentistList);
-		String json = jsonObject.toString();
-		model.addAttribute("myDentistList", json);
-		model.addAttribute("patientssn", patientssn);
-		log.info("실행");
 		return "myPage/easteregg";
 	}
 	

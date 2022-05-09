@@ -166,38 +166,58 @@
 			
 		}
 	}
-
-	Kakao.init('670d72e6bbdd5aa81d209f28e1401d46');
+	Kakao.init('35b206a61fb57d6eb5161d7c6ad2a9f5');
 	console.log(Kakao.isInitialized());
 	Kakao.Link.createDefaultButton({
 				container : '#test',
 				objectType : 'feed',
 				content : {
 					title : '비용 공유',
-					description : '버튼을 통해 사이트로 이동해보세요!',
+					description : '아메리카노, 빵, 케익',
 					imageUrl : "${pageContext.request.contextPath}/resources/images/easteregg/kt.png",
 					link : {
-						mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/',
+						mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
 						androidExecutionParams : 'test',
 					},
 				},
 				itemContent : {
-					profileText : '치스토리',
+					profileText : 'Kakao',
 					profileImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
 					titleImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-					titleImageText : '치스토리 공유',
-					titleImageCategory : '[Easteregg]',
+					titleImageText : 'Cheese cake',
+					titleImageCategory : 'Cake',
 					items : [ {
-						item : '지인에게 병원비 공유하기',
+						item : 'Cake1',
+						itemOp : '1000원',
+					}, {
+						item : 'Cake2',
+						itemOp : '2000원',
+					}, {
+						item : 'Cake3',
+						itemOp : '3000원',
+					}, {
+						item : 'Cake4',
+						itemOp : '4000원',
+					}, {
+						item : 'Cake5',
+						itemOp : '5000원',
 					}, ],
+					sum : 'Total',
+					sumOp : '15000원',
+				},
 				buttons : [
 						{
 							title : '웹으로 이동',
 							link : {
-								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/myPage/easteregg',
+								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
 							},
 						},
-						]
+						{
+							title : '앱으로 이동',
+							link : {
+								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
+							},
+						}, ]
 			});
 
 </script>

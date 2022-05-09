@@ -29,7 +29,25 @@
 		height: 1.5rem;
 		border-radius: 50%;
 	}
-
+	.docterCheck {
+		font-size: 1rem;
+		color: #42A5F5;
+	}
+	
+	#fa-seedling {
+		font-size: 1.5rem;
+		color:  rgb(164, 211, 147);
+	}
+	
+	#fa-pagelines {
+		font-size: 1.5rem;
+		color: rgb(13, 173, 27);
+	}
+	
+	#fa-tree {
+		font-size: 1.5rem;
+		color: rgb(10, 109, 18);
+	}
     h4 {
     	font-size: 1.1rem;
     	font-weight: bold;
@@ -97,22 +115,25 @@
 		</c:if>
 	</div>
 	<hr style="margin: 0px;">
-
-	<img id="attachedImg" style="background-size: cover; width: 100%;">
 	
 	<div class="donut mx-3 mt-2" >
 	
 		<div class="board d-flex flex-column" style="padding: 0.5rem;">
 			<div class="d-flex mb-3">
-				<c:if test="${board.backgroundColor != null}"><div class="boardwriter__img mr-2" style="display: inline-block; background-color: ${board.backgroundColor};"></div></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+
 				<div class="d-flex flex-column">
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
+				<c:if test="${board.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
 			<div class="mb-3" id="boardcontent">${board.boardcontent}</div>
+			<img id="attachedImg" style="background-size: cover; width: 100%;">
 			<div style="font-size: 0.8rem;">
 				<div>
 					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>
