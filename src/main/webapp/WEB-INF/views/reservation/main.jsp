@@ -60,7 +60,7 @@
                             <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
                                 <c:forEach var="myDentistList" items="${myDentistList}">
                                 <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
-                                    onclick="goReservationUsingMap(${myDentistList.denno});">
+                                    onclick="goReservationUsingMap(${myDentistList.dendomain});">
                                     <div class="history-list__item" style=" width: inherit;">
                                         <!--
                                         <div class="item__col">
@@ -72,7 +72,7 @@
                                         <div>
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentistList.denname}</div>
                                             <span class="dentist-visited">${myDentistList.denaddress}</span>
-                                            <div id="denNo" style="display:none;">${myDentistList.denno}</div>
+                                            <div id="dendomain" style="display:none;">${myDentistList.dendomain}</div>
                                         </div>
                                         <hr>
                                     </div>
@@ -81,7 +81,7 @@
                             </c:if>
                             <c:forEach var="searchedDentist" items="${searchedDentistList}">
                                 <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
-                                    onclick="goReservationUsingMap(${searchedDentist.denno});">
+                                    onclick="goReservationUsingMap(${searchedDentist.dendomain});">
                                     <div class="history-list__item" style="width: inherit;">
                                         <!--
                                         <div class="item__col">
@@ -93,7 +93,7 @@
                                         <div>
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
                                             <span class="dentist-visited">${searchedDentist.denaddress}</span>
-                                            <div id="denNo" style="display:none;">${searchedDentist.denno}</div>
+                                            <div id="dendomain" style="display:none;">${searchedDentist.dendomain}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -159,10 +159,10 @@
 	                            location.href = "main?denname=" + window.localStorage.getItem('searchingKeyword_LS')  +"&pageNo=" + pageNo;
                             }   
 
-                            function goReservationUsingMap(denno) {
-                                console.log(denno);
-                                localStorage.setItem("denno", denno);
-                                location.href = "reservationUsingMap?denno=" + denno;
+                            function goReservationUsingMap(dendomain) {
+                                console.log(dendomain);
+                                localStorage.setItem("dendomain", dendomain);
+                                location.href = "reservationUsingMap?dendomain=" + dendomain;
                             }
                             setInterval(function(){
                             	  $("#enroll").toggle();

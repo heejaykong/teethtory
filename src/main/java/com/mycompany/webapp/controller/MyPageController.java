@@ -79,7 +79,7 @@ public class MyPageController {
 	@HeaderCheck
 	public String myDentist(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
-			, @RequestParam(defaultValue="-1") int denno
+			, @RequestParam(defaultValue="null") String dendomain
 			, String task
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
@@ -93,14 +93,14 @@ public class MyPageController {
 		//1. 이미 등록된 치과인지 점검.
 		//1-1. 이미 등록된 치과면 아무조치X.
 		//1-2. 등록 안 된 치과면 등록.
-		if(denno != -1) {
+		if(dendomain != null) {
 			if(task.equals("add")) {
-				if(myDentistService.getMyDentistByDenno(userId, denno) < 1) {//0인 경우에만 추가!
-					myDentistService.registerMyDentist(userId, denno);
+				if(myDentistService.getMyDentistByDendomain(userId, dendomain) <1 ) {//0인 경우에만 추가!
+					myDentistService.registerMyDentist(userId, dendomain);
 				}
 			} else if(task.equals("delete")) {
 				//내 치과 삭제하기
-				myDentistService.removeMyDentist(userId, denno);
+				myDentistService.removeMyDentist(userId, dendomain);
 			}
 		}
 		

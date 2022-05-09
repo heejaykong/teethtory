@@ -28,7 +28,7 @@ public class DentistController {
 		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("denno", dentist.getDenno());
+		jsonObject.put("dendomain", dentist.getDendomain());
 		String json = jsonObject.toString();
 		
 		return json;

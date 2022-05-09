@@ -29,20 +29,20 @@ public class MyDentistService {
 	}
 	
 	//내 치과 목록 중에 특정 치과가 이미 등록되어 있는지 점검.
-	public int getMyDentistByDenno(String userid, int denno) {
-		return mydentistDao.countByUseridNDenno(userid, denno);
+	public int getMyDentistByDendomain(String userid, String dendomain) {
+		return mydentistDao.countByUseridNDendomain(userid, dendomain);
 	}
 	
 	//내 치과 등록하기
-	public int registerMyDentist(String userid, int denno) {
+	public int registerMyDentist(String userid, String dendomain) {
 		log.info("실행");
-		int registrationResult = mydentistDao.insert(userid, denno);
+		int registrationResult = mydentistDao.insert(userid, dendomain);
 		return registrationResult;
 	}
 	
 	//내 치과 삭제하기
-	public void removeMyDentist(String userid, int denno) {
-		mydentistDao.delete(userid, denno);
+	public void removeMyDentist(String userid, String dendomain) {
+		mydentistDao.delete(userid, dendomain);
 		log.info("실행");
 	}
 }

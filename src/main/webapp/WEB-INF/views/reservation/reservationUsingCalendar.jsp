@@ -91,21 +91,21 @@
 	}
 	.modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
-}
-.modal_content{
-  border:2px solid orange;
-  width:400px; height:200px;
-  background:#fff; border-radius:10px;
-  position:relative; top:30%; left:50%;
-  margin-top:-100px; margin-left:-200px;
-  text-align:center;
-  box-sizing:border-box; padding:74px 0;
-  line-height:23px; cursor:pointer;
-}
-#enabletime:active {
-  color: green;
-  border: 3px solid green;
-}
+    }
+    .modal_content{
+    border:2px solid orange;
+    width:400px; height:200px;
+    background:#fff; border-radius:10px;
+    position:relative; top:30%; left:50%;
+    margin-top:-100px; margin-left:-200px;
+    text-align:center;
+    box-sizing:border-box; padding:74px 0;
+    line-height:23px; cursor:pointer;
+    }
+    #enabletime:active {
+    color: green;
+    border: 3px solid green;
+    }
 
 	
 	</style>	
@@ -184,11 +184,11 @@
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
     	    document.getElementById('start').min = today.toISOString().substring(0, 10);
-    	   	ddd= new Date().toISOString().substring(0, 10)
-            todayFormat=ddd.substr(0,4)+"/"+ddd.substr(5,2)+"/"+ddd.substr(8,2);
+    	   	todayFormatHipen= new Date().toISOString().substring(0, 10)
+            todayFormat=todayFormatHipen.substr(0,4)+"/"+todayFormatHipen.substr(5,2)+"/"+todayFormatHipen.substr(8,2);
     	    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
     	   	$("#timecell").html("");
-        	
+    	   	var date = document.getElementById('dateSelect').value=todayFormatHipen;
         	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 
             document.getElementById('timecell').style.visibility="visible";

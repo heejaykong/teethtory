@@ -76,17 +76,17 @@
 	  	modal.find('.modal-title').text(recipient)
 	  	modal.find('.modal-body').text(body)
 
-        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(denno 필요.)
+        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
         let yesBtn = document.getElementById('btn-yes');
         // yesBtn.onclick = function() {
-        //     let denNoForReservation = document.getElementById('denNo').value;
+        //     let dendomainForReservation = document.getElementById('dendomain').value;
         //     //내 치과에 등록된 치과인지 점검.
         //     location.href = "";
         //     //내 치과에 등록된
         // }
 	})
 	
-	function handleHidden(e, task, denno) {
+	function handleHidden(e, task, dendomain) {
 		const targetEl = e.target;
 		const theElement = targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item");
 		$(targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
@@ -95,11 +95,11 @@
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
 
-		const hiddenDenNo = denno;
+		const hiddendendomain = dendomain;
 		if(task === 'add') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		} else if(task === 'delete') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		}
 	}
 	
@@ -175,12 +175,12 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
 		function checkRegistered() {
-			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
+			console.log('localStorage.getItem("dendomain") : ' + localStorage.getItem("dendomain"));
 			$.ajax({
 				method:"POST",
 				url: "${pageContext.request.contextPath}/reservation/dentistDetail",
 				data: {
-					denno: localStorage.getItem("denno")
+					dendomain: localStorage.getItem("dendomain")
 				}
 			})
 			.done((data) => {
