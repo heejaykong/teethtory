@@ -62,7 +62,7 @@ public class HomeController {
 		//하루 한 번 로그인 할때 포인트 적립하는 코드
 		pointService.addLoginPoint(user.getUserid());
 
-		return "redirect:/";
+		return "redirect:/myPage/main";
 	}
 	
 	@GetMapping("/logout")
