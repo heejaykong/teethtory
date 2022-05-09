@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
@@ -146,7 +147,6 @@ public class ReservationController {
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/afterReservationUsingCalendar")
-
 	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
 			, Model model, HttpSession session) {
 
@@ -158,5 +158,27 @@ public class ReservationController {
 		model.addAttribute("dendomain", dendomain);
 		model.addAttribute("patientssn", patientssn);
 		return "reservation/afterReservationUsingCalendar";
+	}
+	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/getReviewRank", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String getReviewRank(@RequestParam("userid") String userid) {
+		String backgroundColor = "";
+		if(userid != null) {
+			int point = 0;
+			point = userService.getPointBalance(userid);
+			backgroundColor = "#cd7f32";
+			
+			if(point > 20000) {
+				backgroundColor = "gold";
+			} else if(point > 10000) {
+				backgroundColor = "silver";
+			}
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("backgroundColor", backgroundColor);
+		String json = jsonObject.toString();
+		return json;
 	}
 }
