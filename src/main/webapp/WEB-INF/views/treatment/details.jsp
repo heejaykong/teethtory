@@ -206,9 +206,10 @@
 
 		// treatno에 해당되는 treatment 객체 받아오기
 		const treatno = '${treatno}';
+		console.log(${dendomain});
 		$.ajax({
 			type:"POST",
-			url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+			url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
 			//async: false,
 			data: {} // 전송할 데이터
 		}).done((data) => {

@@ -78,13 +78,19 @@
 		function handleListItemClick(e) {
 			const clickedTarget = e.target.closest(".list-item");
 			const treatno = clickedTarget.dataset.treatno;
+
 			const dendomain = clickedTarget.dataset.dendomain;
+
  			$.ajax({
 				type: "GET",
+
 				url: "details?treatno=" + treatno + "&dendomain=" + dendomain
+
 			}).done(() => {
 				// 해당 치료내역의 상세페이지로 넘어가기
+
 				window.location.href = "details?treatno=" + treatno + "&dendomain=" + dendomain;
+
 			});
 		}
 	 	
@@ -106,7 +112,9 @@
 			const dendomain = getdendomainByDendomain(dendomain);
 			
 			return `
+
 				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-dendomain="`+ dendomain +`">
+
 					<div class="list-item__info-summary">
 						<h4 class="title">
 							`+ treattype +`
@@ -140,9 +148,7 @@
 					for(let i=0; i<${dentist}.dentist.length; i++) {
 						$.ajax({
 							method:"POST",
-							url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-							<%--url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-							--%>
+							url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
 							data: {},
 							async: false
 						}).done((data) => {
@@ -180,8 +186,7 @@
 					}
 					
 					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
-					const smalldata = data.slice(0,5);
-					smalldata.sort(function(a, b) {
+					data.sort(function(a, b) {
 						if(a.treatdate > b.treatdate) {
 							return -1;
 						}
@@ -193,7 +198,7 @@
 					//console.log("orderedDate:", data);
 					//console.log(data.length);
 					$(".selected-treattype-results-section").html("");
-					smalldata.forEach(treatment => {
+					data.forEach(treatment => {
 		                 const listItem = template(treatment);
 		                 $(".selected-treattype-results-section").append(listItem);
 		             });
