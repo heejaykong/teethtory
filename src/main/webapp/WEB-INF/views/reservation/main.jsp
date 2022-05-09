@@ -72,7 +72,9 @@
                                         <div>
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentistList.denname}</div>
                                             <span class="dentist-visited">${myDentistList.denaddress}</span>
-                                            <div id="denDomain" style="display:none;">${myDentistList.dendomain}</div>
+
+                                            <div id="dendomain" style="display:none;">${myDentistList.dendomain}</div>
+
                                         </div>
                                         <hr>
                                     </div>
@@ -93,7 +95,8 @@
                                         <div>
                                             <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
                                             <span class="dentist-visited">${searchedDentist.denaddress}</span>
-                                            <div id="denDomain" style="display:none;">${searchedDentist.dendomain}</div>
+                                            <div id="dendomain" style="display:none;">${searchedDentist.dendomain}</div>
+
                                         </div>
                                     </div>
                                 </div>

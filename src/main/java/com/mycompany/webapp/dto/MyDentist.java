@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class MyDentist {
 	private String userid;
-	private int denno;
+	private String dendomain;
 }

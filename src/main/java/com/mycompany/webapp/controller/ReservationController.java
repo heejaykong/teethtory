@@ -101,8 +101,9 @@ public class ReservationController {
 			, @RequestParam(defaultValue="null") String task
 			, Model model) {
 		log.info("실행");
-		//denno를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
+		//dendomain를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
 		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
+
 		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
 		
@@ -121,9 +122,10 @@ public class ReservationController {
 	public String dentistDetail(HttpSession session
 			, @RequestParam("dendomain") String dendomain, Model model) {
 		log.info("dendomain : " + dendomain);
+
 //		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
 		model.addAttribute("dendomain", dendomain);
-		//내 치과 목록에서, denno으로 점검.
+		//내 치과 목록에서, dendomain으로 점검.
 		String userId = (String) session.getAttribute("sessionUserid");
 		int alreadyRegistered = myDentistService.getMyDentistByDendomain(userId, dendomain);
 		JSONObject jsonObject = new JSONObject();
