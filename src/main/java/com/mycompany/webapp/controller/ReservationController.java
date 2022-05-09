@@ -83,12 +83,12 @@ public class ReservationController {
 	//reservationMain화면에서 특정 치과 1개 클릭한 경우, 치과의 간단한 정보를 지도와 함께 보여줌..
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/reservationUsingMap")
-	public String reservationUsingMap(@RequestParam("denno") int denno
+	public String reservationUsingMap(@RequestParam("dendomain") String dendomain
 			, Model model) {
-		log.info("denno: " + denno);
-		Dentist dentist = dentistService.getDentistByDenno(denno);
-		model.addAttribute("denno", dentist.getDenno());
+		log.info("dendomain: " + dendomain);
+		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
+//		model.addAttribute("dentist", dentist);//..?
 		
 		return "reservation/reservationUsingMap";
 	}
@@ -97,18 +97,18 @@ public class ReservationController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/dentistDetail")
 	public String dentistDetail(HttpSession session
-			, @RequestParam("denno") int denno
+			, @RequestParam("dendomain") String dendomain
 			, @RequestParam(defaultValue="null") String task
 			, Model model) {
 		log.info("실행");
 		//denno를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
 		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
-		Dentist dentist = dentistService.getDentistByDenno(denno);
+		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
 		
 		if(!task.equals("null")) {
 			String userId = (String) session.getAttribute("sessionUserid");
-			int registrationResult = myDentistService.registerMyDentist(userId, denno);
+			int registrationResult = myDentistService.registerMyDentist(userId, dendomain);
 			model.addAttribute("registrationResult", registrationResult);			
 		}
 		
@@ -119,13 +119,13 @@ public class ReservationController {
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String dentistDetail(HttpSession session
-			, @RequestParam("denno") int denno, Model model) {
-		log.info("denno : " + denno);
-		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
+			, @RequestParam("dendomain") String dendomain, Model model) {
+		log.info("dendomain : " + dendomain);
+//		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
 		model.addAttribute("dendomain", dendomain);
 		//내 치과 목록에서, denno으로 점검.
 		String userId = (String) session.getAttribute("sessionUserid");
-		int alreadyRegistered = myDentistService.getMyDentistByDenno(userId, denno);
+		int alreadyRegistered = myDentistService.getMyDentistByDendomain(userId, dendomain);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("alreadyRegistered", alreadyRegistered);
 		return jsonObject.toString();
