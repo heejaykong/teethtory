@@ -7,7 +7,7 @@
 	<title>치스토리-치과정보(지도)</title>
 	<script>
 		function goDentistDetail() {
-			location.href = "dentistDetail?denno=" + ${denno};
+			location.href = "dentistDetail?dendomain=" + ${dendomain};
 		}
 	</script>
 	<style>
