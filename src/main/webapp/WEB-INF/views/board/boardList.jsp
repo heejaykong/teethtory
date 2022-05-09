@@ -20,10 +20,31 @@
 	}
 	
 	.writer__img {
-		width:  0.7rem;
-		height: 0.7rem;
+		width:  2rem;
+		height: 2rem;
 		border-radius: 50%;
 	}
+	
+	.docterCheck {
+		font-size: 1rem;
+		color: #42A5F5;
+	}
+	
+	#fa-seedling {
+		font-size: 1.5rem;
+		color:  rgb(164, 211, 147);
+	}
+	
+	#fa-pagelines {
+		font-size: 1.5rem;
+		color: rgb(13, 173, 27);
+	}
+	
+	#fa-tree {
+		font-size: 1.5rem;
+		color: rgb(10, 109, 18);
+	}
+	
     h4 {
     	font-size: 1.1rem;
     	font-weight: bold;
@@ -55,14 +76,18 @@
 	<div class="donut mx-3 mt-2" >
 		<c:forEach var="board" items="${boards}">
 		<div class="board d-flex flex-column" style="padding: 0.5rem;" onclick="location.href='boardDetail?boardno=${board.boardno}'">
-			<div class="mb-1"><h4>${board.boardtitle}</h4></div>
-			<div class="mb-2"><h5>${board.boardcontent}</h5></div>
-			<div class="d-flex justify-content-between" style="font-size: 0.8rem;">
-				<div style="color: dimgray;">
-					<span><fmt:formatDate value="${board.boarddate}" pattern="MM/dd"/></span>
-					<c:if test="${board.backgroundColor != null}"><div class="writer__img ml-2" style="display: inline-block; background-color: ${board.backgroundColor};"></div></c:if>
-					<span class="mr-2">${board.boardwriter}</span>
-				</div>
+			<div class="d-flex align-items-center mb-2">
+				<%-- <c:if test="${board.backgroundColor != null}"><div class="writer__img mr-2" style="display: inline-block; background-color: ${board.backgroundColor};"></div></c:if> --%>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+				<span style="font-weight: bold;" class="mr-1">${board.boardwriter}</span>
+				<c:if test="${board.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+				<span style="color: dimgray;"><fmt:formatDate value="${board.boarddate}" pattern="YYYY.MM.dd. hh:mm"/></span>
+			</div>
+			<div class="mb-1 ml-1"><h4>${board.boardtitle}</h4></div>
+			<div class="ml-1"><h5>${board.boardcontent}</h5></div>
+			<div class="d-flex justify-content-end" style="font-size: 0.8rem;">
 				<div>
 					<c:if test="${board.filecount}"><span><i class="fa-solid fa-image"></i></span><span class="ml-1">1</span></c:if>
 					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>

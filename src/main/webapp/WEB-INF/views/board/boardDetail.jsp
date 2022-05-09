@@ -109,7 +109,6 @@
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
-				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 8rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
@@ -121,6 +120,7 @@
 				</div>
 			</div>
 		</div>
+		<button class="btn btn-sm mb-2" style="border: 1px solid grey; margin-left: 0.5rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 		<hr style="margin: 0px;">
 
 	<div class="donut mt-2">
@@ -151,7 +151,8 @@
 				  
 			  <c:if test="${comment.commentwriter == userid}">
 				  <div class="btn-group dropleft" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				    <button id="btnGroupDrop1" type="button" class="btn " data-toggle="dropdown" aria-expanded="false">
+				    	<i class="fa-solid fa-ellipsis-vertical"></i>
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 				      <a class="dropdown-item" href="commentUpdateForm?commentno=${comment.commentno}">댓글 수정</a>

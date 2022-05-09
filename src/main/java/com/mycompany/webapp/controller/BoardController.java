@@ -56,19 +56,30 @@ public class BoardController {
 		for(Board board : boards) {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
+			
+			//등급별 색 구분하는 코드
 			if(!userid.equals("(알 수 없음)")) {
 				int point = 0;
 				point = userService.getPointBalance(userid);
-				String backgroundColor = "#cd7f32";
-				if(point > 20000) {
-					backgroundColor = "gold";
-				} else if(point > 10000) {
-					backgroundColor = "silver";
+				String backgroundColor = "";
+				if(point > 50000) {
+					backgroundColor = "fa-tree";
+				} else if(point > 20000) {
+					backgroundColor = "fa-pagelines";
+				} else {
+					backgroundColor = "fa-seedling";
 				}
+				
+				//의사인지 체크하는 코드
+				if(userService.getUser(userid).isIsdoctor()) {
+					board.setDoctor("doctor");
+					backgroundColor = "fa-user-doctor";
+				}
+				
 				board.setBackgroundColor(backgroundColor);
 				board.setCommentcount(commentcount);
 			}
-			
+
 			if(board.getBimageoriginalfilename() != null) {
 				board.setFilecount(true);
 			}

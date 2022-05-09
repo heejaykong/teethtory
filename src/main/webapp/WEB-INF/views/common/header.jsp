@@ -23,6 +23,27 @@
 		<span class="hamburger-btn__bar"></span>
 	</div>
 </header>
+<style>
+	#header-seedling {
+		font-size: 3.5rem;
+		color:  rgb(164, 211, 147);
+	}
+	
+	#header-pagelines {
+		font-size: 3.5rem;
+		color: rgb(13, 173, 27);
+	}
+	
+	#header-tree {
+		font-size: 4rem;
+		color: rgb(10, 109, 18);
+	}
+	
+	#header-doctor {
+		font-size: 4rem;
+		color: #42A5F5;
+	}
+</style>
 <aside class="sidebar-menu hidden">
 	<!-- exit button -->
 	<div class="sidebar-menu__exit-btn-block">
@@ -44,7 +65,11 @@
 		</c:if>
 		<c:if test="${headerInfo.userid != null}">
 			<div class="profile">
-				<div class="profile__img" style="background-color: ${headerInfo.backgroundColor}"></div>
+				<!-- <div class="profile__img" style="background-color: gold;"></div> -->
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="header-seedling"></i></c:if>
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="header-pagelines"></i></c:if>
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="header-tree"></i></c:if>
+				<c:if test="${headerInfo.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck" id="header-doctor"></i></c:if>
 				<div class="profile__nametag">
 					<p class="name">
 						<span id="username">${headerInfo.name}</span> 님
