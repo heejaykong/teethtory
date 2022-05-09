@@ -45,6 +45,9 @@
 			<label for="check-userpassword">비밀번호 확인</label>
 			<input id="check-userpassword" type="password" placeholder="비밀번호를 한 번 더 입력해 주세요."/>
 
+			<label for="userphone">이메일</label>
+			<input id="useremail" name="useremail" type="email" placeholder="email@osstem.com"/>
+
 			<label for="userphone">휴대폰 번호</label>
 			<input id="userphone" name="userphone" type="text" placeholder="휴대폰 번호를 입력해 주세요."/>
 

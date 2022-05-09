@@ -57,6 +57,12 @@
 </style>
 </head>
 <script>
+	// let attachedImgData = "${pageContext.request.contextPath}/board/boardDetailAttachedFile?boardno=" + ${board.boardno};
+	// if(typeof attachedImgData !== "undefind") {
+	// 	$('#attachedImg').attr("src", attachedImgData);
+	// } else {
+	// 	$('#attachedImg').attr("style", "display: none");
+	// }
 	$.ajax({
 		url: "boardDetailAttachedFile?boardno=" + ${board.boardno},
 		method:"GET",
@@ -64,7 +70,8 @@
 	.done((data) => {
 		console.log('data : ' + data);
 		console.log('typeof data : ' + typeof data);
-		if(data == '') {
+
+		if(typeof data == "undefind") {
 			$('#attachedImg').attr("style", "display:none");
 		} else {
 			$('#attachedImg').attr("src", "boardDetailAttachedFile?boardno=" + ${board.boardno});
@@ -91,7 +98,7 @@
 	</div>
 	<hr style="margin: 0px;">
 
-	<img id="attachedImg">
+	<img id="attachedImg" style="background-size: cover; width: 100%;">
 	
 	<div class="donut mx-3 mt-2" >
 	

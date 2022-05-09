@@ -76,17 +76,17 @@
 	  	modal.find('.modal-title').text(recipient)
 	  	modal.find('.modal-body').text(body)
 
-        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(denno 필요.)
+        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
         let yesBtn = document.getElementById('btn-yes');
         // yesBtn.onclick = function() {
-        //     let denNoForReservation = document.getElementById('denNo').value;
+        //     let dendomainForReservation = document.getElementById('dendomain').value;
         //     //내 치과에 등록된 치과인지 점검.
         //     location.href = "";
         //     //내 치과에 등록된
         // }
 	})
 	
-	function handleHidden(e, task, denno) {
+	function handleHidden(e, task, dendomain) {
 		const targetEl = e.target;
 		const theElement = targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item");
 		$(targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
@@ -95,11 +95,11 @@
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
 
-		const hiddenDenNo = denno;
+		const hiddendendomain = dendomain;
 		if(task === 'add') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		} else if(task === 'delete') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		}
 	}
 	
@@ -110,7 +110,7 @@
 </script>
 <div class="located-at-bottom-of-header">
 	<div>
-		<img id="dentistImg" width="100%" height="100rem;">
+		<img id="dentistImg" style="background-size: cover; width: 100%;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
 		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
@@ -127,8 +127,8 @@
 
 	<div class="mx-5">
 		<div class="d-flex mb-3">
-			<i class="fa-solid fa-phone mr-4"></i>
-			<div id="dencontact"></div>
+			<i class="fa-solid fa-phone mr-4" onclick="contact()"></i>
+			<a id="dencontact" onclick="contact()"></a>
 		</div>
 		
 		<div class="d-flex mb-3">
@@ -175,12 +175,12 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
 		function checkRegistered() {
-			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
+			console.log('localStorage.getItem("dendomain") : ' + localStorage.getItem("dendomain"));
 			$.ajax({
 				method:"POST",
 				url: "${pageContext.request.contextPath}/reservation/dentistDetail",
 				data: {
-					denno: localStorage.getItem("denno")
+					dendomain: localStorage.getItem("dendomain")
 				}
 			})
 			.done((data) => {
@@ -204,10 +204,12 @@
 		// 치과의 대표이미지를 가져오는 통신.(deninfo)
 		console.log('~~~~~~~~~~~~~~~`');
 		console.log('dendomain : ' + ${dendomain});
-		if(typeof data !== "undefind") {
-			$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
+		if(typeof dentistImgData !== "undefind") {
+			$('#dentistImg').attr("src", dentistImgData);
+			// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
 		} else {
-			$('#dentistImg').attr("style", "display: hidden");
+			$('#dentistImg').attr("style", "display: none");
 		}
 
 		// $.ajax({
@@ -246,8 +248,15 @@
 			},
 		})
 		.done((data) => {
-			/* console.log('data',data); */
 
+			console.log('data : ' + data);
+			console.log('typeof data : ' + typeof data);
+			console.log('data[0] : ' + data[0]);
+			console.log('typeof data[0] : ' + typeof data[0]);
+			console.log('data[0][0] : ' + data[0][0]);
+			console.log('typeof data[0][0] : ' + typeof data[0][0]);
+			console.log('Object.keys(data).length : ' + Object.keys(data).length);
+			/* console.log('data',data); */
 			for(let i=0; i<Object.keys(data).length; i++) {
 				let businessDay = data[i][0];
 				let businessHour = data[i][1];
@@ -405,6 +414,10 @@
 
 		}
 		getReviewsWithPagination(-1);
+		
+		function contact(){
+			document.location.href='tel:'+$(dencontact);
+		}
 	</script>
 	<script>
 		$(function() {

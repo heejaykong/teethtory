@@ -140,13 +140,13 @@
 	
 	<%-- 변수 선언 --%>
 	<c:set var="treatno" value="${treatno}"/>
-	<c:set var="denno" value="${denno}"/>
+	<c:set var="dendomain" value="${dendomain}"/>
 	<c:set var="sessionUserid" value="${sessionUserid}"/>
 
 	<script>
 		const treatno = '${treatno}';
 		const sessionUserid = '${sessionUserid}';
-		const denno = '${denno}'
+		const dendomain = '${dendomain}'
 		
 		$(function() {
 			// 치과 정보요약 데이터 가져오기
@@ -195,7 +195,7 @@
 				}
 			}).done(() => {
 				// 리뷰를 작성한 치과의 상세페이지로 넘어가면서, 후기목록 영역("#엘리먼트id")으로 스크롤 anchor하기
-				location.href = '${pageContext.request.contextPath}' + "/reservation/dentistDetail?denno=" + denno + "#reviewContainer";
+				location.href = '${pageContext.request.contextPath}' + "/reservation/dentistDetail?dendomain=" + dendomain + "#reviewContainer";
 			});
 		});
  	</script>

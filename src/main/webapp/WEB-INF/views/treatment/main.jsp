@@ -78,35 +78,43 @@
 		function handleListItemClick(e) {
 			const clickedTarget = e.target.closest(".list-item");
 			const treatno = clickedTarget.dataset.treatno;
-			const denno = clickedTarget.dataset.denno;
+
+			const dendomain = clickedTarget.dataset.dendomain;
+
  			$.ajax({
 				type: "GET",
-				url: "details?treatno=" + treatno + "&denno=" + denno
+
+				url: "details?treatno=" + treatno + "&dendomain=" + dendomain
+
 			}).done(() => {
 				// 해당 치료내역의 상세페이지로 넘어가기
-				window.location.href = "details?treatno=" + treatno + "&denno=" + denno;
+
+				window.location.href = "details?treatno=" + treatno + "&dendomain=" + dendomain;
+
 			});
 		}
 	 	
-	 	function getDennoByDendomain(dendomain) {
-	       // data-denno값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 denno값이 필요하기 때문에,
-	       // 현재 페이지가 갖고 있는 dendomain 정보로써 denno값이 뭔지 user서버 단에 쿼리 날리는 함수
-	 		let denno = null;
+	 	function getdendomainByDendomain(dendomain) {
+	       // data-dendomain값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 dendomain값이 필요하기 때문에,
+	       // 현재 페이지가 갖고 있는 dendomain 정보로써 dendomain값이 뭔지 user서버 단에 쿼리 날리는 함수
+	 		let dendomain = null;
 	 		$.ajax({
 	 			type: "POST",
-	 			url: "${pageContext.request.contextPath}/dentist/getDennoByDendomain?dendomain=" + dendomain,
+	 			url: "${pageContext.request.contextPath}/dentist/getdendomainByDendomain?dendomain=" + dendomain,
 	 			async: false
 	 		}).done((data) => {
-	 			denno = data.denno;
+	 			dendomain = data.dendomain;
 	 		});
-	 		return denno;
+	 		return dendomain;
 	 	}
 	 	
 		function template({treatno, dendomain, treattype, denname, treatdate}) {
-			const denno = getDennoByDendomain(dendomain);
+			const dendomain = getdendomainByDendomain(dendomain);
 			
 			return `
-				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-denno="`+ denno +`">
+
+				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-dendomain="`+ dendomain +`">
+
 					<div class="list-item__info-summary">
 						<h4 class="title">
 							`+ treattype +`
@@ -140,9 +148,7 @@
 					for(let i=0; i<${dentist}.dentist.length; i++) {
 						$.ajax({
 							method:"POST",
-							url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-							<%--url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
-							--%>
+							url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
 							data: {},
 							async: false
 						}).done((data) => {
@@ -180,8 +186,7 @@
 					}
 					
 					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
-					const smalldata = data.slice(0,5);
-					smalldata.sort(function(a, b) {
+					data.sort(function(a, b) {
 						if(a.treatdate > b.treatdate) {
 							return -1;
 						}
@@ -193,7 +198,7 @@
 					//console.log("orderedDate:", data);
 					//console.log(data.length);
 					$(".selected-treattype-results-section").html("");
-					smalldata.forEach(treatment => {
+					data.forEach(treatment => {
 		                 const listItem = template(treatment);
 		                 $(".selected-treattype-results-section").append(listItem);
 		             });

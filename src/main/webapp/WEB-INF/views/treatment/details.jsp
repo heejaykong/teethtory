@@ -184,16 +184,16 @@
 	        </li>
 	      </ul>
 	      
-	      <a href="reviewForm?treatno=${treatno}&denno=${denno}" id="reviewFormBtn" class="btn-large-solid">
+	      <a href="reviewForm?treatno=${treatno}&dendomain=${dendomain}" id="reviewFormBtn" class="btn-large-solid">
 	      	치료 후기 작성하기
 	      </a>
-	      <a href="${pageContext.request.contextPath}/reservation/dentistDetail?denno=${denno}" class="btn-large-hollow">이 치과 진료 예약하기</a>
+	      <a href="${pageContext.request.contextPath}/reservation/dentistDetail?dendomain=${dendomain}" class="btn-large-hollow">이 치과 진료 예약하기</a>
 	    </section>
 	</main>
 
 	<%-- 변수 선언 --%>
 	<c:set var="treatno" value="${treatno}" />
-	<c:set var="denno" value="${denno}" />
+	<c:set var="dendomain" value="${dendomain}" />
 
 	<script>
 	  $(function(){
@@ -206,9 +206,10 @@
 
 		// treatno에 해당되는 treatment 객체 받아오기
 		const treatno = '${treatno}';
+		console.log(${dendomain});
 		$.ajax({
 			type:"POST",
-			url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+			url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
 			//async: false,
 			data: {} // 전송할 데이터
 		}).done((data) => {
