@@ -78,38 +78,43 @@
 		function handleListItemClick(e) {
 			const clickedTarget = e.target.closest(".list-item");
 			const treatno = clickedTarget.dataset.treatno;
-			const denno = clickedTarget.dataset.denno;
+
 			const dendomain = clickedTarget.dataset.dendomain;
-			console.log(clickedTarget);
-			console.log(clickedTarget.dataset);
+
  			$.ajax({
 				type: "GET",
-				url: "details?treatno=" + treatno + "&denno=" + denno + "&dendomain=" + dendomain,
+
+				url: "details?treatno=" + treatno + "&dendomain=" + dendomain
+
 			}).done(() => {
 				// 해당 치료내역의 상세페이지로 넘어가기
-				window.location.href = "details?treatno=" + treatno + "&denno=" + denno + "&dendomain=" + dendomain;
+
+				window.location.href = "details?treatno=" + treatno + "&dendomain=" + dendomain;
+
 			});
 		}
 	 	
-	 	function getDennoByDendomain(dendomain) {
-	       // data-denno값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 denno값이 필요하기 때문에,
-	       // 현재 페이지가 갖고 있는 dendomain 정보로써 denno값이 뭔지 user서버 단에 쿼리 날리는 함수
-	 		let denno = null;
-	 		$.ajax({
-	 			type: "POST",
-	 			url: "${pageContext.request.contextPath}/dentist/getDennoByDendomain?dendomain=" + dendomain,
-	 			async: false
-	 		}).done((data) => {
-	 			denno = data.denno;
-	 		});
-	 		return denno;
-	 	}
+	 	// function getdendomainByDendomain(dendomain) {
+	    //    // data-dendomain값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 dendomain값이 필요하기 때문에,
+	    //    // 현재 페이지가 갖고 있는 dendomain 정보로써 dendomain값이 뭔지 user서버 단에 쿼리 날리는 함수
+	 	// 	let dendomain = null;
+	 	// 	$.ajax({
+	 	// 		type: "POST",
+	 	// 		url: "${pageContext.request.contextPath}/dentist/getdendomainByDendomain?dendomain=" + dendomain,
+	 	// 		async: false
+	 	// 	}).done((data) => {
+	 	// 		dendomain = data.dendomain;
+	 	// 	});
+	 	// 	return dendomain;
+	 	// }
 	 	
 		function template({treatno, dendomain, treattype, denname, treatdate}) {
-			const denno = getDennoByDendomain(dendomain);
+			// const dendomain = getdendomainByDendomain(dendomain);
 			
 			return `
-				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-denno="`+ denno +`" data-dendomain="`+ dendomain +`">
+
+				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-dendomain="`+ dendomain +`">
+
 					<div class="list-item__info-summary">
 						<h4 class="title">
 							`+ treattype +`
@@ -135,7 +140,7 @@
 				getData(selectedTreattype);
 			}
 
-			function windowdd(selectedTreattype) {
+			function getTreatments(selectedTreattype) {
 				console.log(selectedTreattype);
 				const promise = new Promise((resolve, reject) => {
 					let list = [];
@@ -165,7 +170,7 @@
 	
 			async function getData(selectedTreattype) {
 				try {
-					data = await windowdd(selectedTreattype);
+					data = await getTreatments(selectedTreattype);
 					// TBD: 아래 smalldata들 다시 data로 바꾸기(테스트할때 너무 오래걸려서 smalldata로 해둠)
 					
 					// 만약 해당 내역이 없을 경우 없다고 표시

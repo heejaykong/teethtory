@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Dentist {
-	private int denno;
+	
 	private String dendomain;
 	private String denname;
 	private String denaddress;

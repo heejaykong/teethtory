@@ -46,13 +46,22 @@ public class HeaderCheckAfter {
 			String name = user.getUsername();
 			String email = user.getUseremail();
 			int point = user.getUserpoint();
+			int usedpoint = user.getUserusedpoint();
 			
-			String backgroundColor = "#cd7f32";
-			if(point > 20000) {
-				backgroundColor = "gold";
-			} else if(point > 10000) {
-				backgroundColor = "silver";
+			String backgroundColor = "";
+			if(usedpoint >= 50000) {
+				backgroundColor = "fa-tree";
+			} else if(usedpoint >= 20000) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
 			}
+			
+			if(userService.getUser(userid).isIsdoctor()) {
+				headerInfo.setDoctor("doctor");
+				backgroundColor = "fa-user-doctor";
+			}
+			
 			headerInfo.setUserid(userid);
 			headerInfo.setName(name);
 			headerInfo.setEmail(email);

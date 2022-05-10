@@ -35,6 +35,7 @@
 		<multipart-config>
 			<!-- 임시 파일이 저장될 폴더의 절대 경로만 가능 -->
 			<location>/Users/choisukhee/Documents/2022/오스템 임플란트/중간 프로젝트/fileStorage/</location>
+			<!-- <location>/Users/jeongminlee/Desktop/Temp/</location> -->
 			<!-- <location>C:/temp</location> -->
 			<!-- <location>C:/</location> -->
 			<!-- 파일 크기가 10MB 이하만 허용(1024*1024*10) -->

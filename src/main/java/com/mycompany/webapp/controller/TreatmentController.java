@@ -61,11 +61,10 @@ public class TreatmentController {
 	}
 	
 	@GetMapping("/details")
-	public String detailsGet(@RequestParam String treatno, @RequestParam String denno, @RequestParam String dendomain, Model model) {
+	public String detailsGet(@RequestParam String treatno, @RequestParam String dendomain, Model model) {
 		// 리스트 중 하나 클릭 시 treatno와 denno만 물고 details 화면으로 넘어감.
-		log.info("treatno: " + treatno + "denno: " + denno + "dendomain: " + dendomain);
+		log.info("treatno: " + treatno + "dendomain: " + dendomain);
 		model.addAttribute("treatno", treatno);
-		model.addAttribute("denno", denno);
 		model.addAttribute("dendomain", dendomain);
 		return "treatment/details";
 	}
@@ -85,11 +84,10 @@ public class TreatmentController {
 	//-------------------------------
 	@GetMapping("/reviewForm")
 	public String showReviewForm(@RequestParam String treatno,
-								@RequestParam String denno,
+								 @RequestParam String dendomain,
 								Model model) {
-		// 치료내역 상세화면에서 후기 작성하기 클릭 시 treatno와 denno만 물고 reviewForm 화면으로 넘어감.
+		model.addAttribute("dendomain", dendomain);
 		model.addAttribute("treatno", treatno);
-		model.addAttribute("denno", denno);
 		return "treatment/reviewForm";
 	}
 }

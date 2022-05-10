@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
 .modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
@@ -18,42 +19,59 @@
   box-sizing:border-box; padding:74px 0;
   line-height:23px; cursor:pointer;
 }
-	.boardwriter__img {
-		width: 2rem;
-		height: 2rem;
-		border-radius: 50%;
-	}
-	
-	.writer__img {
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 50%;
-	}
+.boardwriter__img {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+}
 
-    h4 {
-    	font-size: 1.1rem;
-    	font-weight: bold;
-    }
-    
-    h5 {
-    	font-size: 0.8rem;
-    	color: dimgray;
-    }
-    
-    #boardtitle {
-    	font-size: 1.5rem;
-    	font-weight: bold;
-    }
-    
-    #boardcontent {
-    	font-size: 1rem;
-    	color: dimgray;
-    }
-    
-    #commentcontent {
-    	font-size: 1rem;
-    }
-    
+.writer__img {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+}
+.docterCheck {
+	font-size: 1rem;
+	color: #42A5F5;
+}
+
+#fa-seedling {
+	font-size: 1.5rem;
+	color:  rgb(164, 211, 147);
+}
+
+#fa-pagelines {
+	font-size: 1.5rem;
+	color: rgb(13, 173, 27);
+}
+
+#fa-tree {
+	font-size: 1.5rem;
+	color: rgb(10, 109, 18);
+}
+h4 {
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 0.8rem;
+	color: dimgray;
+}
+
+#boardtitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+#boardcontent {
+	font-size: 1rem;
+	color: dimgray;
+}
+
+#commentcontent {
+	font-size: 1rem;
+}
 </style>
 </head>
 <script>
@@ -97,30 +115,33 @@
 		</c:if>
 	</div>
 	<hr style="margin: 0px;">
-
-	<img id="attachedImg" style="background-size: cover; width: 100%;">
 	
 	<div class="donut mx-3 mt-2" >
 	
 		<div class="board d-flex flex-column" style="padding: 0.5rem;">
 			<div class="d-flex mb-3">
-				<c:if test="${board.backgroundColor != null}"><div class="boardwriter__img mr-2" style="display: inline-block; background-color: ${board.backgroundColor};"></div></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+
 				<div class="d-flex flex-column">
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
-				<button class="btn btn-sm" style="border: 1px solid grey; margin-left: 8rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
+				<c:if test="${board.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
-			<div class="mb-3" id="boardcontent">${board.boardcontent}</div>
-			<div style="font-size: 0.8rem;">
+			<div class="mb-2" id="boardcontent">${board.boardcontent}</div>
+			<c:if test="${board.filecount}"><img id="attachedImg" style="background-size: cover; width: 100%;"></c:if>
+			<div style="font-size: 0.8rem;" class="mt-2">
 				<div>
 					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>
 					<span class="ml-1" style="color: rgb(18, 220, 247)"><i class="fa-regular fa-comment"></i></span><span class="ml-1" style="color: rgb(18, 220, 247)">${board.commentcount}</span>
 				</div>
 			</div>
 		</div>
+		<button class="btn btn-sm mb-2" style="border: 1px solid grey; margin-left: 0.5rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 		<hr style="margin: 0px;">
 
 	<div class="donut mt-2">
@@ -141,9 +162,14 @@
 		<div class="board d-flex flex-column" style="padding: 0.5rem;">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="d-flex">
-					<c:if test="${comment.backgroundColor != null}"><div class="writer__img mr-2" 
-						style="display: inline-block; background-color: ${comment.backgroundColor};"></div></c:if>
-					<div style="font-size: 1.1rem; font-weight: bold;" class="mt-1">${comment.commentwriter}</div>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+					<div style="font-size: 1.1rem; font-weight: bold;" class="mt-1">
+						${comment.commentwriter}
+						<c:if test="${comment.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+					</div>
+					
 				</div>
 				
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -151,7 +177,8 @@
 				  
 			  <c:if test="${comment.commentwriter == userid}">
 				  <div class="btn-group dropleft" role="group">
-				    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+				    <button id="btnGroupDrop1" type="button" class="btn " data-toggle="dropdown" aria-expanded="false">
+				    	<i class="fa-solid fa-ellipsis-vertical"></i>
 				    </button>
 				    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 				      <a class="dropdown-item" href="commentUpdateForm?commentno=${comment.commentno}">댓글 수정</a>
@@ -173,29 +200,60 @@
 	
 	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
 	  <ul class="pagination justify-content-center">
-	  <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=1"><<</a></li>
-	    <li class="page-item">
+	  <%-- <li> --%>
+	  <div class="pagination-component">
+	  	<a href="boardDetail?boardno=${board.boardno}&pageNo=1">
+			 <div class="pagination-btn">
+				<i class="fa-solid fa-angles-left"></i>
+			</div>
+		</a>
+	<%-- </li> --%>
+	    <%-- <li class="page-item"> --%>
 			<c:if test="${pager.groupNo>1}">
-				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.startPageNo-1}"><</a>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.startPageNo-1}">
+					<div class="pagination-btn">
+						<i class="fa-solid fa-angle-left"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
+	    <%-- </li> --%>
 	  
 	    <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 			<c:if test="${pager.pageNo != i}">
-				<li class="page-item"><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${i}">${i}</a>
+				<%-- <li class="page-item"> --%>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${i}">
+					<div class="pagination-btn">
+						${i}
+					</div>
+				</a>
 			</c:if>
 			<c:if test="${pager.pageNo == i}">
-				<li class="page-item active" aria-current="page"><a class="page-link">${i}</a>
+				<%-- <li class="page-item active" aria-current="page"> --%>
+				<a>
+					 <div class="pagination-btn pagination-btn-current">
+						${i}
+					</div>
+				</a>
 			</c:if>
 		</c:forEach>
 		
-	    <li class="page-item">
+	    <%-- <li class="page-item"> --%>
 		    <c:if test="${pager.groupNo<pager.totalGroupNo}">
-				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.endPageNo+1}">></a>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.endPageNo+1}">
+					<div class="pagination-btn">
+						<i class="fa-solid fa-angle-right"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
-	    <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.totalPageNo}">>></a></li>
-	    
+	    <%-- </li> --%>
+	    <%-- <li> --%>
+		<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.totalPageNo}">
+			 <div class="pagination-btn">
+				<i class="fa-solid fa-angles-right"></i>
+			</div>
+		</a>
+		<%-- </li> --%>
+		</div>
 	  </ul>
 	</nav>
 </div>

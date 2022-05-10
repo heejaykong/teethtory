@@ -56,21 +56,28 @@ public class MyPageController {
 	public String eastegg(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
 		String userid = (String) session.getAttribute("sessionUserid");
+		
+		if(session.getAttribute("sessionUserid") == null) {
+			String formError = "숨겨진 달걀을 확인하려면 로그인을 해주세요!";
+			session.setAttribute("formError", formError);
+			return "redirect:/login";
+		}
+		
 		if(userid != null) {
 			User user = userService.getUser(userid);
 			String name = user.getUsername();
 			model.addAttribute("name", name);
+			//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
+			List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
+			String patientssn = userService.getUser(userid).getUserssn();
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("myDentistList", myDentistList);
+			String json = jsonObject.toString();
+			model.addAttribute("myDentistList", json);
+			model.addAttribute("patientssn", patientssn);
+			log.info("실행");
 		}
 
-		//로그인한 사용자의 '내 치과'에 등록된 치과 객체 목록.
-		List<Dentist> myDentistList = myDentistService.getMyDentist(userid);
-		String patientssn = userService.getUser(userid).getUserssn();
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("myDentistList", myDentistList);
-		String json = jsonObject.toString();
-		model.addAttribute("myDentistList", json);
-		model.addAttribute("patientssn", patientssn);
-		log.info("실행");
 		return "myPage/easteregg";
 	}
 	
@@ -79,7 +86,9 @@ public class MyPageController {
 	@HeaderCheck
 	public String myDentist(HttpSession session
 			, @RequestParam(defaultValue="null") String denname
-			, @RequestParam(defaultValue="-1") int denno
+
+			, @RequestParam(defaultValue="-1") String dendomain
+
 			, String task
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
@@ -93,14 +102,18 @@ public class MyPageController {
 		//1. 이미 등록된 치과인지 점검.
 		//1-1. 이미 등록된 치과면 아무조치X.
 		//1-2. 등록 안 된 치과면 등록.
-		if(denno != -1) {
+
+		if(!dendomain.equals("-1")) {
+
 			if(task.equals("add")) {
-				if(myDentistService.getMyDentistByDenno(userId, denno) < 1) {//0인 경우에만 추가!
-					myDentistService.registerMyDentist(userId, denno);
+
+				if(myDentistService.getMyDentistByDendomain(userId, dendomain) < 1) {//0인 경우에만 추가!
+
+					myDentistService.registerMyDentist(userId, dendomain);
 				}
 			} else if(task.equals("delete")) {
 				//내 치과 삭제하기
-				myDentistService.removeMyDentist(userId, denno);
+				myDentistService.removeMyDentist(userId, dendomain);
 			}
 		}
 		

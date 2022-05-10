@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-치과 상세</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
 #Registered {
 	color: white;
@@ -34,7 +35,21 @@
 	height: 3rem;
 	border-radius: 50%;
 }
+
+#fa-seedling {
+	font-size: 2rem;
+	color:  rgb(164, 211, 147);
+}
 	
+#fa-pagelines {
+	font-size: 2rem;
+	color: rgb(13, 173, 27);
+}
+	
+#fa-tree {
+	font-size: 2rem;
+	color: rgb(10, 109, 18);
+}	
 </style>
 <script>
 	localStorage.setItem('dendomain', "${dendomain}");
@@ -44,7 +59,7 @@
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <div class="modal-content">
 	      <div class="modal-header">
@@ -76,17 +91,17 @@
 	  	modal.find('.modal-title').text(recipient)
 	  	modal.find('.modal-body').text(body)
 
-        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(denno 필요.)
+        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
         let yesBtn = document.getElementById('btn-yes');
         // yesBtn.onclick = function() {
-        //     let denNoForReservation = document.getElementById('denNo').value;
+        //     let dendomainForReservation = document.getElementById('dendomain').value;
         //     //내 치과에 등록된 치과인지 점검.
         //     location.href = "";
         //     //내 치과에 등록된
         // }
 	})
 	
-	function handleHidden(e, task, denno) {
+	function handleHidden(e, task, dendomain) {
 		const targetEl = e.target;
 		const theElement = targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item");
 		$(targetEl.parentNode.parentNode.parentNode.querySelector(".history-list-hidden__item")).toggle();
@@ -95,11 +110,11 @@
 		const denidvalue = $(targetEl.parentNode.parentNode.querySelector(".denName")).text();
 		theElement.dataset.whatever = denidvalue;
 
-		const hiddenDenNo = denno;
+		const hiddendendomain = dendomain;
 		if(task === 'add') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		} else if(task === 'delete') {
-			location.href = "myDentist?denno=" + denno + "&task=" + task;
+			location.href = "myDentist?dendomain=" + dendomain + "&task=" + task;
 		}
 	}
 	
@@ -166,7 +181,9 @@
 	</div>
 
 	<div id="reviewContainer" class="list-group">
-		<%-- 여기에 ajax로 받아온 후기 정보 대입. --%>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
 	</div>
 	<div id="reviewPaginationContainer">
 		<%-- 여기에 페이지네이션 처리. --%>
@@ -175,12 +192,12 @@
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 	<script>
 		function checkRegistered() {
-			console.log('localStorage.getItem("denno") : ' + localStorage.getItem("denno"));
+			console.log('localStorage.getItem("dendomain") : ' + localStorage.getItem("dendomain"));
 			$.ajax({
 				method:"POST",
 				url: "${pageContext.request.contextPath}/reservation/dentistDetail",
 				data: {
-					denno: localStorage.getItem("denno")
+					dendomain: localStorage.getItem("dendomain")
 				}
 			})
 			.done((data) => {
@@ -351,9 +368,15 @@
 					}).done((leedh) => {
 						lee = leedh.backgroundColor;
 					});
-					
-					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex" style="font-size: 0.9rem;">';
-					aReviewHtml += '	<div class="reviewWriter__img mr-2" style="background-color: ' + lee + '"></div>';
+
+					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex align-items-center" style="font-size: 0.9rem;">';
+					if(lee = "fa-seedling") {
+						aReviewHtml += '	<i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i>';
+					} else if(lee = "fa-pagelines") {
+						aReviewHtml += '	<i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i>';
+					} else if(lee = "fa-tree") {
+						aReviewHtml += '	<i class="fa-solid fa-tree mr-2" id="fa-tree"></i>';
+					}
 					aReviewHtml += '	<div>';
 					aReviewHtml += '	<div class="d-flex mb-1" style="color: #ffa048;">';
 					aReviewHtml += '		<small class="mr-2">';
@@ -390,24 +413,50 @@
 				$("#reviewContainer").html(aReviewHtml);
 				//리뷰 페이지네이션 추가.
 				let aReviewPaginationHtml = '';
-				aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">처음</a>';
+				aReviewPaginationHtml += '<div class="pagination-component" style="margin-right:1rem;>';
+				aReviewPaginationHtml += '<a onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">';
+				aReviewPaginationHtml += '		<div class="pagination-btn">';
+				aReviewPaginationHtml += '			<i class="fa-solid fa-angles-left"></i>';
+				aReviewPaginationHtml += '		</div>';
+				aReviewPaginationHtml += '	</a>';
 
 				if(pager[0].groupNo>1) {
-					aReviewPaginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">이전</a>';
+					aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">';
+					aReviewPaginationHtml += '		<div class="pagination-btn">';
+					aReviewPaginationHtml += '			<i class="fa-solid fa-angle-left"></i>';
+					aReviewPaginationHtml += '		</div>';
+					aReviewPaginationHtml += '	</a>';
 				}
 
 				for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
-					if(pager.pageNo != i) {
-						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+					if(pager[0].pageNo != i) {
+						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+						aReviewPaginationHtml += '			<div class="pagination-btn">';
+						aReviewPaginationHtml += '' + i;
+						aReviewPaginationHtml += '			</div>';
+						aReviewPaginationHtml += '		</a>';
 					} else {
-						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+						aReviewPaginationHtml += '			<div class="pagination-btn pagination-btn-current">';
+						aReviewPaginationHtml += '' + i;;
+						aReviewPaginationHtml += '			</div>';
+						aReviewPaginationHtml += '		</a>';
 					}
 				}
 				if(pager[0].groupNo<pager[0].totalGroupNo) {
 					let nextPageNo = pager[0].endPageNo+1;
-					aReviewPaginationHtml += '		<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')">다음</a>';
+					aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')"';
+					aReviewPaginationHtml += '			<div class="pagination-btn">';
+					aReviewPaginationHtml += '				<i class="fa-solid fa-angle-right"></i>';
+					aReviewPaginationHtml += '			</div>';
+					aReviewPaginationHtml += '		</a>';
 				}
-				aReviewPaginationHtml += '		<a class="btn btn-outline-primary btn-sm"  onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')">맨끝</a>';
+				aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')"';
+				aReviewPaginationHtml += '			<div class="pagination-btn">';
+				aReviewPaginationHtml += '				<i class="fa-solid fa-angles-right"></i>';
+				aReviewPaginationHtml += '			</div>';
+				aReviewPaginationHtml += '		</a>';
+				aReviewPaginationHtml += '</div>';
 
 				$("#reviewPaginationContainer").html(aReviewPaginationHtml);
 			});

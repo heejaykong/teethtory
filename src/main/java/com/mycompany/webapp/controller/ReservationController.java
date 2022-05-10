@@ -1,24 +1,17 @@
 package com.mycompany.webapp.controller;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,12 +76,12 @@ public class ReservationController {
 	//reservationMain화면에서 특정 치과 1개 클릭한 경우, 치과의 간단한 정보를 지도와 함께 보여줌..
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/reservationUsingMap")
-	public String reservationUsingMap(@RequestParam("denno") int denno
+	public String reservationUsingMap(@RequestParam("dendomain") String dendomain
 			, Model model) {
-		log.info("denno: " + denno);
-		Dentist dentist = dentistService.getDentistByDenno(denno);
-		model.addAttribute("denno", dentist.getDenno());
+		log.info("dendomain: " + dendomain);
+		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
+//		model.addAttribute("dentist", dentist);//..?
 		
 		return "reservation/reservationUsingMap";
 	}
@@ -97,18 +90,19 @@ public class ReservationController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/dentistDetail")
 	public String dentistDetail(HttpSession session
-			, @RequestParam("denno") int denno
+			, @RequestParam("dendomain") String dendomain
 			, @RequestParam(defaultValue="null") String task
 			, Model model) {
 		log.info("실행");
-		//denno를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
+		//dendomain를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
 		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
-		Dentist dentist = dentistService.getDentistByDenno(denno);
+
+		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
 		
 		if(!task.equals("null")) {
 			String userId = (String) session.getAttribute("sessionUserid");
-			int registrationResult = myDentistService.registerMyDentist(userId, denno);
+			int registrationResult = myDentistService.registerMyDentist(userId, dendomain);
 			model.addAttribute("registrationResult", registrationResult);			
 		}
 		
@@ -119,13 +113,14 @@ public class ReservationController {
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String dentistDetail(HttpSession session
-			, @RequestParam("denno") int denno, Model model) {
-		log.info("denno : " + denno);
-		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
+			, @RequestParam("dendomain") String dendomain, Model model) {
+		log.info("dendomain : " + dendomain);
+
+//		String dendomain = dentistService.getDentistByDenno(denno).getDendomain();
 		model.addAttribute("dendomain", dendomain);
-		//내 치과 목록에서, denno으로 점검.
+		//내 치과 목록에서, dendomain으로 점검.
 		String userId = (String) session.getAttribute("sessionUserid");
-		int alreadyRegistered = myDentistService.getMyDentistByDenno(userId, denno);
+		int alreadyRegistered = myDentistService.getMyDentistByDendomain(userId, dendomain);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("alreadyRegistered", alreadyRegistered);
 		return jsonObject.toString();
@@ -161,19 +156,37 @@ public class ReservationController {
 	}
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/getRecipientInformation", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String getRecipientInformation(HttpSession session) {
+		log.info("실행");
+		String userid = (String) session.getAttribute("sessionUserid");
+		// 사용자의 이름, 연락처 가져와서 응답으로 보내기.
+		User user = userService.getUser(userid);
+		String userName = user.getUsername();
+		String userPhone = user.getUserphone();
+		
+		JSONObject obj = new JSONObject();
+		obj.put("userName", userName);
+		obj.put("userPhone", userPhone);
+		
+		return obj.toString();
+	}
+	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/getReviewRank", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getReviewRank(@RequestParam("userid") String userid) {
 		String backgroundColor = "";
 		if(userid != null) {
-			int point = 0;
-			point = userService.getPointBalance(userid);
-			backgroundColor = "#cd7f32";
-			
-			if(point > 20000) {
-				backgroundColor = "gold";
-			} else if(point > 10000) {
-				backgroundColor = "silver";
+			int usedpoint = 0;
+			usedpoint = userService.getusedPointBalance(userid);
+			if(usedpoint >= 50000) {
+				backgroundColor = "fa-tree";
+			} else if(usedpoint >= 20000) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
 			}
 		}
 		JSONObject jsonObject = new JSONObject();
