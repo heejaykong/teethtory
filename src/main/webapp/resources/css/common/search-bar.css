@@ -1,0 +1,39 @@
+/*
+
+**검색바 컴포넌트 사용 가이드**
+작성자: 공희재
+
+아래 템플릿 예시를 참고해 사용하면 됩니다.
+ 
+<%-- 검색바 --%>
+<div class="search-bar-component">
+	<div class="input-and-button">
+		<input id="searchInput" type="text" class="search-bar__input" placeholder="치과를 검색해 보세요."/>
+		<span id="searchBtn" class="search-bar__submit-btn">
+			<i class="fa-solid fa-magnifying-glass"></i>
+		</span>
+	</div>
+	<p class="small-guide-text">찾으시는 치과가 없나요? <a href="#">치과 등록을 요청하세요.</a></p>
+</div>
+*/
+
+.search-bar-component {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0.6rem;
+}
+.input-and-button {
+	display: flex;
+	align-items: center;
+}
+.search-bar__input {
+	flex-grow: 1;
+	border: var(--card-border);
+	border-radius: 3px;
+	padding: 0.8rem 0 0.8rem 0.8rem;
+	margin-right: 0.7rem;
+}
+.search-bar__submit-btn {
+	cursor: pointer;
+	min-width: 1.5rem;
+}

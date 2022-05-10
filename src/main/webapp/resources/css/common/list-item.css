@@ -24,6 +24,7 @@
 */
 
 .list-item {
+	cursor: pointer;
 	border-bottom: var(--card-border);
 	display: flex;
 	padding: var(--default-inner-space);
@@ -44,9 +45,13 @@
 	flex-grow: 1;
 }
 .list-item__info-summary .title {
+	width: 13rem;
 	color: var(--osstem-orange);
 	font-size: 1.7rem;
 	font-weight: 500;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 	margin-bottom: 0.5rem;
 }
 .list-item__info-summary .subtitle {
@@ -56,12 +61,20 @@
 	margin-left: 0.3rem;
 }
 .list-item__info-summary .text-md {
+	width: 14rem;
 	color: var(--dark-gray);
 	font-size: 1.2rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;	
 }
 .list-item__info-summary .text-sm {
+	width: 14rem;
 	color: var(--dark-gray);
 	font-size: 1rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 .list-item__thumbnail {
 	border: var(--card-border);
