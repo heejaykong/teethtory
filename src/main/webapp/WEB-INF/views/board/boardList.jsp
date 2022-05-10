@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 </head>
 <style>
 	.fa-search{
@@ -99,31 +100,59 @@
 		</c:forEach>
 	</div>
 	
-	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
+	<nav aria-label="Page navigation example" style="margin-top: 1rem;"> 
 	  <ul class="pagination justify-content-center">
-	  <li><a class="page-link" href="boardList?pageNo=1"><<</a></li>
-	    <li class="page-item">
+	    <%-- <li class="page-item"> --%>
+		<%-- <div class="pagination-component"> --%>
+			<a href="boardList?pageNo=1">
+				<div class="pagination-btn">
+					<i class="fa-solid fa-angles-left"></i>
+				</div>
+			</a>
 			<c:if test="${pager.groupNo>1}">
-				<a class="page-link" href="boardList?pageNo=${pager.startPageNo-1}"><</a>
+				<a href="boardList?pageNo=${pager.startPageNo-1}">
+					<div class="pagination-btn">
+						<i class="fa-solid fa-angle-left"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
+	    <%-- </li> --%>
 	  
 	    <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 			<c:if test="${pager.pageNo != i}">
-				<li class="page-item"><a class="page-link" href="boardList?pageNo=${i}">${i}</a>
+				<%-- <li class="page-item"> --%>
+				<a href="boardList?pageNo=${i}">
+					 <div class="pagination-btn">
+						${i}
+					</div>
+				</a>
 			</c:if>
 			<c:if test="${pager.pageNo == i}">
-				<li class="page-item active" aria-current="page"><a class="page-link">${i}</a>
+				<%-- <li class="page-item active" aria-current="page"> --%>
+				<a>
+					 <div class="pagination-btn pagination-btn-current">
+						${i}
+					</div>
+				</a>
 			</c:if>
 		</c:forEach>
-		
-	    <li class="page-item">
+	    <%-- <li class="page-item"> --%>
 		    <c:if test="${pager.groupNo<pager.totalGroupNo}">
-				<a class="page-link" href="boardList?pageNo=${pager.endPageNo+1}">></a>
+				<a href="boardList?pageNo=${pager.endPageNo+1}">
+					 <div class="pagination-btn">
+						<i class="fa-solid fa-angle-right"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
-	    <li><a class="page-link" href="boardList?pageNo=${pager.totalPageNo}">>></a></li>
-	    
+	    <%-- </li> --%>
+	    <li>
+			<a href="boardList?pageNo=${pager.totalPageNo}">
+				 <div class="pagination-btn">
+					<i class="fa-solid fa-angles-right"></i>
+				</div>
+			</a>
+		</li>
+	    </div>
 	  </ul>
 	</nav>
 	</div>

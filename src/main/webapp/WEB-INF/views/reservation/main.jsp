@@ -107,7 +107,7 @@
                             <%-- <div style="margin-top:1rem; text-align: center;"> --%>
                             <a onClick="get_list(1)">
                                 <div class="pagination-btn">
-								<i class="fa-solid fa-angles-left"></i>
+								    <i class="fa-solid fa-angles-left"></i>
 							    </div>
                             </a>
                             <c:if test="${pager.groupNo>1}">
