@@ -162,9 +162,14 @@
 		<div class="board d-flex flex-column" style="padding: 0.5rem;">
 			<div class="d-flex justify-content-between align-items-center">
 				<div class="d-flex">
-					<c:if test="${comment.backgroundColor != null}"><div class="writer__img mr-2" 
-						style="display: inline-block; background-color: ${comment.backgroundColor};"></div></c:if>
-					<div style="font-size: 1.1rem; font-weight: bold;" class="mt-1">${comment.commentwriter}</div>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+					<div style="font-size: 1.1rem; font-weight: bold;" class="mt-1">
+						${comment.commentwriter}
+						<c:if test="${comment.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+					</div>
+					
 				</div>
 				
 				<div class="btn-group" role="group" aria-label="Button group with nested dropdown">

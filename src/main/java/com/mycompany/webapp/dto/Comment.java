@@ -13,4 +13,5 @@ public class Comment {
 	private String commentwriter;
 	private int commentlike;
 	private String backgroundColor;
+	private String doctor;
 }

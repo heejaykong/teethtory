@@ -174,18 +174,49 @@ public class BoardController {
 		
 		List<Comment> comments = commentService.getComments(boardno, pager);
 
+		if(!boardUserid.equals("(알 수 없음)")) {
+			int point = 0;
+			point = userService.getPointBalance(boardUserid);
+			String backgroundColor = "";
+			if(point > 50000) {
+				backgroundColor = "fa-tree";
+			} else if(point > 20000) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
+			}
+			
+			//의사인지 체크하는 코드
+			if(userService.getUser(boardUserid).isIsdoctor()) {
+				board.setDoctor("doctor");
+				backgroundColor = "fa-user-doctor";
+			}
+			
+			board.setBackgroundColor(backgroundColor);
+			board.setCommentcount(commentcount);
+		}
+		
 		for(Comment comment : comments) {
 			String commentUserid = comment.getCommentwriter();
 			
 			if(!commentUserid.equals("(알 수 없음)")) {
-				int point = 30000;
+				int point = 0;
 				point = userService.getPointBalance(commentUserid);
-				String backgroundColor = "#cd7f32";
-				if(point > 20000) {
-					backgroundColor = "gold";
-				} else if(point > 10000) {
-					backgroundColor = "silver";
+				String backgroundColor = "";
+				if(point > 50000) {
+					backgroundColor = "fa-tree";
+				} else if(point > 20000) {
+					backgroundColor = "fa-pagelines";
+				} else {
+					backgroundColor = "fa-seedling";
 				}
+				
+				//의사인지 체크하는 코드
+				if(userService.getUser(commentUserid).isIsdoctor()) {
+					comment.setDoctor("doctor");
+					backgroundColor = "fa-user-doctor";
+				}
+				
 				comment.setBackgroundColor(backgroundColor);
 			}
 			
