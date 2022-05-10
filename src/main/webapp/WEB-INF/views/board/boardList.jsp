@@ -100,7 +100,7 @@
 		</c:forEach>
 	</div>
 	
-	<%-- <nav aria-label="Page navigation example" style="margin-top: 1rem;"> --%>
+	<nav aria-label="Page navigation example" style="margin-top: 1rem;"> 
 	  <ul class="pagination justify-content-center">
 	    <%-- <li class="page-item"> --%>
 		<%-- <div class="pagination-component"> --%>
@@ -130,7 +130,7 @@
 			<c:if test="${pager.pageNo == i}">
 				<%-- <li class="page-item active" aria-current="page"> --%>
 				<a>
-					 <div class="pagination-btn">
+					 <div class="pagination-btn pagination-btn-current">
 						${i}
 					</div>
 				</a>
@@ -154,7 +154,7 @@
 		</li>
 	    </div>
 	  </ul>
-	<%-- </nav> --%>
+	</nav>
 	</div>
 	<script>
 		

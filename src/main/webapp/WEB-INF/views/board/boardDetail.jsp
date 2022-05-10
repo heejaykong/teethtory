@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-커뮤니티</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
 .modal{ 
   position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
@@ -18,60 +19,59 @@
   box-sizing:border-box; padding:74px 0;
   line-height:23px; cursor:pointer;
 }
-	.boardwriter__img {
-		width: 2rem;
-		height: 2rem;
-		border-radius: 50%;
-	}
-	
-	.writer__img {
-		width: 1.5rem;
-		height: 1.5rem;
-		border-radius: 50%;
-	}
-	.docterCheck {
-		font-size: 1rem;
-		color: #42A5F5;
-	}
-	
-	#fa-seedling {
-		font-size: 1.5rem;
-		color:  rgb(164, 211, 147);
-	}
-	
-	#fa-pagelines {
-		font-size: 1.5rem;
-		color: rgb(13, 173, 27);
-	}
-	
-	#fa-tree {
-		font-size: 1.5rem;
-		color: rgb(10, 109, 18);
-	}
-    h4 {
-    	font-size: 1.1rem;
-    	font-weight: bold;
-    }
-    
-    h5 {
-    	font-size: 0.8rem;
-    	color: dimgray;
-    }
-    
-    #boardtitle {
-    	font-size: 1.5rem;
-    	font-weight: bold;
-    }
-    
-    #boardcontent {
-    	font-size: 1rem;
-    	color: dimgray;
-    }
-    
-    #commentcontent {
-    	font-size: 1rem;
-    }
-    
+.boardwriter__img {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+}
+
+.writer__img {
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+}
+.docterCheck {
+	font-size: 1rem;
+	color: #42A5F5;
+}
+
+#fa-seedling {
+	font-size: 1.5rem;
+	color:  rgb(164, 211, 147);
+}
+
+#fa-pagelines {
+	font-size: 1.5rem;
+	color: rgb(13, 173, 27);
+}
+
+#fa-tree {
+	font-size: 1.5rem;
+	color: rgb(10, 109, 18);
+}
+h4 {
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+
+h5 {
+	font-size: 0.8rem;
+	color: dimgray;
+}
+
+#boardtitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+#boardcontent {
+	font-size: 1rem;
+	color: dimgray;
+}
+
+#commentcontent {
+	font-size: 1rem;
+}
 </style>
 </head>
 <script>
@@ -200,29 +200,60 @@
 	
 	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
 	  <ul class="pagination justify-content-center">
-	  <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=1"><<</a></li>
-	    <li class="page-item">
+	  <%-- <li> --%>
+	  <div class="pagination-component">
+	  	<a href="boardDetail?boardno=${board.boardno}&pageNo=1">
+			 <div class="pagination-btn">
+				<i class="fa-solid fa-angles-left"></i>
+			</div>
+		</a>
+	<%-- </li> --%>
+	    <%-- <li class="page-item"> --%>
 			<c:if test="${pager.groupNo>1}">
-				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.startPageNo-1}"><</a>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.startPageNo-1}">
+					<div class="pagination-btn">
+						<i class="fa-solid fa-angle-left"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
+	    <%-- </li> --%>
 	  
 	    <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 			<c:if test="${pager.pageNo != i}">
-				<li class="page-item"><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${i}">${i}</a>
+				<%-- <li class="page-item"> --%>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${i}">
+					<div class="pagination-btn">
+						${i}
+					</div>
+				</a>
 			</c:if>
 			<c:if test="${pager.pageNo == i}">
-				<li class="page-item active" aria-current="page"><a class="page-link">${i}</a>
+				<%-- <li class="page-item active" aria-current="page"> --%>
+				<a>
+					 <div class="pagination-btn pagination-btn-current">
+						${i}
+					</div>
+				</a>
 			</c:if>
 		</c:forEach>
 		
-	    <li class="page-item">
+	    <%-- <li class="page-item"> --%>
 		    <c:if test="${pager.groupNo<pager.totalGroupNo}">
-				<a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.endPageNo+1}">></a>
+				<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.endPageNo+1}">
+					<div class="pagination-btn">
+						<i class="fa-solid fa-angle-right"></i>
+					</div>
+				</a>
 			</c:if>
-	    </li>
-	    <li><a class="page-link" href="boardDetail?boardno=${board.boardno}&pageNo=${pager.totalPageNo}">>></a></li>
-	    
+	    <%-- </li> --%>
+	    <%-- <li> --%>
+		<a href="boardDetail?boardno=${board.boardno}&pageNo=${pager.totalPageNo}">
+			 <div class="pagination-btn">
+				<i class="fa-solid fa-angles-right"></i>
+			</div>
+		</a>
+		<%-- </li> --%>
+		</div>
 	  </ul>
 	</nav>
 </div>
