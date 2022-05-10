@@ -94,22 +94,22 @@
 			});
 		}
 	 	
-	 	function getdendomainByDendomain(dendomain) {
-	       // data-dendomain값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 dendomain값이 필요하기 때문에,
-	       // 현재 페이지가 갖고 있는 dendomain 정보로써 dendomain값이 뭔지 user서버 단에 쿼리 날리는 함수
-	 		let dendomain = null;
-	 		$.ajax({
-	 			type: "POST",
-	 			url: "${pageContext.request.contextPath}/dentist/getdendomainByDendomain?dendomain=" + dendomain,
-	 			async: false
-	 		}).done((data) => {
-	 			dendomain = data.dendomain;
-	 		});
-	 		return dendomain;
-	 	}
+	 	// function getdendomainByDendomain(dendomain) {
+	    //    // data-dendomain값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 dendomain값이 필요하기 때문에,
+	    //    // 현재 페이지가 갖고 있는 dendomain 정보로써 dendomain값이 뭔지 user서버 단에 쿼리 날리는 함수
+	 	// 	let dendomain = null;
+	 	// 	$.ajax({
+	 	// 		type: "POST",
+	 	// 		url: "${pageContext.request.contextPath}/dentist/getdendomainByDendomain?dendomain=" + dendomain,
+	 	// 		async: false
+	 	// 	}).done((data) => {
+	 	// 		dendomain = data.dendomain;
+	 	// 	});
+	 	// 	return dendomain;
+	 	// }
 	 	
 		function template({treatno, dendomain, treattype, denname, treatdate}) {
-			const dendomain = getdendomainByDendomain(dendomain);
+			// const dendomain = getdendomainByDendomain(dendomain);
 			
 			return `
 
