@@ -57,7 +57,7 @@ Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
 	console.log(${myDentistList});
 	getData();
 	let allCost = 0;
-	function windowdd() {
+	function getEasteggs() {
 		let myDentistList = ${myDentistList}.myDentistList;
 		
 		const promise = new Promise((resolve, reject) => {
@@ -149,7 +149,7 @@ Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
 	
 	async function getData() {
 		try {
-			let data = await windowdd();
+			let data = await getEasteggs();
 			console.log(data);
 			$("#price").html(data[data.length - 1].toLocaleString() + "원");
 			

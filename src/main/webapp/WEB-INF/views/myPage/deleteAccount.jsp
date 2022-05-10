@@ -34,7 +34,7 @@
 			</div>
 		</c:if>
 		
-		<form action="signOut" method="post" class="default-form">
+		<form action="deleteAccount" method="post" class="default-form">
 			<label for="userid">아이디</label>
 			<input id="userid" name="userid" type="text" placeholder="아이디를 입력해 주세요."/>
 
