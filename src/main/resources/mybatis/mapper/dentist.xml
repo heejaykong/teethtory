@@ -20,7 +20,7 @@
 	
 	<select id="selectByDenname" resultType="dentist">
 	<!-- 
-		SELECT denno, dendomain, denname, denaddress
+		SELECT dendomain, denname, denaddress
 		FROM dentists
 		WHERE denname like '%' || #{denname} || '%'
 		ORDER BY denname -->
@@ -44,13 +44,6 @@
 		WHERE denaddress like '%' || #{denaddress} || '%'
 		ORDER BY denaddress
 	</select>
-
-<!-- 	<select id="selectByDenenno" parameterType="int" resultType="dentist">
-		SELECT denno, dendomain, denname, denaddress
-		FROM dentists
-		WHERE denno=#{denno}
-	</select> -->
-
 	<select id="selectByDendomain" parameterType="string" resultType="dentist">
 		SELECT dendomain, denname, denaddress
 		FROM dentists
@@ -59,11 +52,6 @@
 	
 	<!-- 더미 데이터 생성용. 구현X. -->
 	<insert id="insert" parameterType="dentist">
-
-<!-- 		<selectKey keyProperty="denno" resultType="int" order="BEFORE">
-			select DENNO_SEQ.nextval from dual
-		</selectKey> -->
-
 		INSERT INTO dentists(
 			dendomain, denname, denaddress
 		)

@@ -1,187 +1,193 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-진료 예약하기</title>
+	<title>치스토리 - 진료 예약하기</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/main.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
-	<style>
-		.keyword{
-		    width:15rem;
-		    height:2rem;
-		    margin-top:1rem;  
-		}
-		#face{
-		   width: 20rem;
-		   margin-top:5rem;
-		}
-		#top{
-		    display:inline-block;
-		}
-		
-		a:link { color: red; text-decoration: none;}
-		a:visited { color: black; text-decoration: none;}
-		a:hover { color: orange; }
-		
-		
-	</style>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/search-bar.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-    <div class="located-at-bottom-of-header">
-                        <div style="margin-top:6rem; margin-left:1rem;font-weight:bold;font-size:1.5em;">
-                           진료 예약하기
-                        </div>
-                        <div id="top" class="container">
-                            <div >
-                            <input id="searching-keyword" class='keyword' type='text' name="search" maxlength=255 value=""placeholder="치과를 검색해 보세요." style="width:90%; height:3rem; border:0.25rem solid lightgrey;">
-	                        <span style="margin-left:-2rem;"><i id="submit" class="fas fa-search"></i></span>
-                            </div>
-                        </div>
-            
-                        <div style="margin-top:1rem; margin-left:1rem;">찾으시는 치과가 없나요?
-                            <a style="text-decoration:none;color: rgb(242, 101, 34);"id="enroll"href="${pageContext.request.contextPath}/myPage/myDentist">  치과 등록을 요청하세요!</a>
-                        </div>
-                        <hr>
-                        <script>
-                            let submitIcon = document.getElementById('submit');
-                            submitIcon.onclick = function() {
-                                var searchingKeyword = document.getElementById('searching-keyword').value;
-                                window.localStorage.setItem('searchingKeyword_LS', searchingKeyword);
-                                console.log(searchingKeyword);
-                                location.href = "main?denname=" + searchingKeyword;
-                            }
-                        </script>
+    <main class="main located-at-bottom-of-header">
 
-                        <div style="display: flex; flex-direction: column; align-items: center;">
-                        
-                            <c:if test="${searchedDentistList == null}">
-                            <!-- 여기에 기본으로 자기 치과를 띄워주면 될 듯  -->
-                                <c:forEach var="myDentistList" items="${myDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
-                                    onclick="goReservationUsingMap(${myDentistList.dendomain});">
-                                    <div class="history-list__item" style=" width: inherit;">
-                                        <!--
-                                        <div class="item__col">
-                                            <img
-                                                src="/springframework-mini-project/resources/images/signOut.jpg"
-                                                class="round-thumbnail">
-                                        </div>
-                                        -->
-                                        <div>
-                                            <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${myDentistList.denname}</div>
-                                            <span class="dentist-visited">${myDentistList.denaddress}</span>
+		<%-- 검색바 영역 --%>
+		<section class="search-bar-block">
+			<h1 class="page-title">진료 예약하기</h1>
 
-                                            <div id="dendomain" style="display:none;">${myDentistList.dendomain}</div>
+			<h3 class="section-title">치과 찾기</h3>
+	
+			<%-- 검색바 --%>
+			<div class="search-bar-component">
+				<div class="input-and-button">
+					<input id="searchInput" type="text" class="search-bar__input" placeholder="치과를 검색해 보세요."/>
+					<span id="searchBtn" class="search-bar__submit-btn">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</span>
+				</div>
+				<p class="small-guide-text">찾으시는 치과가 없나요? <a href="#">치과 등록을 요청하세요.</a></p>
+			</div>
+		</section>
 
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                            </c:if>
-                            <c:forEach var="searchedDentist" items="${searchedDentistList}">
-                                <div id="a-dentist" style="width: 90%; position: relative; margin-top:1rem;"
-                                    onclick="goReservationUsingMap(${searchedDentist.dendomain});">
-                                    <div class="history-list__item" style="width: inherit;">
-                                        <!--
-                                        <div class="item__col">
-                                            <img
-                                                src="/springframework-mini-project/resources/images/signOut.jpg"
-                                                class="round-thumbnail">
-                                        </div>
-                                        -->
-                                        <div>
-                                            <div id="denName_3" style="color: rgb(242, 101, 34); font-size: 1.8rem;">${searchedDentist.denname}</div>
-                                            <span class="dentist-visited">${searchedDentist.denaddress}</span>
-                                            <div id="dendomain" style="display:none;">${searchedDentist.dendomain}</div>
+		<%-- 옅은 회색 분리막대 --%>
+		<div class="thick-divider"></div>
+		
+		<%-- 검색결과 영역 --%>
+		<%-- 
+		내치과	검색치과 	검색어 존재여부
+		0		0			1			= (내치과상관없이) 없어요 출력
+		1		0			1			= (내치과상관없이) 없어요 출력
+		0		1			1			= (내치과상관없이) 검색결과 출력
+		1		1			1			= (내치과상관없이) 검색결과 출력
+		1		0			0			= 내치과목록 출력
+		0		0			0			= 출력하는 것 없음
+		--%>
+		<section class="search-result-block">
+			<c:choose>
+				<c:when test="${empty fn:trim(denname)}">
+					<%-- 내치과목록 출력 --%>
+					<c:forEach var="myDentist" items="${myDentistList}">
+						<a href="reservationUsingMap?dendomain=${myDentist.dendomain}">
+							<div class="list-item hover-effect" data-dendomain="${myDentist.dendomain}">
+								<div class="list-item__info-summary">
+									<h4 class="title">
+										${myDentist.denname}
+										<span class="subtitle">
+											<i class="fa-solid fa-circle-check"></i>
+											내 치과
+										</span>
+									</h4>
+									<p class="text-sm">${myDentist.denaddress}</p>
+								</div>
+								<div class="list-item__thumbnail">
+									<img src="http://localhost:${myDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" onerror="handleNoImage(event)" alt="thumbnail image"/>
+								</div>
+							</div>
+						</a>
+						
+					</c:forEach>
+				</c:when> 
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${fn:length(searchedDentistList) == 0}">
+							<div class="empty-block">
+								<img src="${pageContext.request.contextPath}/resources/images/toothCharacter/looking-with-a-magnifying-glass.png" alt="looking-with-a-magnifying-glass">
+								<p class="text">
+									검색한 치과가 없어요.
+								</p>
+							</div>
+						</c:when> 
+						<c:otherwise>
+							<c:forEach var="searchedDentist" items="${searchedDentistList}">
+								<%-- 검색결과 출력 --%>
+								<a href="reservationUsingMap?dendomain=${searchedDentist.dendomain}">
+									<div class="list-item hover-effect" data-dendomain="${searchedDentist.dendomain}">
+										<div class="list-item__info-summary">
+											<h4 class="title">
+												${searchedDentist.denname}
+												<%-- 내치과일 경우에만 '내치과' 딱지 붙여줌 --%>
+												<c:if test="${fn:contains(myDentistList, searchedDentist)}">
+													<span class="subtitle">
+														<i class="fa-solid fa-circle-check"></i>
+														내 치과
+													</span>		
+												</c:if>
+											</h4>
+											<p class="text-sm">${searchedDentist.denaddress}</p>
+										</div>
+										<div class="list-item__thumbnail">
+											<img src="http://localhost:${searchedDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" onerror="handleNoImage(event)" alt="thumbnail image"/>
+										</div>
+									</div>
+								</a>
+							</c:forEach>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </div>
-                        <%-- 페이지네이션 --%>
-                        <div class="pagination-component">
-                            <%-- <div style="margin-top:1rem; text-align: center;"> --%>
-                            <a onClick="get_list(1)">
-                                <div class="pagination-btn">
-								    <i class="fa-solid fa-angles-left"></i>
-							    </div>
-                            </a>
-                            <c:if test="${pager.groupNo>1}">
-                                <a onClick="get_list(${pager.startPageNo-1})">
-                                    <div class="pagination-btn">
-									    <i class="fa-solid fa-angle-left"></i>
-								    </div>
-                                </a>
-                            </c:if>
-                            
-                            <c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-                                <c:if test="${pager.pageNo != i}">
-                                    <a onClick="get_list(${i})">
-                                        <div class="pagination-btn">
-                                            ${i}
-                                        </div>
-                                    </a>
-                                </c:if>
-                                <c:if test="${pager.pageNo == i}">
-                                    <a onClick="get_list(${i})">
-                                        <div class="pagination-btn pagination-btn-current">
-										    ${i}
-									    </div>
-                                    </a>
-                                </c:if>
-                            </c:forEach>
-                            
-                            <c:if test="${pager.groupNo<pager.totalGroupNo}">
-                                <a onClick="get_list(${pager.endPageNo+1})">
-                                    <div class="pagination-btn">
-									    <i class="fa-solid fa-angle-right"></i>
-								    </div>
-                                </a>
-                            </c:if>
-                            <c:if test="${pager.totalGroupNo == null}">
-                                <a >
-                                    <div class="pagination-btn">
-								        <i class="fa-solid fa-angles-right"></i>
-							        </div>
-                                </a>
-                            </c:if>
-                            <c:if test="${pager.totalGroupNo != null}">
-                                <a onClick="get_list(${pager.totalPageNo})">
-                                    <div class="pagination-btn">
-								        <i class="fa-solid fa-angles-right"></i>
-							        </div>
-                                </a>
-                            </c:if>
-                        </div>
-                        <script>
-                            function get_list(pageNo) {
-	                            location.href = "main?denname=" + window.localStorage.getItem('searchingKeyword_LS')  +"&pageNo=" + pageNo;
-                            }   
+							<%-- 검색결과 페이지네이션 --%>
+							<div class="pagination-component">
+								<a onClick="getPage(1)">
+									<div class="pagination-btn">
+									<i class="fa-solid fa-angles-left"></i>
+									</div>
+								</a>
+								<c:if test="${pager.groupNo>1}">
+									<a onClick="getPage(${pager.startPageNo-1})">
+										<div class="pagination-btn">
+											<i class="fa-solid fa-angle-left"></i>
+										</div>
+									</a>
+								</c:if>
+								<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+									<c:if test="${pager.pageNo != i}">
+										<a onClick="getPage(${i})">
+											<div class="pagination-btn">
+												${i}
+											</div>
+										</a>
+									</c:if>
+									<c:if test="${pager.pageNo == i}">
+										<a onClick="getPage(${i})">
+											<div class="pagination-btn pagination-btn-current">
+												${i}
+											</div>
+										</a>
+									</c:if>
+								</c:forEach>
+								<c:if test="${pager.groupNo<pager.totalGroupNo}">
+									<a onClick="getPage(${pager.endPageNo+1})">
+										<div class="pagination-btn">
+											<i class="fa-solid fa-angle-right"></i>
+										</div>
+									</a>
+								</c:if>
+								<%-- <c:if test="${pager.totalGroupNo == null}">
+									<a>
+										<div class="pagination-btn">
+											<i class="fa-solid fa-angles-right"></i>
+										</div>
+									</a>
+								</c:if> --%>
+								<a onClick="getPage(${pager.totalPageNo})">
+									<div class="pagination-btn">
+										<i class="fa-solid fa-angles-right"></i>
+									</div>
+								</a>
+							</div> <%-- 페이지네이션 끝 --%>
+				
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise> 
+			</c:choose>
 
-                            function goReservationUsingMap(dendomain) {
-                                console.log(dendomain);
-                                localStorage.setItem("dendomain", dendomain);
-                                location.href = "reservationUsingMap?dendomain=" + dendomain;
-                            }
-                            setInterval(function(){
-                            	  $("#enroll").toggle();
-                            	}, 750);
-                        </script>
-					
-            <!-- 마이페이지 - 진료예약현황으로 보내기. -->
-            <!--
-            <div>
-                <img src="/springframework-mini-project/resources/images/ㅠㅠ.png" style="width:100%;">
-            </div>
-            -->
-
+			<%-- 변수 선언 --%>
+			<c:set var="denname" value="${denname}" />
+			<script>
+				const denname = '${denname}';
+				function getPage(pageNo) {
+					location.href = "main?denname=" + denname +"&pageNo=" + pageNo;
+				}
+				function handleNoImage(event){
+					const target = event.target;
+					target.onerror = null;
+					target.src = "${pageContext.request.contextPath}/resources/images/no-image.jpg";
+				}
+				// 메인함수
+				$(function() {
+					// 검색 시 요청
+					$("#searchBtn").on("click", () => {
+						const searchingKeyword = $("#searchInput").val();
+						location.href = "main?denname=" + searchingKeyword;
+					});
+				});
+			</script>
         </section>
-   </div>
-</div>
+	</main>
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>
