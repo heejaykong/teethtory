@@ -37,17 +37,17 @@
 }
 
 #fa-seedling {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color:  rgb(164, 211, 147);
 }
 	
 #fa-pagelines {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color: rgb(13, 173, 27);
 }
 	
 #fa-tree {
-	font-size: 2.5rem;
+	font-size: 2rem;
 	color: rgb(10, 109, 18);
 }	
 </style>
@@ -369,7 +369,7 @@
 						lee = leedh.backgroundColor;
 					});
 
-					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex" style="font-size: 0.9rem;">';
+					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex align-items-center" style="font-size: 0.9rem;">';
 					if(lee = "fa-seedling") {
 						aReviewHtml += '	<i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i>';
 					} else if(lee = "fa-pagelines") {

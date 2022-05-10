@@ -88,4 +88,10 @@ public class UserService {
 		User user = userDao.selectByUserid(userid);
 		return user.getUserpoint();
 	}
+	
+	//사용자의 사용한 포인트 잔액 가져오기.
+	public int getusedPointBalance(String userid) {
+		User user = userDao.selectByUserid(userid);
+		return user.getUserusedpoint();
+	}
 }

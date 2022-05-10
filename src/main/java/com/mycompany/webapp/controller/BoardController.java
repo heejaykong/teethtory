@@ -59,12 +59,12 @@ public class BoardController {
 			
 			//등급별 색 구분하는 코드
 			if(!userid.equals("(알 수 없음)")) {
-				int point = 0;
-				point = userService.getPointBalance(userid);
+				int userpoint = 0;
+				userpoint = userService.getusedPointBalance(userid);
 				String backgroundColor = "";
-				if(point > 50000) {
+				if(userpoint >= 50000) {
 					backgroundColor = "fa-tree";
-				} else if(point > 20000) {
+				} else if(userpoint >= 20000) {
 					backgroundColor = "fa-pagelines";
 				} else {
 					backgroundColor = "fa-seedling";
@@ -103,12 +103,12 @@ public class BoardController {
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
 			if(!userid.equals("(알 수 없음)")) {
-				int point = 0;
-				point = userService.getPointBalance(userid);
+				int userpoint = 0;
+				userpoint = userService.getusedPointBalance(userid);
 				String backgroundColor = "";
-				if(point > 50000) {
+				if(userpoint >= 50000) {
 					backgroundColor = "fa-tree";
-				} else if(point > 20000) {
+				} else if(userpoint >= 20000) {
 					backgroundColor = "fa-pagelines";
 				} else {
 					backgroundColor = "fa-seedling";
@@ -141,12 +141,12 @@ public class BoardController {
 		int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 		
 		if(!boardUserid.equals("(알 수 없음)")) {
-			int point = 0;
-			point = userService.getPointBalance(boardUserid);
+			int userpoint = 0;
+			userpoint = userService.getusedPointBalance(boardUserid);
 			String backgroundColor = "";
-			if(point > 50000) {
+			if(userpoint >= 50000) {
 				backgroundColor = "fa-tree";
-			} else if(point > 20000) {
+			} else if(userpoint >= 20000) {
 				backgroundColor = "fa-pagelines";
 			} else {
 				backgroundColor = "fa-seedling";
@@ -175,12 +175,12 @@ public class BoardController {
 		List<Comment> comments = commentService.getComments(boardno, pager);
 
 		if(!boardUserid.equals("(알 수 없음)")) {
-			int point = 0;
-			point = userService.getPointBalance(boardUserid);
+			int userpoint = 0;
+			userpoint = userService.getusedPointBalance(boardUserid);
 			String backgroundColor = "";
-			if(point > 50000) {
+			if(userpoint >= 50000) {
 				backgroundColor = "fa-tree";
-			} else if(point > 20000) {
+			} else if(userpoint >= 20000) {
 				backgroundColor = "fa-pagelines";
 			} else {
 				backgroundColor = "fa-seedling";
@@ -200,12 +200,12 @@ public class BoardController {
 			String commentUserid = comment.getCommentwriter();
 			
 			if(!commentUserid.equals("(알 수 없음)")) {
-				int point = 0;
-				point = userService.getPointBalance(commentUserid);
+				int userpoint = 0;
+				userpoint = userService.getusedPointBalance(commentUserid);
 				String backgroundColor = "";
-				if(point > 50000) {
+				if(userpoint >= 50000) {
 					backgroundColor = "fa-tree";
-				} else if(point > 20000) {
+				} else if(userpoint >= 20000) {
 					backgroundColor = "fa-pagelines";
 				} else {
 					backgroundColor = "fa-seedling";
