@@ -163,7 +163,7 @@ html, body {
 	getData();
 	let testList = [];
 	
-	function windowdd() {
+	function gethistorys() {
 		let myDentistList = ${myDentistList}.myDentistList;
 		
 		const promise = new Promise((resolve, reject) => {
@@ -224,7 +224,7 @@ html, body {
 	
 	async function getData() {
 		try {
-			data = await windowdd();
+			data = await gethistorys();
 			console.log("data", data);
 			testList = data;
 			$("#loading").hide();

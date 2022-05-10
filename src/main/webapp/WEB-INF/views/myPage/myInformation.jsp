@@ -66,7 +66,7 @@
 				<label class="custom-control-label" for="notiToggleBtn">진료일 하루 전에 알림 수신하기</label>
 			</div>
 
-			<a href="deleteAccount(구 signOut)" class="deleteAccountLink">치스토리 탈퇴하기</a>
+			<a href="deleteAccount" class="deleteAccountLink">치스토리 탈퇴하기</a>
 		</section>
 	</main>
 

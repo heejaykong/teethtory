@@ -231,18 +231,18 @@ public class MyPageController {
 	}
 	
 	//마이페이지 - 설정 - '탈퇴하기' 클릭시에 출력
-	@GetMapping("/signOut")
+	@GetMapping("/deleteAccount")
 	public String signOutForm() {
 		log.info("실행");
-		return "myPage/signOut";
+		return "myPage/deleteAccount";
 	}
 	
-	@PostMapping("/signOut")
+	@PostMapping("/deleteAccount")
 	public String signOut(User user, Model model, HttpSession session) {
 		LoginResult result = userService.login(user);
 		if (result == LoginResult.FAILED) {
 			model.addAttribute("error", "아이디나 비밀번호가 일치하지 않습니다.");
-			return "myPage/signOut";
+			return "myPage/deleteAccount";
 		}
 		userService.deleteUser(user.getUserid());
 		session.removeAttribute("sessionUserid");
