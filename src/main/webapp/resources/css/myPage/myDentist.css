@@ -105,20 +105,3 @@
 	font-weight: 500;
 	margin-bottom: 0.6rem;
 }
-/* 검색바 컴포넌트 */
-.search-bar-component {
-	display: flex;
-	align-items: center;
-	margin-bottom: 0.6rem;
-}
-.search-bar__input {
-	flex-grow: 1;
-	border: var(--card-border);
-	border-radius: 3px;
-	padding: 0.3rem 0 0.3rem 0.8rem;
-	margin-right: 0.7rem;
-}
-.search-bar__submit-btn {
-	cursor: pointer;
-	min-width: 1.5rem;
-}
