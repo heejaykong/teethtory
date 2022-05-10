@@ -140,7 +140,7 @@
 				getData(selectedTreattype);
 			}
 
-			function windowdd(selectedTreattype) {
+			function getTreatments(selectedTreattype) {
 				console.log(selectedTreattype);
 				const promise = new Promise((resolve, reject) => {
 					let list = [];
@@ -170,7 +170,7 @@
 	
 			async function getData(selectedTreattype) {
 				try {
-					data = await windowdd(selectedTreattype);
+					data = await getTreatments(selectedTreattype);
 					// TBD: 아래 smalldata들 다시 data로 바꾸기(테스트할때 너무 오래걸려서 smalldata로 해둠)
 					
 					// 만약 해당 내역이 없을 경우 없다고 표시

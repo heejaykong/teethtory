@@ -317,5 +317,4 @@ public class BoardController {
 		commentService.updateComment(comment);
 		return "redirect:/board/boardDetail?boardno=" + comment.getBoardno();
 	}
-	
 }

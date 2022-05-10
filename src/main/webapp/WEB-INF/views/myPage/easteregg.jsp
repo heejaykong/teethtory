@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css"/>
 <title>치스토리-(이스터에그)</title>
 </head>
 <style>
