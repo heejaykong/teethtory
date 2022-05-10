@@ -181,12 +181,12 @@ public class ReservationController {
 		if(userid != null) {
 			int point = 0;
 			point = userService.getPointBalance(userid);
-			backgroundColor = "#cd7f32";
-			
-			if(point > 20000) {
-				backgroundColor = "gold";
-			} else if(point > 10000) {
-				backgroundColor = "silver";
+			if(point > 50000) {
+				backgroundColor = "fa-tree";
+			} else if(point > 20000) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
 			}
 		}
 		JSONObject jsonObject = new JSONObject();

@@ -34,7 +34,22 @@
 	height: 3rem;
 	border-radius: 50%;
 }
+
+#fa-seedling {
+	font-size: 2.5rem;
+	color:  rgb(164, 211, 147);
+}
 	
+#fa-pagelines {
+	font-size: 2.5rem;
+	color: rgb(13, 173, 27);
+}
+	
+#fa-tree {
+	font-size: 2.5rem;
+	color: rgb(10, 109, 18);
+}
+		
 </style>
 <script>
 	localStorage.setItem('dendomain', "${dendomain}");
@@ -44,7 +59,7 @@
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 	  <div class="modal-content">
 	      <div class="modal-header">
@@ -166,7 +181,9 @@
 	</div>
 
 	<div id="reviewContainer" class="list-group">
-		<%-- 여기에 ajax로 받아온 후기 정보 대입. --%>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
 	</div>
 	<div id="reviewPaginationContainer">
 		<%-- 여기에 페이지네이션 처리. --%>
@@ -351,9 +368,15 @@
 					}).done((leedh) => {
 						lee = leedh.backgroundColor;
 					});
-					
+
 					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex" style="font-size: 0.9rem;">';
-					aReviewHtml += '	<div class="reviewWriter__img mr-2" style="background-color: ' + lee + '"></div>';
+					if(lee = "fa-seedling") {
+						aReviewHtml += '	<i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i>';
+					} else if(lee = "fa-pagelines") {
+						aReviewHtml += '	<i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i>';
+					} else if(lee = "fa-tree") {
+						aReviewHtml += '	<i class="fa-solid fa-tree mr-2" id="fa-tree"></i>';
+					}
 					aReviewHtml += '	<div>';
 					aReviewHtml += '	<div class="d-flex mb-1" style="color: #ffa048;">';
 					aReviewHtml += '		<small class="mr-2">';
