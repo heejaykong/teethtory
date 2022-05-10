@@ -30,7 +30,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation.css" />
+	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation/reservationUsingMap.css" />
 	<div class="located-at-bottom-of-header">
 	<div class="container"style="display:flex;flex-direction: row;">
 		<div><a onclick = window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
