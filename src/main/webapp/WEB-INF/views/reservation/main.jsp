@@ -67,7 +67,7 @@
 									<p class="text-sm">${myDentist.denaddress}</p>
 								</div>
 								<div class="list-item__thumbnail">
-									<img src="https://dummyimage.com/600x400/000/fff" alt="thumbnail image"/>
+									<img src="http://localhost:${myDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" onerror="handleNoImage(event)" alt="thumbnail image"/>
 								</div>
 							</div>
 						</a>
@@ -103,7 +103,7 @@
 											<p class="text-sm">${searchedDentist.denaddress}</p>
 										</div>
 										<div class="list-item__thumbnail">
-											<img src="https://dummyimage.com/600x400/000/fff" alt="thumbnail image"/>
+											<img src="http://localhost:${searchedDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" onerror="handleNoImage(event)" alt="thumbnail image"/>
 										</div>
 									</div>
 								</a>
@@ -171,6 +171,11 @@
 				const denname = '${denname}';
 				function getPage(pageNo) {
 					location.href = "main?denname=" + denname +"&pageNo=" + pageNo;
+				}
+				function handleNoImage(event){
+					const target = event.target;
+					target.onerror = null;
+					target.src = "${pageContext.request.contextPath}/resources/images/no-image.jpg";
 				}
 				// 메인함수
 				$(function() {
