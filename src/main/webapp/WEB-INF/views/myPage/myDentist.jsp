@@ -70,10 +70,12 @@
 
 			<%-- 검색바 --%>
 			<div class="search-bar-component">
-				<input id="searchInput" type="text" class="search-bar__input" placeholder="내 치과를 검색해 보세요."/>
-				<span id="searchBtn" class="search-bar__submit-btn">
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</span>
+				<div class="input-and-button">
+					<input id="searchInput" type="text" class="search-bar__input" placeholder="내 치과를 검색해 보세요."/>
+					<span id="searchBtn" class="search-bar__submit-btn">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</span>
+				</div>
 			</div>
 			
 			<%-- 검색결과 --%>
@@ -214,9 +216,7 @@
 			});
 			$('#confirmModal').on('show.bs.modal', function (event) {
 				const btnTriggered = $(event.relatedTarget);
-
-				const targetdendomain = btnTriggered.closest("[data-dendomain]").data("dendomain");
-
+				const targetDendomain = btnTriggered.closest("[data-dendomain]").data("dendomain");
 				const targetDenname = btnTriggered.closest("[data-denname]").data("denname");
 
 				// 모달을 trigger한 치과와 버튼(삭제/추가)에 따라 내용 다르게 그려주기
@@ -229,9 +229,7 @@
 				// 모달의 '예' 버튼 선택 시 상황(삭제/추가)에 따라 다르게 요청하기
 				$('#confirmBtn').on("click", function() {
 					const task = isDeleteBtn(btnTriggered) ? "delete" : "add";
-
-					location.href = "myDentist?dendomain=" + targetdendomain + "&task=" + task;
-
+					location.href = "myDentist?dendomain=" + targetDendomain + "&task=" + task;
 				});
 			});
 		})
