@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-치과 상세</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
 #Registered {
 	color: white;
@@ -48,8 +49,7 @@
 #fa-tree {
 	font-size: 2rem;
 	color: rgb(10, 109, 18);
-}
-		
+}	
 </style>
 <script>
 	localStorage.setItem('dendomain', "${dendomain}");
@@ -413,24 +413,50 @@
 				$("#reviewContainer").html(aReviewHtml);
 				//리뷰 페이지네이션 추가.
 				let aReviewPaginationHtml = '';
-				aReviewPaginationHtml += '<a class="btn btn-outline-primary btn-sm" onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">처음</a>';
+				aReviewPaginationHtml += '<div class="pagination-component" style="margin-right:1rem;>';
+				aReviewPaginationHtml += '<a onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">';
+				aReviewPaginationHtml += '		<div class="pagination-btn">';
+				aReviewPaginationHtml += '			<i class="fa-solid fa-angles-left"></i>';
+				aReviewPaginationHtml += '		</div>';
+				aReviewPaginationHtml += '	</a>';
 
 				if(pager[0].groupNo>1) {
-					aReviewPaginationHtml += '	<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">이전</a>';
+					aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">';
+					aReviewPaginationHtml += '		<div class="pagination-btn">';
+					aReviewPaginationHtml += '			<i class="fa-solid fa-angle-left"></i>';
+					aReviewPaginationHtml += '		</div>';
+					aReviewPaginationHtml += '	</a>';
 				}
 
 				for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
-					if(pager.pageNo != i) {
-						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+					if(pager[0].pageNo != i) {
+						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+						aReviewPaginationHtml += '			<div class="pagination-btn">';
+						aReviewPaginationHtml += '' + i;
+						aReviewPaginationHtml += '			</div>';
+						aReviewPaginationHtml += '		</a>';
 					} else {
-						aReviewPaginationHtml += '		<a class="btn btn-outline-success btn-sm" onClick="getReviewsWithPagination(' + i + ')">' + i + '</a>';
+						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+						aReviewPaginationHtml += '			<div class="pagination-btn pagination-btn-current">';
+						aReviewPaginationHtml += '' + i;;
+						aReviewPaginationHtml += '			</div>';
+						aReviewPaginationHtml += '		</a>';
 					}
 				}
 				if(pager[0].groupNo<pager[0].totalGroupNo) {
 					let nextPageNo = pager[0].endPageNo+1;
-					aReviewPaginationHtml += '		<a class="btn btn-outline-info btn-sm" onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')">다음</a>';
+					aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')"';
+					aReviewPaginationHtml += '			<div class="pagination-btn">';
+					aReviewPaginationHtml += '				<i class="fa-solid fa-angle-right"></i>';
+					aReviewPaginationHtml += '			</div>';
+					aReviewPaginationHtml += '		</a>';
 				}
-				aReviewPaginationHtml += '		<a class="btn btn-outline-primary btn-sm"  onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')">맨끝</a>';
+				aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')"';
+				aReviewPaginationHtml += '			<div class="pagination-btn">';
+				aReviewPaginationHtml += '				<i class="fa-solid fa-angles-right"></i>';
+				aReviewPaginationHtml += '			</div>';
+				aReviewPaginationHtml += '		</a>';
+				aReviewPaginationHtml += '</div>';
 
 				$("#reviewPaginationContainer").html(aReviewPaginationHtml);
 			});

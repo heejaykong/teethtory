@@ -1,0 +1,23 @@
+/* 진료 예약하기 main화면 */
+.main {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 검색바 영역 */
+.search-bar-block {
+	padding: var(--default-inner-space);
+}
+.small-guide-text {
+	color: var(--gray);
+	font-size: 0.7rem;
+	margin-top: 0.6rem;
+}
+.small-guide-text > a {
+	font-weight: 500;
+	text-decoration: underline;
+}
+
+/* 검색결과 영역 */
+.search-result-block {
+}

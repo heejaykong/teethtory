@@ -37,15 +37,15 @@ public class ReservationController {
 	private DentistService dentistService;
 	@Resource
 	private MyDentistService myDentistService;
+	private Pager pager;
 	
 	//header의 진료 예약 탭 클릭시, 예약화면으로 이동
 	@RequestMapping("/main")
 	public String reservation(HttpSession session
-			, @RequestParam(defaultValue="null") String denname
+			, @RequestParam(required=false) String denname
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 
-		
 		String userid = (String) session.getAttribute("sessionUserid");
 		if(userid != null) {
 			//Header에 이름, 포인트 값 넘기는 코드
@@ -61,14 +61,16 @@ public class ReservationController {
 		}
 		
 		//치과 검색.(이름으로 검색.)
-		if(!denname.equals("null")) {
+		if(denname != null) {
 			log.info("denname: " + denname);
 			int totalRows = dentistService.getDentistNumByDenname(denname);
-			Pager pager = new Pager(5, 5, totalRows, pageNo);
+			pager = new Pager(5, 5, totalRows, pageNo);
 			model.addAttribute("pager", pager);
 			List<Dentist> searchedDentistList = dentistService.getDentistByDenname(denname, pager);
 			model.addAttribute("searchedDentistList", searchedDentistList);
+			log.info(searchedDentistList);
 		}
+		model.addAttribute("denname", denname);
 		
 		return "reservation/main";
 	}
@@ -77,7 +79,7 @@ public class ReservationController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping("/reservationUsingMap")
 	public String reservationUsingMap(@RequestParam("dendomain") String dendomain
-			, Model model) {
+									, Model model) {
 		log.info("dendomain: " + dendomain);
 		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
