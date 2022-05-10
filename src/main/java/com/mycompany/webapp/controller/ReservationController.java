@@ -179,11 +179,11 @@ public class ReservationController {
 	public String getReviewRank(@RequestParam("userid") String userid) {
 		String backgroundColor = "";
 		if(userid != null) {
-			int point = 0;
-			point = userService.getPointBalance(userid);
-			if(point > 50000) {
+			int usedpoint = 0;
+			usedpoint = userService.getusedPointBalance(userid);
+			if(usedpoint >= 50000) {
 				backgroundColor = "fa-tree";
-			} else if(point > 20000) {
+			} else if(usedpoint >= 20000) {
 				backgroundColor = "fa-pagelines";
 			} else {
 				backgroundColor = "fa-seedling";

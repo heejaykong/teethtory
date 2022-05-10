@@ -46,11 +46,12 @@ public class HeaderCheckAfter {
 			String name = user.getUsername();
 			String email = user.getUseremail();
 			int point = user.getUserpoint();
+			int usedpoint = user.getUserusedpoint();
 			
 			String backgroundColor = "";
-			if(point > 50000) {
+			if(usedpoint >= 50000) {
 				backgroundColor = "fa-tree";
-			} else if(point > 20000) {
+			} else if(usedpoint >= 20000) {
 				backgroundColor = "fa-pagelines";
 			} else {
 				backgroundColor = "fa-seedling";
