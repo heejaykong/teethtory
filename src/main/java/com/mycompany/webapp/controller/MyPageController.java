@@ -85,10 +85,8 @@ public class MyPageController {
 	@GetMapping("/myDentist")
 	@HeaderCheck
 	public String myDentist(HttpSession session
-			, @RequestParam(defaultValue="null") String denname
-
+			, @RequestParam(required=false) String denname
 			, @RequestParam(defaultValue="-1") String dendomain
-
 			, String task
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
@@ -122,7 +120,7 @@ public class MyPageController {
 		model.addAttribute("myDentists", list);
 		
 		//치과 검색.(이름으로 검색.)
-		if(!denname.equals("null")) {
+		if(denname != null) {
 			log.info("denname: " + denname);
 			int totalRows = dentistService.getDentistNumByDenname(denname);
 			Pager pager = new Pager(5, 5, totalRows, pageNo);
