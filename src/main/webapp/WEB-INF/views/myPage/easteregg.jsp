@@ -52,6 +52,8 @@
 </body>
 
 <script>
+Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
+// Kakao.init('35b206a61fb57d6eb5161d7c6ad2a9f5')
 	console.log(${myDentistList});
 	getData();
 	let allCost = 0;
@@ -166,60 +168,35 @@
 			
 		}
 	}
-	Kakao.init('35b206a61fb57d6eb5161d7c6ad2a9f5');
-	console.log(Kakao.isInitialized());
-	Kakao.Link.createDefaultButton({
-				container : '#test',
-				objectType : 'feed',
-				content : {
-					title : '비용 공유',
-					description : '아메리카노, 빵, 케익',
-					imageUrl : "${pageContext.request.contextPath}/resources/images/easteregg/kt.png",
-					link : {
-						mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-						androidExecutionParams : 'test',
-					},
-				},
-				itemContent : {
-					profileText : 'Kakao',
-					profileImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-					titleImageUrl : 'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-					titleImageText : 'Cheese cake',
-					titleImageCategory : 'Cake',
-					items : [ {
-						item : 'Cake1',
-						itemOp : '1000원',
-					}, {
-						item : 'Cake2',
-						itemOp : '2000원',
-					}, {
-						item : 'Cake3',
-						itemOp : '3000원',
-					}, {
-						item : 'Cake4',
-						itemOp : '4000원',
-					}, {
-						item : 'Cake5',
-						itemOp : '5000원',
-					}, ],
-					sum : 'Total',
-					sumOp : '15000원',
-				},
-				buttons : [
-						{
-							title : '웹으로 이동',
-							link : {
-								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-							},
-						},
-						{
-							title : '앱으로 이동',
-							link : {
-								mobileWebUrl : 'http://192.168.1.129:8081/springframework-mini-project/easteregg',
-							},
-						}, ]
-			});
 
+	    Kakao.Link.createDefaultButton({
+	      container: '#test',
+	      objectType: 'feed',
+	        content: {
+	          title: '치스토리',
+	          description: 'EASTEREGG',
+	        imageUrl:'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+	        link: {
+	            mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
+	            // mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/',
+	        },
+	      },
+	      social: {
+	        likeCount: 10,
+	        commentCount: 20,
+	        sharedCount: 30,
+	      },
+	      buttons: [
+	        {
+	          title: '웹으로 이동',
+	          link: {
+	            mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
+	            // mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/myPage/easteregg',
+	          },
+	        },
+	      ]
+	    });
+	  
 </script>
 
 </html>
