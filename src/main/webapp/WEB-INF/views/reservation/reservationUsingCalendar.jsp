@@ -106,9 +106,10 @@
     color: green;
     border: 3px solid green;
     }
-
-	
-	</style>	
+	</style>
+	<script>
+		var gotDiscount = 0; // 0: 할인 X. 1: 스케일링 할인O.
+	</script>	
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
@@ -346,13 +347,13 @@
             	 $('#usepoint').removeAttr("disabled");
             	 $(document).ready(function(){
           	    	$("#usepoint").change(function(){
-          	    
-          	        if($("#usepoint").is(":checked")){
-          	           
-          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
-          	       
+					// let gotDiscount = 0; // 0: 할인 X. 1: 스케일링 할인O.
+          	        if($("#usepoint").is(":checked")){       
+          	        	document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
+						gotDiscount = 1;
           	        }else{
-          	        document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
+						document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
+						gotDiscount = 0;
           	        }
           	    })
           	})};
@@ -367,7 +368,7 @@
           	$('.reservate').click(function(){
           		
           		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
-          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime + "&dendomain=" + ${dendomain};
+          		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime + "&dendomain=" + ${dendomain} + "&gotDiscount=" + gotDiscount;
           		
           	});
      </script>

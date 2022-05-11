@@ -152,7 +152,7 @@
 			// 치과 정보요약 데이터 가져오기
 			$.ajax({
 				type: "POST",
-				url: "http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+				url: "http://localhost:" + dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
 			}).done(({treatno, denname, treatdate, denaddress}) => {
 				const treatmentSummary = {
 					treatno, denname, treatdate, denaddress
@@ -187,7 +187,7 @@
 			
 			$.ajax({
 				type: "POST",
-				url: "http://localhost:8082/springframework-mini-project-dentist/review/postReview?treatno=" + treatno,
+				url: "http://localhost:" + dendomain + "/springframework-mini-project-dentist/review/postReview?treatno=" + treatno,
 				data: {
 					userid: sessionUserid,
 					starscore: parseFloat($("#starscore").val()),
