@@ -4,7 +4,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리-마이페이지</title>
-
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
 /* 	#myPointTab {
 		color: rgb(242, 101, 34);
@@ -91,36 +91,62 @@
 							<td class="left" colspan="2">스케일링 할인</td>
 							<td>2022.04.16</td>
 							</tr> -->
-								<tr>
-									<td colspan="4" class="text-center">
-										<div>
-											<a class="btn btn-outline-primary btn-sm" onClick="get_list(1)">처음</a>
-											<%-- <a class="btn btn-outline-primary btn-sm" href="myPointList?pageNo=1">처음</a> --%>
-											<c:if test="${pager.groupNo>1}">
-												<a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.startPageNo-1})">이전</a>
-												<%-- <a class="btn btn-outline-info btn-sm" href="myPointList?pageNo=${pager.startPageNo-1}">이전</a> --%>
-											</c:if>
-											
-											<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
-												<c:if test="${pager.pageNo != i}">
-													<a class="btn btn-outline-success btn-sm" onClick="get_list(${i})">${i}</a>
-													<%-- <a class="btn btn-outline-success btn-sm" href="myPointList?pageNo=${i}">${i}</a> --%>
-												</c:if>
-												<c:if test="${pager.pageNo == i}">
-													<a class="btn btn-outline-success btn-sm" onClick="get_list(${i})">${i}</a>
-													<%-- <a class="btn btn-danger btn-sm" href="myPointList?pageNo=${i}">${i}</a> --%>
-												</c:if>
-											</c:forEach>
-											
-											<c:if test="${pager.groupNo<pager.totalGroupNo}">
-												<a class="btn btn-outline-info btn-sm" onClick="get_list(${pager.endPageNo+1})">다음</a>
-											</c:if>
-											<a class="btn btn-outline-primary btn-sm"  onClick="get_list(${pager.totalPageNo})">맨끝</a>
-										</div>
-									</td>
-								</tr>
 							</tbody>
 						</table>
+						<nav aria-label="Page navigation example" style="margin-top: 1rem;">
+							<ul class="pagination justify-content-center">
+								<tr>
+									<td class="text-center">
+										<a onClick="get_list(1)">
+											<div class="pagination-btn">
+												<i class="fa-solid fa-angles-left"></i>
+											</div>
+										</a>
+										<%-- <a class="btn btn-outline-primary btn-sm" href="myPointList?pageNo=1">처음</a> --%>
+										<c:if test="${pager.groupNo>1}">
+											<a onClick="get_list(${pager.startPageNo-1})">
+												<div class="pagination-btn">
+													<i class="fa-solid fa-angle-left"></i>
+												</div>
+											</a>
+											<%-- <a class="btn btn-outline-info btn-sm" href="myPointList?pageNo=${pager.startPageNo-1}">이전</a> --%>
+										</c:if>
+										
+										<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+											<c:if test="${pager.pageNo != i}">
+												<a onClick="get_list(${i})">
+													<div class="pagination-btn">
+														${i}
+													</div>
+												</a>
+												<%-- <a class="btn btn-outline-success btn-sm" href="myPointList?pageNo=${i}">${i}</a> --%>
+											</c:if>
+											<c:if test="${pager.pageNo == i}">
+												<a onClick="get_list(${i})">
+													<div class="pagination-btn pagination-btn-current">
+														${i}
+													</div>
+												</a>
+												<%-- <a class="btn btn-danger btn-sm" href="myPointList?pageNo=${i}">${i}</a> --%>
+											</c:if>
+										</c:forEach>
+										
+										<c:if test="${pager.groupNo<pager.totalGroupNo}">
+											<a onClick="get_list(${pager.endPageNo+1})">
+												<div class="pagination-btn">
+													<i class="fa-solid fa-angle-right"></i>
+												</div>
+											</a>
+										</c:if>
+										<a onClick="get_list(${pager.totalPageNo})">
+											<div class="pagination-btn">
+												<i class="fa-solid fa-angles-right"></i>
+											</div>
+										</a>
+									</td>
+								</tr>
+							</ul>
+						</nav>
 						<%-- <nav aria-label="Page navigation example">
 						<ul class="pagination justify-content-center">
 							<li class="page-item disabled">

@@ -41,6 +41,7 @@ public class UserService {
 	public int updateUser(User user) {
 		int updateRows = userDao.update(user);
 		log.info("수정된 user의 아이디: " + user.getUserid());
+		log.info("수정된 user: " + user);
 		return updateRows;
 	}
 	

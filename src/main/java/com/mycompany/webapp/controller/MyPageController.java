@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -253,10 +254,22 @@ public class MyPageController {
 	public String minusPoint(HttpSession session) {
 		String userid = (String) session.getAttribute("sessionUserid");
 		User user = userService.getUser(userid);
-		user.setUserpoint(user.getUserpoint() - 10000);
+		int userPoint = user.getUserpoint() - 10000;
+		user.setUserpoint(userPoint);
+		log.info("user.getUserpoint() : " + user.getUserpoint());
 		user.setUserusedpoint(user.getUserusedpoint() + 10000);
+		log.info("user.getUserusedpoint() : " + user.getUserusedpoint());
+		log.info("user.getUserid() : " + user.getUserid());
 		int result = userService.updateUser(user);
 		log.info("result : " + result);
+		// points테이블에 스케일링 할인으로 포인트 사용한 내역 추가.
+		Point point = new Point();
+		point.setUserid(userid);
+		point.setPointisplus(false);
+		point.setPointamount(10000);
+		point.setPointdesc("스케일링 할인");
+		point.setPointdate(new Date());
+		pointService.addPoint(point);
 		JSONObject obj = new JSONObject();
 		obj.put("result", result);
 		return obj.toString();

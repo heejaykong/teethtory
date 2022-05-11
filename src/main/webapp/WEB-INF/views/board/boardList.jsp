@@ -122,7 +122,7 @@
 			<c:if test="${pager.pageNo != i}">
 				<%-- <li class="page-item"> --%>
 				<a href="boardList?pageNo=${i}">
-					 <div class="pagination-btn">
+					<div class="pagination-btn">
 						${i}
 					</div>
 				</a>
@@ -130,7 +130,7 @@
 			<c:if test="${pager.pageNo == i}">
 				<%-- <li class="page-item active" aria-current="page"> --%>
 				<a>
-					 <div class="pagination-btn pagination-btn-current">
+					<div class="pagination-btn pagination-btn-current">
 						${i}
 					</div>
 				</a>
@@ -147,7 +147,7 @@
 	    <%-- </li> --%>
 	    <li>
 			<a href="boardList?pageNo=${pager.totalPageNo}">
-				 <div class="pagination-btn">
+				<div class="pagination-btn">
 					<i class="fa-solid fa-angles-right"></i>
 				</div>
 			</a>

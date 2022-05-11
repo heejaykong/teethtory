@@ -160,23 +160,29 @@ $.ajax({
             }
             , async: false
          })
-         .done((data) => {      
-			 // 1만 포인트를 차감해서 스케일링 할인받은 경우.
-			 console.log('${gotDiscount} : ' + ${gotDiscount});
-			 console.log('typeof ${gotDiscount} : ' + typeof ${gotDiscount});
-			if(${gotDiscount} === 1) {
-				$.ajax({
-					url: '${pageContext.request.contextPath}/myPage/minusPoint',
-					type: 'POST',
-					data: { 
-				   }
-				   , async: false
-				})
-				.done((data) => {  
+         .done((data) => {  
+			console.log('11data["msg"] : ' + data["msg"]);    
+			console.log('11typeof data["msg"] : ' + typeof data["msg"]);    
+			if(data["msg"] === "hi~") {
+				// 1만 포인트를 차감해서 스케일링 할인받은 경우.
+				console.log('${gotDiscount} : ' + ${gotDiscount});
+				console.log('typeof ${gotDiscount} : ' + typeof ${gotDiscount});
+				if(${gotDiscount} === 1) {
+					$.ajax({
+						url: '${pageContext.request.contextPath}/myPage/minusPoint',
+						type: 'POST',
+						data: { 
+						}
+						, async: false
+					})
+					.done((data) => {  
+						location.href = "${pageContext.request.contextPath}/";
+					});
+				} else {//스케일링 할인 X인 경우.
 					location.href = "${pageContext.request.contextPath}/";
-				});
-			} else {//스케일링 할인 X인 경우.
-				location.href = "${pageContext.request.contextPath}/";
+				}
+			} else {
+				//예약을 완료할 수 없는 경우임. 예외처리 필요.
 			}
          });
       })
