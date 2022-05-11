@@ -3,58 +3,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-진료 예약하기</title>
-	<style>
-	
-	#submit{
-	     color: white;
-	        background-color: #f47d36;
-	        border-color: #f47d36;
-	        width:90%;
-			height:3rem;
-			border-radius:1rem;
-			margin-left:1rem;
-	}
-	#reservation{
-	    margin-left:13px;
-	    width:22rem;
-	    height:5rem;
-	    margin-top: 10px;
-	}
-	.container{
-	    display: flex;
-	    flex-direction: row;
-	    margin-top:20px;
-	}
-	</style>
+   <%@ include file="/WEB-INF/views/common/meta.jsp" %>
+   <title>치스토리-진료 예약하기</title>
+   <style>
+   
+   #submit{
+        color: white;
+           background-color: #f47d36;
+           border-color: #f47d36;
+           width:90%;
+         height:3rem;
+         border-radius:1rem;
+         margin-left:1rem;
+   }
+   #reservation{
+       margin-left:13px;
+       width:22rem;
+       height:5rem;
+       margin-top: 10px;
+   }
+   .container{
+       display: flex;
+       flex-direction: row;
+       margin-top:20px;
+   }
+   </style>
 </head>
 <script>
-	$.ajax({
-		method:"POST",
-		url: "${pageContext.request.contextPath}/reservation/getRecipientInformation",
-		data: {
-		}
-	})
-	.done((data) => {
-		console.log('~~');
-		console.log('data : ' + data);
-		console.log('typeof data : ' + typeof data);
-		console.log('data["userName"] : ' + data["userName"]);
-		console.log('typeof data["userName"] : ' + typeof data["userName"]);
-		// console.log('JSON.parse( data ) : ' + JSON.parse( data ) );
-		// console.log('typeof JSON.parse( data ) : ' + typeof JSON.parse( data ) );
-		// console.log('JSON.parse( data )["userPhone"] : ' + JSON.parse( data )["userPhone"] );
-		// console.log('typeof JSON.parse( data )["userPhone"] : ' + typeof JSON.parse( data )["userPhone"] );
-		// console.log('JSON.parse( data )["userName"] : ' + JSON.parse( data )["userName"] );
-		// console.log('typeof JSON.parse(data)["userName"] : ' + typeof JSON.parse( data )["userName"] );
-		$('input#name').attr('placeholder', data["userName"]);
-		$('input#phone').attr('placeholder', data["userPhone"]);
-	});
+   $.ajax({
+      method:"POST",
+      url: "${pageContext.request.contextPath}/reservation/getRecipientInformation",
+      data: {
+      }
+   })
+   .done((data) => {
+      console.log('~~');
+      console.log('data : ' + data);
+      console.log('typeof data : ' + typeof data);
+      console.log('data["userName"] : ' + data["userName"]);
+      console.log('typeof data["userName"] : ' + typeof data["userName"]);
+      // console.log('JSON.parse( data ) : ' + JSON.parse( data ) );
+      // console.log('typeof JSON.parse( data ) : ' + typeof JSON.parse( data ) );
+      // console.log('JSON.parse( data )["userPhone"] : ' + JSON.parse( data )["userPhone"] );
+      // console.log('typeof JSON.parse( data )["userPhone"] : ' + typeof JSON.parse( data )["userPhone"] );
+      // console.log('JSON.parse( data )["userName"] : ' + JSON.parse( data )["userName"] );
+      // console.log('typeof JSON.parse(data)["userName"] : ' + typeof JSON.parse( data )["userName"] );
+      $('input#name').attr('value', data["userName"]);
+      $('input#phone').attr('value', data["userPhone"]);
+   });
 </script>
 <body>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+   <%@ include file="/WEB-INF/views/common/loading.jsp" %>
+   <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <div class="located-at-bottom-of-header">
    <div class="container" id="top">
@@ -87,16 +87,16 @@
 console.log('patientssn : ' + "${patientssn}");
 console.log('dendomain : ' + ${dendomain});
 $.ajax({
-	method:"POST",
-	url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getdeninfo",
-	// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
-	data: {
-	},
+   method:"POST",
+   url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getdeninfo",
+   // url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
+   data: {
+   },
 })
 .done((data) => {
-	document.getElementById('denname').innerHTML = data.denname;
-	
-	console.log(data);
+   document.getElementById('denname').innerHTML = data.denname;
+   
+   console.log(data);
 });
 var date = "<%= request.getParameter("date") %>";
 console.log(date);
@@ -116,8 +116,8 @@ var tformatDate =date.substr(10,1)+date.substr(12,2);
 atimeIndex=(tformatDate.substr(0,1)*2)+(tformatDate.substr(1,2)/30)+8;
 }
 else if(date.length==15){
-	var tformatDate =date.substr(10,2)+date.substr(13,2);
-	atimeIndex=(tformatDate.substr(0,2)*2)+(tformatDate.substr(2,2)/30)+8;
+   var tformatDate =date.substr(10,2)+date.substr(13,2);
+   atimeIndex=(tformatDate.substr(0,2)*2)+(tformatDate.substr(2,2)/30)+8;
 }
 
 
@@ -125,54 +125,52 @@ else if(date.length==15){
 console.log('atimeIndex : ' + atimeIndex);
 
 $.ajax({
-	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
-	, async: false
-	})
-	.done((data) => {
-		
-		a=JSON.stringify(data);
-		console.log("문자열 형태 : "+a);
-		b=a.charAt(atimeIndex);
-		console.log(b);
-		//b의 위치를 0으로
-		String.prototype.replaceAt = function(index, replacement) {
-   		 return this.substr(0, index) + replacement + this.substr(index + replacement.length);
-		}
-		console.log(a.replaceAt(atimeIndex+1,"0"));
-		testchangeAvailableTime=a.replaceAt(atimeIndex+1,"0");
-		console.log(testchangeAvailableTime.substr(9,48));
-		changeAvailableTime=testchangeAvailableTime.substr(9,48);
-		//changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
-		$("#submit").click(function(){
-			console.log("asda");
-			console.log("tformatDate : " + tformatDate);
-			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
-			$.ajax({
-			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
-			    type: 'POST',
-			    data: { 
-			    	
-			        "patientssn" : "${patientssn}", 
-			    	"tformatDate":tformatDate,
-			    	"name": $("#name").val(),
-			    	"phone": $("#phone").val(),
-			    	"reservation": $("#reservation").val(),
-			        "availabletime": changeAvailableTime,
-			       
-				}
-				, async: false
-			})
-			.done((data) => {		
-				location.href = "${pageContext.request.contextPath}/";
-			});
-		})
-	});
-	
-	
-	
-</script>	
+   url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/getHour?date=' + aformatDate
+   , async: false
+   })
+   .done((data) => {
+      
+      a=JSON.stringify(data);
+      console.log("문자열 형태 : "+a);
+      b=a.charAt(atimeIndex);
+      console.log(b);
+      //b의 위치를 0으로
+      String.prototype.replaceAt = function(index, replacement) {
+          return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+      }
+      console.log(a.replaceAt(atimeIndex+1,"0"));
+      testchangeAvailableTime=a.replaceAt(atimeIndex+1,"0");
+      console.log(testchangeAvailableTime.substr(9,48));
+      changeAvailableTime=testchangeAvailableTime.substr(9,48);
+      //changeAvailableTime  예약 후 disabled 시간       날짜 aformatDate
+      $("#submit").click(function(){
+         console.log("asda");
+         console.log("tformatDate : " + tformatDate);
+         //클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex         
+         $.ajax({
+             url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
+             type: 'POST',
+             data: { 
+                
+                 "patientssn" : "${patientssn}", 
+                "tformatDate":tformatDate,
+                "name": $("#name").val(),
+                "phone": $("#phone").val(),
+                "reservation": $("#reservation").val(),
+                 "availabletime": changeAvailableTime,
+                
+            }
+            , async: false
+         })
+         .done((data) => {      
+            location.href = "${pageContext.request.contextPath}/";
+         });
+      })
+   });
+</script>   
 
 
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+
+   <%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>
 </html>

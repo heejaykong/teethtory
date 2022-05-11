@@ -183,6 +183,7 @@
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
+    		let today1 = new Date();
     	    document.getElementById('start').min = today.toISOString().substring(0, 10);
     	   	todayFormatHipen= new Date().toISOString().substring(0, 10)
             todayFormat=todayFormatHipen.substr(0,4)+"/"+todayFormatHipen.substr(5,2)+"/"+todayFormatHipen.substr(8,2);
@@ -194,6 +195,8 @@
     	   	
     	    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
     	   	$("#timecell").html("");
+    	   
+    	   /* 	alert(today.getDay()); */
     	   	var date = document.getElementById('dateSelect').value=todayFormatHipen;
         	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 
@@ -207,7 +210,7 @@
          		console.log(time);
          		 
          		 $.ajax({
-                 	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/businesshour/getHour?businessday=' + week[today.getDay()]
+                 	url:'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/businesshour/getHour?businessday=' + week[today1.getDay()]
                  })
                  .done((data) => {
          			businesstime=data;
