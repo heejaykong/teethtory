@@ -149,7 +149,7 @@ $.ajax({
 			//클릭하면 availabledate의 날짜 availabletime의 0011010 위치를 찾아와 0으로 만들기 /// b를 0으로 만들기  atimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndexatimeIndex			
 			$.ajax({
 			    url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
-			    type: 'GET',
+			    type: 'POST',
 			    data: { 
 			    	
 			        "patientssn" : "${patientssn}", 
@@ -162,10 +162,7 @@ $.ajax({
 				}
 				, async: false
 			})
-			.done((data) => {
-				console.log('data : ' + data);
-				console.log('???');
-				alert("데이터 전송이 성공적으로 끝났을 때 실행");
+			.done((data) => {		
 				location.href = "${pageContext.request.contextPath}/";
 			});
 		})
