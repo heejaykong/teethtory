@@ -128,7 +128,7 @@
 		<img id="dentistImg" style="background-size: cover; width: 100%;">
 	</div>
 	<div class="mx-3" style="text-align: center;">
-		<div id="denname" class="mt-4 mb-2" style="font-size: 1.8rem;"></div>
+		<div id="denname" class="pt-4 mb-2" style="font-size: 1.8rem;"></div>
 		<div class="mb-3">
 			<i class="fa-solid fa-star" style="color: #ffa048;"></i>
 			<span id="averageStars" style="color: #ffa048;"></span>
@@ -221,13 +221,23 @@
 		// 치과의 대표이미지를 가져오는 통신.(deninfo)
 		console.log('~~~~~~~~~~~~~~~`');
 		console.log('dendomain : ' + ${dendomain});
-		let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
-		if(typeof dentistImgData !== "undefind") {
-			$('#dentistImg').attr("src", dentistImgData);
-			// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
-		} else {
+		let dentistImg = new Image();
+		dentistImg.src = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
+		dentistImg.onload = function getImage() {
+			$('#dentistImg').attr("src", dentistImg.src);
+		}
+		dentistImg.onerror = function setDisplayNone() {
 			$('#dentistImg').attr("style", "display: none");
 		}
+		// let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
+		// console.log('dentistImgData : ' + dentistImgData);
+		// console.log('typeof dentistImgData : ' + typeof dentistImgData);
+		// if(typeof dentistImgData !== "undefind") {
+		// 	$('#dentistImg').attr("src", dentistImgData);
+		// 	// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
+		// } else {
+		// 	$('#dentistImg').attr("style", "display: none");
+		// }
 
 		// $.ajax({
 		// 	method:"GET",
@@ -265,7 +275,6 @@
 			},
 		})
 		.done((data) => {
-
 			console.log('data : ' + data);
 			console.log('typeof data : ' + typeof data);
 			console.log('data[0] : ' + data[0]);

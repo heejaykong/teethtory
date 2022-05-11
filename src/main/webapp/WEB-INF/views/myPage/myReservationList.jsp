@@ -107,14 +107,18 @@
 			template += '	<p class="reservation__text">';
 			template += '		일정: ';
 			template += '		<span class="scheduled-date">' + selecteddate + '</span>';
-			template += '		<span class="scheduled-time">' + selectedtime + '</span>';
+			template += '		<span class="scheduled-time">' + selectedtime.substr(0,2)+":"+selectedtime.substr(2,2) + '</span>';
 			template += '	</p>';
 
 			if (status === STATUS_CANCELED) {
-			template += '	<p class="reservation__text-2">';
-			template += '		취소 사유: ';
-			template += '		<span class="cancel-desc">' + canceldesc + '</span>';
-			template += '	</p>';
+				console.log('canceldesc : ' + canceldesc);
+				console.log('typeof canceldesc : ' + typeof canceldesc);
+				if(typeof canceldesc != "undefined") {
+					template += '	<p class="reservation__text-2">';
+					template += '		취소 사유: ';
+					template += '		<span class="cancel-desc">' + canceldesc + '</span>';
+					template += '	</p>';
+				}
 			}
 
 			template += '	<div class="reservation__btns">';
