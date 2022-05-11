@@ -6,11 +6,15 @@
 	align-items: center;
 	padding: 2.5rem var(--deep-inner-space) 2.5rem;
 }
-.profile__img {
+.mypage__profile__img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: var(--card-border);
 	width: 5rem;
 	height: 5rem;
 	border-radius: 50%;
-	background-color: var(--divider-gray);
+	background-color: var(--background-gray);
 	margin-bottom: 1rem;
 }
 .name {
