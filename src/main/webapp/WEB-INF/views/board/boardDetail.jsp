@@ -128,7 +128,7 @@ h5 {
 					<span class="mr-2"><h4>${board.boardwriter}</h4></span>
 					<span style="color: dimgray; font-size: 0.8rem;"><fmt:formatDate value="${board.boarddate}" pattern="MM/dd HH:mm"/></span>
 				</div>
-				<c:if test="${board.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-user-doctor'}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
 			</div>
 			
 			<div class="mb-3" id="boardtitle">${board.boardtitle}</div>
@@ -167,7 +167,7 @@ h5 {
 					<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
 					<div style="font-size: 1.1rem; font-weight: bold;" class="mt-1">
 						${comment.commentwriter}
-						<c:if test="${comment.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+						<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-user-doctor'}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
 					</div>
 					
 				</div>
@@ -197,7 +197,7 @@ h5 {
 		</div>
 		</c:forEach>
 	</div>
-	
+	<c:if test="${pager != null}">
 	<nav aria-label="Page navigation example" style="margin-top: 1rem;">
 	  <ul class="pagination justify-content-center">
 	  <%-- <li> --%>
@@ -256,6 +256,7 @@ h5 {
 		</div>
 	  </ul>
 	</nav>
+	</c:if>
 </div>
 </div>
 <script>

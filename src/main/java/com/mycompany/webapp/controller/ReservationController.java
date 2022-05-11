@@ -147,8 +147,6 @@ public class ReservationController {
 	public String AfterReservationUsingCalendar(@RequestParam("dendomain") String dendomain
 			, Model model, HttpSession session) {
 
-		log.info("실행");
-
 		String userid = (String) session.getAttribute("sessionUserid");
 		String patientssn = userService.getUser(userid).getUserssn();
 
@@ -196,4 +194,5 @@ public class ReservationController {
 		String json = jsonObject.toString();
 		return json;
 	}
+	
 }

@@ -80,7 +80,7 @@
 				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
 				<c:if test="${board.backgroundColor != null && board.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
 				<span style="font-weight: bold;" class="mr-1">${board.boardwriter}</span>
-				<c:if test="${board.doctor != null}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
+				<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-user-doctor'}"><i class="fa-solid fa-circle-check mr-2 docterCheck"></i></c:if>
 				<span style="color: dimgray;"><fmt:formatDate value="${board.boarddate}" pattern="YYYY.MM.dd. hh:mm"/></span>
 			</div>
 			<div class="mb-1 ml-1"><h4>${board.boardtitle}</h4></div>
