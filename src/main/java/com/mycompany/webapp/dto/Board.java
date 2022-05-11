@@ -19,7 +19,6 @@ public class Board {
 	private MultipartFile battach;
 	private int boardlike;
 	private String backgroundColor;
-	private String doctor;
 	private boolean filecount;
 	private int commentcount;
 }
