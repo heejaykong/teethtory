@@ -4,60 +4,53 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-치과정보(지도)</title>
+	<title>치스토리 - 치과정보</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/reservationUsingMap.css" />
+</head>
+<body>
+	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
+	<%@ include file="/WEB-INF/views/common/header.jsp"%>
+	
+	<main class="main located-at-bottom-of-header">
+		<div class="map-header background-gray">
+			<div id="goBackIcon">
+				<a onclick = window.history.back()><i class="fa-solid fa-angle-left"></i></a>
+			</div>
+			<h1 class="denname"><%-- 치과 이름 --%></h1>
+		</div>
+		
+		<%-- 지도 --%>
+		<div id="map"></div>
+
+		<div class="modal">
+			<div class="modal_content">
+				<div id="denninfo">
+					<span><p class="denname" style="font-size: 2rem; font-weight: 500; color:rgb(242, 101, 34);"></p></span><br/>
+					<span><p id="denaddress" style="font-size: 1.2rem; font-weight: 300;"></p></span><br/>
+					<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
+					<button class="btn-large-solid"style="margin-top:1rem;"onClick="goDentistDetail()">상세보기</button>
+				</div>
+			</div>
+		</div>
+		
+		<%-- 지도 아래 치과 정보 --%>
+		<div class="map-bottom background-gray" onclick="goDentistDetail()">
+			<h3 class="map-bottom__denname"></h3>
+			<p class="map-bottom__denaddress"></p>
+			<span class="map-bottom__dencontact">01--222</span>
+		</div>
+	</main>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
 	<script>
 		function goDentistDetail() {
 			location.href = "dentistDetail?dendomain=" + ${dendomain};
 		}
 	</script>
-	<style>
-.modal{ 
- position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.1); top:0; left:0; display:none;
-}
-.modal_content{
-  border:2px solid orange;
-  width:300px; height:300px;
-  background:#fff; border-radius:30%;
-  position:relative; top:30%; left:65%;
-  margin-top:-100px; margin-left:-200px;
-  text-align:center;
-  box-sizing:border-box; padding:74px 0;
-  line-height:23px; cursor:pointer;
-}
-	</style>
-</body>
-</head>
-<body>
-	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
-	<%@ include file="/WEB-INF/views/common/header.jsp"%>
-	<link rel="stylesheet" href="/springframework-mini-project/resources/css/reservation/reservationUsingMap.css" />
-	<div class="located-at-bottom-of-header">
-	<div class="container"style="display:flex;flex-direction: row;">
-		<div><a onclick = window.history.back()><i id="goBackIcon" class="fa-solid fa-angle-left fa-3x"></i></a></div>
-		<div><span style="width: 30px"><p class="denname" style="font-size: 1.5rem; font-weight: 500; margin-top:0.75rem; margin-left:1rem;"></p></span></div>
-	</div>
-	<div id="map" style="width:100%;height:400px; margin-bottom:1rem;"></div>
-	
-	<div class="modal">
-	  <div class="modal_content">
-	  	<div id="denninfo">
-		<span><p class="denname" style="font-size: 2rem; font-weight: 500; color:rgb(242, 101, 34);"></p></span><br/>
-		<span><p id="denaddress" style="font-size: 1.2rem; font-weight: 300;"></p></span><br/>
-		<span><p id="dencontact" style="font-size: 1.2rem; font-weight: 300;"></p></span>
-		<button class="btn-large-solid"style="margin-top:1rem;"onClick="goDentistDetail()">상세보기</button>
-	</div>
-	  </div>
-	  </div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
-
 	<script>
 		$.ajax({
-			// console.log('ajax 시작~~');
 			method:"POST",
 			url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
-			// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getdeninfo",
-			data: {
-			},
+			data: {},
 			async: false
 		})
 		.done((data) => {
@@ -118,22 +111,27 @@
 			for( var i = 0; i < dennames.length; i++ ){
 				dennames[i].innerHTML = DENNAME;
 			}
-			//지도 아래에 치과 이름, 주소, 연락처 띄우기.
-			document.getElementById('denaddress').innerHTML = DENADDRESS;
-			document.getElementById('dencontact').innerHTML = DENCONTACT;
+			//모달에 치과 이름, 주소, 연락처 띄우기.
+			$('#denaddress').html(DENADDRESS);
+			$('#dencontact').html(DENCONTACT);
+			
+			//지도 아래에 치과 이름, 주소, 연락처 띄우기.			
+			$('.map-bottom__denname').html(DENNAME);
+			$('.map-bottom__denaddress').html(DENADDRESS);
+			$('.map-bottom__dencontact').html(DENCONTACT);
 			
 			kakao.maps.event.addListener(marker,'click',function(){
 				$(".modal").fadeIn();
-          		
           		$(".modal_content").click(function(){
         		$(".modal").fadeOut();
         		}); 
 			})
 		});
 	</script>
-
-	</div>
-	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+	
+	<%-- fontawesome CDN --%>
+	<script src="https://kit.fontawesome.com/f58f043c2e.js" crossorigin="anonymous"></script>
+</body>
 </html>
 
 
