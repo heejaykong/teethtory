@@ -151,19 +151,33 @@ $.ajax({
              url: 'http://localhost:' + ${dendomain} + '/springframework-mini-project-dentist/availablehour/setHour?availabledate=' + aformatDate,
              type: 'POST',
              data: { 
-                
                  "patientssn" : "${patientssn}", 
                 "tformatDate":tformatDate,
                 "name": $("#name").val(),
                 "phone": $("#phone").val(),
                 "reservation": $("#reservation").val(),
                  "availabletime": changeAvailableTime,
-                
             }
             , async: false
          })
          .done((data) => {      
-            location.href = "${pageContext.request.contextPath}/";
+			 // 1만 포인트를 차감해서 스케일링 할인받은 경우.
+			 console.log('${gotDiscount} : ' + ${gotDiscount});
+			 console.log('typeof ${gotDiscount} : ' + typeof ${gotDiscount});
+			if(${gotDiscount} === 1) {
+				$.ajax({
+					url: '${pageContext.request.contextPath}/myPage/minusPoint',
+					type: 'POST',
+					data: { 
+				   }
+				   , async: false
+				})
+				.done((data) => {  
+					location.href = "${pageContext.request.contextPath}/";
+				});
+			} else {//스케일링 할인 X인 경우.
+				location.href = "${pageContext.request.contextPath}/";
+			}
          });
       })
    });

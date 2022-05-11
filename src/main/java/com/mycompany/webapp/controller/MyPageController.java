@@ -247,5 +247,19 @@ public class MyPageController {
 		session.removeAttribute("headerInfo");
 		return "redirect:/";
 	} 
+	
+	@PostMapping(value="/minusPoint", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String minusPoint(HttpSession session) {
+		String userid = (String) session.getAttribute("sessionUserid");
+		User user = userService.getUser(userid);
+		user.setUserpoint(user.getUserpoint() - 10000);
+		user.setUserusedpoint(user.getUserusedpoint() + 10000);
+		int result = userService.updateUser(user);
+		log.info("result : " + result);
+		JSONObject obj = new JSONObject();
+		obj.put("result", result);
+		return obj.toString();
+	} 
 
 }
