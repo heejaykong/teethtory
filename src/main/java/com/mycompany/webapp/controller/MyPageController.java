@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.webapp.aspect.HeaderCheck;
 import com.mycompany.webapp.dto.Dentist;
-import com.mycompany.webapp.dto.HeaderInfo;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Point;
 import com.mycompany.webapp.dto.User;
@@ -84,7 +82,6 @@ public class MyPageController {
 	
 	//마이페이지 선택시에 출력. 사용자가 내 치과로 등록한 치과 목록+등록+삭제 페이지.
 	@GetMapping("/myDentist")
-	@HeaderCheck
 	public String myDentist(HttpSession session
 			, @RequestParam(required=false) String denname
 			, @RequestParam(defaultValue="-1") String dendomain
@@ -92,8 +89,6 @@ public class MyPageController {
 			, @RequestParam(defaultValue="1") int pageNo
 			, Model model) {
 		log.info("실행");
-		HeaderInfo headerInfo = (HeaderInfo) session.getAttribute("headerInfo");
-		model.addAttribute("headerInfo", headerInfo);
 		String userId = (String) session.getAttribute("sessionUserid");
 		
 		//내 치과 등록하기

@@ -44,6 +44,33 @@ public class BoardController {
 	@Resource
 	private CommentService commentService;
 	
+	private String getbackgroundColor(String userid) {
+		//등급 기준 나누기
+		int firstGradeStandard = 50000;
+		int secondGradeStandard = 20000;
+		
+		String backgroundColor = "";
+		if(!userid.equals("(알 수 없음)")) {
+			int usedpoint = 0;
+			usedpoint = userService.getusedPointBalance(userid);
+			
+			if(usedpoint >= firstGradeStandard) {
+				backgroundColor = "fa-tree";
+			} else if(usedpoint >= secondGradeStandard) {
+				backgroundColor = "fa-pagelines";
+			} else {
+				backgroundColor = "fa-seedling";
+			}
+			
+			//의사인지 체크하는 코드
+			if(userService.getUser(userid).isIsdoctor()) {
+				backgroundColor = "fa-user-doctor";
+			}
+			
+		}
+		return backgroundColor;
+	}
+	
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 				
@@ -57,29 +84,12 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			//등급별 색 구분하는 코드
-			if(!userid.equals("(알 수 없음)")) {
-				int userpoint = 0;
-				userpoint = userService.getusedPointBalance(userid);
-				String backgroundColor = "";
-				if(userpoint >= 50000) {
-					backgroundColor = "fa-tree";
-				} else if(userpoint >= 20000) {
-					backgroundColor = "fa-pagelines";
-				} else {
-					backgroundColor = "fa-seedling";
-				}
-				
-				//의사인지 체크하는 코드
-				if(userService.getUser(userid).isIsdoctor()) {
-					board.setDoctor("doctor");
-					backgroundColor = "fa-user-doctor";
-				}
-				
-				board.setBackgroundColor(backgroundColor);
-				board.setCommentcount(commentcount);
-			}
-
+			//중복 코드 제거
+			String backgroundColor = getbackgroundColor(userid);
+			board.setBackgroundColor(backgroundColor);
+			
+			board.setCommentcount(commentcount);
+			
 			if(board.getBimageoriginalfilename() != null) {
 				board.setFilecount(true);
 			}
@@ -102,27 +112,11 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			if(!userid.equals("(알 수 없음)")) {
-				int userpoint = 0;
-				userpoint = userService.getusedPointBalance(userid);
-				String backgroundColor = "";
-				if(userpoint >= 50000) {
-					backgroundColor = "fa-tree";
-				} else if(userpoint >= 20000) {
-					backgroundColor = "fa-pagelines";
-				} else {
-					backgroundColor = "fa-seedling";
-				}
-				
-				//의사인지 체크하는 코드
-				if(userService.getUser(userid).isIsdoctor()) {
-					board.setDoctor("doctor");
-					backgroundColor = "fa-user-doctor";
-				}
-				
-				board.setBackgroundColor(backgroundColor);
-				board.setCommentcount(commentcount);
-			}
+			//중복 코드 제거
+			String backgroundColor = getbackgroundColor(userid);
+			board.setBackgroundColor(backgroundColor);
+			
+			board.setCommentcount(commentcount);
 			
 			if(board.getBimageoriginalfilename() != null) {
 				board.setFilecount(true);
@@ -140,85 +134,31 @@ public class BoardController {
 		String boardUserid = board.getBoardwriter();
 		int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 		
-		if(!boardUserid.equals("(알 수 없음)")) {
-			int userpoint = 0;
-			userpoint = userService.getusedPointBalance(boardUserid);
-			String backgroundColor = "";
-			if(userpoint >= 50000) {
-				backgroundColor = "fa-tree";
-			} else if(userpoint >= 20000) {
-				backgroundColor = "fa-pagelines";
-			} else {
-				backgroundColor = "fa-seedling";
-			}
-			
-			//의사인지 체크하는 코드
-			if(userService.getUser(boardUserid).isIsdoctor()) {
-				board.setDoctor("doctor");
-				backgroundColor = "fa-user-doctor";
-			}
-			
-			board.setBackgroundColor(backgroundColor);
-			board.setCommentcount(commentcount);
-		}
-		
-		if(board.getBimageoriginalfilename() != null) {
-			board.setFilecount(true);
-		}
+		String backgroundColor = getbackgroundColor(boardUserid);
+		board.setBackgroundColor(backgroundColor);
+		board.setCommentcount(commentcount);
 		
 		model.addAttribute("board", board);
 
 		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
-		Pager pager = new Pager(5, 5, totalCommentNum, pageNo);
+		Pager pager = null;
+		
+		if(totalCommentNum == 0) {
+			pager = null; 
+		} else {
+			pager = new Pager(5, 5, totalCommentNum, pageNo);
+		}
+		
 		model.addAttribute("pager", pager);
 		
 		List<Comment> comments = commentService.getComments(boardno, pager);
-
-		if(!boardUserid.equals("(알 수 없음)")) {
-			int userpoint = 0;
-			userpoint = userService.getusedPointBalance(boardUserid);
-			String backgroundColor = "";
-			if(userpoint >= 50000) {
-				backgroundColor = "fa-tree";
-			} else if(userpoint >= 20000) {
-				backgroundColor = "fa-pagelines";
-			} else {
-				backgroundColor = "fa-seedling";
-			}
-			
-			//의사인지 체크하는 코드
-			if(userService.getUser(boardUserid).isIsdoctor()) {
-				board.setDoctor("doctor");
-				backgroundColor = "fa-user-doctor";
-			}
-			
-			board.setBackgroundColor(backgroundColor);
-			board.setCommentcount(commentcount);
-		}
 		
 		for(Comment comment : comments) {
 			String commentUserid = comment.getCommentwriter();
 			
-			if(!commentUserid.equals("(알 수 없음)")) {
-				int userpoint = 0;
-				userpoint = userService.getusedPointBalance(commentUserid);
-				String backgroundColor = "";
-				if(userpoint >= 50000) {
-					backgroundColor = "fa-tree";
-				} else if(userpoint >= 20000) {
-					backgroundColor = "fa-pagelines";
-				} else {
-					backgroundColor = "fa-seedling";
-				}
-				
-				//의사인지 체크하는 코드
-				if(userService.getUser(commentUserid).isIsdoctor()) {
-					comment.setDoctor("doctor");
-					backgroundColor = "fa-user-doctor";
-				}
-				
-				comment.setBackgroundColor(backgroundColor);
-			}
+			//중복 코드 제거
+			String commentbackgroundColor = getbackgroundColor(commentUserid);
+			comment.setBackgroundColor(commentbackgroundColor);
 			
 		}
 		model.addAttribute("comments", comments);
@@ -266,11 +206,13 @@ public class BoardController {
 	
 	@RequestMapping("/boardWriteForm")
 	public String boardWriteForm(HttpSession session) {
+		
 		if(session.getAttribute("sessionUserid") == null) {
 			String formError = "글 작성을 위해선 로그인을 해주세요!";
 			session.setAttribute("formError", formError);
 			return "redirect:/login";
 		}
+		
 		return "board/boardWriteForm";
 	}
 	
@@ -330,11 +272,13 @@ public class BoardController {
 	
 	@PostMapping("/commentWrite")
 	public String commentWrite(Comment comment, HttpSession session){
+		
 		if(session.getAttribute("sessionUserid") == null) {
 			String formError = "댓글 작성을 위해선 로그인을 해주세요!";
 			session.setAttribute("formError", formError);
 			return "redirect:/login";
 		}
+		
 		String userid = (String) session.getAttribute("sessionUserid");
 		comment.setCommentwriter(userid);
 		
