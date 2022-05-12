@@ -240,12 +240,12 @@
 			attachmentList.map(({isafter, savedfilename}) => {
 				if (!isafter) {
 					$(".before-imgs-wrapper").append(
-						"<a href='imageShow?filename="+savedfilename+"'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='before image'/></a>"
+						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='before image'/></a>"
 					);
 				}
 				if (isafter) {
 					$(".after-imgs-wrapper").append(
-						"<a href='imageShow?filename="+savedfilename+"'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='after image'/></a>"
+						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='after image'/></a>"
 					);
 				}
 			});
