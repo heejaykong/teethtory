@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 치과정보</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/reservationUsingMap.css" />
 </head>
 <body>

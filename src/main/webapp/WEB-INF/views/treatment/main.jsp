@@ -7,6 +7,7 @@
 	
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치료 내역 모아보기 - 치스토리</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />

@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-마이페이지</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 
 <meta charset='utf-8' />
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->

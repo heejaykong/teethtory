@@ -5,6 +5,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 진료 예약하기</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/reservationUsingCalendar.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

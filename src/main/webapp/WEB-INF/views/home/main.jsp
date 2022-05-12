@@ -7,6 +7,7 @@
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/home/home.css">
 	<title>치스토리</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
