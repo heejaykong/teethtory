@@ -15,10 +15,12 @@
 	<main class="main located-at-bottom-of-header">
 		<%-- 마이페이지 프로필블록 --%>
 		<section class="profile-block">
-			<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mb-2" id="header-seedling"></i></c:if>
-			<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mb-2" id="header-pagelines"></i></c:if>
-			<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mb-2" id="header-tree"></i></c:if>
-			<c:if test="${headerInfo.doctor != null}"><i class="fa-solid fa-circle-check docterCheck mb-2" id="header-doctor"></i></c:if>
+			<div class="mypage__profile__img">
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling" id="header-seedling"></i></c:if>
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines" id="header-pagelines"></i></c:if>
+				<c:if test="${headerInfo.backgroundColor != null && headerInfo.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree" id="header-tree"></i></c:if>
+				<c:if test="${headerInfo.doctor != null}"><i class="fa-solid fa-circle-check docterCheck" id="header-doctor"></i></c:if>
+			</div>
 			<p class="name">${headerInfo.name}</p>
 			<span class="email">${headerInfo.email}</span>
 		</section>
