@@ -7,6 +7,7 @@
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치스토리 - 진료 예약하기</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/main.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/search-bar.css" />

@@ -5,6 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/views/common/meta.jsp"%>
 <title>치스토리-마이페이지</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 
 <meta charset='utf-8' />
 <!-- 화면 해상도에 따라 글자 크기 대응(모바일 대응) -->
@@ -23,11 +24,7 @@
 	src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/locales-all.min.js'></script>
 <style>
 /* body 스타일 */
-html, body {
 
-	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-	/* font-size: 12px; */
-}
 /* 캘린더 위의 해더 스타일(날짜가 있는 부분) */
 .fc-event-time{
 	font-size:1px;
@@ -95,9 +92,24 @@ html, body {
 
 	<div class="modal">
 		<div class="modal_content">
-			<h5 id="description">text</h5><span id="date" class="ml-3">text</span>
+			<div style="border: 1px solid black; background-color: #DAE3F3; 
+						margin-left: 3rem; margin-right: 3rem; padding: 1.5rem 0; border-radius: 1rem;" >
+				<div id="description" style="font-size: 1.5rem; display: inline-block; font-weight: bold;" class="mb-2"></div>
+				<span id="addtext" class="mb-2"></span>
+				<div class="mb-1">
+					<span id="year" style="font-size: 1.5rem; font-weight: bold;"></span>년 
+					<span id="month" style="font-size: 1.5rem; font-weight: bold;"></span>월 
+					<span id="day" style="font-size: 1.5rem; font-weight: bold;"></span>일
+				</div>
+				<div class="mb-1">
+					<span id="atime"></span>
+					<span id="time" style="font-size: 1.5rem; font-weight: bold;"></span><span id="timetext"></span>
+				</div>
+				<div><span id="title" style="font-size: 1.5rem; font-weight: bold;"></span><span id="plusDes"></span></div>
+			</div>
+<!-- 			<h5 id="description">text</h5><span id="date" class="ml-3">text</span>
 			<hr>
-			<h5 id="title">text</h5>
+			<h5 id="title">text</h5> -->
 		</div>
 	</div>
 
@@ -136,9 +148,38 @@ html, body {
 			
 			$(".modal").fadeIn();
 
+			if(info.event.extendedProps.plusDes == " 예약되어 있습니다.") {
+				$("#year").text((info.event.start.toLocaleString()).slice(2,4));
+				$("#month").text((info.event.start.toLocaleString()).slice(5,7));
+				$("#day").text((info.event.start.toLocaleString()).slice(8,11));
+				$("#atime").text((info.event.start.toLocaleString()).slice(12,15));
+				$("#time").text((info.event.start.toLocaleString()).slice(15,21));
+				$("#timetext").text("에");
+				
+				
+			    $("#title").text(info.event.title);
+			    $("#description").text(info.event.extendedProps.description);
+			    $("#addtext").html("는");
+			    $("#plusDes").text(info.event.extendedProps.plusDes);
+			    
+			} else {
+				$("#year").text((info.event.start.toLocaleString()).slice(2,4));
+				$("#month").text((info.event.start.toLocaleString()).slice(5,7));
+				$("#day").text((info.event.start.toLocaleString()).slice(8,11));
+				$("#atime").text("");
+				$("#time").text("");
+				$("#timetext").text("");
+				
+			    $("#title").text(info.event.title);
+			    $("#description").text(info.event.extendedProps.description);
+			    $("#addtext").html("에서");
+			    $("#plusDes").text(info.event.extendedProps.plusDes);
+			}
+/* 			   	
 			$("#date").text((info.event.start.toLocaleString()).slice(0, -3));
 		    $("#title").text(info.event.title);
 		    $("#description").text(info.event.extendedProps.description);
+		    $("#plusDes").text(info.event.extendedProps.plusDes); */
 			info.el.style.borderColor = 'red';
 			//모달 띄워져있는거 클릭시 없어짐
 			$(".modal_content").click(function(){
@@ -184,7 +225,8 @@ html, body {
 						list.push(	{title: element.resdesc
 									, description: myDentistList[i].denname
 									, start: element.selecteddate + " " +element.selectedtime
-									, color: "#6A5ACD"}
+									, color: "#6A5ACD"
+									, plusDes: " 예약되어 있습니다."}
 						)
 					})
 				});
@@ -205,7 +247,8 @@ html, body {
 						list.push(	{title: element.treattype
 									, description: data.denname
 									, start: newDate
-									, color: "#FF5675"}
+									, color: "#FF5675"
+									, plusDes: " 진료 받았습니다."}
 						)
 					})
 				});
