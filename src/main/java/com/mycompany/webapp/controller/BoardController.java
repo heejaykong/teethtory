@@ -45,6 +45,7 @@ public class BoardController {
 	@Resource
 	private CommentService commentService;
 	
+	//유저등급 중복 코드 제거
 	private String getbackgroundColor(String userid) {
 		//등급 기준 나누기
 		int firstGradeStandard = 50000;
@@ -72,6 +73,7 @@ public class BoardController {
 		return backgroundColor;
 	}
 	
+	//배너 중복 코드 제거
 	public Banner getBanner() {
 		String[] linkList = {
 				"https://mall.denall.com//event/event.do?method=eventDetail&subPjtType=DEN&event_cd=814",
@@ -94,7 +96,7 @@ public class BoardController {
 		int randomno = (int) (Math.random() * linkList.length) + 1;
 		Banner banner = new Banner();
 		
-		String bannername = "banner" + randomno;
+		String bannername = "banner" + randomno + ".png";
 		String bannerlink = linkList[randomno - 1]; //인덱스는 0부터
 		
 		banner.setBannername(bannername);
@@ -116,7 +118,7 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String backgroundColor = getbackgroundColor(userid);
 			board.setBackgroundColor(backgroundColor);
 			
@@ -128,6 +130,7 @@ public class BoardController {
 			
 		}
 		
+		//배너 중복 코드 제거
 		Banner banner = getBanner();
 		model.addAttribute("banner", banner);
 		
@@ -147,7 +150,7 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String backgroundColor = getbackgroundColor(userid);
 			board.setBackgroundColor(backgroundColor);
 			
@@ -159,6 +162,7 @@ public class BoardController {
 			
 		}
 		
+		//배너 중복 코드 제거
 		Banner banner = getBanner();
 		model.addAttribute("banner", banner);
 		
@@ -195,11 +199,12 @@ public class BoardController {
 		for(Comment comment : comments) {
 			String commentUserid = comment.getCommentwriter();
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String commentbackgroundColor = getbackgroundColor(commentUserid);
 			comment.setBackgroundColor(commentbackgroundColor);
 			
 		}
+		//배너 중복 코드 제거
 		Banner banner = getBanner();
 		model.addAttribute("banner", banner);
 		

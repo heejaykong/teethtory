@@ -143,7 +143,10 @@ h5 {
 		</div>
 		<button class="btn btn-sm mb-2" style="border: 1px solid grey; margin-left: 0.5rem;"><i class="fa-regular fa-thumbs-up mr-1"></i>공감</button>
 		<hr style="margin: 0px;">
-
+		<a href="${banner.bannerlink}" target="_blank">
+		<img id="banner" src="${pageContext.request.contextPath}/resources/images/banner/${banner.bannername}" 
+			 style="background-size: cover; width: 100%;">
+		</a>
 	<div class="donut mt-2">
 		<div class="d-flex mb-2">
 			<form method="post" action="commentWrite" id="commentWrite">
