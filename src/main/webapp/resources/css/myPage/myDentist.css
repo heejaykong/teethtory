@@ -26,27 +26,50 @@
 .dentist-list-item__main-body:hover {
 	cursor: pointer;
 	background-color: var(--pale-peach);
+	box-shadow: var(--basic-shadow);
 }
 .main-body__col {
 	display: flex;
 }
-.main-body__img {
+.main-body__img-box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: var(--divider-gray);
 	min-width: 3.7rem;
 	min-height: 3.7rem;
+	width: 3.7rem;
+	height: 3.7rem;
 	border-radius: 50%;
+	overflow: hidden;
 	margin-right: 0.8rem;
+	box-shadow: 0px 0px 5px 1px rgb(0 0 0 / 20%);
+}
+.main-body__img-box > img {
+	object-fit: cover;
+	width: 100%;
 }
 .main-body__nametag {
 	display: flex;
 	flex-direction: column;
 }
 .main-body__nametag > .name {
+	display: flex;
+	align-items: center;
 	color: var(--osstem-orange);
 	font-size: 1.5rem;
 	font-weight: 500;
 	margin-top: 0.2rem;
 	margin-bottom: 0.3rem;
+}
+.main-body__nametag .subtitle {
+	display: inline-block;
+	color: var(--dark-gray);
+	font-size: 0.9rem;
+	margin-left: 0.4rem;
+}
+.main-body__nametag .subtitle > i {
+	margin-right: 0.1rem;
 }
 .main-body__nametag > .address {
 	font-size: 1.2rem;
@@ -90,6 +113,15 @@
 .dentist-list-item__dropdown-menu-list .menu-btn:hover {
 	cursor: pointer;
 	background-color: var(--pale-peach);
+}
+.menu-btn-disabled {
+	cursor: not-allowed !important;
+	background-color: var(--divider-gray);
+	color: var(--light-gray) !important;
+}
+.menu-btn-disabled:hover {
+	background-color: var(--divider-gray) !important;
+	color: var(--light-gray);
 }
 
 
