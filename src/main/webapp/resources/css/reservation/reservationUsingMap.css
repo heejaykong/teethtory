@@ -1,13 +1,75 @@
-.denname {
-	font-size: 2rem;
-	font-weight: 600;
+.main {
+	position: relative;
 }
-
+.map-header {
+	display: flex;
+	align-items: center;
+    padding: var(--default-inner-space);
+    border-bottom: var(--card-border);
+}
+#goBackIcon {
+	margin-right: 1rem;
+	font-size: 1.5rem;
+}
+.denname {
+	color: var(--almost-black-gray);
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+#map {
+	width: 100%;
+	height: calc(100vh - 8rem);
+	overflow-x: hidden;
+}
+.map-bottom {
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+    padding: var(--default-inner-space);
+	border-top: var(--card-border);
+	z-index: 1;
+}
+.map-bottom__denname {
+	color: var(--almost-black-gray);
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.map-bottom__denaddress {
+	color: var(--dark-gray);
+	font-size: 1.2rem;
+	margin-bottom: 0.5rem;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.map-bottom__dencontact {
+	color: var(--gray);
+	font-size: 1.1rem;
+	
+}
 #denaddress#dencontact {
 	font-size: 1.2rem;
 	font-weight: 300;
 }
-
-#goBackIcon {
-	size: 3rem;
+.modal{ 
+ position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.1); top:0; left:0; display:none;
+}
+.modal_content{
+  border:2px solid orange;
+  width:300px; height:300px;
+  background:#fff; border-radius:30%;
+  position:relative; top:30%; left:65%;
+  margin-top:-100px; margin-left:-200px;
+  text-align:center;
+  box-sizing:border-box; padding:74px 0;
+  line-height:23px; cursor:pointer;
 }
