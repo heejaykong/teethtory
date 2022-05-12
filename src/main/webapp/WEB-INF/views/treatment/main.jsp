@@ -147,7 +147,9 @@
 					for(let i=0; i<${dentist}.dentist.length; i++) {
 						$.ajax({
 							method:"POST",
-							url: "http://localhost:" + ${dentist}.dentist[i].dendomain + "/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" + selectedTreattype,
+							url: "http://localhost:" + ${dentist}.dentist[i].dendomain + 
+									"/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=${patientssn}&treattype=" 
+									+ selectedTreattype,
 							data: {},
 							async: false
 						}).done((data) => {
@@ -182,7 +184,7 @@
 		                 return;
 					}
 					
-					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
+					//치료 내역을 최근 시간 순으로 정렬하기
 					data.sort(function(a, b) {
 						if(a.treatdate > b.treatdate) {
 							return -1;
@@ -192,8 +194,7 @@
 						}
 						return 0;
 					})
-					//console.log("orderedDate:", data);
-					//console.log(data.length);
+					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
 					$(".selected-treattype-results-section").html("");
 					let IMAGE_FILENAME = null;
 					data.forEach(treatment => {

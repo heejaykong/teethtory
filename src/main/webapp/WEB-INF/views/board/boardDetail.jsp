@@ -137,6 +137,7 @@ h5 {
 			<c:if test="${board.filecount}"><img id="attachedImg" style="background-size: cover; width: 100%;"></c:if>
 			<div style="font-size: 0.8rem;" class="mt-2">
 				<div>
+					<c:if test="${board.filecount}"><span><i class="fa-solid fa-image"></i></span><span class="ml-1">1</span></c:if>
 					<span class="ml-1" style="color: red"><i class="fa-regular fa-thumbs-up"></i></span><span class="ml-1" style="color: red">${board.boardlike}</span>
 					<span class="ml-1" style="color: rgb(18, 220, 247)"><i class="fa-regular fa-comment"></i></span><span class="ml-1" style="color: rgb(18, 220, 247)">${board.commentcount}</span>
 				</div>
