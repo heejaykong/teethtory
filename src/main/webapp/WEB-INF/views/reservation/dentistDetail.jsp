@@ -53,6 +53,19 @@
 </style>
 <script>
 	localStorage.setItem('dendomain', "${dendomain}");
+
+	const formtag = document.getElementById("pagination-form");
+	// 데이터 전송, 페이지 전환 방지
+	function handleSubmit(event) {
+		event.preventDefault();
+	}
+	// 등록
+	function init() {
+		formtag.addEventListener('submit', handleSubmit);
+	}
+	// $('#pagination-form').submit(
+	// 	getReviewsWithPagination( parseInt($('#pagination-input').val()) );
+	// );
 </script>
 </head>
 <body>
@@ -356,6 +369,8 @@
 			.done((data) => {
 				//pager 객체 변수로 선언.
 				var pager = data.pager;
+				var totalReviewNum = data.totalReviewNum;
+				console.log('data.totalReviewNum : ' + data.totalReviewNum)
 
 				document.getElementById('averageStars').innerHTML = data.averageStars;
 				document.getElementById('totalReviewNum').innerHTML = data.totalReviewNum;
@@ -366,7 +381,6 @@
 				let lee;
 				for(let i=0; i<data.reviewList.length; i++) {
 					//user마다 포인트 체크해서 색 가져오기
-					
 					$.ajax({
 						method:"POST",
 						async: false,
@@ -421,57 +435,128 @@
 				
 				$("#reviewContainer").html(aReviewHtml);
 				//리뷰 페이지네이션 추가.
+				console.log('pager[0].startPageNo : ' + pager[0].startPageNo);
+				console.log('pager[0].endPageNo : ' + pager[0].endPageNo);
 				let aReviewPaginationHtml = '';
-				aReviewPaginationHtml += '<div class="pagination-component" style="margin-right:1rem;>';
-				aReviewPaginationHtml += '<a onClick="getReviewsWithPagination(1)" style="margin-left:3rem;">';
-				aReviewPaginationHtml += '		<div class="pagination-btn">';
-				aReviewPaginationHtml += '			<i class="fa-solid fa-angles-left"></i>';
-				aReviewPaginationHtml += '		</div>';
-				aReviewPaginationHtml += '	</a>';
+				// aReviewPaginationHtml = '<nav aria-label="Page navigation example" style="margin-top: 1rem;">';
+				// aReviewPaginationHtml = '<ul class="pagination justify-content-center">';
+				aReviewPaginationHtml += '<div class="pagination-component">';
+				if(pager[0].pageNo > pager[0].startPageNo) {
+					aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(1) + ')">';
+					aReviewPaginationHtml += '		<div class="pagination-btn">';
+					aReviewPaginationHtml += '			<i class="fa-solid fa-angles-left"></i>';
+					aReviewPaginationHtml += '		</div>';
+					aReviewPaginationHtml += '	</a>';
 
-				if(pager[0].groupNo>1) {
-					aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">';
+					aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(pager[0].pageNo-1) + ')">';
 					aReviewPaginationHtml += '		<div class="pagination-btn">';
 					aReviewPaginationHtml += '			<i class="fa-solid fa-angle-left"></i>';
 					aReviewPaginationHtml += '		</div>';
 					aReviewPaginationHtml += '	</a>';
 				}
 
-				for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
-					if(pager[0].pageNo != i) {
-						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
-						aReviewPaginationHtml += '			<div class="pagination-btn">';
-						aReviewPaginationHtml += '' + i;
-						aReviewPaginationHtml += '			</div>';
-						aReviewPaginationHtml += '		</a>';
-					} else {
-						aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
-						aReviewPaginationHtml += '			<div class="pagination-btn pagination-btn-current">';
-						aReviewPaginationHtml += '' + i;;
-						aReviewPaginationHtml += '			</div>';
-						aReviewPaginationHtml += '		</a>';
-					}
-				}
-				if(pager[0].groupNo<pager[0].totalGroupNo) {
-					let nextPageNo = pager[0].endPageNo+1;
-					aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')"';
+				aReviewPaginationHtml += '			<div class="pagination-btn">';
+				// aReviewPaginationHtml += '				<span><input style="width: 2rem;" type="submit" value="' + pager[0].pageNo + ' " onClick="getReviewsWithPagination(' + pager[0].pageNo + ')"/></span>';
+				// aReviewPaginationHtml += '				<span> / </span>';
+				// aReviewPaginationHtml += '				<span>' + pager[0].endPageNo + '</span>';
+
+				aReviewPaginationHtml += '<form id="pagination-form" action="http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/review/getReviews">';
+				// aReviewPaginationHtml += '<form id="pagination-form" action="#" onsubmit=getReviewsWithPagination(' + parseInt($('#pagination-input').val()) + ')">';
+				aReviewPaginationHtml += '<input id="pagination-input" name="pagination-input" type="text" value="' + pager[0].pageNo + '" style="width: 3rem;"/>';
+				// aReviewPaginationHtml += '<input type="submit" />';
+				aReviewPaginationHtml += '				<span> / </span>';
+				aReviewPaginationHtml += '				<span>' + pager[0].endPageNo + '</span>';
+				// aReviewPaginationHtml += '<input type="submit" style="display: none;" onsubmit="return getReviewsWithPagination(' + $('#pagination-input').val() + ');"/>';
+				aReviewPaginationHtml += '</form>';
+			
+				aReviewPaginationHtml += '			</div>';
+				// for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
+				// 	if(pager[0].pageNo != i) {
+				// 		aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+				// 		aReviewPaginationHtml += '			<div class="pagination-btn">';
+				// 		aReviewPaginationHtml += '' + i;
+				// 		aReviewPaginationHtml += '			</div>';
+				// 		aReviewPaginationHtml += '		</a>';
+				// 	} else {
+				// 		aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+				// 		aReviewPaginationHtml += '			<div class="pagination-btn pagination-btn-current">';
+				// 		aReviewPaginationHtml += '' + i;;
+				// 		aReviewPaginationHtml += '			</div>';
+				// 		aReviewPaginationHtml += '		</a>';
+				// 	}
+				// }
+				if(pager[0].pageNo < pager[0].endPageNo) {
+					aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].pageNo+1) + ')"';
 					aReviewPaginationHtml += '			<div class="pagination-btn">';
 					aReviewPaginationHtml += '				<i class="fa-solid fa-angle-right"></i>';
 					aReviewPaginationHtml += '			</div>';
 					aReviewPaginationHtml += '		</a>';
+
+					aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo) + ')"';
+					aReviewPaginationHtml += '			<div class="pagination-btn">';
+					aReviewPaginationHtml += '				<i class="fa-solid fa-angles-right"></i>';
+					aReviewPaginationHtml += '			</div>';
+					aReviewPaginationHtml += '		</a>';
 				}
-				aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')"';
-				aReviewPaginationHtml += '			<div class="pagination-btn">';
-				aReviewPaginationHtml += '				<i class="fa-solid fa-angles-right"></i>';
-				aReviewPaginationHtml += '			</div>';
-				aReviewPaginationHtml += '		</a>';
 				aReviewPaginationHtml += '</div>';
+				// aReviewPaginationHtml = '</ul>';
+				// aReviewPaginationHtml = '</nav>';
+				// let aReviewPaginationHtml = '';
+				// aReviewPaginationHtml += '<div class="pagination-component" style="margin-right:1rem;">';
+				// aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(1) + ')">';
+				// // aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(1) + ')" style="margin-left:3rem;">';
+				// aReviewPaginationHtml += '		<div class="pagination-btn">';
+				// aReviewPaginationHtml += '			<i class="fa-solid fa-angles-left"></i>';
+				// aReviewPaginationHtml += '		</div>';
+				// aReviewPaginationHtml += '	</a>';
+
+				// if(pager[0].groupNo>1) {
+				// 	aReviewPaginationHtml += '	<a onClick="getReviewsWithPagination(' + parseInt(pager[0].startPageNo-1) + ')">';
+				// 	aReviewPaginationHtml += '		<div class="pagination-btn">';
+				// 	aReviewPaginationHtml += '			<i class="fa-solid fa-angle-left"></i>';
+				// 	aReviewPaginationHtml += '		</div>';
+				// 	aReviewPaginationHtml += '	</a>';
+				// }
+
+				// for(let i=pager[0].startPageNo; i<=pager[0].endPageNo; i++) {
+				// 	if(pager[0].pageNo != i) {
+				// 		aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+				// 		aReviewPaginationHtml += '			<div class="pagination-btn">';
+				// 		aReviewPaginationHtml += '' + i;
+				// 		aReviewPaginationHtml += '			</div>';
+				// 		aReviewPaginationHtml += '		</a>';
+				// 	} else {
+				// 		aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + i + ')">';
+				// 		aReviewPaginationHtml += '			<div class="pagination-btn pagination-btn-current">';
+				// 		aReviewPaginationHtml += '' + i;;
+				// 		aReviewPaginationHtml += '			</div>';
+				// 		aReviewPaginationHtml += '		</a>';
+				// 	}
+				// }
+				// if(pager[0].groupNo<pager[0].totalGroupNo) {
+				// 	let nextPageNo = pager[0].endPageNo+1;
+				// 	aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].endPageNo+1) + ')"';
+				// 	aReviewPaginationHtml += '			<div class="pagination-btn">';
+				// 	aReviewPaginationHtml += '				<i class="fa-solid fa-angle-right"></i>';
+				// 	aReviewPaginationHtml += '			</div>';
+				// 	aReviewPaginationHtml += '		</a>';
+				// }
+				// aReviewPaginationHtml += '		<a onClick="getReviewsWithPagination(' + parseInt(pager[0].totalPageNo) + ')"';
+				// aReviewPaginationHtml += '			<div class="pagination-btn">';
+				// aReviewPaginationHtml += '				<i class="fa-solid fa-angles-right"></i>';
+				// aReviewPaginationHtml += '			</div>';
+				// aReviewPaginationHtml += '		</a>';
+				// aReviewPaginationHtml += '</div>';
 
 				$("#reviewPaginationContainer").html(aReviewPaginationHtml);
 			});
 
 		}
 		getReviewsWithPagination(-1);
+
+		// function setPageNo(pageNoParam) {
+		// 	pageNo = pageNoParam;
+		// }
 		
 		function contact(){
 			document.location.href='tel:'+$(dencontact);

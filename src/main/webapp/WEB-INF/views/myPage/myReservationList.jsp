@@ -107,7 +107,12 @@
 			template += '	<p class="reservation__text">';
 			template += '		일정: ';
 			template += '		<span class="scheduled-date">' + selecteddate + '</span>';
-			template += '		<span class="scheduled-time">' + selectedtime.substr(0,2)+":"+selectedtime.substr(2,2) + '</span>';
+			console.log('selectedtime : ' + selectedtime);
+			if(selectedtime.length < 4) {
+				template += '		<span class="scheduled-time">' + "0" + selectedtime.substr(0,1)+":"+selectedtime.substr(1,2) + '</span>';
+			} else {
+				template += '		<span class="scheduled-time">' + selectedtime.substr(0,2)+":"+selectedtime.substr(2,2) + '</span>';
+			}
 			template += '	</p>';
 
 			if (status === STATUS_CANCELED) {

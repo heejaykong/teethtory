@@ -83,14 +83,10 @@
 
  			$.ajax({
 				type: "GET",
-
 				url: "details?treatno=" + treatno + "&dendomain=" + dendomain
-
 			}).done(() => {
 				// 해당 치료내역의 상세페이지로 넘어가기
-
 				window.location.href = "details?treatno=" + treatno + "&dendomain=" + dendomain;
-
 			});
 		}
 	 	

@@ -1,16 +1,22 @@
 package com.mycompany.webapp.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +41,6 @@ public class TreatmentController {
 		
 	@GetMapping("/main")
 	public String showTreatmentsList(HttpSession session, Model model) {
-		
 		//Header에 이름, 포인트 값 넘기는 코드
 		String userid = (String) session.getAttribute("sessionUserid");
 		if(userid != null) {
