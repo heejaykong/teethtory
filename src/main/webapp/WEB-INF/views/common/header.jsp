@@ -15,7 +15,7 @@
 
 <header class="header">
 	<a href="${pageContext.request.contextPath}/">
-		<h1 id="header__logo" class="logo-text-black-sm">치스토리</h1>
+		<h1 id="header__logo" class="logo-text-black-sm">Teethtory</h1>
 	</a>
 	<div id="header__hamburger-btn">
 		<span class="hamburger-btn__bar"></span>
