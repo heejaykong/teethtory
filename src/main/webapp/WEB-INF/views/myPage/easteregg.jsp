@@ -7,6 +7,7 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/default-form.css"/>
 <title>치스토리-(이스터에그)</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 </head>
 <style>
 	h2 {

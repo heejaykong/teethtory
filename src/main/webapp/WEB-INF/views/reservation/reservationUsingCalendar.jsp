@@ -4,183 +4,75 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	
-	<title>치스토리-진료 예약하기</title>
-	
+	<title>치스토리 - 진료 예약하기</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reservation/reservationUsingCalendar.css" />
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	
-	<style>
-	#cellbutton{
-	    display: flex;
-	}
-	#top{
-	    font: 1.2rem 'Fira Sans', sans-serif;   
-	}  
-	#bottom{
-	      flex-direction : column;
-	      margin-top:5rem;
-	}        
-	#timecell{
-	justify-content: center;
-	height:10rem;
-	text-align:center;
-	}
-	.cell {
-	    border: 1px solid #BDBDBD;
-	    background-color: rgb(237, 251, 220);
-	    cursor: pointer;
-	    
-	    width:4rem;
-	    height:2rem;
-	    text-align: center;
-	    margin-left: 0.5rem;
-	    border-radius: 1rem;
-	    text-align: center;
-	    margin-top:1rem;
-	}
-	.cell:hover {
-	    border: 1px solid #ffa048;
-	}
-	.cell.select {
-	    background-color: #ffa048;
-	    color: #fff;
-	}
-	label {
-	    font: 1rem 'Fira Sans', sans-serif;   
-	}
-	#pointForm{
-	   display:flex;
-	   flex-direction: row;
-	}
-	#usepoint{
-	    zoom:2.0;
-	}
-	#dateSelect{
-	    width:8rem;
-	}
-	#check{
-	    width:95%;
-	    height:3rem;
-	    border-radius: 1rem;
-	}
-	#check:enabled{
-	   background-color:  #ffa048;
-	}
-	#timeclick{
-		font-size:15px;
-	}
-	#timeForm{
-	    margin-top:3rem;
-	}
-	.fa-calendar-day{
-	   color:  #ffa048;
-	}
-	.fa-clock{
-	    color:#ffa048;
-	}
-	#top{
-	    align-items: start;
-	}
-	#enabletime{
-	
-	justify-content:center;
-	text-align:center;
-	 align-items : center;
-	}
-	.modal{ 
-  position:absolute; width:100%; height:100%; background: rgba(0,0,0,0.8); top:0; left:0; display:none;
-    }
-    .modal_content{
-    border:2px solid orange;
-    width:400px; height:200px;
-    background:#fff; border-radius:10px;
-    position:relative; top:30%; left:50%;
-    margin-top:-100px; margin-left:-200px;
-    text-align:center;
-    box-sizing:border-box; padding:74px 0;
-    line-height:23px; cursor:pointer;
-    }
-    #enabletime:active {
-    color: green;
-    border: 3px solid green;
-    }
-	</style>
-	<script>
-		var gotDiscount = 0; // 0: 할인 X. 1: 스케일링 할인O.
-	</script>	
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	
-      <div id="all">
-        <div class="container" id="top" style="margin-bottom:2rem;">진료 예약하기</div>
-        <div id="top-a" style="display:inline; margin-left:1rem;">
-              <i class="fa-solid fa-calendar-day"></i>
-          <input id="dateSelect" value="날짜" style="margin-top:10px; border:0px solid black" ></input>
+	<main class="main located-at-bottom-of-header">
 
-              <i class="fa-solid fa-clock"></i>
-          <input type="text" id="reservationtime" value="-- : --" style="margin-top:1rem; border:0px solid black; "/>
-        </div>
+		<%-- 선택결과 보여주는 영역 --%>
+		<section class="selected-result-block">
+			<h1 class="page-title" style="margin-top: 1rem;">진료 예약하기</h1>
 
-          <div class="container" id="bottom">
-                  <div style="flex-grow:1; margin-top:2rem;">
-                      <div style="margin-top:10px;"> 
-                          <div style="margin-bottom:1rem;">날짜 선택</div>
-                      <input type="date" id="start" min="2022-05-03" onchange="handler(event);"/>
+			<div class="selected-result-display-box">
+				<span class="selected-date-display">
+					<i class="fa-solid fa-calendar-day"></i>
+					<input readonly id="dateSelect" value="날짜" />
+				</span>
+				<span class="selected-time-display">
+					<i class="fa-solid fa-clock"></i>
+					<input readonly type="text" id="reservationtime" value="-- : --" />
+				</span>
+			</div>
+		</section>
+		
+		<%-- 옅은 회색 분리 막대 --%>
+		<div class="thick-divider"></div>
+		
+		<%-- 날짜/시간 선택 영역 --%>
+		<section class="date-and-time-selecting-block">
+			<div class="date-selector-box">
+				<label for="start">날짜 선택</label>
+				<input type="date" id="start" onchange="handler(event);"/>
+			</div>
+			<div class="time-selector-box">
+				<p>시간 선택</p>
+				<div id="timecell">
+					<%-- 가능한 예약시간 cell들 동적으로 출력 --%>
+				</div>
+			</div>
 
-                      </div>
-                  </div>
+			<%-- 스케일링 포인트 체크 영역 --%>
+			<div>
+				<div id="pointForm" style="visibility:hidden;">
+					<p class="quesetion">스케일링 진료인가요?</p>
+					<div style="display:flex; align-items:flex-start;">
+						<input type="checkbox" id="usepoint" disabled/>
+						<label class="check-label" for="usepoint">네. 그리고 포인트로 미리 결제할게요!<span style="font-size:0.7rem;">(-10,000 포인트)</span></label>
+					</div>
+					<p id="mypoint">
+						잔여 포인트: 
+						<fmt:formatNumber type="number" maxFractionDigits="3" value="${point}" />
+					</p>
+				</div>
+			</div>
+			<button id="check" class="reservate btn-large-solid btn-disabled" type="button">다음 단계</button>
+		</section>
+	</main>
+	<div class="modal">
+		<div class="modal_content" type="text"></div>
+	</div>
 
-                  <div style="flex-grow:1;">
-                      <div>
-
-                      </div>
-
-                      <div>
-                          <div id="timeForm">
-
-                              <div id="timeSelect"> 
-                              <p id="timeclick">시간 선택</p>
-
-                              </div>
-
-                                   <div id="timecell" class="container row">
-                              </div>
-
-                          </div>
-
-                      </div>
-                  </div>
-                 
-                  <div style="flex-grow:1; margin-top:6rem;"> 
-                   <hr>
-                     <div>스케일링 진료인가요?</div>
-                      <div id="pointForm" style="visibility:hidden; margin-top:2rem;" class="container">
-                       
-                          <div>
-                          <input type="checkbox" id="usepoint" disabled/>
-                          </div>
-                         <div>
-                          <label for="usepoint">네. 그리고 포인트로 미리 결제할게요!</label>
-                          <p>(-10,000point)</p>
-                          <p id="mypoint">잔여 포인트 ${point}</p>
-                          </div>
-
-                      </div>
-                       <button id="check" class="reservate" type="button" style="visibility:hidden; margin-top:1rem;">다음 단계</button>
-
-                  </div>
-          </div>
-      </div>
-      <div class="modal">
-	  <div class="modal_content" type="text"></div>
-	  </div>
-	 	</section>
-	</div> 
-
+	<script>
+		var gotDiscount = 0; // 0: 할인 X. 1: 스케일링 할인O.
+	</script>
     <script>
     //2022-02-02 받아와서 -> db 형식 2022/02/02     시간 비트-> 0 0 0 0 0 0 1 -> 다음페이지 넘어갈때 00000-> 시간 11:00 예약신청버튼 -> 000000111
     		let today = new Date();
@@ -193,11 +85,9 @@
     	   	let oneMonthLater = new Date(today.setMonth(today.getMonth()+1));
     	   	
     	   	document.getElementById('start').max = oneMonthLater.toISOString().substring(0, 10);
-    	   	
     	    document.getElementById('start').value = new Date().toISOString().substring(0, 10);
     	   	$("#timecell").html("");
     	   
-    	   /* 	alert(today.getDay()); */
     	   	var date = document.getElementById('dateSelect').value=todayFormatHipen;
         	const week =['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'];
 
@@ -242,25 +132,50 @@
        					var creatediv = document.createElement("button");
        					$("#timecell").append(creatediv);
        					
-       					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+       					var createdivStyle= `
+						   display: flex;
+						   justify-content: center;
+						   align-items: center;
+						   border: var(--card-border);
+						   border-radius: 5px;
+						   width: 4.5rem;
+						   height: 2.5rem;
+						   background-color: var(--pale-peach);
+						   color: var(--osstem-orange);
+						   font-size: 1.1rem;
+						   font-weight: 500;
+						   margin: 0.3rem;`;
        					creatediv.setAttribute("onclick","btnVisible()")
-       					creatediv.setAttribute("id","enabletime")
+       					creatediv.setAttribute("class","enabletime")
        					creatediv.setAttribute("style",createdivStyle);
        					creatediv.innerHTML=atime[i];
        					
-       				}else if(dtime[i]==1 && time[i]==0){
+       				} else if(dtime[i]==1 && time[i]==0){
        					var creatediv = document.createElement("button");
        					creatediv.setAttribute("onclick","btnWarn()")
        					creatediv.setAttribute("id","disabletime")
        					$("#timecell").append(creatediv);
        
-       					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
-       					
+       					var createdivStyle= `
+							cursor: not-allowed;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							border: 1px solid var(--lighter-gray);
+							border-radius: 5px;
+							width: 4.5rem;
+							height: 2.5rem;
+							background-color: var(--lighter-gray);
+							color: white;
+							font-size: 1.1rem;
+							font-weight: 500;
+							margin: 0.3rem;
+						`;
        					creatediv.setAttribute("style",createdivStyle);
        					creatediv.innerHTML=atime[i];
        				}
          			}	
-                 })})
+                 })});
             //클릭시 시간표 변경
             function handler(e){
             	$("#timecell").html("");
@@ -317,19 +232,44 @@
            					var creatediv = document.createElement("button");
            					$("#timecell").append(creatediv);
            					
-           					var createdivStyle= "width:4.25rem; height:2rem; background-color: rgb(237, 251, 220); display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					var createdivStyle= `
+							   display: flex;
+							   justify-content: center;
+							   align-items: center;
+							   border: var(--card-border);
+							   border-radius: 5px;
+							   width: 4.5rem;
+							   height: 2.5rem;
+							   background-color: var(--pale-peach);
+							   color: var(--osstem-orange);
+							   font-size: 1.1rem;
+							   font-weight: 500;
+							   margin: 0.3rem;`;
            					creatediv.setAttribute("onclick","btnVisible()")
-           					creatediv.setAttribute("id","enabletime")
+           					creatediv.setAttribute("class","enabletime")
            					creatediv.setAttribute("style",createdivStyle);
            					creatediv.innerHTML=atime[i];
            					
-           				}else if(dtime[i]==1 && time[i]==0){
+           				} else if(dtime[i]==1 && time[i]==0){
            					var creatediv = document.createElement("button");
            					creatediv.setAttribute("onclick","btnWarn()")
            					creatediv.setAttribute("id","disabletime")
            					$("#timecell").append(creatediv);
            
-           					var createdivStyle= "width:4.25rem; text-decoration:none; color:white; align-items:center;justify-content:center;height:2rem; background-color: grey; display:flex; flex-direction:row; margin-top:1rem; margin-left:0.5rem; border:1px solid lightgrey; border-radius:0.5rem;";
+           					var createdivStyle = `
+							   cursor: not-allowed;
+							   display: flex;
+							   justify-content: center;
+							   align-items: center;
+							   border: 1px solid var(--lighter-gray);
+							   border-radius: 5px;
+							   width: 4.5rem;
+							   height: 2.5rem;
+							   background-color: var(--lighter-gray);
+							   color: white;
+							   font-size: 1.1rem;
+							   font-weight: 500;
+							   margin: 0.3rem;`;
            					
            					creatediv.setAttribute("style",createdivStyle);
            					creatediv.innerHTML=atime[i];
@@ -338,7 +278,7 @@
                      })})
             }
             function btnVisible(){
-            document.getElementById('check').style.visibility="visible";
+            document.getElementById('check').classList.remove("btn-disabled");
             document.getElementById('pointForm').style.visibility="visible";
            	document.getElementById('reservationtime').value= $(event.target).text();
            	
@@ -349,10 +289,10 @@
           	    	$("#usepoint").change(function(){
 					// let gotDiscount = 0; // 0: 할인 X. 1: 스케일링 할인O.
           	        if($("#usepoint").is(":checked")){       
-          	        	document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point-10000};
+          	        	document.getElementById("mypoint").innerHTML="잔여 포인트: " + ${point-10000};
 						gotDiscount = 1;
           	        }else{
-						document.getElementById("mypoint").innerHTML="잔여 포인트" + ${point};
+						document.getElementById("mypoint").innerHTML="잔여 포인트: " + ${point};
 						gotDiscount = 0;
           	        }
           	    })
@@ -365,9 +305,11 @@
         		}); 
           	}
           	
-          	$('.reservate').click(function(){
-          		
-          		reservationtime = document.getElementById('start').value+document.getElementById('reservationtime').value;
+          	$('.reservate').click(function(event){
+				if($(event.target)[0].classList.contains("btn-disabled")) {
+					return;
+				}
+          		reservationtime = document.getElementById('start').value + document.getElementById('reservationtime').value;
           		location.href="${pageContext.request.contextPath}/reservation/afterReservationUsingCalendar?date="+reservationtime + "&dendomain=" + ${dendomain} + "&gotDiscount=" + gotDiscount;
           		
           	});

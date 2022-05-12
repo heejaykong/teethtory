@@ -1,0 +1,141 @@
+/* 진료일정 예약 화면(달력)*/
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+/* 선택결과 보여주는 영역 */
+.selected-result-block {
+  display: flex;
+  flex-direction: column;
+  padding: var(--default-inner-space);
+}
+.selected-result-display-box {
+  display: flex;
+  align-items: center;
+}
+.selected-date-display {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+}
+.selected-time-display {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  margin-left: 2rem;
+}
+.selected-time-display i,
+.selected-date-display i {
+  color: var(--osstem-orange);
+  margin-right: 0.5rem;
+}
+.selected-time-display input,
+.selected-date-display input {
+  border: none;
+  color: var(--almost-black-gray);
+  font-size: 1.3rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* 날짜/시간 선택 영역 */
+.date-and-time-selecting-block {
+  display: flex;
+  flex-direction: column;
+  padding: var(--default-inner-space);
+}
+.date-selector-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.date-selector-box > input {
+	cursor: pointer;
+}
+.date-selector-box > label,
+.time-selector-box > p {
+  color: var(--dark-gray);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.time-selector-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+}
+#timecell {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+button:hover {
+  border: 2px solid var(--osstem-orange);
+}
+button.select {
+  background-color: var(--osstem-orange);
+  color: white;
+}
+
+/* 스케일링 포인트 체크 영역 */
+.quesetion {
+	color: var(--dark-gray);
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+}
+#pointForm {
+  display: flex;
+  flex-direction: column;
+}
+#usepoint {
+	zoom: 1.5;
+	margin-right: 0.4rem;
+}
+.check-label {
+	color: var(--almost-black-gray);
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+}
+#mypoint {
+	color: var(--dark-gray);
+	font-weight: 500;
+	margin-bottom: 1rem;
+}
+#check { /* 다음단계버튼 */
+}
+.enabletime:hover {
+	border: 2px solid var(--osstem-orange);
+}
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  top: 0;
+  left: 0;
+  display: none;
+}
+.modal_content {
+  border: 2px solid orange;
+  width: 400px;
+  height: 200px;
+  background: #fff;
+  border-radius: 10px;
+  position: relative;
+  top: 30%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -200px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 74px 0;
+  line-height: 23px;
+  cursor: pointer;
+}
+.enabletime:active {
+  color: green;
+  border: 3px solid green;
+}

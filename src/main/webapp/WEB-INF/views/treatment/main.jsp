@@ -7,6 +7,7 @@
 	
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
 	<title>치료 내역 모아보기 - 치스토리</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/treatment.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/empty-block.css" />
@@ -89,26 +90,29 @@
 				window.location.href = "details?treatno=" + treatno + "&dendomain=" + dendomain;
 			});
 		}
-	 	
-	 	// function getdendomainByDendomain(dendomain) {
-	    //    // data-dendomain값을 리스트아이템마다 동적으로 지정하기 위해 각 객체의 dendomain값이 필요하기 때문에,
-	    //    // 현재 페이지가 갖고 있는 dendomain 정보로써 dendomain값이 뭔지 user서버 단에 쿼리 날리는 함수
-	 	// 	let dendomain = null;
-	 	// 	$.ajax({
-	 	// 		type: "POST",
-	 	// 		url: "${pageContext.request.contextPath}/dentist/getdendomainByDendomain?dendomain=" + dendomain,
-	 	// 		async: false
-	 	// 	}).done((data) => {
-	 	// 		dendomain = data.dendomain;
-	 	// 	});
-	 	// 	return dendomain;
-	 	// }
-	 	
-		function template({treatno, dendomain, treattype, denname, treatdate}) {
-			// const dendomain = getdendomainByDendomain(dendomain);
-			
-			return `
 
+	 	
+		function template({treatno, dendomain, treattype, denname, treatdate}, IMAGE_FILENAME) {
+			if(IMAGE_FILENAME) {
+				return `
+					<div class="list-item hover-effect" data-treatno="` + treatno + `" data-dendomain="`+ dendomain +`">
+		
+						<div class="list-item__info-summary">
+							<h4 class="title">
+								`+ treattype +`
+								<span class="subtitle">`+ denname +`</span>
+							</h4>
+						<p class="text-md">`+ treatdate +`</p>
+					</div>
+					<div class="list-item__thumbnail">
+						<!--TBD: 객체가 attachment를 갖고 있다면 before 사진 중 첫번째 이미지를 썸네일로 띄우기-->
+						<!--TBD: 만약 before 사진이 하나도 없다면 after 사진 중 첫번째 이미지를 썸네일로 띄우기-->
+						<img class="list-item-thumbnail" src="http://localhost:` + dendomain + `/springframework-mini-project-dentist/resources/images/treatment/` + IMAGE_FILENAME + `" alt="treatment thumbnail image"/>
+					</div>
+				</div>
+				`;
+			}
+			return `
 				<div class="list-item hover-effect" data-treatno="` + treatno + `" data-dendomain="`+ dendomain +`">
 
 					<div class="list-item__info-summary">
@@ -121,7 +125,7 @@
 				<div class="list-item__thumbnail">
 	            	<!--TBD: 객체가 attachment를 갖고 있다면 before 사진 중 첫번째 이미지를 썸네일로 띄우기-->
 	            	<!--TBD: 만약 before 사진이 하나도 없다면 after 사진 중 첫번째 이미지를 썸네일로 띄우기-->
-	            	<img src="https://dummyimage.com/600x400/000/fff" alt="treatment thumbnail image"/>
+	            	<img class="list-item-thumbnail" src="${pageContext.request.contextPath}/resources/images/no-image.jpg" alt="treatment thumbnail image"/>
             	</div>
            	</div>
            	`;
@@ -161,14 +165,13 @@
 					} else {
 						reject({message: "실패"});
 					}
-				})
+				});
 				return promise;
 			}
 	
 			async function getData(selectedTreattype) {
 				try {
 					data = await getTreatments(selectedTreattype);
-
 					// 만약 해당 내역이 없을 경우 없다고 표시
 					if (!data.length) {
 						const emptyBlockTemplate = `
@@ -193,9 +196,29 @@
 					})
 					// 그외 해당 내역이 하나라도 있을 경우 섹션 초기화후 일일이 목록 그려주기
 					$(".selected-treattype-results-section").html("");
+					let IMAGE_FILENAME = null;
 					data.forEach(treatment => {
-		                 const listItem = template(treatment);
-		                 $(".selected-treattype-results-section").append(listItem);
+						$.ajax({
+							method:"POST",
+							url: "http://localhost:" + treatment.dendomain + "/springframework-mini-project-dentist/attachment/getAttachmentList?treatno=" + treatment.treatno,
+							data: {},
+							async: false
+						}).done((data) => {
+							console.log("hey loook!!!!!!!!!!!!!!!!!!!");
+							//console.log(data.attachments.);
+//							<!--TBD: 객체가 attachment를 갖고 있다면 before 사진 중 첫번째 이미지를 썸네일로 띄우기-->
+//							<!--TBD: 만약 before 사진이 하나도 없다면 after 사진 중 첫번째 이미지를 썸네일로 띄우기-->
+							if (data.attachments) {
+								data.attachments.forEach(({isafter, savedfilename}) => {
+									if(!isafter) {
+										IMAGE_FILENAME = savedfilename;
+										return false;
+									}
+								});
+							}
+						});
+						const listItem = template(treatment, IMAGE_FILENAME);
+						$(".selected-treattype-results-section").append(listItem);
 		             });
 				} catch (error) {
 					console.log(error, "error");
