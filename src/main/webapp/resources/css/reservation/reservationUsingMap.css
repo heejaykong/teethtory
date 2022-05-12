@@ -19,7 +19,6 @@
 #map {
 	width: 100%;
 	height: calc(100vh - 8rem);
-	overflow-x: hidden;
 }
 .map-bottom {
 	cursor: pointer;
