@@ -15,7 +15,6 @@
 	<main class="main located-at-bottom-of-header">
 	
 		<h1 class="page-title" id="treatment-type">충치 치료</h1>
-		<span>#<span id="treatno">00</span></span>
 	    <section class="mouth-section">
 	        <div class="mouth">
 	            <div class="mouth__upper-jaw">
@@ -217,10 +216,10 @@
 			console.log(data);
 
 			const treattype = data.treattype;
-			$("#treatment-type").html(treattype);
-
 			const treatno = data.treatno;
-			$("#treatno").html(treatno);
+			$("#treatment-type").html(treattype);
+			$("#treatment-type").append(`<span>  #<span id="treatno">` + treatno + `</span></span>`);
+			
 
 			// 동적으로 표시해야 할 치아들을 각각 색깔로 표시하기
 			const teeth = data.teeth;
@@ -239,15 +238,15 @@
 		    
 			// 이미지 동적으로 랜더링
 			const attachmentList = data.attachmentList;
-			attachmentList.map(({bsavedfilename, asavedfilename}) => {
-				if (bsavedfilename) {
+			attachmentList.map(({isafter, savedfilename}) => {
+				if (!isafter) {
 					$(".before-imgs-wrapper").append(
-						"<a href='imageShow?filename="+bsavedfilename+"'><img class='content__img' src='http://localhost:8082/springframework-mini-project-dentist/resources/images/treatment/"+ bsavedfilename +"' alt='dummy'/></a>"
+						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='before image'/></a>"
 					);
 				}
-				if (asavedfilename) {
+				if (isafter) {
 					$(".after-imgs-wrapper").append(
-						"<a href='imageShow?filename="+asavedfilename+"'><img class='content__img' src='http://localhost:8082/springframework-mini-project-dentist/resources/images/treatment/"+ asavedfilename +"' alt='dummy'/></a>"
+						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='after image'/></a>"
 					);
 				}
 			});

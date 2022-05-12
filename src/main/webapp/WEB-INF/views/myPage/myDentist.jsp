@@ -38,9 +38,17 @@
 				<div class="dentist-list-item" data-dendomain="${myDentist.dendomain}" data-denname="${myDentist.denname}">
 					<div class="dentist-list-item__main-body">
 						<div class="main-body__col">
-							<div class="main-body__img"></div>
+							<div class="main-body__img-box">
+								<img onerror="handleLoadError(event)" src="http://localhost:${myDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" alt="dentist thumbnail"/>
+							</div>
 							<div class="main-body__nametag">
-								<p class="name overflow-ellipsis">${myDentist.denname}</p>
+								<p class="name overflow-ellipsis">
+									${myDentist.denname}
+									<span class="subtitle">
+										<i class="fa-solid fa-circle-check"></i>
+										내 치과
+									</span>
+								</p>
 								<span class="address overflow-ellipsis">${myDentist.denaddress}</span>
 							</div>
 						</div>
@@ -95,9 +103,20 @@
 						<div class="dentist-list-item" data-dendomain="${searchedDentist.dendomain}" data-denname="${searchedDentist.denname}">
 							<div class="dentist-list-item__main-body">
 								<div class="main-body__col">
-									<div class="main-body__img"></div>
+									<div class="main-body__img-box">
+										<img onerror="handleLoadError(event)" src="http://localhost:${searchedDentist.dendomain}/springframework-mini-project-dentist/deninfo/getDentistImage" alt="dentist thumbnail"/>
+									</div>
 									<div class="main-body__nametag">
-										<p class="name overflow-ellipsis">${searchedDentist.denname}</p>
+										<p class="name overflow-ellipsis">
+											${searchedDentist.denname}
+											<%-- 내치과일 경우에만 '내치과' 딱지 붙여줌 --%>
+											<c:if test="${fn:contains(myDentists, searchedDentist)}">
+												<span class="subtitle">
+													<i class="fa-solid fa-circle-check"></i>
+													내 치과
+												</span>		
+											</c:if>
+										</p>
 										<span class="address overflow-ellipsis">${searchedDentist.denaddress}</span>
 									</div>
 								</div>
@@ -110,10 +129,18 @@
 							<%-- 바디 클릭하면 보이는 드롭다운메뉴--%>
 							<div class="dentist-list-item__dropdown-menu-list basic-shadow" style="display: none;">
 								<ol class="menu-list">
-									<li class="menu-btn add-btn"
-										data-toggle="modal" data-target="#confirmModal">
-										내 치과 목록에 추가하기
-									</li>
+									<%-- 내치과일 경우에는 비활성화하기 --%>
+									<c:if test="${fn:contains(myDentists, searchedDentist)}">
+										<li class="menu-btn add-btn menu-btn-disabled">
+											내 치과 목록에 추가하기
+										</li>
+									</c:if>
+									<c:if test="${not fn:contains(myDentists, searchedDentist)}">
+										<li class="menu-btn add-btn"
+											data-toggle="modal" data-target="#confirmModal">
+											내 치과 목록에 추가하기
+										</li>
+									</c:if>
 								</ol>
 							</div>
 						</div>
@@ -209,6 +236,12 @@
 			}
 			return true;			
 		}
+		
+		// 치과당 썸네일 로드할때 에러날때 더미이미지로 대체
+		function handleLoadError(event){
+			const errorTarget = event.target;
+			errorTarget.src = "${pageContext.request.contextPath}/resources/images/no-image.jpg";
+		}
 
 		$(function() {
 			// 치과당 클릭할 때 클릭된 타겟의 드롭다운 토글하기
@@ -233,6 +266,7 @@
 					location.href = "myDentist?dendomain=" + targetDendomain + "&task=" + task;
 				});
 			});
+
 		})
 	</script>
 
