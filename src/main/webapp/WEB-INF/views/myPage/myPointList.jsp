@@ -3,15 +3,12 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>치스토리-마이페이지</title>
+	<title>치스토리 - 내 포인트</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
-/* 	#myPointTab {
-		color: rgb(242, 101, 34);
-	} */
-	.fa-coins{
-		color:  #ffa048;
+	.fa-circle-dollar-to-slot {
+		color: gold;
 	}
 </style>
 </head>
@@ -19,17 +16,18 @@
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-			<div class="d-flex located-at-bottom-of-header">
-				<div class="col-sm-10">
-					<nav class="navbar navbar-expand-lg navbar-light bg-light">
-						<a class="navbar-brand" href="#">포인트 내역</a>
-					</nav>
-					<div class="d-flex mb-2" style="margin-top:1rem; margin-left:1rem;">
-						<h2 class="mr-2"><strong>내 포인트</strong></h2>
-						<div class="mr-1"><i class="fa-solid fa-coins"></i></div>
-						<div><h2>${pointBalance}</h2></div>
+			<div class="d-flex flex-column px-3 located-at-bottom-of-header">
+				<div>
+					<h1 class="page-title">포인트 내역</h1>
+					<div class="d-flex mb-3">
+						<div style="display:flex; align-items:flex-end">
+							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+							<h2 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${pointBalance}" />
+							</h2>
+						</div>
 					</div>
-					<div class="container" style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
+					<div style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
 
 						<div style="display:flex; flex-direction:column;">
 							<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -82,16 +80,6 @@
 									<td><fmt:formatDate value="${point.pointdate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
-						<!--  <tr>
-							<td>+100</td>
-							<td class="left" colspan="2">로그인 포인트</td>
-							<td>2022.04.16</td>
-							</tr>
-							<tr>
-							<td>-10,000</td>
-							<td class="left" colspan="2">스케일링 할인</td>
-							<td>2022.04.16</td>
-							</tr> -->
 							</tbody>
 						</table>
 						<nav aria-label="Page navigation example" style="margin-top: 1rem;">
@@ -148,20 +136,6 @@
 								</tr>
 							</ul>
 						</nav>
-						<%-- <nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item disabled">
-							<a class="page-link">이전으로</a>
-							</li>
-							<li>
-								<div class="pagenumbers" id="pagination" style="display: flex; flex-wrap: wrap;">
-								</div>
-							</li>
-							<li class="page-item">
-							<a class="page-link" href="#">다음으로</a>
-							</li>
-						</ul>
-						</nav> --%>
 					</div>
 				</div>
 			</div>
