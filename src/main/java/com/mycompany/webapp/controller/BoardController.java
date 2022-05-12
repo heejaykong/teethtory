@@ -3,6 +3,7 @@ package com.mycompany.webapp.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +21,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycompany.webapp.dto.Banner;
 import com.mycompany.webapp.dto.Board;
 import com.mycompany.webapp.dto.Comment;
 import com.mycompany.webapp.dto.Pager;
-import com.mycompany.webapp.dto.User;
 import com.mycompany.webapp.service.BoardService;
 import com.mycompany.webapp.service.CommentService;
 import com.mycompany.webapp.service.UserService;
@@ -44,6 +45,7 @@ public class BoardController {
 	@Resource
 	private CommentService commentService;
 	
+	//유저등급 중복 코드 제거
 	private String getbackgroundColor(String userid) {
 		//등급 기준 나누기
 		int firstGradeStandard = 50000;
@@ -71,6 +73,38 @@ public class BoardController {
 		return backgroundColor;
 	}
 	
+	//배너 중복 코드 제거
+	public Banner getBanner() {
+		String[] linkList = {
+				"https://mall.denall.com//event/event.do?method=eventDetail&subPjtType=DEN&event_cd=814",
+				
+				"https://smartstore.naver.com/vussen/category/7f642acf28244189a1a5f668f374e54c?cp=1",
+				
+				"https://mall.denall.com/event/event.do?method=eventDetail&event_cd=827&subPjtType=DEN",
+				
+				"https://smartstore.naver.com/vussen/category/198fb4217a194a0d9b32c0cb40741712?cp=1",
+				
+				"https://smartstore.naver.com/vussen",
+				
+				"https://smartstore.naver.com/vussen/category/7c07eb5b8ae2437eb162073b18511b8b?cp=1",
+				
+				"https://smartstore.naver.com/vussen/category/198fb4217a194a0d9b32c0cb40741712?cp=1",
+				
+				"https://smartstore.naver.com/vussen/products/6232800519"
+			};
+		//linkList 길이만큼 1부터 난수 생성
+		int randomno = (int) (Math.random() * linkList.length) + 1;
+		Banner banner = new Banner();
+		
+		String bannername = "banner" + randomno + ".png";
+		String bannerlink = linkList[randomno - 1]; //인덱스는 0부터
+		
+		banner.setBannername(bannername);
+		banner.setBannerlink(bannerlink);
+		log.info(banner);
+		return banner;
+	}
+	
 	@GetMapping("/boardList")
 	public String boardList(@RequestParam(defaultValue = "1") int pageNo, Model model, HttpSession session) {
 				
@@ -84,7 +118,7 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String backgroundColor = getbackgroundColor(userid);
 			board.setBackgroundColor(backgroundColor);
 			
@@ -95,6 +129,10 @@ public class BoardController {
 			}
 			
 		}
+		
+		//배너 중복 코드 제거
+		Banner banner = getBanner();
+		model.addAttribute("banner", banner);
 		
 		model.addAttribute("boards", boards);
 		return "board/boardList";
@@ -112,7 +150,7 @@ public class BoardController {
 			String userid = board.getBoardwriter();
 			int commentcount = commentService.getTotalCommentCountByBoardno(board.getBoardno());
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String backgroundColor = getbackgroundColor(userid);
 			board.setBackgroundColor(backgroundColor);
 			
@@ -123,6 +161,11 @@ public class BoardController {
 			}
 			
 		}
+		
+		//배너 중복 코드 제거
+		Banner banner = getBanner();
+		model.addAttribute("banner", banner);
+		
 		model.addAttribute("boards", boards);
 		model.addAttribute("boardtitle", boardtitle);
 		return "board/searchBoardList";
@@ -156,11 +199,15 @@ public class BoardController {
 		for(Comment comment : comments) {
 			String commentUserid = comment.getCommentwriter();
 			
-			//중복 코드 제거
+			//유저등급 중복 코드 제거
 			String commentbackgroundColor = getbackgroundColor(commentUserid);
 			comment.setBackgroundColor(commentbackgroundColor);
 			
 		}
+		//배너 중복 코드 제거
+		Banner banner = getBanner();
+		model.addAttribute("banner", banner);
+		
 		model.addAttribute("comments", comments);
 		session.setAttribute("boardno", boardno);
 		
@@ -220,6 +267,9 @@ public class BoardController {
 	public String boardUpdateForm(int boardno, Model model) {
 		Board board = boardService.getBoard(boardno);
 		model.addAttribute("board", board);
+		
+		Banner banner = getBanner();
+		model.addAttribute("banner", banner);
 		return "board/boardUpdateForm";
 	}
 	
@@ -227,6 +277,9 @@ public class BoardController {
 	public String commentUpdateForm(int commentno, Model model) {
 		Comment comment = commentService.getComments(commentno);
 		model.addAttribute("comment", comment);
+		
+		Banner banner = getBanner();
+		model.addAttribute("banner", banner);
 		return "board/commentUpdateForm";
 	}
 	
