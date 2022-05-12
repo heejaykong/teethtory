@@ -182,14 +182,18 @@ public class BoardController {
 		board.setCommentcount(commentcount);
 		
 		model.addAttribute("board", board);
-
+		
+		if(board.getBimageoriginalfilename() != null) {
+			board.setFilecount(true);
+		}
+		
 		int totalCommentNum = commentService.getTotalCommentCountByBoardno(boardno);
 		Pager pager = null;
 		
 		if(totalCommentNum == 0) {
 			pager = null; 
 		} else {
-			pager = new Pager(5, 5, totalCommentNum, pageNo);
+			pager = new Pager(10, 5, totalCommentNum, pageNo);
 		}
 		
 		model.addAttribute("pager", pager);

@@ -90,7 +90,7 @@
 				<span style="color: dimgray;"><fmt:formatDate value="${board.boarddate}" pattern="YYYY.MM.dd. HH:mm"/></span>
 			</div>
 			<div class="mb-1 ml-1"><h4>${board.boardtitle}</h4></div>
-			<div class="ml-1"><h5>${board.boardcontent}</h5></div>
+			<div class="ml-1"><h5 class="mb-1">${board.boardcontent}</h5></div>
 			<div class="d-flex justify-content-end" style="font-size: 0.8rem;">
 				<div>
 					<c:if test="${board.filecount}"><span><i class="fa-solid fa-image"></i></span><span class="ml-1">1</span></c:if>

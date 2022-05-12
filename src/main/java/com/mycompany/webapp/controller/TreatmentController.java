@@ -43,6 +43,13 @@ public class TreatmentController {
 	public String showTreatmentsList(HttpSession session, Model model) {
 		//Header에 이름, 포인트 값 넘기는 코드
 		String userid = (String) session.getAttribute("sessionUserid");
+		
+		if(session.getAttribute("sessionUserid") == null) {
+			String formError = "치료내역을 모아보려면 로그인을 해주세요!";
+			session.setAttribute("formError", formError);
+			return "redirect:/login";
+		}
+		
 		if(userid != null) {
 			User user = userService.getUser(userid);
 			String name = user.getUsername();
