@@ -178,22 +178,39 @@ public class ReservationController {
 		return obj.toString();
 	}
 	
-	@CrossOrigin(origins="*", allowedHeaders = "*")
-	@PostMapping(value="/getReviewRank", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public String getReviewRank(@RequestParam("userid") String userid) {
+	private String getbackgroundColor(String userid) {
+		//등급 기준 나누기
+		int firstGradeStandard = 50000;
+		int secondGradeStandard = 20000;
+		
 		String backgroundColor = "";
-		if(userid != null) {
+		if(!userid.equals("(알 수 없음)")) {
 			int usedpoint = 0;
 			usedpoint = userService.getusedPointBalance(userid);
-			if(usedpoint >= 50000) {
+			
+			if(usedpoint >= firstGradeStandard) {
 				backgroundColor = "fa-tree";
-			} else if(usedpoint >= 20000) {
+			} else if(usedpoint >= secondGradeStandard) {
 				backgroundColor = "fa-pagelines";
 			} else {
 				backgroundColor = "fa-seedling";
 			}
+			
+			//의사인지 체크하는 코드
+			if(userService.getUser(userid).isIsdoctor()) {
+				backgroundColor = "fa-user-doctor";
+			}
+			
 		}
+		return backgroundColor;
+	}
+	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/getReviewRank", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String getReviewRank(@RequestParam("userid") String userid) {
+		String backgroundColor = getbackgroundColor(userid);
+
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("backgroundColor", backgroundColor);
 		String json = jsonObject.toString();
