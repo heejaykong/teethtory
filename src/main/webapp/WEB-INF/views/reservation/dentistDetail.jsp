@@ -195,9 +195,9 @@
 	</div>
 
 	<div id="reviewContainer" class="list-group">
-		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
-		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
-		<c:if test="${comment.backgroundColor != null && comment.backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
+		<c:if test="${backgroundColor != null && backgroundColor eq 'fa-seedling'}"><i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i></c:if>
+		<c:if test="${backgroundColor != null && backgroundColor eq 'fa-pagelines'}"><i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i></c:if>
+		<c:if test="${backgroundColor != null && backgroundColor eq 'fa-tree'}"><i class="fa-solid fa-tree mr-2" id="fa-tree"></i></c:if>
 	</div>
 	<div id="reviewPaginationContainer">
 		<%-- 여기에 페이지네이션 처리. --%>
@@ -417,14 +417,15 @@
 						}
 					}).done((leedh) => {
 						lee = leedh.backgroundColor;
+						console.log(lee);
 					});
-
+					console.log(lee);
 					aReviewHtml += '<div class="list-group-item list-group-item-action d-flex align-items-center" style="font-size: 0.9rem;">';
-					if(lee = "fa-seedling") {
+					if(lee == "fa-seedling") {
 						aReviewHtml += '	<i class="fa-solid fa-seedling mr-2" id="fa-seedling"></i>';
-					} else if(lee = "fa-pagelines") {
+					} else if(lee == "fa-pagelines") {
 						aReviewHtml += '	<i class="fa-brands fa-pagelines mr-2" id="fa-pagelines"></i>';
-					} else if(lee = "fa-tree") {
+					} else if(lee == "fa-tree") {
 						aReviewHtml += '	<i class="fa-solid fa-tree mr-2" id="fa-tree"></i>';
 					}
 					aReviewHtml += '	<div>';
