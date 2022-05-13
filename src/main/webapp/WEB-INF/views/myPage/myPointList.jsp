@@ -7,7 +7,7 @@
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
-	.fa-circle-dollar-to-slot {
+	.fa-circle-dollar-to-slot_myPointList {
 		color: gold;
 	}
 </style>
@@ -21,7 +21,7 @@
 					<h1 class="page-title">포인트 내역</h1>
 					<div class="d-flex mb-3">
 						<div style="display:flex; align-items:flex-end">
-							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot fa-circle-dollar-to-slot_myPointList"></i></div>
 							<h2 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${pointBalance}" />
 							</h2>
