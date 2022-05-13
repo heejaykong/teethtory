@@ -222,37 +222,62 @@
 					console.log(localStorage.getItem("dendomain"));
 					location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
 				} else {//0: 내 치과로 등록 필요.
-					$('#exampleModal').on('show.bs.modal', function (event) {
-						var button = $(event.relatedTarget) // Button that triggered the modal
-						var recipient = button.data('whatever') // Extract info from data-* attributes
-						var body = button.data('body')
-						// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-						// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-						console.log("aaa");
-						var modal = $(this)
-						modal.find('.modal-title').text(recipient)
-						modal.find('.modal-body').text(body)
-						//모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
-						let yesBtn = document.getElementById('btn-yes');
-						yesBtn.onclick = function() {
-							$.ajax({
-								method:"GET",
-								url: "${pageContext.request.contextPath}/reservation/dentistDetail",
-								data: {
-									dendomain: localStorage.getItem("dendomain")
-								}
-							})
-							.done((data) => {
-								console.log('data.registrationResult : ' + data.registrationResult);
-								console.log('typeof data.registrationResult : ' + typeof data.registrationResult);
-								if(data.registrationResult === 1) {
-									location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
-								} else {
-									alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
-								}
-							});
-						}
-					})
+					$('#exampleModal').modal('show');
+					//모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
+					let yesBtn = document.getElementById('btn-yes');
+					yesBtn.onclick = function() {
+						$.ajax({
+							method:"GET",
+							url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+							data: {
+								dendomain: localStorage.getItem("dendomain")
+							},
+							async: false
+						})
+						.done((data) => {
+							console.log('data.registrationResult : ' + data.registrationResult);
+							console.log('typeof data.registrationResult : ' + typeof data.registrationResult);
+							if(data.registrationResult === 1) {
+								location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+							} else {
+								alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+							}
+						});
+					}
+					// });
+					//
+					// on('show.bs.modal', function (event) {
+					// 	var button = $(event.relatedTarget) // Button that triggered the modal
+					// 	var recipient = button.data('whatever') // Extract info from data-* attributes
+					// 	var body = button.data('body')
+					// 	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+					// 	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+					// 	console.log("aaa");
+					// 	var modal = $(this)
+					// 	modal.find('.modal-title').text(recipient)
+					// 	modal.find('.modal-body').text(body)
+					// //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
+					// let yesBtn = document.getElementById('btn-yes');
+					// yesBtn.onclick = function() {
+					// 	$.ajax({
+					// 		method:"GET",
+					// 		url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+					// 		data: {
+					// 			dendomain: localStorage.getItem("dendomain")
+					// 		},
+					// 		async: false
+					// 	})
+					// 	.done((data) => {
+					// 		console.log('data.registrationResult : ' + data.registrationResult);
+					// 		console.log('typeof data.registrationResult : ' + typeof data.registrationResult);
+					// 		if(data.registrationResult === 1) {
+					// 			location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+					// 		} else {
+					// 			alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+					// 		}
+					// 	});
+					// }
+					// })
 				}
 			});
 		}
@@ -269,29 +294,6 @@
 		dentistImg.onerror = function setDisplayNone() {
 			$('#dentistImg').attr("style", "display: none");
 		}
-		// let dentistImgData = "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage";
-		// console.log('dentistImgData : ' + dentistImgData);
-		// console.log('typeof dentistImgData : ' + typeof dentistImgData);
-		// if(typeof dentistImgData !== "undefind") {
-		// 	$('#dentistImg').attr("src", dentistImgData);
-		// 	// $('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
-		// } else {
-		// 	$('#dentistImg').attr("style", "display: none");
-		// }
-
-		// $.ajax({
-		// 	method:"GET",
-		// 	url: "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage",
-		// 	// url: ${dendomain} + "/springframework-mini-project-dentist/deninfo/getDentistImage",
-		// 	data: {
-		// 	},
-		// })
-		// .done((data) => {
-		// 	if(typeof data !== "undefind") {
-		// 		$('#dentistImg').attr("src", "http://localhost:"+ ${dendomain} +"/springframework-mini-project-dentist/deninfo/getDentistImage");
-		// 		// $('#dentistImg').attr("src", data);
-		// 	}
-		// });
 
 		// 치과의 기본정보를 가져오는 ajax 통신.(deninfo)
 		$.ajax({
@@ -373,7 +375,6 @@
 					document.getElementById('sun').innerHTML = "일 " + businessHourForHtml;
 				}
 			}
-
 		});
 
 		function getReviewsWithPagination(pageNoParam) {

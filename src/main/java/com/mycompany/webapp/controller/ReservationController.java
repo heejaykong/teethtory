@@ -88,29 +88,6 @@ public class ReservationController {
 		return "reservation/reservationUsingMap";
 	}
 	
-	//reservationUsingMap화면에서 치과정보 박스 클릭시에, 치과 상세 정보 화면으로 이동.
-	@CrossOrigin(origins="*", allowedHeaders = "*")
-	@GetMapping("/dentistDetail")
-	public String dentistDetail(HttpSession session
-			, @RequestParam("dendomain") String dendomain
-			, @RequestParam(defaultValue="null") String task
-			, Model model) {
-		log.info("실행");
-		//dendomain를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
-		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
-
-		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
-		model.addAttribute("dendomain", dentist.getDendomain());
-		
-//		if(!task.equals("null")) {
-			String userId = (String) session.getAttribute("sessionUserid");
-			int registrationResult = myDentistService.registerMyDentist(userId, dendomain);
-			model.addAttribute("registrationResult", registrationResult);			
-//		}
-		
-		return "reservation/dentistDetail";
-	}
-	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/dentistDetail", produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -126,6 +103,29 @@ public class ReservationController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("alreadyRegistered", alreadyRegistered);
 		return jsonObject.toString();
+	}
+	
+	//reservationUsingMap화면에서 치과정보 박스 클릭시에, 치과 상세 정보 화면으로 이동.
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@GetMapping("/dentistDetail")
+	public String dentistDetail(HttpSession session
+			, @RequestParam("dendomain") String dendomain
+			, @RequestParam(defaultValue="null") String task
+			, Model model) {
+		log.info("실행");
+		//dendomain를 받아서, 웹 서버의 dentists테이블에서 dendomain의 값을 전달하면,
+		//클라이언트에서 ajax통신으로 직접 해당 치과의 서버에 deninfo테이블의 정보를 받음.
+		
+		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
+		model.addAttribute("dendomain", dentist.getDendomain());
+		
+//		if(!task.equals("null")) {
+		String userId = (String) session.getAttribute("sessionUserid");
+		int registrationResult = myDentistService.registerMyDentist(userId, dendomain);
+		model.addAttribute("registrationResult", registrationResult);			
+//		}
+		
+		return "reservation/dentistDetail";
 	}
 	
 	//특정 치과 상세 페이지에서 '예약하기' 버튼 클릭시에 달력과 버튼을 이용한 예약신청 화면으로 이동.
