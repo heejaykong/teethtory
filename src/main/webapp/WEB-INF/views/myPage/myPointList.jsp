@@ -27,13 +27,20 @@
 							</h2>
 						</div>
 						<div style="display:flex; align-items:flex-end">
+							<h4 style="font-size:0.8rem; font-weight:500; color: var(--osstem-orange)">(누적 사용액: </h4>
+							<h4 style="font-size:1rem; font-weight:500; color: var(--osstem-orange)">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${usedPoint}" />
+							</h4>
+							<h4 style="font-size:0.8rem; font-weight:500; color: var(--osstem-orange)"> )</h4>
+						</div>
+						<%-- <div style="display:flex; align-items:flex-end">
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">(누적 사용액 </h4>
 							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${usedPoint}" />
 							</h4>
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)"> )</h4>
-						</div>
+						</div> --%>
 					</div>
 					<div style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
 

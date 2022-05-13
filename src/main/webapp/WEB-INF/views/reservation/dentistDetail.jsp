@@ -83,7 +83,7 @@
 	        </button>
 	      </div>
 	      <div class="modal-body">
-	        내 치과 목록에 추가하시겠습니까?
+	        예약을 위해 '내 치과'로 등록하시겠습니까?
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
@@ -94,26 +94,26 @@
 </div>
 
 <script>
-	$('#exampleModal').on('show.bs.modal', function (event) {
-	  	var button = $(event.relatedTarget) // Button that triggered the modal
-	  	var recipient = button.data('whatever') // Extract info from data-* attributes
-	  	var body = button.data('body')
-	  	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	  	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	  	console.log("aaa");
-	  	var modal = $(this)
-	  	modal.find('.modal-title').text(recipient)
-	  	modal.find('.modal-body').text(body)
+	// $('#exampleModal').on('show.bs.modal', function (event) {
+	//   	var button = $(event.relatedTarget) // Button that triggered the modal
+	//   	var recipient = button.data('whatever') // Extract info from data-* attributes
+	//   	var body = button.data('body')
+	//   	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	//   	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	//   	console.log("aaa");
+	//   	var modal = $(this)
+	//   	modal.find('.modal-title').text(recipient)
+	//   	modal.find('.modal-body').text(body)
 
-        //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
-        let yesBtn = document.getElementById('btn-yes');
-        // yesBtn.onclick = function() {
-        //     let dendomainForReservation = document.getElementById('dendomain').value;
-        //     //내 치과에 등록된 치과인지 점검.
-        //     location.href = "";
-        //     //내 치과에 등록된
-        // }
-	})
+    //     //모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
+    //     let yesBtn = document.getElementById('btn-yes');
+    //     // yesBtn.onclick = function() {
+    //     //     let dendomainForReservation = document.getElementById('dendomain').value;
+    //     //     //내 치과에 등록된 치과인지 점검.
+    //     //     location.href = "";
+    //     //     //내 치과에 등록된
+    //     // }
+	// })
 	
 	function handleHidden(e, task, dendomain) {
 		const targetEl = e.target;
@@ -222,11 +222,37 @@
 					console.log(localStorage.getItem("dendomain"));
 					location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
 				} else {//0: 내 치과로 등록 필요.
-					if(data.registrationResult === 1) {
-						location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
-					} else {
-						alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
-					}
+					$('#exampleModal').on('show.bs.modal', function (event) {
+						var button = $(event.relatedTarget) // Button that triggered the modal
+						var recipient = button.data('whatever') // Extract info from data-* attributes
+						var body = button.data('body')
+						// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+						// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+						console.log("aaa");
+						var modal = $(this)
+						modal.find('.modal-title').text(recipient)
+						modal.find('.modal-body').text(body)
+						//모달에서 사용자가 '예'선택시에, 예약화면으로 넘어감.(dendomain 필요.)
+						let yesBtn = document.getElementById('btn-yes');
+						yesBtn.onclick = function() {
+							$.ajax({
+								method:"GET",
+								url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+								data: {
+									dendomain: localStorage.getItem("dendomain")
+								}
+							})
+							.done((data) => {
+								console.log('data.registrationResult : ' + data.registrationResult);
+								console.log('typeof data.registrationResult : ' + typeof data.registrationResult);
+								if(data.registrationResult === 1) {
+									location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
+								} else {
+									alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+								}
+							});
+						}
+					})
 				}
 			});
 		}
@@ -534,17 +560,17 @@
 		}
 	</script>
 	<script>
-		$(function() {
-			// 희재 코멘트:
-			// 만약 사용자가 후기를 작성해서 이 화면으로 redirect 된 경우라면
-			// local.href 끝에 "#(엘리먼트id값)"이 붙게 됨. "#(엘리먼트id값)"이 붙은 경우
-			// 해당 엘리먼트로 스크롤 anchor 처리하려는 코드임(동작은 하지만 수정 필요).
-			const id = location.hash.substring(1);
-			if (tag !== "") {
-				const targetEl = document.querySelector("#"+id);
-				$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
-			}
-		});
+		// $(function() {
+		// 	// 희재 코멘트:
+		// 	// 만약 사용자가 후기를 작성해서 이 화면으로 redirect 된 경우라면
+		// 	// local.href 끝에 "#(엘리먼트id값)"이 붙게 됨. "#(엘리먼트id값)"이 붙은 경우
+		// 	// 해당 엘리먼트로 스크롤 anchor 처리하려는 코드임(동작은 하지만 수정 필요).
+		// 	const id = location.hash.substring(1);
+		// 	if (tag !== "") {
+		// 		const targetEl = document.querySelector("#"+id);
+		// 		$('html,body').animate({scrollTop: $("#"+id).offset().top},'slow');
+		// 	}
+		// });
 	</script>
 </body>
 </html>

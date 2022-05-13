@@ -102,11 +102,11 @@ public class ReservationController {
 		Dentist dentist = dentistService.getDentistByDendomain(dendomain);
 		model.addAttribute("dendomain", dentist.getDendomain());
 		
-		if(!task.equals("null")) {
+//		if(!task.equals("null")) {
 			String userId = (String) session.getAttribute("sessionUserid");
 			int registrationResult = myDentistService.registerMyDentist(userId, dendomain);
 			model.addAttribute("registrationResult", registrationResult);			
-		}
+//		}
 		
 		return "reservation/dentistDetail";
 	}
