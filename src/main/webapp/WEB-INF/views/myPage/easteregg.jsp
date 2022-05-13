@@ -170,33 +170,34 @@ Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
 		}
 	}
 
-	    Kakao.Link.createDefaultButton({
-	      container: '#test',
-	      objectType: 'feed',
-	        content: {
-	          title: '치스토리',
-	          description: 'EASTEREGG',
-	        imageUrl:'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
-	        link: {
-	            mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
-	            // mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/',
-	        },
-	      },
-	      social: {
-	        likeCount: 10,
-	        commentCount: 20,
-	        sharedCount: 30,
-	      },
-	      buttons: [
-	        {
-	          title: '웹으로 이동',
-	          link: {
-	            mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
-	            // mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/myPage/easteregg',
-	          },
-	        },
-	      ]
-	    });
+	Kakao.Link.createCustomButton({
+		container: '#test',
+		// objectType: 'feed',
+		templateId : ${76477}
+		// content: {
+		// 	title: '치스토리',
+		// 	description: 'EASTEREGG',
+		// imageUrl:'http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+		// link: {
+		// 	mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
+		// 	// mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/',
+		// },
+		// },
+		// social: {
+		// likeCount: 10,
+		// commentCount: 20,
+		// sharedCount: 30,
+		// },
+		// buttons: [
+		// {
+		// 	title: '웹으로 이동',
+		// 	link: {
+		// 	mobileWebUrl: 'http://192.168.1.239:8081/springframework-mini-project/myPage/easteregg',
+		// 	// mobileWebUrl: 'http://192.168.1.129:8081/springframework-mini-project/myPage/easteregg',
+		// 	},
+		// },
+		// ]
+	});
 	  
 </script>
 

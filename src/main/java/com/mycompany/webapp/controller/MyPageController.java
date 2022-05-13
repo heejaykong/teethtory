@@ -139,7 +139,10 @@ public class MyPageController {
 		//로그인한 사용자의 포인트 잔액 전송.
 		String userId = (String) session.getAttribute("sessionUserid");
 		int pointBalance = userService.getPointBalance(userId);
+		int usedPoint = userService.getusedPointBalance(userId);
+		log.info("usedPoint : " + usedPoint);
 		model.addAttribute("pointBalance", pointBalance);
+		model.addAttribute("usedPoint", usedPoint);
 		
 		Pager pager = new Pager();
 		List<Point> list = new ArrayList<>();

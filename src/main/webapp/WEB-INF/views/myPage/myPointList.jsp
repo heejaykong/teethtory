@@ -26,6 +26,14 @@
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${pointBalance}" />
 							</h2>
 						</div>
+						<div style="display:flex; align-items:flex-end">
+							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">(누적 사용액 </h4>
+							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${usedPoint}" />
+							</h4>
+							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)"> )</h4>
+						</div>
 					</div>
 					<div style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
 
@@ -36,20 +44,16 @@
 										<div style="margin-right:1rem;">
 											<li class="nav-item">
 												<a id="list_total" class="nav-link" onClick="list_active('list_total'), get_list(1)">전체<span class="sr-only">(current)</span></a>
-												<%-- <a id="list_total" class="nav-link active" href="?specification=total" onClick="list_active('list_total')">전체<span class="sr-only">(current)</span></a> --%>
-												<%-- <a class="nav-link" href="#" onClick="list_active('list_total'), DisplayList(list_items, list_element, rows, current_page), SetupPagination(list_items, pagination_element, rows)">전체<span class="sr-only">(current)</span></a> --%>
 											</li>
 										</div>
 										<div style="margin-right:1rem;">
 											<li class="nav-item">
 												<a id="list_got" class="nav-link" onClick="list_active('list_got'), get_list(1)">획득</a>
-												<%-- <a class="nav-link" href="#" onClick="list_active('list_got'), DisplayList(list_got_items, list_element, rows, current_page), SetupPagination(list_got_items, pagination_element, rows)">획득</a> --%>
 											</li>
 										</div>
 										<div style="margin-right:1rem;">
 											<li class="nav-item">
 												<a id="list_used" class="nav-link" onClick="list_active('list_used'), get_list(1)">사용</a>
-												<%-- <a class="nav-link" href="#" onClick="list_active('list_used'), DisplayList(list_used_items, list_element, rows, current_page), SetupPagination(list_used_items, pagination_element, rows)">사용</a> --%>
 											</li>
 										</div>
 									</div>
