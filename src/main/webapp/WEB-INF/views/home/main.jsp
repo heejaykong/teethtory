@@ -13,41 +13,8 @@
 	<%@ include file="/WEB-INF/views/common/loading.jsp" %>
 	<%@ include file="/WEB-INF/views/common/header.jsp"%>
 	<main class="main located-at-bottom-of-header">
-		<%-- 상단 캐러셀 이미지 --%>
-		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<img src="${pageContext.request.contextPath}/resources/images/home1.jpg"
-						class="d-block w-100" alt="home carousel image1"/>
-				</div>
-				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/images/puppy2.jpeg"
-						class="d-block w-100" alt="home carousel image2"/>
-				</div>
-				<div class="carousel-item">
-					<img src="${pageContext.request.contextPath}/resources/images/puppy3.jpeg"
-						class="d-block w-100" alt="home carousel image3"/>
-				</div>
-			</div>
-			<button class="carousel-control-prev" type="button"
-				data-target="#carouselExampleIndicators" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"
-				data-target="#carouselExampleIndicators" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</button>
-		</div>
-
 		<%-- 서비스 설명 --%>
-		<section class="home-explain-section background-pale-peach">
+		<section class="home-explain-section background-pale-peach" style="padding-bottom: 0;">
 			<p class="sub-copy">
 				치과 진료내역,<br/>
 				한 곳에 모아볼 순 없을까?
@@ -57,7 +24,7 @@
 				쉽게 확인하세요.
 			</h1>
 			<div class="home-explain-image">
-				<img src="https://dummyimage.com/600x400/000/fff" alt="home main image 1">
+				<img src="${pageContext.request.contextPath}/resources/images/intro/intro1_crop.png" alt="home main image 1">
 			</div>
 		</section>
 		<section class="home-explain-section background-gray">
@@ -71,7 +38,20 @@
 				이용해 보세요.
 			</h1>
 			<div class="home-explain-image">
-				<img src="https://dummyimage.com/600x400/000/fff" alt="home main image 2">
+				<img src="${pageContext.request.contextPath}/resources/images/intro/intro2.png" alt="home main image 2">
+			</div>
+		</section>
+		<section class="home-explain-section">
+			<p class="sub-copy">
+				매일매일 로그인하면<br/>
+				스케일링 진료가 공짜!
+			</p>
+			<h1 class="main-copy">
+				포인트를 모아<br/>
+				진료 혜택도 받아요.
+			</h1>
+			<div class="home-explain-image">
+				<img src="${pageContext.request.contextPath}/resources/images/intro/intro3.png" alt="home main image 2">
 			</div>
 		</section>
 	</main>
