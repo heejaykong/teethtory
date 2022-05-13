@@ -92,31 +92,20 @@ Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
 					// const toothRankObj = {}; //더 상단에 전역변수로 선언해야 함.
 					console.log('for(let i=0; i<list.length; i++) 시작~~');
 					for(let i=0; i<list.length; i++) {
-						console.log('list[' + i + ']["toothno"] : ' + list[i]["toothno"]);
-						console.log('toothRankMap.has(list[i]["toothno"] : ' + toothRankMap.has(list[i]["toothno"]));
-						// console.log('toothRankObj.hasOwnProperty(list[i]["toothno"] : ' + toothRankObj.hasOwnProperty(list[i]["toothno"]));
 						if(toothRankMap.has(list[i]["toothno"])) {
-							console.log('Map contains key1');
 							//이미 해당 toothno를 key로 하는 원소가 있으므로, key에 대한 value를 찾아서 +1.
 							toothRankMap.set(list[i]["toothno"], toothRankMap.get(list[i]["toothno"]) + 1);
-							// toothRankObj[list[i]["toothno"]] = toothRankObj[list[i]["toothno"]] + 1;
-							// console.log('toothRankObj[list[' + i + ']["toothno"]] : ' + toothRankObj[list[i]["toothno"]]);
 						} else {
 							//toothno를 key로 하고, value가 1인 원소를 생성.
 							toothRankMap.set(list[i]["toothno"], 1);
-							// toothRankObj[list[i]["toothno"]] = 1;
 						}
 					}
 				});
 			}			
 			const sortedToothRankMap = new Map( [...toothRankMap.entries()].sort((a, b) => b[1] - a[1]) );
-			console.log('sortedToothRankMap : ' + sortedToothRankMap);
-			console.log('typeof sortedToothRankMap : ' + typeof sortedToothRankMap);
-			console.log('sortedToothRankMap.size : ' + sortedToothRankMap.size);
 			let keys = Array.from(sortedToothRankMap.keys());
 			if(sortedToothRankMap.size >= 3) {//toothno의 종류가 3가지 이상인 경우.
 				for(let i=0; i<3; i++) {
-					console.log('keys[' + i + '] : ' + keys[i]);
 					if(i === 0) {
 						$('#first').html("🥇 " + keys[i] + "번");
 					} else if(i === 1) {
@@ -127,7 +116,6 @@ Kakao.init('a472507b48c1bfef14f1f454d183ffb0')
 				}
 			} else {//toothno의 종류가 3가지 미만인 경우.
 				for(let i=0; i<keys.length; i++) {
-					console.log('keys[' + i + '] : ' + keys[i]);
 					if(i === 0) {
 						$('#first').html("🥇 " + keys[i] + "번");
 					} else if(i === 1) {

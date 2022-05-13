@@ -7,7 +7,7 @@
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/pagination.css" />
 <style>
-	.fa-circle-dollar-to-slot {
+	.fa-circle-dollar-to-slot_myPointList {
 		color: gold;
 	}
 </style>
@@ -21,19 +21,26 @@
 					<h1 class="page-title">포인트 내역</h1>
 					<div class="d-flex mb-3">
 						<div style="display:flex; align-items:flex-end">
-							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
+							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot fa-circle-dollar-to-slot_myPointList"></i></div>
 							<h2 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${pointBalance}" />
 							</h2>
 						</div>
 						<div style="display:flex; align-items:flex-end">
+							<h4 style="font-size:0.8rem; font-weight:500; color: var(--osstem-orange)">(누적 사용액: </h4>
+							<h4 style="font-size:1rem; font-weight:500; color: var(--osstem-orange)">
+								<fmt:formatNumber type="number" maxFractionDigits="3" value="${usedPoint}" />
+							</h4>
+							<h4 style="font-size:0.8rem; font-weight:500; color: var(--osstem-orange)"> )</h4>
+						</div>
+						<%-- <div style="display:flex; align-items:flex-end">
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">(누적 사용액 </h4>
 							<div class="mr-2 mb-1"><i class="fa-solid fa-circle-dollar-to-slot"></i></div>
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)">
 								<fmt:formatNumber type="number" maxFractionDigits="3" value="${usedPoint}" />
 							</h4>
 							<h4 style="font-size:2rem; font-weight:500; color: var(--osstem-orange)"> )</h4>
-						</div>
+						</div> --%>
 					</div>
 					<div style="display:flex; flex-direction:column; text-decoration:none; color:#ffa048;">
 
