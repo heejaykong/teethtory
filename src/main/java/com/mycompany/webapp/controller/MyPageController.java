@@ -90,19 +90,14 @@ public class MyPageController {
 			, Model model) {
 		log.info("실행");
 		String userId = (String) session.getAttribute("sessionUserid");
-		
 		//내 치과 등록하기
 		//이미 등록된 치과는 추가X.(팝업까진 띄울필요X. MyDentists테이블에 PK없기 때문에 중복 행 입력 방지조치임.)
 		//1. 이미 등록된 치과인지 점검.
 		//1-1. 이미 등록된 치과면 아무조치X.
 		//1-2. 등록 안 된 치과면 등록.
-
 		if(!dendomain.equals("-1")) {
-
 			if(task.equals("add")) {
-
 				if(myDentistService.getMyDentistByDendomain(userId, dendomain) < 1) {//0인 경우에만 추가!
-
 					myDentistService.registerMyDentist(userId, dendomain);
 				}
 			} else if(task.equals("delete")) {
