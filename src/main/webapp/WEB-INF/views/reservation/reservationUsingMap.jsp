@@ -35,6 +35,7 @@
 		</div>
 		
 		<%-- 지도 아래 치과 정보 --%>
+		<%-- <div class="map-bottom background-gray"> --%>
 		<div class="map-bottom background-gray" onclick="goDentistDetail()">
 			<h3 class="map-bottom__denname"></h3>
 			<p class="map-bottom__denaddress"></p>
@@ -44,7 +45,7 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a472507b48c1bfef14f1f454d183ffb0"></script>
 	<script>
 		function goDentistDetail() {
-			location.href = "dentistDetail?dendomain=" + ${dendomain};
+			location.href = "dentistDetail?dendomain=" + ${dendomain} + "&task=null";
 		}
 	</script>
 	<script>

@@ -228,20 +228,20 @@
 					yesBtn.onclick = function() {
 						$.ajax({
 							method:"GET",
-							url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+							// url: "${pageContext.request.contextPath}/reservation/dentistDetail",
+							url: "${pageContext.request.contextPath}/myPage/myDentist",
 							data: {
-								dendomain: localStorage.getItem("dendomain")
+								dendomain: localStorage.getItem("dendomain"),
+								task: "add"
 							},
 							async: false
 						})
 						.done((data) => {
-							console.log('data.registrationResult : ' + data.registrationResult);
-							console.log('typeof data.registrationResult : ' + typeof data.registrationResult);
-							if(data.registrationResult === 1) {
-								location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain");
-							} else {
-								alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
-							}
+							// if(data.registrationResult === 1) {
+								location.href = "reservationUsingCalendar?dendomain=" + localStorage.getItem("dendomain") ;
+							// } else {
+								// alert('예약을 진행할 수 없는 사유가 발생했습니다. *관리자에게 문의 요망*');	
+							// }
 						});
 					}
 					// });
