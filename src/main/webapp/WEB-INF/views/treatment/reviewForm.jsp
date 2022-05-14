@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 	<%@ include file="/WEB-INF/views/common/meta.jsp" %>
-	<title>후기 작성 - 치스토리</title>
+	<title>치스토리 - 후기 작성</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/appIcon.png">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/treatment/reviewForm.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common/list-item.css" />
@@ -30,92 +30,6 @@
 			<div class="starscore-input">
 				<label for="starscore">별점:</label>
 				<select name="starscore" id="starscore">
-					<%-- 희재코멘트:
-					TBD: 별점 0.5 단위로 받을 수 있도록
-					select 박스에서 직접 별 찍을 수 있도록 별 버튼으로 만들기
-					아래는 걍 하다가 만거 아까워서 걍 주석처리한거임
-					<option value="5.0" selected>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-					</option>
-					<option value="4.5">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf5c0;
-					</option>
-					<option value="4.0">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf005;
-					</option>
-					<option value="3.5">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf5c0;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="3.0">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf005;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="2.5">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf5c0;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="2.0">
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						<i class="fa-solid fa-star"></i>
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="1.5">
-						
-						<i class="fa-solid fa-star"></i>
-						&#xf5c0;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="1.0">
-						<i class="fa-solid fa-star"></i>
-						&#xf005;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="0.5">
-						&#xf5c0;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option>
-					<option value="0.0">
-						&#xf005;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-						&#xf005;
-					</option> --%>
 					<option value="5">★★★★★</option>
 					<option value="4">★★★★☆</option>
 					<option value="3">★★★☆☆</option>
@@ -167,11 +81,11 @@
 			return `
 				<div class="list-item no-padding no-border-bottom">
 					<div class="list-item__info-summary">
-						<h4 class="title">
+						<h4 class="title no-ellipsis">
 							`+ denname +`
 							<span class="subtitle">`+ treatdate +`</span>
 						</h4>
-						<p class="text-sm">`+ denaddress +`</p>
+						<p class="text-sm no-ellipsis">`+ denaddress +`</p>
 					</div>
 				</div>
 			`;

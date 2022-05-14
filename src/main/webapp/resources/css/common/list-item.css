@@ -1,4 +1,5 @@
 /*
+
 **list-item.css 사용 가이드**
 작성자: 공희재
 
@@ -53,6 +54,9 @@
 	white-space: nowrap;
 	margin-bottom: 0.5rem;
 }
+.list-item__info-summary .title.no-ellipsis {
+	width: auto;
+}
 .list-item__info-summary .subtitle {
 	display: inline-block;
 	color: var(--dark-gray);
@@ -67,6 +71,9 @@
 	overflow: hidden;
 	white-space: nowrap;	
 }
+.list-item__info-summary .text-md.no-ellipsis {
+	width: auto;
+}
 .list-item__info-summary .text-sm {
 	width: 14rem;
 	color: var(--dark-gray);
@@ -74,6 +81,9 @@
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+}
+.list-item__info-summary .text-sm.no-ellipsis {
+	width: auto;
 }
 .list-item__thumbnail {
 	border: var(--card-border);
