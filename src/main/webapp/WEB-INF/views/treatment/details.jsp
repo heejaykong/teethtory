@@ -41,7 +41,7 @@
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>16번<br/>치아</b>"
-	                  style="top: 48%; left: 17.5%; width: 6.82333154%"
+	                  style="top: 48.5%; left: 17.8%; width: 6.82333154%"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/16.png"
 	                />
 	                <img
@@ -101,25 +101,25 @@
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>25번<br/>치아</b>"
-	                  style="top: 42%; left: 70.7%; width: 5.15%"
+	                  style="top: 42.5%; left: 70.5%; width: 5.15%"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/25.png"
 	                />
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>26번<br/>치아</b>"
-	                  style="top: 49%; left: 75.7%; width: 5.15%"
+	                  style="top: 47.8%; left: 75.24%; width: 6.80%;"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/26.png"
 	                />
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>27번<br/>치아</b>"
-	                  style="top: 58.5%; left: 81.8%; width: 6.45%"
+	                  style="top: 59.1%; left: 81.75%; width: 6.5%;"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/27.png"
 	                />
 	                <img
 	                  class="tooth"
 	                  title="<b id='toothNum'>28번<br/>치아</b>"
-	                  style="top: 67.7%; left: 88.2%; width: 6.3%"
+	                  style="top: 68.4%; left: 88%; width: 6.55%;"
 	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/upperTeeth/28.png"
 	                />
 	              </div>
@@ -131,13 +131,109 @@
 	                  alt="lower gum"
 	                />
 	              </div>
-	              <div class="lower-jaw__lower-teeth"></div>
+	              <div class="lower-jaw__lower-teeth">
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>48번<br/>치아</b>"
+	                  style="top: 7.4%; left: 5.4%; width: 7.75%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/48.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>47번<br/>치아</b>"
+	                  style="top: 19.1%; left: 12.8%; width: 6.55%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/47.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>46번<br/>치아</b>"
+	                  style="top: 26.8%; left: 19.1%; width: 8.35%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/46.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>45번<br/>치아</b>"
+	                  style="top: 33.3%; left: 27.2%; width: 5.45%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/45.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>44번<br/>치아</b>"
+	                  style="top: 37.1%; left: 32.6%; width: 4.15%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/44.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>43번<br/>치아</b>"
+	                  style="top: 35.6%; left: 36.5%; width: 5.05%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/43.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>42번<br/>치아</b>"
+	                  style="top: 39.3%; left: 41.4%; width: 4.75%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/42.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>41번<br/>치아</b>"
+	                  style="top: 41.1%; left: 45.9%; width: 4.05%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/41.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>31번<br/>치아</b>"
+	                  style="top: 40.4%; left: 50%; width: 3.75%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/31.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>32번<br/>치아</b>"
+	                  style="top: 40%; left: 53.4%; width: 4.75%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/32.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>33번<br/>치아</b>"
+	                  style="top: 36%; left: 58%; width: 5.25%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/33.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>34번<br/>치아</b>"
+	                  style="top: 36.4%; left: 62.9%; width: 4.45%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/34.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>35번<br/>치아</b>"
+	                  style="top: 31.9%; left: 67.1%; width: 5.15%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/35.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>36번<br/>치아</b>"
+	                  style="top: 28.2%; left: 71.8%; width: 9.05%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/36.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>37번<br/>치아</b>"
+	                  style="top: 19.9%; left: 80.2%; width: 6.55%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/37.png"
+	                />
+	              	<img
+	                	class="tooth"
+	                  title="<b id='toothNum'>38번<br/>치아</b>"
+	                  style="top: 6.3%; left: 86.3%; width: 7.85%;"
+	                  src="${pageContext.request.contextPath}/resources/images/teethAndGums/lowerTeeth/38.png"
+	                />
+	              </div>
 	            </div>
 	          </div>
 	    </section>
 	    <section class="treatment-desc-section">
 	      <ul>
-	
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">치료일</h6>
 	            <p class="desc-item__content"><span id="treatment-date">2022. 01. 03. (금)</span></p>
@@ -145,10 +241,6 @@
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">치료한 치아</h6>
 	            <p class="desc-item__content"><span id="teeth-numbers">-</span></p>
-	        </li>
-	        <li class="desc-item">
-	            <h6 class="desc-item__title">병명</h6>
-	            <p class="desc-item__content"><span id="disease-name">충치</span></p>
 	        </li>
 	        <li class="desc-item">
 	            <h6 class="desc-item__title">소견 내용</h6>
@@ -196,93 +288,114 @@
 	<c:set var="dendomain" value="${dendomain}" />
 
 	<script>
+		function getToothId(toothEl) {
+			const srcList = toothEl.src.split("/");
+			const toothId = srcList[srcList.length-1].split(".")[0];
+			return toothId;
+		}
+
+		function getNewSrc(toothno) {
+			const splitSrc = $('#'+toothno).attr('src').split('/');
+			const extension = splitSrc.at(-1).split('.').at(-1); // 치아 이미지파일 확장자
+			const originalToothFilename = splitSrc.at(-1).split('.').at(0); // 일반치아 이미지파일명
+			const markedToothFilename = originalToothFilename + '_marked' + '.' + extension; // 색칠된치아 이미지파일명
+			splitSrc[splitSrc.length - 1] = markedToothFilename;
+			const markedSrc = splitSrc.join('/');
+			return markedSrc;
+		}
+
 	  $(function(){
 	    // 각 치아에 id 동적으로 부여
-	    document.querySelectorAll(".mouth .tooth").forEach((tooth)=>{
-	      const srcList = tooth.src.split("/")
-	      const toothId = srcList[srcList.length-1].split(".")[0];
-	      tooth.id = toothId;
+	    document.querySelectorAll(".mouth .tooth").forEach((toothEl) => {
+	      toothEl.id = getToothId(toothEl);
 	    });
 
-		// treatno에 해당되는 treatment 객체 받아오기
-		const treatno = '${treatno}';
-		console.log(${dendomain});
-		$.ajax({
-			type:"POST",
-			url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
-			//async: false,
-			data: {} // 전송할 데이터
-		}).done((data) => {
-			console.log(data);
+			// treatno에 해당되는 treatment 객체 받아오기
+			const treatno = '${treatno}';
+			console.log(${dendomain});
+			$.ajax({
+				type:"POST",
+				url: "http://localhost:" + ${dendomain} + "/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=" + treatno,
+				//async: false,
+				data: {} // 전송할 데이터
+			}).done((data) => {
+				console.log(data);
 
-			const treattype = data.treattype;
-			const treatno = data.treatno;
-			$("#treatment-type").html(treattype);
-			$("#treatment-type").append(`<span>  #<span id="treatno">` + treatno + `</span></span>`);
-			
+				const treattype = data.treattype;
+				const treatno = data.treatno;
+				$("#treatment-type").html(treattype);
+				$("#treatment-type").append(`<span>  #<span id="treatno">` + treatno + `</span></span>`);
+				
 
-			// 동적으로 표시해야 할 치아들을 각각 색깔로 표시하기
-			const teeth = data.teeth;
-			teeth.map(({toothno}) => {
-				$("#"+toothno).addClass('marked-teeth');
-			});
-			// '치료한 치아' 항목에 줄글로 치아 표시하기
-			const teethWithPrefix = teeth.map(({toothno}) => ("#" + toothno));
-			$("#teeth-numbers").html(teethWithPrefix.join(", "));
+				// 동적으로 표시해야 할 치아들을 각각 색깔로 표시하기
+				const teeth = data.teeth;
+				teeth.map(({toothno}) => {
+					$('#'+toothno).addClass('marked-tooth');
+					const newSrc = getNewSrc(toothno);
+					$('#'+toothno).attr('src', newSrc);
+				});
+				// '치료한 치아' 항목에 줄글로 치아 표시하기
+				const teethWithPrefix = teeth.map(({toothno}) => ("#" + toothno));
+				$("#teeth-numbers").html(teethWithPrefix.join(", "));
 
-			const treatdate = data.treatdate;
-			$("#treatment-date").html(treatdate);
+				const treatdate = data.treatdate;
+				$("#treatment-date").html(treatdate);
 
-			const doctorcomment = data.doctorcomment;
-			$("#doctor-comment").html(doctorcomment);
-		    
-			// 이미지 동적으로 랜더링
-			const attachmentList = data.attachmentList;
-			attachmentList.map(({isafter, savedfilename}) => {
-				if (!isafter) {
-					$(".before-imgs-wrapper").append(
-						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='before image'/></a>"
-					);
+				const doctorcomment = data.doctorcomment;
+				$("#doctor-comment").html(doctorcomment);
+					
+				// 이미지 동적으로 랜더링
+				const attachmentList = data.attachmentList;
+				attachmentList.map(({isafter, savedfilename}) => {
+					if (!isafter) {
+						$(".before-imgs-wrapper").append(
+							"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='before image'/></a>"
+						);
+					}
+					if (isafter) {
+						$(".after-imgs-wrapper").append(
+							"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='after image'/></a>"
+						);
+					}
+				});
+
+				const materialcompany = data.materialcompany;
+				$("#equipment-company").html(materialcompany);
+
+				const doctorname = data.doctorname;
+				$("#doctor-name").html(doctorname);
+				
+				const dentistname = data.denname;
+				$("#doctor-name").append(
+					`<span id="dentist-name">(`+ dentistname +`)</span>`
+				);
+
+				const treatcost = data.treatcost;
+				$("#cost").html(treatcost.toLocaleString());
+				
+				// 만약 이미 후기가 작성된 치료내역이라면, '치료 후기 작성하기' 버튼모양 바꿔치기
+				if (data.isreviewed){
+					$('#reviewFormBtn').bind('click', false);
+					$("#reviewFormBtn").html("치료 후기 작성하기(완료)");
+					$('#reviewFormBtn').addClass("btn-disabled");
 				}
-				if (isafter) {
-					$(".after-imgs-wrapper").append(
-						"<a href='imageShow?filename=" + savedfilename + "'><img class='content__img' src='http://localhost:" + '${dendomain}' + "/springframework-mini-project-dentist/resources/images/treatment/"+ savedfilename +"' alt='after image'/></a>"
-					);
-				}
 			});
-
-			const materialcompany = data.materialcompany;
-			$("#equipment-company").html(materialcompany);
-
-			const doctorname = data.doctorname;
-			$("#doctor-name").html(doctorname);
-			
-			const dentistname = data.denname;
-			$("#doctor-name").append(
-				`<span id="dentist-name">(`+ dentistname +`)</span>`
-			);
-
-			const treatcost = data.treatcost;
-			$("#cost").html(treatcost.toLocaleString());
-			
-			// 만약 이미 후기가 작성된 치료내역이라면, '치료 후기 작성하기' 버튼모양 바꿔치기
-			if (data.isreviewed){
-				$('#reviewFormBtn').bind('click', false);
-				$("#reviewFormBtn").html("치료 후기 작성하기(완료)");
-				$('#reviewFormBtn').addClass("btn-disabled");
-			}
-		});
 
 	  });
 
-	  $(function () {
-	    $(".upper-jaw__upper-teeth>img").attr("data-toggle", "tooltip");
-	    $(".upper-jaw__upper-teeth>img").attr("data-placement", "top");
-	    $(".upper-jaw__upper-teeth>img").attr("data-html", "true");
-	    $('[data-toggle="tooltip"]').tooltip();
+	  $(function() {
+			// bootstrap tooltip 기능
+	    $(".upper-jaw__upper-teeth > .tooth").attr("data-toggle", "tooltip");
+	    $(".upper-jaw__upper-teeth > .tooth").attr("data-placement", "top");
+	    $(".upper-jaw__upper-teeth > .tooth").attr("data-html", "true");
+
+	    $(".lower-jaw__lower-teeth > .tooth").attr("data-toggle", "tooltip");
+	    $(".lower-jaw__lower-teeth > .tooth").attr("data-placement", "top");
+	    $(".lower-jaw__lower-teeth > .tooth").attr("data-html", "true");
+	    
+			$('[data-toggle="tooltip"]').tooltip();
 	  });
 	</script>
-
 
 	<%@ include file="/WEB-INF/views/common/footer.jsp"%>
 </body>

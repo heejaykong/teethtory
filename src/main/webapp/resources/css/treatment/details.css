@@ -23,15 +23,24 @@
 	position: relative;
 	margin-bottom: 3rem;
 }
+.mouth__lower-jaw{
+	position: relative;
+}
 .upper-jaw__upper-gum {
 }
-.upper-jaw__upper-gum > img{
+.lower-jaw__lower-gum{
+}
+.upper-jaw__upper-gum > img,
+.lower-jaw__lower-gum > img { /* gum */
 	width: 100%;
 	filter: drop-shadow(.1rem .1rem .3rem rgba(0, 0, 0, 0.5));
 }
 .upper-jaw__upper-teeth {
 }
-.upper-jaw__upper-teeth > img{ /* tooth */
+.lower-jaw__lower-teeth{
+}
+.upper-jaw__upper-teeth > .tooth,
+.lower-jaw__lower-teeth > .tooth { /* tooth */
 	cursor: pointer;
 	position: absolute;
 	filter: drop-shadow(.0rem .1rem .3rem rgba(0, 0, 0, 0.5))
@@ -41,22 +50,13 @@
 	/* background-color: rgba(0, 0, 0, 0.5); */
   /* opacity: 0.0; */
 }
-.marked-teeth {
-	filter: drop-shadow(0 0 0.5rem var(--osstem-orange)) !important;
-	width: 110%;
+.marked-tooth {
+	filter: drop-shadow(.0rem .1rem .3rem rgba(0, 0, 0, 0.5))
+					hue-rotate(0deg) !important;
 }
-.upper-jaw__upper-teeth > img:hover{
+.upper-jaw__upper-teeth > .tooth:hover,
+.lower-jaw__lower-teeth > .tooth:hover {
 	margin-top: -0.1rem;
-}
-.mouth__lower-jaw{
-}
-.lower-jaw__lower-gum{
-}
-.lower-jaw__lower-gum > img{
-	width: 100%;
-	filter: drop-shadow(.1rem .1rem .3rem rgba(0, 0, 0, 0.5));
-}
-.lower-jaw__lower-teeth{
 }
 
 /* treatment description section */
