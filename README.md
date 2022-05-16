@@ -1,7 +1,11 @@
 ### 스프링 미니프로젝트
-# 치스토리(TeethTory)
+# 치스토리(TeethTory) 웹서버
+
+* 치과서버는 [이 저장소](https://github.com/SukheeChoi/springframework-mini-project-dentist)를 참고해 주세요.
 
 齒(치아 치) + History = 치스토리(TeethTory)
+
+
 
 ### 시연 모습
 <kbd>
@@ -51,10 +55,10 @@
 
 ![image](https://user-images.githubusercontent.com/18097984/168517324-b52478bd-ea56-4ad1-b61e-055dac747550.png)
 
-
 ![image](https://user-images.githubusercontent.com/18097984/168517297-d3073986-2fd8-472e-9198-fcaf6d80d597.png)
-
 
 ![image](https://user-images.githubusercontent.com/18097984/168516922-8e73feb6-46c5-427d-acaf-089387353df4.png)
 
 ![image](https://user-images.githubusercontent.com/18097984/168516929-0c7a3103-d686-4b40-9dde-081fe7b65385.png)
+
+![image](https://user-images.githubusercontent.com/18097984/168533621-30e75b81-284e-424f-8a21-79259c961bf4.png)
