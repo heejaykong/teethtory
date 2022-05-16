@@ -2,7 +2,7 @@
 齒(치아 치) + History = 치스토리(TeethTory)
 # 치스토리(TeethTory) 웹서버
 
-* 치과서버는 [이 저장소](https://github.com/SukheeChoi/springframework-mini-project-dentist)를 참고해 주세요.
+* 본 프로젝트의 치과서버는 [이 저장소](https://github.com/SukheeChoi/springframework-mini-project-dentist)를 참고해 주세요.
 
 ***프로젝트 전체설명 및 전체시연 영상이 궁금하다면 아래 이미지를 클릭해 주세요.***
 
