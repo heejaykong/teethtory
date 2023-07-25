@@ -6,9 +6,11 @@
 * 본 프로젝트의 치과서버는 [이 저장소](https://github.com/SukheeChoi/springframework-mini-project-dentist)를 참고해 주세요.
 
 
-***프로젝트 전체설명 및 전체시연 영상이 궁금하다면 아래 이미지를 클릭해 주세요.***
+***프로젝트 전체설명 및 전체시연 영상이 궁금하다면 아래 썸네일을 클릭해 주세요.***
 
 [![Video Label](http://img.youtube.com/vi/Ks0J7QJQitg/0.jpg)](https://youtu.be/Ks0J7QJQitg)
+<img src="https://github.com/heejaykong/teethtory/assets/18097984/17f12fab-f718-4af2-8c1e-1b69139bdd3a" width="20%" />
+
 
 
 ### * 시연 모습 요약
